@@ -23,11 +23,11 @@ import javax.swing.JPanel;
  *
  * @author santy
  */
-public class GestionServicioGUI extends javax.swing.JFrame {
+public class GestionDeCitas extends javax.swing.JFrame {
 
     ImagenFondo fondo = new ImagenFondo();
     
-    public GestionServicioGUI() {
+    public GestionDeCitas() {
         this.setContentPane(fondo);
         initComponents();
         setVisible(true);
