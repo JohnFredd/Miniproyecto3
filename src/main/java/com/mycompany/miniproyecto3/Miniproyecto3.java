@@ -1,17 +1,26 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Project/Maven2/JavaApp/src/main/java/${packagePath}/${mainClassName}.java to edit this template
+ * MINIPROYECTO #3
+ *
+ * INTEGRANTES: 
+ * John Freddy Belalcázar
+ * Hernán David Cisneros
+ * Santiago González Gálvez
+ *
+ * Grupo 01 FPOE 
+ *
+ * PROFESOR: Luis Yohany Romo Portilla 
  */
 
 package com.mycompany.miniproyecto3;
 
-/**
- *
- * @author John
- */
+import vistas.PlantillaAfiliado;
+import vistas.PlantillaMedico;
+import vistas.PpalGUI;
 public class Miniproyecto3 {
 
     public static void main(String[] args) {
-        System.out.println("Hello World!");
+        //PlantillaAfiliado plantilla = new PlantillaAfiliado();
+        //PlantillaMedico plantilla2 = new PlantillaMedico();
+        PpalGUI ppal = new PpalGUI();
     }
 }
