@@ -13,11 +13,7 @@
 
 package vistas;
 
-import java.awt.Graphics;
-import java.awt.Image;
-import javax.swing.ImageIcon;
 import javax.swing.JFrame;
-import javax.swing.JPanel;
 
 public class PlantillaMedico extends javax.swing.JFrame {
 
@@ -286,14 +282,4 @@ public class PlantillaMedico extends javax.swing.JFrame {
     private javax.swing.JTextField txtTelefono;
     // End of variables declaration//GEN-END:variables
 
-    class ImagenFondo extends JPanel{
-        private Image imagen;
-        
-        public void paint (Graphics g){
-            imagen = new ImageIcon(getClass().getResource("/Imagenes/fondoCeleste2.jpg")).getImage();
-            g.drawImage(imagen, 0, 0, getWidth(),getHeight(),this);
-            setOpaque(false);
-            super.paint(g);
-        }
-    }
 }
