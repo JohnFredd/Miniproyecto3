@@ -13,8 +13,6 @@
 
 package vistas;
 
-import javax.swing.JFrame;
-
 public class PlantillaMedico extends javax.swing.JFrame {
 
     ImagenFondo fondo = new ImagenFondo();
@@ -25,7 +23,6 @@ public class PlantillaMedico extends javax.swing.JFrame {
         setVisible(true);
         setLocationRelativeTo(null);
         setResizable(false);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
     /**
@@ -86,12 +83,6 @@ public class PlantillaMedico extends javax.swing.JFrame {
 
         lblCorreo.setFont(new java.awt.Font("Agency FB", 1, 28)); // NOI18N
         lblCorreo.setText("Correo electrónico");
-
-        txtNombre.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtNombreActionPerformed(evt);
-            }
-        });
 
         comboSexo.setFont(new java.awt.Font("Agency FB", 1, 18)); // NOI18N
         comboSexo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Masculino", "Femenino" }));
@@ -248,10 +239,6 @@ public class PlantillaMedico extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void txtNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtNombreActionPerformed
 
     /**
      * @param args the command line arguments

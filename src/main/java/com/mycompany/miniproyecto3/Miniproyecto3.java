@@ -13,6 +13,7 @@
 
 package com.mycompany.miniproyecto3;
 
+import vistas.AgregarCitaGUI;
 import vistas.GestionServicioGUI;
 import vistas.PlantillaAfiliado;
 import vistas.PlantillaMedico;
@@ -24,5 +25,6 @@ public class Miniproyecto3 {
         //PlantillaMedico plantilla2 = new PlantillaMedico();
         //PpalGUI ppal = new PpalGUI();
         GestionServicioGUI gestion = new GestionServicioGUI();
+        AgregarCitaGUI agregarCita = new AgregarCitaGUI();
     }
 }

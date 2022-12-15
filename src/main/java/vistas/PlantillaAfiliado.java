@@ -13,8 +13,6 @@
 
 package vistas;
 
-import javax.swing.JFrame;
-
 public class PlantillaAfiliado extends javax.swing.JFrame {
 
     ImagenFondo fondo = new ImagenFondo();
@@ -25,7 +23,6 @@ public class PlantillaAfiliado extends javax.swing.JFrame {
         setVisible(true);
         setLocationRelativeTo(null);
         setResizable(false);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
     /**
