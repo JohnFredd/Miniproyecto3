@@ -41,134 +41,105 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="1" attributes="0">
-                  <EmptySpace max="32767" attributes="0"/>
-                  <Component id="lblTitulo" min="-2" pref="320" max="-2" attributes="0"/>
-                  <EmptySpace max="32767" attributes="0"/>
-              </Group>
-              <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace min="-2" pref="61" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+              <Group type="102" attributes="0">
+                  <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="1" attributes="0">
-                          <Component id="btnRegresar" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="32767" attributes="0"/>
-                          <Component id="btnAgregar" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblTitulo" min="-2" pref="349" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="243" max="-2" attributes="0"/>
                       </Group>
-                      <Group type="102" attributes="0">
-                          <Component id="lblCorreo" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="txtCorreo" max="32767" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="1" attributes="0">
-                          <Component id="lblTelefono" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" attributes="0">
-                                  <Component id="txtCedula" min="-2" pref="263" max="-2" attributes="0"/>
-                                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Component id="lblEdad" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
-                                  <Component id="txtEdad" min="-2" pref="72" max="-2" attributes="0"/>
-                                  <EmptySpace max="32767" attributes="0"/>
-                                  <Component id="lblSexo" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Component id="comboSexo" min="-2" pref="218" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
+                                  <Component id="btnRegresar" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="162" max="-2" attributes="0"/>
+                                  <Component id="btnAgregar" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" attributes="0">
-                                  <Component id="txtTelefono" min="-2" pref="266" max="-2" attributes="0"/>
+                                  <Component id="lblTelefono" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                  <Component id="txtTelefono" min="-2" pref="260" max="-2" attributes="0"/>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
                                   <Component id="lblDireccion" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace max="32767" attributes="0"/>
-                                  <Component id="txtDireccion" min="-2" pref="320" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="txtDireccion" min="-2" pref="326" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="lblCorreo" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="txtCorreo" min="-2" pref="602" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                                  <Group type="102" attributes="0">
+                                      <Component id="lblCedula" min="-2" pref="90" max="-2" attributes="0"/>
+                                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                                      <Component id="txtCedula" min="-2" pref="263" max="-2" attributes="0"/>
+                                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                                      <Component id="lblEdad" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="txtEdad" min="-2" pref="72" max="-2" attributes="0"/>
+                                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                                      <Component id="lblSexo" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="comboSexo" max="32767" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" attributes="0">
+                                      <Component id="lblNombre" min="-2" pref="99" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="txtNombre" min="-2" pref="721" max="-2" attributes="0"/>
+                                  </Group>
                               </Group>
                           </Group>
-                      </Group>
-                      <Group type="102" alignment="1" attributes="0">
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="lblCedula" alignment="0" min="-2" pref="74" max="-2" attributes="0"/>
-                              <Component id="lblNombre" min="-2" pref="74" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
-                          <Component id="txtNombre" min="-2" pref="721" max="-2" attributes="0"/>
+                          <EmptySpace min="0" pref="26" max="32767" attributes="0"/>
                       </Group>
                   </Group>
-                  <EmptySpace pref="38" max="32767" attributes="0"/>
+                  <EmptySpace pref="3" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
+                  <Component id="lblTitulo" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="77" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" attributes="0">
-                          <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
-                          <Component id="lblTitulo" min="-2" pref="64" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="49" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="lblNombre" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
-                              <Component id="txtNombre" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" attributes="0">
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Group type="102" alignment="0" attributes="0">
-                                          <EmptySpace min="-2" pref="86" max="-2" attributes="0"/>
-                                          <Group type="103" groupAlignment="0" attributes="0">
-                                              <Component id="txtEdad" max="32767" attributes="0"/>
-                                              <Group type="102" attributes="0">
-                                                  <Component id="lblCedula" min="-2" pref="33" max="-2" attributes="0"/>
-                                                  <EmptySpace min="0" pref="4" max="32767" attributes="0"/>
-                                              </Group>
-                                          </Group>
-                                      </Group>
-                                      <Group type="102" alignment="1" attributes="0">
-                                          <EmptySpace max="32767" attributes="0"/>
-                                          <Group type="103" groupAlignment="0" attributes="0">
-                                              <Component id="txtCedula" alignment="1" min="-2" pref="33" max="-2" attributes="0"/>
-                                              <Component id="lblEdad" alignment="1" min="-2" pref="33" max="-2" attributes="0"/>
-                                          </Group>
-                                      </Group>
-                                  </Group>
-                                  <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
-                              </Group>
-                              <Group type="102" alignment="1" attributes="0">
-                                  <EmptySpace max="32767" attributes="0"/>
-                                  <Component id="lblSexo" min="-2" pref="33" max="-2" attributes="0"/>
-                              </Group>
-                          </Group>
-                      </Group>
-                      <Group type="102" attributes="0">
-                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                          <Component id="comboSexo" min="-2" pref="33" max="-2" attributes="0"/>
-                      </Group>
+                      <Component id="lblNombre" min="-2" pref="33" max="-2" attributes="0"/>
+                      <Component id="txtNombre" min="-2" pref="33" max="-2" attributes="0"/>
                   </Group>
+                  <EmptySpace min="-2" pref="67" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" attributes="0">
-                          <EmptySpace min="-2" pref="97" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="1" attributes="0">
-                              <Component id="lblTelefono" min="-2" pref="33" max="-2" attributes="0"/>
-                              <Component id="txtTelefono" min="-2" pref="33" max="-2" attributes="0"/>
-                          </Group>
+                      <Component id="lblSexo" alignment="1" min="-2" pref="33" max="-2" attributes="0"/>
+                      <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                          <Component id="txtEdad" max="32767" attributes="0"/>
+                          <Component id="lblEdad" alignment="1" min="-2" pref="33" max="-2" attributes="0"/>
+                          <Component id="txtCedula" alignment="1" max="32767" attributes="0"/>
+                          <Component id="lblCedula" alignment="0" min="-2" pref="33" max="-2" attributes="0"/>
                       </Group>
-                      <Group type="102" alignment="1" attributes="0">
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="txtDireccion" alignment="1" min="-2" pref="33" max="-2" attributes="0"/>
-                              <Component id="lblDireccion" alignment="1" min="-2" pref="33" max="-2" attributes="0"/>
-                          </Group>
-                      </Group>
+                      <Component id="comboSexo" alignment="1" min="-2" pref="33" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" pref="78" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="1" attributes="0">
+                  <EmptySpace pref="57" max="32767" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="103" alignment="0" groupAlignment="1" attributes="0">
+                          <Component id="lblTelefono" min="-2" pref="33" max="-2" attributes="0"/>
+                          <Component id="txtTelefono" min="-2" pref="33" max="-2" attributes="0"/>
+                      </Group>
+                      <Component id="txtDireccion" alignment="1" min="-2" pref="33" max="-2" attributes="0"/>
+                      <Component id="lblDireccion" alignment="1" min="-2" pref="33" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="lblCorreo" min="-2" pref="33" max="-2" attributes="0"/>
                       <Component id="txtCorreo" min="-2" pref="33" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" pref="82" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="103" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="btnRegresar" alignment="3" min="-2" pref="43" max="-2" attributes="0"/>
                       <Component id="btnAgregar" alignment="3" min="-2" pref="43" max="-2" attributes="0"/>
+                      <Component id="btnRegresar" alignment="3" min="-2" pref="43" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -177,7 +148,7 @@
         <Component class="javax.swing.JLabel" name="lblTitulo">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Agency FB" size="56" style="1"/>
+              <Font name="Agency FB" size="60" style="1"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Agregar Afiliado"/>
           </Properties>
@@ -185,7 +156,7 @@
         <Component class="javax.swing.JLabel" name="lblNombre">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Agency FB" size="28" style="1"/>
+              <Font name="Agency FB" size="36" style="1"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Nombre"/>
           </Properties>
@@ -193,7 +164,7 @@
         <Component class="javax.swing.JLabel" name="lblCedula">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Agency FB" size="28" style="1"/>
+              <Font name="Agency FB" size="36" style="1"/>
             </Property>
             <Property name="text" type="java.lang.String" value="C&#xe9;dula"/>
           </Properties>
@@ -201,7 +172,7 @@
         <Component class="javax.swing.JLabel" name="lblEdad">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Agency FB" size="28" style="1"/>
+              <Font name="Agency FB" size="36" style="1"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Edad"/>
           </Properties>
@@ -209,7 +180,7 @@
         <Component class="javax.swing.JLabel" name="lblSexo">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Agency FB" size="28" style="1"/>
+              <Font name="Agency FB" size="36" style="1"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Sexo"/>
           </Properties>
@@ -217,7 +188,7 @@
         <Component class="javax.swing.JLabel" name="lblTelefono">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Agency FB" size="28" style="1"/>
+              <Font name="Agency FB" size="36" style="1"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Tel&#xe9;fono"/>
           </Properties>
@@ -225,7 +196,7 @@
         <Component class="javax.swing.JLabel" name="lblDireccion">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Agency FB" size="28" style="1"/>
+              <Font name="Agency FB" size="36" style="1"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Direcci&#xf3;n"/>
           </Properties>
@@ -233,7 +204,7 @@
         <Component class="javax.swing.JLabel" name="lblCorreo">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Agency FB" size="28" style="1"/>
+              <Font name="Agency FB" size="36" style="1"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Correo electr&#xf3;nico"/>
           </Properties>
@@ -241,6 +212,9 @@
         <Component class="javax.swing.JTextField" name="txtNombre">
         </Component>
         <Component class="javax.swing.JTextField" name="txtCedula">
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtCedulaActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="txtEdad">
         </Component>
@@ -270,17 +244,20 @@
         <Component class="javax.swing.JButton" name="btnRegresar">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Agency FB" size="30" style="1"/>
+              <Font name="Agency FB" size="36" style="1"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Regresar"/>
             <Property name="focusPainted" type="boolean" value="false"/>
             <Property name="requestFocusEnabled" type="boolean" value="false"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnRegresarActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="btnAgregar">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Agency FB" size="30" style="1"/>
+              <Font name="Agency FB" size="36" style="1"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Agregar afiliado"/>
             <Property name="focusPainted" type="boolean" value="false"/>
