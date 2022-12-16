@@ -63,6 +63,7 @@ public class ListarConsultorio extends javax.swing.JFrame {
         scroll = new javax.swing.JScrollPane();
         tablaContenido = new javax.swing.JTable();
         btnRegresar = new javax.swing.JButton();
+        separador = new javax.swing.JSeparator();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -83,20 +84,28 @@ public class ListarConsultorio extends javax.swing.JFrame {
         btnRegresar.setFocusPainted(false);
         btnRegresar.setRequestFocusEnabled(false);
 
+        separador.setForeground(new java.awt.Color(0, 0, 0));
+        separador.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
         javax.swing.GroupLayout panelPpalLayout = new javax.swing.GroupLayout(panelPpal);
         panelPpal.setLayout(panelPpalLayout);
         panelPpalLayout.setHorizontalGroup(
             panelPpalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(lblTitulo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(panelPpalLayout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelPpalLayout.createSequentialGroup()
+                .addContainerGap(58, Short.MAX_VALUE)
                 .addGroup(panelPpalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panelPpalLayout.createSequentialGroup()
-                        .addGap(72, 72, 72)
-                        .addComponent(scroll, javax.swing.GroupLayout.PREFERRED_SIZE, 794, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(panelPpalLayout.createSequentialGroup()
-                        .addGap(375, 375, 375)
-                        .addComponent(btnRegresar)))
-                .addContainerGap(34, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelPpalLayout.createSequentialGroup()
+                        .addComponent(scroll, javax.swing.GroupLayout.PREFERRED_SIZE, 794, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(48, 48, 48))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelPpalLayout.createSequentialGroup()
+                        .addComponent(btnRegresar)
+                        .addGap(372, 372, 372))))
+            .addGroup(panelPpalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(panelPpalLayout.createSequentialGroup()
+                    .addGap(49, 49, 49)
+                    .addComponent(separador, javax.swing.GroupLayout.PREFERRED_SIZE, 806, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(45, Short.MAX_VALUE)))
         );
         panelPpalLayout.setVerticalGroup(
             panelPpalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -105,9 +114,14 @@ public class ListarConsultorio extends javax.swing.JFrame {
                 .addComponent(lblTitulo)
                 .addGap(18, 18, 18)
                 .addComponent(scroll, javax.swing.GroupLayout.PREFERRED_SIZE, 440, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
+                .addGap(34, 34, 34)
                 .addComponent(btnRegresar)
-                .addGap(26, 26, 26))
+                .addContainerGap(41, Short.MAX_VALUE))
+            .addGroup(panelPpalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelPpalLayout.createSequentialGroup()
+                    .addContainerGap(654, Short.MAX_VALUE)
+                    .addComponent(separador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(19, 19, 19)))
         );
 
         btnRegresar.setOpaque(true);
@@ -136,6 +150,7 @@ public class ListarConsultorio extends javax.swing.JFrame {
     private javax.swing.JLabel lblTitulo;
     private javax.swing.JPanel panelPpal;
     private javax.swing.JScrollPane scroll;
+    private javax.swing.JSeparator separador;
     private javax.swing.JTable tablaContenido;
     // End of variables declaration//GEN-END:variables
 }

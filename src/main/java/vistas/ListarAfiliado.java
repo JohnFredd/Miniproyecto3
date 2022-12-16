@@ -64,6 +64,7 @@ public class ListarAfiliado extends javax.swing.JFrame {
         scroll = new javax.swing.JScrollPane();
         tablaContenido = new javax.swing.JTable();
         btnRegresar = new javax.swing.JButton();
+        separador = new javax.swing.JSeparator();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -84,6 +85,9 @@ public class ListarAfiliado extends javax.swing.JFrame {
         btnRegresar.setFocusPainted(false);
         btnRegresar.setRequestFocusEnabled(false);
 
+        separador.setForeground(new java.awt.Color(0, 0, 0));
+        separador.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
         javax.swing.GroupLayout panelPpalLayout = new javax.swing.GroupLayout(panelPpal);
         panelPpal.setLayout(panelPpalLayout);
         panelPpalLayout.setHorizontalGroup(
@@ -92,12 +96,17 @@ public class ListarAfiliado extends javax.swing.JFrame {
             .addGroup(panelPpalLayout.createSequentialGroup()
                 .addGroup(panelPpalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelPpalLayout.createSequentialGroup()
-                        .addGap(72, 72, 72)
+                        .addGap(48, 48, 48)
                         .addComponent(scroll, javax.swing.GroupLayout.PREFERRED_SIZE, 794, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(panelPpalLayout.createSequentialGroup()
-                        .addGap(375, 375, 375)
+                        .addGap(376, 376, 376)
                         .addComponent(btnRegresar)))
-                .addContainerGap(34, Short.MAX_VALUE))
+                .addContainerGap(58, Short.MAX_VALUE))
+            .addGroup(panelPpalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(panelPpalLayout.createSequentialGroup()
+                    .addGap(47, 47, 47)
+                    .addComponent(separador, javax.swing.GroupLayout.PREFERRED_SIZE, 806, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(47, Short.MAX_VALUE)))
         );
         panelPpalLayout.setVerticalGroup(
             panelPpalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -106,9 +115,14 @@ public class ListarAfiliado extends javax.swing.JFrame {
                 .addComponent(lblTitulo)
                 .addGap(18, 18, 18)
                 .addComponent(scroll, javax.swing.GroupLayout.PREFERRED_SIZE, 440, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
+                .addGap(30, 30, 30)
                 .addComponent(btnRegresar)
-                .addGap(26, 26, 26))
+                .addContainerGap(45, Short.MAX_VALUE))
+            .addGroup(panelPpalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(panelPpalLayout.createSequentialGroup()
+                    .addGap(659, 659, 659)
+                    .addComponent(separador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(14, Short.MAX_VALUE)))
         );
 
         btnRegresar.setOpaque(true);
@@ -137,6 +151,7 @@ public class ListarAfiliado extends javax.swing.JFrame {
     private javax.swing.JLabel lblTitulo;
     private javax.swing.JPanel panelPpal;
     private javax.swing.JScrollPane scroll;
+    private javax.swing.JSeparator separador;
     private javax.swing.JTable tablaContenido;
     // End of variables declaration//GEN-END:variables
 }

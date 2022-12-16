@@ -34,6 +34,7 @@ public class PpalGUI extends javax.swing.JFrame {
         btnGestionServicio = new javax.swing.JButton();
         btnGestionCita = new javax.swing.JButton();
         btnRespaldo = new javax.swing.JButton();
+        separador = new javax.swing.JSeparator();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -59,6 +60,9 @@ public class PpalGUI extends javax.swing.JFrame {
         btnRespaldo.setFocusPainted(false);
         btnRespaldo.setRequestFocusEnabled(false);
 
+        separador.setForeground(new java.awt.Color(0, 0, 0));
+        separador.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -82,6 +86,11 @@ public class PpalGUI extends javax.swing.JFrame {
                         .addGap(178, 178, 178)
                         .addComponent(btnRespaldo)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(21, 21, 21)
+                    .addComponent(separador, javax.swing.GroupLayout.PREFERRED_SIZE, 605, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(21, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -97,6 +106,11 @@ public class PpalGUI extends javax.swing.JFrame {
                 .addGap(67, 67, 67)
                 .addComponent(btnRespaldo, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(56, 56, 56))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(463, 463, 463)
+                    .addComponent(separador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(19, Short.MAX_VALUE)))
         );
 
         btnGestionServicio.setBackground(Color.WHITE);
@@ -116,6 +130,7 @@ public class PpalGUI extends javax.swing.JFrame {
     private javax.swing.JButton btnRespaldo;
     private javax.swing.JLabel lblTitulo;
     private javax.swing.JLabel lblTitulo2;
+    private javax.swing.JSeparator separador;
     // End of variables declaration//GEN-END:variables
 
 

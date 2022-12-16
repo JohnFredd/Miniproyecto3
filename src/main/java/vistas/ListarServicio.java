@@ -57,11 +57,15 @@ public class ListarServicio extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        separador1 = new javax.swing.JSeparator();
         panelPpal = new javax.swing.JPanel();
         lblTitulo = new javax.swing.JLabel();
         scroll = new javax.swing.JScrollPane();
         tablaContenido = new javax.swing.JTable();
         btnRegresar = new javax.swing.JButton();
+        separador2 = new javax.swing.JSeparator();
+
+        separador1.setForeground(new java.awt.Color(0, 0, 0));
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -82,6 +86,9 @@ public class ListarServicio extends javax.swing.JFrame {
         btnRegresar.setFocusPainted(false);
         btnRegresar.setRequestFocusEnabled(false);
 
+        separador2.setForeground(new java.awt.Color(0, 0, 0));
+        separador2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
         javax.swing.GroupLayout panelPpalLayout = new javax.swing.GroupLayout(panelPpal);
         panelPpal.setLayout(panelPpalLayout);
         panelPpalLayout.setHorizontalGroup(
@@ -90,23 +97,33 @@ public class ListarServicio extends javax.swing.JFrame {
             .addGroup(panelPpalLayout.createSequentialGroup()
                 .addGroup(panelPpalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelPpalLayout.createSequentialGroup()
-                        .addGap(258, 258, 258)
-                        .addComponent(btnRegresar))
+                        .addGap(49, 49, 49)
+                        .addComponent(scroll, javax.swing.GroupLayout.PREFERRED_SIZE, 558, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(panelPpalLayout.createSequentialGroup()
-                        .addGap(50, 50, 50)
-                        .addComponent(scroll, javax.swing.GroupLayout.PREFERRED_SIZE, 558, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(50, Short.MAX_VALUE))
+                        .addGap(250, 250, 250)
+                        .addComponent(btnRegresar)))
+                .addContainerGap(51, Short.MAX_VALUE))
+            .addGroup(panelPpalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(panelPpalLayout.createSequentialGroup()
+                    .addGap(26, 26, 26)
+                    .addComponent(separador2, javax.swing.GroupLayout.PREFERRED_SIZE, 604, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(28, Short.MAX_VALUE)))
         );
         panelPpalLayout.setVerticalGroup(
             panelPpalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelPpalLayout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addComponent(lblTitulo)
-                .addGap(34, 34, 34)
+                .addGap(18, 18, 18)
                 .addComponent(scroll, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 47, Short.MAX_VALUE)
+                .addGap(31, 31, 31)
                 .addComponent(btnRegresar)
-                .addGap(16, 16, 16))
+                .addContainerGap(48, Short.MAX_VALUE))
+            .addGroup(panelPpalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(panelPpalLayout.createSequentialGroup()
+                    .addGap(471, 471, 471)
+                    .addComponent(separador2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(22, Short.MAX_VALUE)))
         );
 
         btnRegresar.setOpaque(true);
@@ -135,6 +152,8 @@ public class ListarServicio extends javax.swing.JFrame {
     private javax.swing.JLabel lblTitulo;
     private javax.swing.JPanel panelPpal;
     private javax.swing.JScrollPane scroll;
+    private javax.swing.JSeparator separador1;
+    private javax.swing.JSeparator separador2;
     private javax.swing.JTable tablaContenido;
     // End of variables declaration//GEN-END:variables
 }
