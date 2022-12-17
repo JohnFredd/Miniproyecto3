@@ -13,6 +13,6 @@
 
 package controladores;
 
-public class GestorConsultorio {
+public class GestorOpcionesDeRespaldo {
     
 }

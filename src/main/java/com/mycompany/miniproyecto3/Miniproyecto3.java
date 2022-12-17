@@ -15,21 +15,13 @@ package com.mycompany.miniproyecto3;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import vistas.AgregarCitaGUI;
-import vistas.GestionServicioGUI;
-import vistas.PlantillaAfiliado;
-import vistas.PlantillaMedico;
 import vistas.PpalGUI;
 
 import modelos.*;
 public class Miniproyecto3 {
 
     public static void main(String[] args) {
-        //PlantillaAfiliado plantilla = new PlantillaAfiliado();
-        //PlantillaMedico plantilla2 = new PlantillaMedico();
         //PpalGUI ppal = new PpalGUI();
-        //GestionServicioGUI gestion = new GestionServicioGUI();
-        //AgregarCitaGUI agregarCita = new AgregarCitaGUI();
         
         /*Afiliado afiliado1 = new Afiliado("Juan", "Hombre", "Debajo de un puente", "Juan@gmail.com", 111111, 38, 111111);
         Afiliado afiliado2 = new Afiliado("Sofia", "Mujer", "Debajo de otro puente", "Sofia@gmail.com", 222222, 24, 222222);

@@ -13,6 +13,6 @@
 
 package controladores;
 
-public class GestorCita {
+public class GestorGestionDeCitas {
     
 }
