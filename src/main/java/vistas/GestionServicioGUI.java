@@ -14,6 +14,8 @@
 package vistas;
 
 import java.awt.Color;
+import java.awt.event.MouseListener;
+import javax.swing.JButton;
 public class GestionServicioGUI extends javax.swing.JFrame {
 
     ImagenFondo fondo = new ImagenFondo();
@@ -129,8 +131,47 @@ public class GestionServicioGUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     /**
-     * @param args the command line arguments
+     * @return 
      */
+
+    public JButton getBtnAfiliados() {
+        return btnAfiliados;
+    }
+
+    public JButton getBtnConsultorios() {
+        return btnConsultorios;
+    }
+
+    public JButton getBtnMedicos() {
+        return btnMedicos;
+    }
+
+    public JButton getBtnRegresar() {
+        return btnRegresar;
+    }
+
+    public JButton getBtnServicios() {
+        return btnServicios;
+    }
+    public void addBtnAfiliadosListener(MouseListener listenerBotones){
+        btnAfiliados.addMouseListener(listenerBotones);
+    }
+    
+    public void addBtnConsultoriosListener(MouseListener listenerBotones){
+        btnConsultorios.addMouseListener(listenerBotones);
+    }
+    
+    public void addBtnMedicosListener(MouseListener listenerBotones){
+        btnMedicos.addMouseListener(listenerBotones);
+    }
+    
+    public void addBtnRegresarListener(MouseListener listenerBotones){
+        btnRegresar.addMouseListener(listenerBotones);
+    }
+    
+    public void addBtnServiciosListener(MouseListener listenerBotones){
+        btnServicios.addMouseListener(listenerBotones);
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAfiliados;

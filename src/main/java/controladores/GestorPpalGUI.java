@@ -17,6 +17,7 @@ import java.awt.event.MouseEvent;
 import vistas.GestionDeCitas;
 import vistas.GestionServicioGUI;
 import vistas.OpcionesDeRespaldo;
+import vistas.PlantillaAfiliado;
 import vistas.PpalGUI;
 
 public class GestorPpalGUI {
@@ -56,8 +57,18 @@ public class GestorPpalGUI {
     }
     
     public void irGestionServicioGUI(){
+        
+        //Creación de ventanas
         GestionServicioGUI ventanaGestionServicio = new GestionServicioGUI();
+        PlantillaAfiliado vistaPlantillaAfiliado = new PlantillaAfiliado();
+        
+        //Creación de gestores
+        GestorPlantillaAfiliado gestorAfiliado = new GestorPlantillaAfiliado(vistaPlantillaAfiliado);
+        GestorGestionServicio gestorGestionServicio = new GestorGestionServicio(ventanaGestionServicio,gestorAfiliado);
+        
+        //Configuración de ventanas
         ventanaGestionServicio.setVisible(true);
+        vistaPlantillaAfiliado.setVisible(false);
         vistaPpal.dispose();
     }
     
