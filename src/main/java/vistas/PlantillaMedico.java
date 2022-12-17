@@ -58,7 +58,7 @@ public class PlantillaMedico extends javax.swing.JFrame {
         panelPpal.setOpaque(false);
 
         lblTitulo.setFont(new java.awt.Font("Agency FB", 1, 60)); // NOI18N
-        lblTitulo.setText("Agregar Médico");
+        lblTitulo.setText("Agregar médico");
 
         lblNombre.setFont(new java.awt.Font("Agency FB", 1, 36)); // NOI18N
         lblNombre.setText("Nombre");
@@ -207,7 +207,7 @@ public class PlantillaMedico extends javax.swing.JFrame {
                 .addGroup(panelPpalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAgregar)
                     .addComponent(btnRegresar))
-                .addContainerGap(45, Short.MAX_VALUE))
+                .addContainerGap(46, Short.MAX_VALUE))
             .addGroup(panelPpalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(panelPpalLayout.createSequentialGroup()
                     .addGap(646, 646, 646)

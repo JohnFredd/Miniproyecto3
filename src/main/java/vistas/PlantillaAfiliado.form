@@ -159,7 +159,7 @@
               <Font name="Agency FB" size="60" style="1"/>
             </Property>
             <Property name="horizontalAlignment" type="int" value="0"/>
-            <Property name="text" type="java.lang.String" value="Agregar Afiliado"/>
+            <Property name="text" type="java.lang.String" value="Agregar afiliado"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="lblNombre">

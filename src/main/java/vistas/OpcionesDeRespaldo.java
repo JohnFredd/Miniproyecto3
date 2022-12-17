@@ -47,7 +47,7 @@ public class OpcionesDeRespaldo extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         lblTitulo.setFont(new java.awt.Font("Agency FB", 1, 48)); // NOI18N
-        lblTitulo.setText("Opciones de Respaldo");
+        lblTitulo.setText("Opciones de respaldo");
 
         jLabel2.setFont(new java.awt.Font("Agency FB", 1, 48)); // NOI18N
 

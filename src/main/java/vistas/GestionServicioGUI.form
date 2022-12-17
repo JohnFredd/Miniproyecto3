@@ -87,7 +87,7 @@
           <Font name="Agency FB" size="60" style="1"/>
         </Property>
         <Property name="horizontalAlignment" type="int" value="0"/>
-        <Property name="text" type="java.lang.String" value="Gestion del servicio"/>
+        <Property name="text" type="java.lang.String" value="Gesti&#xf3;n del servicio"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="btnAfiliados">

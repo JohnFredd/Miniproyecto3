@@ -21,7 +21,7 @@ import vistas.PpalGUI;
 
 public class GestorPpalGUI {
     
-    private PpalGUI vistaPpal;
+    private final PpalGUI vistaPpal;
   
     public GestorPpalGUI(PpalGUI vistaPpal) {
         this.vistaPpal = vistaPpal;

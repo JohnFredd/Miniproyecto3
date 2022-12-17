@@ -16,11 +16,11 @@ package vistas;
 import java.awt.Color;
 import javax.swing.JFrame;
 
-public class AgregarConsultorioGUI extends javax.swing.JFrame {
+public class PlantillaServicio extends javax.swing.JFrame {
 
     ImagenFondo fondo = new ImagenFondo();
     
-    public AgregarConsultorioGUI() {
+    public PlantillaServicio() {
         this.setContentPane(fondo);
         initComponents();
         setVisible(true);
@@ -36,12 +36,10 @@ public class AgregarConsultorioGUI extends javax.swing.JFrame {
         panelPpal = new javax.swing.JPanel();
         lblTitulo = new javax.swing.JLabel();
         lblReferencia1 = new javax.swing.JLabel();
-        comboMedico = new javax.swing.JComboBox<>();
         btnRegresar = new javax.swing.JButton();
         btnAgendar = new javax.swing.JButton();
         separador = new javax.swing.JSeparator();
-        lblReferencia2 = new javax.swing.JLabel();
-        txtCedula = new javax.swing.JTextField();
+        txtServicio = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -49,13 +47,10 @@ public class AgregarConsultorioGUI extends javax.swing.JFrame {
 
         lblTitulo.setFont(new java.awt.Font("Agency FB", 1, 60)); // NOI18N
         lblTitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblTitulo.setText("Agregar Consultorio");
+        lblTitulo.setText("Agregar servicio médico");
 
         lblReferencia1.setFont(new java.awt.Font("Agency FB", 1, 36)); // NOI18N
-        lblReferencia1.setText("Identificador");
-
-        comboMedico.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        comboMedico.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        lblReferencia1.setText("Nombre servicio médico");
 
         btnRegresar.setFont(new java.awt.Font("Agency FB", 1, 36)); // NOI18N
         btnRegresar.setText("Regresar");
@@ -63,7 +58,7 @@ public class AgregarConsultorioGUI extends javax.swing.JFrame {
         btnRegresar.setRequestFocusEnabled(false);
 
         btnAgendar.setFont(new java.awt.Font("Agency FB", 1, 36)); // NOI18N
-        btnAgendar.setText("Agregar Consultorio");
+        btnAgendar.setText("Agregar Servicio Médico");
         btnAgendar.setFocusPainted(false);
         btnAgendar.setRequestFocusEnabled(false);
         btnAgendar.addActionListener(new java.awt.event.ActionListener() {
@@ -75,69 +70,51 @@ public class AgregarConsultorioGUI extends javax.swing.JFrame {
         separador.setForeground(new java.awt.Color(0, 0, 0));
         separador.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        lblReferencia2.setFont(new java.awt.Font("Agency FB", 1, 36)); // NOI18N
-        lblReferencia2.setText("Servicio Medico Asociado ");
-
-        txtCedula.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        txtCedula.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txtServicio.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        txtServicio.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
         javax.swing.GroupLayout panelPpalLayout = new javax.swing.GroupLayout(panelPpal);
         panelPpal.setLayout(panelPpalLayout);
         panelPpalLayout.setHorizontalGroup(
             panelPpalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelPpalLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(lblTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 547, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(78, 78, 78))
             .addGroup(panelPpalLayout.createSequentialGroup()
+                .addGap(23, 23, 23)
                 .addGroup(panelPpalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(separador)
                     .addGroup(panelPpalLayout.createSequentialGroup()
-                        .addGap(14, 14, 14)
-                        .addGroup(panelPpalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(panelPpalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(txtServicio, javax.swing.GroupLayout.PREFERRED_SIZE, 347, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(panelPpalLayout.createSequentialGroup()
                                 .addComponent(btnRegresar)
-                                .addGap(113, 113, 113)
-                                .addComponent(btnAgendar)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addComponent(separador)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelPpalLayout.createSequentialGroup()
-                        .addContainerGap(23, Short.MAX_VALUE)
-                        .addGroup(panelPpalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelPpalLayout.createSequentialGroup()
-                                .addComponent(lblReferencia2)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(comboMedico, javax.swing.GroupLayout.PREFERRED_SIZE, 399, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(6, 6, 6))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelPpalLayout.createSequentialGroup()
-                                .addComponent(lblReferencia1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtCedula, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(164, 164, 164)))))
+                                .addGap(45, 45, 45)
+                                .addComponent(btnAgendar)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelPpalLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(lblReferencia1)
+                .addGap(210, 210, 210))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelPpalLayout.createSequentialGroup()
+                .addContainerGap(106, Short.MAX_VALUE)
+                .addComponent(lblTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 547, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(78, 78, 78))
         );
         panelPpalLayout.setVerticalGroup(
             panelPpalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelPpalLayout.createSequentialGroup()
                 .addGap(57, 57, 57)
                 .addComponent(lblTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(63, 63, 63)
-                .addGroup(panelPpalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(txtCedula, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblReferencia1))
-                .addGap(18, 18, 18)
-                .addGroup(panelPpalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panelPpalLayout.createSequentialGroup()
-                        .addComponent(lblReferencia2)
-                        .addGap(111, 111, 111)
-                        .addGroup(panelPpalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnAgendar)
-                            .addComponent(btnRegresar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(18, 18, 18)
-                        .addComponent(separador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(19, 19, 19))
-                    .addGroup(panelPpalLayout.createSequentialGroup()
-                        .addComponent(comboMedico, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addGap(51, 51, 51)
+                .addComponent(lblReferencia1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(txtServicio, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(126, 126, 126)
+                .addGroup(panelPpalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnAgendar)
+                    .addComponent(btnRegresar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(29, 29, 29)
+                .addComponent(separador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(19, 19, 19))
         );
 
         btnRegresar.setBackground(Color.WHITE);
@@ -174,12 +151,10 @@ public class AgregarConsultorioGUI extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgendar;
     private javax.swing.JButton btnRegresar;
-    private javax.swing.JComboBox<String> comboMedico;
     private javax.swing.JLabel lblReferencia1;
-    private javax.swing.JLabel lblReferencia2;
     private javax.swing.JLabel lblTitulo;
     private javax.swing.JPanel panelPpal;
     private javax.swing.JSeparator separador;
-    private javax.swing.JTextField txtCedula;
+    private javax.swing.JTextField txtServicio;
     // End of variables declaration//GEN-END:variables
 }

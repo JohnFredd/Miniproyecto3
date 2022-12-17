@@ -166,7 +166,7 @@
                       <Component id="btnAgregar" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="btnRegresar" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="45" max="32767" attributes="0"/>
+                  <EmptySpace pref="46" max="32767" attributes="0"/>
               </Group>
               <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
@@ -184,7 +184,7 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Agency FB" size="60" style="1"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Agregar M&#xe9;dico"/>
+            <Property name="text" type="java.lang.String" value="Agregar m&#xe9;dico"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="lblNombre">

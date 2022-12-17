@@ -56,7 +56,7 @@ public class PlantillaAfiliado extends javax.swing.JFrame {
 
         lblTitulo.setFont(new java.awt.Font("Agency FB", 1, 60)); // NOI18N
         lblTitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblTitulo.setText("Agregar Afiliado");
+        lblTitulo.setText("Agregar afiliado");
 
         lblNombre.setFont(new java.awt.Font("Agency FB", 1, 36)); // NOI18N
         lblNombre.setText("Nombre");

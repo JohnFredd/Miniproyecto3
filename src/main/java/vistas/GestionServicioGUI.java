@@ -41,7 +41,7 @@ public class GestionServicioGUI extends javax.swing.JFrame {
 
         lblTitulo.setFont(new java.awt.Font("Agency FB", 1, 60)); // NOI18N
         lblTitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblTitulo.setText("Gestion del servicio");
+        lblTitulo.setText("Gestión del servicio");
 
         btnAfiliados.setFont(new java.awt.Font("Agency FB", 1, 36)); // NOI18N
         btnAfiliados.setText("Afiliados");

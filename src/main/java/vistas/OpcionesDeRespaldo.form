@@ -100,7 +100,7 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Agency FB" size="48" style="1"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Opciones de Respaldo"/>
+        <Property name="text" type="java.lang.String" value="Opciones de respaldo"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel2">

@@ -16,11 +16,11 @@ package vistas;
 import java.awt.Color;
 import javax.swing.JFrame;
 
-public class AgregarCitaGUI extends javax.swing.JFrame {
+public class PlantillaCita extends javax.swing.JFrame {
 
     ImagenFondo fondo = new ImagenFondo();
     
-    public AgregarCitaGUI() {
+    public PlantillaCita() {
         this.setContentPane(fondo);
         initComponents();
         setVisible(true);
@@ -374,7 +374,7 @@ public class AgregarCitaGUI extends javax.swing.JFrame {
                 .addGroup(panelPpalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAgendar)
                     .addComponent(btnRegresar))
-                .addContainerGap(34, Short.MAX_VALUE))
+                .addContainerGap(35, Short.MAX_VALUE))
             .addGroup(panelPpalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelPpalLayout.createSequentialGroup()
                     .addContainerGap(630, Short.MAX_VALUE)
