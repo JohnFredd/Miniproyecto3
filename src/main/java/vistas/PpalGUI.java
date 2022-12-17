@@ -14,6 +14,8 @@
 package vistas;
 
 import java.awt.Color;
+import java.awt.event.MouseListener;
+import javax.swing.JButton;
 
 public class PpalGUI extends javax.swing.JFrame {
 
@@ -121,9 +123,35 @@ public class PpalGUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     /**
-     * @param args the command line arguments
+     * @return 
      */
 
+    public JButton getBtnGestionCita() {
+        return btnGestionCita;
+    }
+
+    public JButton getBtnGestionServicio() {
+        return btnGestionServicio;
+    }
+
+    /**
+     */
+    public JButton getBtnRespaldo() {
+        return btnRespaldo;
+    }
+    
+    public void addBtnGestionServicioListener(MouseListener listenerBotones){
+        btnGestionServicio.addMouseListener(listenerBotones);
+    }
+    
+    public void addBtnGestionCitaListener(MouseListener listenerBotones){
+        btnGestionCita.addMouseListener(listenerBotones);
+    }
+    
+    public void addBtnRespaldoListener(MouseListener listenerBotones){
+        btnRespaldo.addMouseListener(listenerBotones);
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnGestionCita;
     private javax.swing.JButton btnGestionServicio;
