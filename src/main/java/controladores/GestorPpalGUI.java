@@ -18,6 +18,9 @@ import vistas.GestionDeCitas;
 import vistas.GestionServicioGUI;
 import vistas.OpcionesDeRespaldo;
 import vistas.PlantillaAfiliado;
+import vistas.PlantillaConsultorio;
+import vistas.PlantillaMedico;
+import vistas.PlantillaServicio;
 import vistas.PpalGUI;
 
 public class GestorPpalGUI {
@@ -61,14 +64,23 @@ public class GestorPpalGUI {
         //Creación de ventanas
         GestionServicioGUI ventanaGestionServicio = new GestionServicioGUI();
         PlantillaAfiliado vistaPlantillaAfiliado = new PlantillaAfiliado();
+        PlantillaMedico vistaPlantillaMedico = new PlantillaMedico();
+        PlantillaConsultorio vistaPlantillaConsultorio = new PlantillaConsultorio();
+        PlantillaServicio vistaPlantillaServicio = new PlantillaServicio();
         
         //Creación de gestores
         GestorPlantillaAfiliado gestorAfiliado = new GestorPlantillaAfiliado(vistaPlantillaAfiliado);
-        GestorGestionServicio gestorGestionServicio = new GestorGestionServicio(ventanaGestionServicio,gestorAfiliado);
+        GestorPlantillaMedico gestorMedico = new GestorPlantillaMedico(vistaPlantillaMedico);
+        GestorPlantillaConsultorio gestorConsultorio = new GestorPlantillaConsultorio(vistaPlantillaConsultorio);
+        GestorPlantillaServicio gestorServicio = new GestorPlantillaServicio(vistaPlantillaServicio);
+        GestorGestionServicio gestorGestionServicio = new GestorGestionServicio(ventanaGestionServicio, gestorAfiliado, gestorMedico, gestorConsultorio, gestorServicio);
         
         //Configuración de ventanas
         ventanaGestionServicio.setVisible(true);
-        vistaPlantillaAfiliado.setVisible(false);
+        vistaPlantillaAfiliado.dispose();
+        vistaPlantillaMedico.dispose();
+        vistaPlantillaConsultorio.dispose();
+        vistaPlantillaServicio.dispose();
         vistaPpal.dispose();
     }
     

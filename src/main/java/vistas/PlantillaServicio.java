@@ -14,7 +14,10 @@
 package vistas;
 
 import java.awt.Color;
+import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JTextField;
 
 public class PlantillaServicio extends javax.swing.JFrame {
 
@@ -37,7 +40,7 @@ public class PlantillaServicio extends javax.swing.JFrame {
         lblTitulo = new javax.swing.JLabel();
         lblReferencia1 = new javax.swing.JLabel();
         btnRegresar = new javax.swing.JButton();
-        btnAgendar = new javax.swing.JButton();
+        btnAgregar = new javax.swing.JButton();
         separador = new javax.swing.JSeparator();
         txtServicio = new javax.swing.JTextField();
 
@@ -50,6 +53,7 @@ public class PlantillaServicio extends javax.swing.JFrame {
         lblTitulo.setText("Agregar servicio médico");
 
         lblReferencia1.setFont(new java.awt.Font("Agency FB", 1, 36)); // NOI18N
+        lblReferencia1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblReferencia1.setText("Nombre servicio médico");
 
         btnRegresar.setFont(new java.awt.Font("Agency FB", 1, 36)); // NOI18N
@@ -57,15 +61,10 @@ public class PlantillaServicio extends javax.swing.JFrame {
         btnRegresar.setFocusPainted(false);
         btnRegresar.setRequestFocusEnabled(false);
 
-        btnAgendar.setFont(new java.awt.Font("Agency FB", 1, 36)); // NOI18N
-        btnAgendar.setText("Agregar Servicio Médico");
-        btnAgendar.setFocusPainted(false);
-        btnAgendar.setRequestFocusEnabled(false);
-        btnAgendar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAgendarActionPerformed(evt);
-            }
-        });
+        btnAgregar.setFont(new java.awt.Font("Agency FB", 1, 36)); // NOI18N
+        btnAgregar.setText("Agregar servicio médico");
+        btnAgregar.setFocusPainted(false);
+        btnAgregar.setRequestFocusEnabled(false);
 
         separador.setForeground(new java.awt.Color(0, 0, 0));
         separador.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -77,27 +76,22 @@ public class PlantillaServicio extends javax.swing.JFrame {
         panelPpal.setLayout(panelPpalLayout);
         panelPpalLayout.setHorizontalGroup(
             panelPpalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(lblTitulo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(lblReferencia1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(panelPpalLayout.createSequentialGroup()
-                .addGap(23, 23, 23)
                 .addGroup(panelPpalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(separador)
                     .addGroup(panelPpalLayout.createSequentialGroup()
-                        .addGroup(panelPpalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(txtServicio, javax.swing.GroupLayout.PREFERRED_SIZE, 347, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(205, 205, 205)
+                        .addComponent(txtServicio, javax.swing.GroupLayout.PREFERRED_SIZE, 347, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(panelPpalLayout.createSequentialGroup()
+                        .addGap(23, 23, 23)
+                        .addGroup(panelPpalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(separador, javax.swing.GroupLayout.PREFERRED_SIZE, 704, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(panelPpalLayout.createSequentialGroup()
                                 .addComponent(btnRegresar)
                                 .addGap(45, 45, 45)
-                                .addComponent(btnAgendar)))
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelPpalLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(lblReferencia1)
-                .addGap(210, 210, 210))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelPpalLayout.createSequentialGroup()
-                .addContainerGap(106, Short.MAX_VALUE)
-                .addComponent(lblTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 547, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(78, 78, 78))
+                                .addComponent(btnAgregar)))))
+                .addContainerGap(32, Short.MAX_VALUE))
         );
         panelPpalLayout.setVerticalGroup(
             panelPpalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -110,7 +104,7 @@ public class PlantillaServicio extends javax.swing.JFrame {
                 .addComponent(txtServicio, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(126, 126, 126)
                 .addGroup(panelPpalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnAgendar)
+                    .addComponent(btnAgregar)
                     .addComponent(btnRegresar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(29, 29, 29)
                 .addComponent(separador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -118,16 +112,13 @@ public class PlantillaServicio extends javax.swing.JFrame {
         );
 
         btnRegresar.setBackground(Color.WHITE);
-        btnAgendar.setBackground(Color.WHITE);
+        btnAgregar.setBackground(Color.WHITE);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(panelPpal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(22, Short.MAX_VALUE))
+            .addComponent(panelPpal, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -139,17 +130,36 @@ public class PlantillaServicio extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnAgendarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgendarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnAgendarActionPerformed
+    public JButton getBtnAgregar() {
+        return btnAgregar;
+    }
+
+    public void setBtnAgregar(JButton btnAgregar) {
+        this.btnAgregar = btnAgregar;
+    }
+
+    public JLabel getLblTitulo() {
+        return lblTitulo;
+    }
 
     /**
-     * @param args the command line arguments
+     * @param lblTitulo
      */
+    public void setLblTitulo(JLabel lblTitulo) {
+        this.lblTitulo = lblTitulo;
+    }
+
+    public JTextField getTxtServicio() {
+        return txtServicio;
+    }
+
+    public void setTxtServicio(JTextField txtServicio) {
+        this.txtServicio = txtServicio;
+    }
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnAgendar;
+    private javax.swing.JButton btnAgregar;
     private javax.swing.JButton btnRegresar;
     private javax.swing.JLabel lblReferencia1;
     private javax.swing.JLabel lblTitulo;

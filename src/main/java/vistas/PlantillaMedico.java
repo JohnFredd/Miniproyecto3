@@ -14,6 +14,12 @@
 package vistas;
 
 import java.awt.Color;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JLabel;
+import javax.swing.JList;
+import javax.swing.JScrollPane;
+import javax.swing.JTextField;
 
 public class PlantillaMedico extends javax.swing.JFrame {
 
@@ -50,7 +56,7 @@ public class PlantillaMedico extends javax.swing.JFrame {
         btnAgregar = new javax.swing.JButton();
         lblEspecialidad = new javax.swing.JLabel();
         scroll = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList<>();
+        listaEspecialidad = new javax.swing.JList<>();
         separador = new javax.swing.JSeparator();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -58,6 +64,7 @@ public class PlantillaMedico extends javax.swing.JFrame {
         panelPpal.setOpaque(false);
 
         lblTitulo.setFont(new java.awt.Font("Agency FB", 1, 60)); // NOI18N
+        lblTitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblTitulo.setText("Agregar médico");
 
         lblNombre.setFont(new java.awt.Font("Agency FB", 1, 36)); // NOI18N
@@ -99,14 +106,15 @@ public class PlantillaMedico extends javax.swing.JFrame {
         lblEspecialidad.setFont(new java.awt.Font("Agency FB", 1, 36)); // NOI18N
         lblEspecialidad.setText("Especialidad");
 
-        jList1.setModel(new javax.swing.AbstractListModel<String>() {
+        listaEspecialidad.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Odontología", "Item 2", "Item 3", "Item 4", "Item 5" };
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
-        jList1.setVisibleRowCount(4);
-        scroll.setViewportView(jList1);
+        listaEspecialidad.setVisibleRowCount(4);
+        scroll.setViewportView(listaEspecialidad);
 
+        separador.setBackground(new java.awt.Color(0, 0, 0));
         separador.setForeground(new java.awt.Color(0, 0, 0));
         separador.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
@@ -114,61 +122,53 @@ public class PlantillaMedico extends javax.swing.JFrame {
         panelPpal.setLayout(panelPpalLayout);
         panelPpalLayout.setHorizontalGroup(
             panelPpalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(lblTitulo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(panelPpalLayout.createSequentialGroup()
                 .addGap(27, 27, 27)
-                .addGroup(panelPpalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panelPpalLayout.createSequentialGroup()
-                        .addGroup(panelPpalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(panelPpalLayout.createSequentialGroup()
-                                .addComponent(lblCedula, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(29, 29, 29)
-                                .addComponent(txtCedula, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(panelPpalLayout.createSequentialGroup()
-                                .addComponent(lblTelefono)
-                                .addGap(18, 18, 18)
-                                .addComponent(txtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(18, 18, 18)
-                        .addGroup(panelPpalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(panelPpalLayout.createSequentialGroup()
-                                .addComponent(lblEdad)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtEdad, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(lblSexo)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(comboSexo, 0, 236, Short.MAX_VALUE))
-                            .addGroup(panelPpalLayout.createSequentialGroup()
-                                .addComponent(lblDireccion)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtDireccion))))
-                    .addGroup(panelPpalLayout.createSequentialGroup()
-                        .addComponent(lblCorreo)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txtCorreo))
-                    .addGroup(panelPpalLayout.createSequentialGroup()
-                        .addComponent(lblNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(txtNombre))
-                    .addGroup(panelPpalLayout.createSequentialGroup()
-                        .addGroup(panelPpalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(panelPpalLayout.createSequentialGroup()
-                                .addComponent(lblEspecialidad)
-                                .addGap(18, 18, 18)
-                                .addComponent(scroll, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(panelPpalLayout.createSequentialGroup()
-                                .addComponent(btnRegresar)
-                                .addGap(193, 193, 193)
-                                .addComponent(btnAgregar)))
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelPpalLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(lblTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 344, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(227, 227, 227))
-            .addGroup(panelPpalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelPpalLayout.createSequentialGroup()
-                    .addGap(0, 27, Short.MAX_VALUE)
-                    .addComponent(separador, javax.swing.GroupLayout.PREFERRED_SIZE, 838, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGroup(panelPpalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(separador)
+                    .addGroup(panelPpalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(panelPpalLayout.createSequentialGroup()
+                            .addGroup(panelPpalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addGroup(panelPpalLayout.createSequentialGroup()
+                                    .addComponent(lblCedula, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(29, 29, 29)
+                                    .addComponent(txtCedula, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(panelPpalLayout.createSequentialGroup()
+                                    .addComponent(lblTelefono)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(txtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGap(18, 18, 18)
+                            .addGroup(panelPpalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGroup(panelPpalLayout.createSequentialGroup()
+                                    .addComponent(lblEdad)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(txtEdad, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(lblSexo)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(comboSexo, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(panelPpalLayout.createSequentialGroup()
+                                    .addComponent(lblDireccion)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(txtDireccion))))
+                        .addGroup(panelPpalLayout.createSequentialGroup()
+                            .addComponent(lblEspecialidad)
+                            .addGap(18, 18, 18)
+                            .addComponent(scroll, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(panelPpalLayout.createSequentialGroup()
+                            .addComponent(btnRegresar)
+                            .addGap(193, 193, 193)
+                            .addComponent(btnAgregar))
+                        .addGroup(panelPpalLayout.createSequentialGroup()
+                            .addComponent(lblNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(18, 18, 18)
+                            .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 718, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(panelPpalLayout.createSequentialGroup()
+                            .addComponent(lblCorreo)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(txtCorreo))))
+                .addContainerGap(30, Short.MAX_VALUE))
         );
         panelPpalLayout.setVerticalGroup(
             panelPpalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -207,12 +207,9 @@ public class PlantillaMedico extends javax.swing.JFrame {
                 .addGroup(panelPpalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAgregar)
                     .addComponent(btnRegresar))
-                .addContainerGap(46, Short.MAX_VALUE))
-            .addGroup(panelPpalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(panelPpalLayout.createSequentialGroup()
-                    .addGap(646, 646, 646)
-                    .addComponent(separador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(21, Short.MAX_VALUE)))
+                .addGap(18, 18, 18)
+                .addComponent(separador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(25, Short.MAX_VALUE))
         );
 
         btnRegresar.setBackground(Color.WHITE);
@@ -222,9 +219,7 @@ public class PlantillaMedico extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(panelPpal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 21, Short.MAX_VALUE))
+            .addComponent(panelPpal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -239,15 +234,113 @@ public class PlantillaMedico extends javax.swing.JFrame {
 
 
     /**
-     * @param args the command line arguments
+     * @return 
      */
+
+    public JButton getBtnAgregar() {
+        return btnAgregar;
+    }
+
+    public void setBtnAgregar(JButton btnAgregar) {
+        this.btnAgregar = btnAgregar;
+    }
+
+    public JButton getBtnRegresar() {
+        return btnRegresar;
+    }
+
+    public void setBtnRegresar(JButton btnRegresar) {
+        this.btnRegresar = btnRegresar;
+    }
+
+    public JComboBox<String> getComboSexo() {
+        return comboSexo;
+    }
+
+    public void setComboSexo(JComboBox<String> comboSexo) {
+        this.comboSexo = comboSexo;
+    }
+
+    public JLabel getLblTitulo() {
+        return lblTitulo;
+    }
+
+    public void setLblTitulo(JLabel lblTitulo) {
+        this.lblTitulo = lblTitulo;
+    }
+
+    public JTextField getTxtCedula() {
+        return txtCedula;
+    }
+
+    public void setTxtCedula(JTextField txtCedula) {
+        this.txtCedula = txtCedula;
+    }
+
+    public JTextField getTxtCorreo() {
+        return txtCorreo;
+    }
+
+    public void setTxtCorreo(JTextField txtCorreo) {
+        this.txtCorreo = txtCorreo;
+    }
+
+    public JTextField getTxtDireccion() {
+        return txtDireccion;
+    }
+
+    public void setTxtDireccion(JTextField txtDireccion) {
+        this.txtDireccion = txtDireccion;
+    }
+
+    public JTextField getTxtEdad() {
+        return txtEdad;
+    }
+
+    public void setTxtEdad(JTextField txtEdad) {
+        this.txtEdad = txtEdad;
+    }
+
+    public JTextField getTxtNombre() {
+        return txtNombre;
+    }
+
+    public void setTxtNombre(JTextField txtNombre) {
+        this.txtNombre = txtNombre;
+    }
+
+    public JTextField getTxtTelefono() {
+        return txtTelefono;
+    }
+
+    /**
+     * @param txtTelefono
+     */
+    public void setTxtTelefono(JTextField txtTelefono) {
+        this.txtTelefono = txtTelefono;
+    }
+
+    public JList<String> getListaEspecialidad() {
+        return listaEspecialidad;
+    }
+
+    public void setListaEspecialidad(JList<String> listaEspecialidad) {
+        this.listaEspecialidad = listaEspecialidad;
+    }
+
+    public JScrollPane getScroll() {
+        return scroll;
+    }
+
+    public void setScroll(JScrollPane scroll) {
+        this.scroll = scroll;
+    }
     
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregar;
     private javax.swing.JButton btnRegresar;
     private javax.swing.JComboBox<String> comboSexo;
-    private javax.swing.JList<String> jList1;
     private javax.swing.JLabel lblCedula;
     private javax.swing.JLabel lblCorreo;
     private javax.swing.JLabel lblDireccion;
@@ -257,6 +350,7 @@ public class PlantillaMedico extends javax.swing.JFrame {
     private javax.swing.JLabel lblSexo;
     private javax.swing.JLabel lblTelefono;
     private javax.swing.JLabel lblTitulo;
+    private javax.swing.JList<String> listaEspecialidad;
     private javax.swing.JPanel panelPpal;
     private javax.swing.JScrollPane scroll;
     private javax.swing.JSeparator separador;

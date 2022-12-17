@@ -14,7 +14,11 @@
 package vistas;
 
 import java.awt.Color;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JTextField;
 
 public class PlantillaConsultorio extends javax.swing.JFrame {
 
@@ -38,10 +42,10 @@ public class PlantillaConsultorio extends javax.swing.JFrame {
         lblReferencia1 = new javax.swing.JLabel();
         comboMedico = new javax.swing.JComboBox<>();
         btnRegresar = new javax.swing.JButton();
-        btnAgendar = new javax.swing.JButton();
+        btnAgregar = new javax.swing.JButton();
         separador = new javax.swing.JSeparator();
         lblReferencia2 = new javax.swing.JLabel();
-        txtCedula = new javax.swing.JTextField();
+        txtIdentificador = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -49,7 +53,7 @@ public class PlantillaConsultorio extends javax.swing.JFrame {
 
         lblTitulo.setFont(new java.awt.Font("Agency FB", 1, 60)); // NOI18N
         lblTitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblTitulo.setText("Agregar Consultorio");
+        lblTitulo.setText("Agregar consultorio");
 
         lblReferencia1.setFont(new java.awt.Font("Agency FB", 1, 36)); // NOI18N
         lblReferencia1.setText("Identificador");
@@ -62,24 +66,19 @@ public class PlantillaConsultorio extends javax.swing.JFrame {
         btnRegresar.setFocusPainted(false);
         btnRegresar.setRequestFocusEnabled(false);
 
-        btnAgendar.setFont(new java.awt.Font("Agency FB", 1, 36)); // NOI18N
-        btnAgendar.setText("Agregar Consultorio");
-        btnAgendar.setFocusPainted(false);
-        btnAgendar.setRequestFocusEnabled(false);
-        btnAgendar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAgendarActionPerformed(evt);
-            }
-        });
+        btnAgregar.setFont(new java.awt.Font("Agency FB", 1, 36)); // NOI18N
+        btnAgregar.setText("Agregar consultorio");
+        btnAgregar.setFocusPainted(false);
+        btnAgregar.setRequestFocusEnabled(false);
 
         separador.setForeground(new java.awt.Color(0, 0, 0));
         separador.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         lblReferencia2.setFont(new java.awt.Font("Agency FB", 1, 36)); // NOI18N
-        lblReferencia2.setText("Servicio Medico Asociado ");
+        lblReferencia2.setText("Servicio médico asociado ");
 
-        txtCedula.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        txtCedula.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txtIdentificador.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        txtIdentificador.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
         javax.swing.GroupLayout panelPpalLayout = new javax.swing.GroupLayout(panelPpal);
         panelPpal.setLayout(panelPpalLayout);
@@ -87,33 +86,26 @@ public class PlantillaConsultorio extends javax.swing.JFrame {
             panelPpalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelPpalLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(lblTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 547, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(78, 78, 78))
+                .addGroup(panelPpalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelPpalLayout.createSequentialGroup()
+                        .addComponent(lblReferencia2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(comboMedico, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelPpalLayout.createSequentialGroup()
+                        .addComponent(lblReferencia1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtIdentificador, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(170, 170, 170))
+            .addComponent(lblTitulo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(panelPpalLayout.createSequentialGroup()
+                .addGap(26, 26, 26)
                 .addGroup(panelPpalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelPpalLayout.createSequentialGroup()
-                        .addGap(14, 14, 14)
-                        .addGroup(panelPpalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(panelPpalLayout.createSequentialGroup()
-                                .addComponent(btnRegresar)
-                                .addGap(113, 113, 113)
-                                .addComponent(btnAgendar)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addComponent(separador)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelPpalLayout.createSequentialGroup()
-                        .addContainerGap(23, Short.MAX_VALUE)
-                        .addGroup(panelPpalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelPpalLayout.createSequentialGroup()
-                                .addComponent(lblReferencia2)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(comboMedico, javax.swing.GroupLayout.PREFERRED_SIZE, 399, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(6, 6, 6))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelPpalLayout.createSequentialGroup()
-                                .addComponent(lblReferencia1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtCedula, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(164, 164, 164)))))
-                .addContainerGap())
+                        .addComponent(btnRegresar)
+                        .addGap(101, 101, 101)
+                        .addComponent(btnAgregar))
+                    .addComponent(separador, javax.swing.GroupLayout.PREFERRED_SIZE, 716, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(43, Short.MAX_VALUE))
         );
         panelPpalLayout.setVerticalGroup(
             panelPpalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -122,7 +114,7 @@ public class PlantillaConsultorio extends javax.swing.JFrame {
                 .addComponent(lblTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(63, 63, 63)
                 .addGroup(panelPpalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(txtCedula, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtIdentificador, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblReferencia1))
                 .addGap(18, 18, 18)
                 .addGroup(panelPpalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -130,49 +122,73 @@ public class PlantillaConsultorio extends javax.swing.JFrame {
                         .addComponent(lblReferencia2)
                         .addGap(111, 111, 111)
                         .addGroup(panelPpalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnAgendar)
+                            .addComponent(btnAgregar)
                             .addComponent(btnRegresar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(18, 18, 18)
-                        .addComponent(separador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(19, 19, 19))
+                        .addGap(36, 36, 36))
                     .addGroup(panelPpalLayout.createSequentialGroup()
                         .addComponent(comboMedico, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addComponent(separador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(19, 19, 19))
         );
 
         btnRegresar.setBackground(Color.WHITE);
-        btnAgendar.setBackground(Color.WHITE);
+        btnAgregar.setBackground(Color.WHITE);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(panelPpal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(22, Short.MAX_VALUE))
+            .addComponent(panelPpal, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(panelPpal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(panelPpal, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnAgendarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgendarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnAgendarActionPerformed
-
     /**
-     * @param args the command line arguments
+     * @return 
      */
+
+    public JButton getBtnAgregar() {
+        return btnAgregar;
+    }
+
+    public void setBtnAgendar(JButton btnAgendar) {
+        this.btnAgregar = btnAgendar;
+    }
+
+    public JLabel getLblTitulo() {
+        return lblTitulo;
+    }
+
+    public void setLblTitulo(JLabel lblTitulo) {
+        this.lblTitulo = lblTitulo;
+    }
+
+    public JComboBox<String> getComboMedico() {
+        return comboMedico;
+    }
+
+    public void setComboMedico(JComboBox<String> comboMedico) {
+        this.comboMedico = comboMedico;
+    }
+
+    public JTextField getTxtIdentificador() {
+        return txtIdentificador;
+    }
+
+    public void setTxtIdentificador(JTextField txtIdentificador) {
+        this.txtIdentificador = txtIdentificador;
+    }
     
 
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnAgendar;
+    private javax.swing.JButton btnAgregar;
     private javax.swing.JButton btnRegresar;
     private javax.swing.JComboBox<String> comboMedico;
     private javax.swing.JLabel lblReferencia1;
@@ -180,6 +196,6 @@ public class PlantillaConsultorio extends javax.swing.JFrame {
     private javax.swing.JLabel lblTitulo;
     private javax.swing.JPanel panelPpal;
     private javax.swing.JSeparator separador;
-    private javax.swing.JTextField txtCedula;
+    private javax.swing.JTextField txtIdentificador;
     // End of variables declaration//GEN-END:variables
 }
