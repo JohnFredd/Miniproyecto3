@@ -13,7 +13,9 @@
 
 package modelos;
 
-public class Afiliado extends Persona {
+import java.io.Serializable;
+
+public class Afiliado extends Persona implements Serializable{
     
     public Afiliado(String nombre, String sexo, String direccion, String email, int cedula, int edad, int telefono) {
         super(nombre, sexo, direccion, email, cedula, edad, telefono);

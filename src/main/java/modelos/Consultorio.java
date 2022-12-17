@@ -13,7 +13,14 @@
 
 package modelos;
 
-public class Consultorio {
+import java.io.Serializable;
+
+public class Consultorio implements Serializable{
     private String identificador;
     private Servicio servicioAsociado;
+
+    public Consultorio(String identificador, Servicio servicioAsociado) {
+        this.identificador = identificador;
+        this.servicioAsociado = servicioAsociado;
+    }
 }

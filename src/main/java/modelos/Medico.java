@@ -13,9 +13,10 @@
 
 package modelos;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Medico extends Persona{
+public class Medico extends Persona implements Serializable{
     
     private ArrayList<Servicio> servicios;
 
