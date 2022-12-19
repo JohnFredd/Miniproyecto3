@@ -100,7 +100,7 @@ public class GestorGestionServicio {
     //Opciones a realizar con un afiliado
     private void opcionesAfiliado(){
         try {
-            String resp = (String) JOptionPane.showInputDialog(vistaGestionServicio, "¿Qué desea hacer?", "Opciones afiliados", JOptionPane.DEFAULT_OPTION, UIManager.getIcon("OptionPane.questionIcon"), opciones, opciones[0]);
+            String resp = (String) JOptionPane.showInputDialog(vistaGestionServicio, "<html><p style = \" font:12px; \">¿Qué desea hacer?</p></html>", "Opciones afiliados", JOptionPane.DEFAULT_OPTION, UIManager.getIcon("OptionPane.questionIcon"), opciones, opciones[0]);
 
             switch(resp){
                 case "Agregar" -> {
@@ -109,40 +109,40 @@ public class GestorGestionServicio {
                 case "Actualizar" -> {
                     String cedulaABuscar;
                     try {
-                        cedulaABuscar = (String) JOptionPane.showInputDialog(vistaGestionServicio, "<html><p style = \" font:15px; \">Ingrese la cédula del afiliado a actualizar</p></html>", "Actualizar afiliado", JOptionPane.DEFAULT_OPTION);
+                        cedulaABuscar = (String) JOptionPane.showInputDialog(vistaGestionServicio, "<html><p style = \" font:12px; \">Ingrese la cédula del afiliado a actualizar</p></html>", "Actualizar afiliado", JOptionPane.DEFAULT_OPTION);
                         if(cedulaABuscar.equals("12345")){
                             irActualizarAfiliado();
 
                         } else if (cedulaABuscar.isBlank()){
-                            JOptionPane.showMessageDialog(vistaGestionServicio, "<html><p style = \" font:15px; \">Por favor ingrese una cédula</p></html>", "Error", JOptionPane.OK_OPTION, UIManager.getIcon("OptionPane.errorIcon"));
+                            JOptionPane.showMessageDialog(vistaGestionServicio, "<html><p style = \" font:12px; \">Por favor ingrese una cédula</p></html>", "Error", JOptionPane.OK_OPTION, UIManager.getIcon("OptionPane.errorIcon"));
                         } else if(!cedulaABuscar.equals("12345")){
-                            JOptionPane.showMessageDialog(vistaGestionServicio, "<html><p style = \" font:15px; \">No se encontró ningún afiliado registrado con esa cédula</p></html>", "Afiliado no encontrado", JOptionPane.OK_OPTION, UIManager.getIcon("OptionPane.errorIcon"));
+                            JOptionPane.showMessageDialog(vistaGestionServicio, "<html><p style = \" font:12px; \">No se encontró ningún afiliado registrado con esa cédula</p></html>", "Afiliado no encontrado", JOptionPane.OK_OPTION, UIManager.getIcon("OptionPane.errorIcon"));
                         }
                     } catch(NullPointerException np){
-                        JOptionPane.showMessageDialog(vistaGestionServicio, "<html><p style = \" font:14px; \">No se ingresó ninguna cédula</p></html>", "Aviso", JOptionPane.OK_OPTION, UIManager.getIcon("OptionPane.informationIcon"));
+                        JOptionPane.showMessageDialog(vistaGestionServicio, "<html><p style = \" font:12px; \">No se ingresó ninguna cédula</p></html>", "Aviso", JOptionPane.OK_OPTION, UIManager.getIcon("OptionPane.informationIcon"));
                     }
                 }
                 case "Listar" -> {
                     irListarAfiliado();
                 }
                 case "Eliminar" -> {
-                    String cedulaABuscar = (String) JOptionPane.showInputDialog(vistaGestionServicio, "Ingrese la cédula del afiliado a eliminar", "Eliminar afiliado", JOptionPane.DEFAULT_OPTION);
+                    String cedulaABuscar = (String) JOptionPane.showInputDialog(vistaGestionServicio,"<html><p style = \" font:12px; \">Ingrese la cédula del afiliado a eliminar</p></html>", "Eliminar afiliado", JOptionPane.DEFAULT_OPTION);
                     try {
                         if(cedulaABuscar.equals("12345")){
                             irEliminarAfiliado();
 
                         } else if(cedulaABuscar.isBlank()){
-                            JOptionPane.showMessageDialog(vistaGestionServicio, "<html><p style = \" font:15px; \">Por favor ingrese una cédula</p></html>", "Cédula inválida", JOptionPane.OK_OPTION, UIManager.getIcon("OptionPane.errorIcon"));
+                            JOptionPane.showMessageDialog(vistaGestionServicio, "<html><p style = \" font:12px; \">Por favor ingrese una cédula</p></html>", "Cédula inválida", JOptionPane.OK_OPTION, UIManager.getIcon("OptionPane.errorIcon"));
                         } else if(!cedulaABuscar.equals("12345")){
-                            JOptionPane.showMessageDialog(vistaGestionServicio, "<html><p style = \" font:15px; \">No se encontró ningún afiliado registrado con esa cédula</p></html>", "Afiliado no encontrado", JOptionPane.OK_OPTION, UIManager.getIcon("OptionPane.errorIcon"));
+                            JOptionPane.showMessageDialog(vistaGestionServicio, "<html><p style = \" font:12px; \">No se encontró ningún afiliado registrado con esa cédula</p></html>", "Afiliado no encontrado", JOptionPane.OK_OPTION, UIManager.getIcon("OptionPane.errorIcon"));
                         }
                     } catch(NullPointerException np){
-                        JOptionPane.showMessageDialog(vistaGestionServicio, "<html><p style = \" font:14px; \">No se ingresó ninguna cédula</p></html>", "Aviso", JOptionPane.OK_OPTION, UIManager.getIcon("OptionPane.informationIcon"));
+                        JOptionPane.showMessageDialog(vistaGestionServicio, "<html><p style = \" font:12px; \">No se ingresó ninguna cédula</p></html>", "Aviso", JOptionPane.OK_OPTION, UIManager.getIcon("OptionPane.informationIcon"));
                     }
                 }
             }
         } catch(NullPointerException np){
-            JOptionPane.showMessageDialog(vistaGestionServicio, "<html><p style = \" font:14px; \">Ninguna opción fue seleccionada</p></html>", "Aviso", JOptionPane.OK_OPTION, UIManager.getIcon("OptionPane.informationIcon"));
+            //JOptionPane.showMessageDialog(vistaGestionServicio, "<html><p style = \" font:12px; \">Ninguna opción fue seleccionada</p></html>", "Aviso", JOptionPane.OK_OPTION, UIManager.getIcon("OptionPane.informationIcon"));
         }
     }
     
@@ -173,7 +173,7 @@ public class GestorGestionServicio {
     //Opciones a realizar con un médico
     private void opcionesMedico(){
         try {
-            String resp = (String) JOptionPane.showInputDialog(vistaGestionServicio, "¿Qué desea hacer?", "Opciones médicos", JOptionPane.DEFAULT_OPTION, UIManager.getIcon("OptionPane.questionIcon"), opciones, opciones[0]);
+            String resp = (String) JOptionPane.showInputDialog(vistaGestionServicio, "<html><p style = \" font:12px; \">¿Qué desea hacer?</p></html>", "Opciones médicos", JOptionPane.DEFAULT_OPTION, UIManager.getIcon("OptionPane.questionIcon"), opciones, opciones[0]);
 
             switch(resp){
                 case "Agregar" -> {
@@ -182,17 +182,17 @@ public class GestorGestionServicio {
                 case "Actualizar" -> {
                     String cedulaABuscar;
                     try {
-                        cedulaABuscar = (String) JOptionPane.showInputDialog(vistaGestionServicio, "<html><p style = \" font:15px; \">Ingrese la cédula del médico a actualizar</p></html>", "Actualizar médico", JOptionPane.DEFAULT_OPTION);
+                        cedulaABuscar = (String) JOptionPane.showInputDialog(vistaGestionServicio, "<html><p style = \" font:12px; \">Ingrese la cédula del médico a actualizar</p></html>", "Actualizar médico", JOptionPane.DEFAULT_OPTION);
                         if(cedulaABuscar.equals("12345")){
                             irActualizarMedico();
 
                         } else if (cedulaABuscar.isBlank()){
-                            JOptionPane.showMessageDialog(vistaGestionServicio, "<html><p style = \" font:15px; \">Por favor ingrese una cédula</p></html>", "Cédula inválida", JOptionPane.OK_OPTION, UIManager.getIcon("OptionPane.errorIcon"));
+                            JOptionPane.showMessageDialog(vistaGestionServicio, "<html><p style = \" font:12px; \">Por favor ingrese una cédula</p></html>", "Cédula inválida", JOptionPane.OK_OPTION, UIManager.getIcon("OptionPane.errorIcon"));
                         } else if(!cedulaABuscar.equals("12345")){
-                            JOptionPane.showMessageDialog(vistaGestionServicio, "<html><p style = \" font:15px; \">No se encontró ningún médico registrado con esa cédula</p></html>", "Médico no encontrado", JOptionPane.OK_OPTION, UIManager.getIcon("OptionPane.errorIcon"));
+                            JOptionPane.showMessageDialog(vistaGestionServicio, "<html><p style = \" font:12px; \">No se encontró ningún médico registrado con esa cédula</p></html>", "Médico no encontrado", JOptionPane.OK_OPTION, UIManager.getIcon("OptionPane.errorIcon"));
                         }
                     } catch(NullPointerException np){
-                        JOptionPane.showMessageDialog(vistaGestionServicio, "<html><p style = \" font:14px; \">No se ingresó ninguna cédula</p></html>", "Aviso", JOptionPane.OK_OPTION, UIManager.getIcon("OptionPane.informationIcon"));
+                        JOptionPane.showMessageDialog(vistaGestionServicio, "<html><p style = \" font:12px; \">No se ingresó ninguna cédula</p></html>", "Aviso", JOptionPane.OK_OPTION, UIManager.getIcon("OptionPane.informationIcon"));
                     }
                 }
                 case "Listar" -> {
@@ -205,17 +205,17 @@ public class GestorGestionServicio {
                             irEliminarMedico();
 
                         } else if(cedulaABuscar.isBlank()){
-                            JOptionPane.showMessageDialog(vistaGestionServicio, "<html><p style = \" font:15px; \">Por favor ingrese una cédula</p></html>", "Médico no encontrado", JOptionPane.OK_OPTION, UIManager.getIcon("OptionPane.errorIcon"));
+                            JOptionPane.showMessageDialog(vistaGestionServicio, "<html><p style = \" font:12px; \">Por favor ingrese una cédula</p></html>", "Médico no encontrado", JOptionPane.OK_OPTION, UIManager.getIcon("OptionPane.errorIcon"));
                         } else if(!cedulaABuscar.equals("12345")){
-                            JOptionPane.showMessageDialog(vistaGestionServicio, "<html><p style = \" font:15px; \">No se encontró ningún médico registrado con esa cédula</p></html>", "Médico no encontrado", JOptionPane.OK_OPTION, UIManager.getIcon("OptionPane.errorIcon"));
+                            JOptionPane.showMessageDialog(vistaGestionServicio, "<html><p style = \" font:12px; \">No se encontró ningún médico registrado con esa cédula</p></html>", "Médico no encontrado", JOptionPane.OK_OPTION, UIManager.getIcon("OptionPane.errorIcon"));
                         }
                     } catch(NullPointerException np){
-                        JOptionPane.showMessageDialog(vistaGestionServicio, "<html><p style = \" font:14px; \">No se ingresó ninguna cédula</p></html>", "Aviso", JOptionPane.OK_OPTION, UIManager.getIcon("OptionPane.informationIcon"));
+                        JOptionPane.showMessageDialog(vistaGestionServicio, "<html><p style = \" font:12px; \">No se ingresó ninguna cédula</p></html>", "Aviso", JOptionPane.OK_OPTION, UIManager.getIcon("OptionPane.informationIcon"));
                     }
                 }
             }
         } catch(NullPointerException np){
-            JOptionPane.showMessageDialog(vistaGestionServicio, "<html><p style = \" font:14px; \">Ninguna opción fue seleccionada</p></html>", "Aviso", JOptionPane.OK_OPTION, UIManager.getIcon("OptionPane.informationIcon"));
+            //JOptionPane.showMessageDialog(vistaGestionServicio, "<html><p style = \" font:12px; \">Ninguna opción fue seleccionada</p></html>", "Aviso", JOptionPane.OK_OPTION, UIManager.getIcon("OptionPane.informationIcon"));
         }
     }
     private void irAgregarMedico(){
@@ -242,7 +242,7 @@ public class GestorGestionServicio {
     //Opciones a realizar con un consultorio
     private void opcionesConsultorio(){
         try {
-            String resp = (String) JOptionPane.showInputDialog(vistaGestionServicio, "¿Qué desea hacer?", "Opciones consultorios", JOptionPane.DEFAULT_OPTION, UIManager.getIcon("OptionPane.questionIcon"), opciones, opciones[0]);
+            String resp = (String) JOptionPane.showInputDialog(vistaGestionServicio, "<html><p style = \" font:12px; \">¿Qué desea hacer?</p></html>", "Opciones consultorios", JOptionPane.DEFAULT_OPTION, UIManager.getIcon("OptionPane.questionIcon"), opciones, opciones[0]);
             
             //Simulación de conversión de datos de un ArrayList a Array String, para ponerlo en el comboBox ;)
             ArrayList<String> consultorios = new ArrayList();
@@ -256,7 +256,7 @@ public class GestorGestionServicio {
                 misConsultorios[i] = (String) arrayDeObjetos[i];
             }
             if(resp != null & !"Agregar".equals(resp) & !"Listar".equals(resp)){
-                String resp2 = (String) JOptionPane.showInputDialog(vistaGestionServicio, "Escoja el consultorio", "Opciones consultorios", JOptionPane.DEFAULT_OPTION, UIManager.getIcon("OptionPane.questionIcon"), misConsultorios, misConsultorios[0]);
+                String resp2 = (String) JOptionPane.showInputDialog(vistaGestionServicio, "<html><p style = \" font:12px; \">Escoja el consultorio/laboratorio</p></html>", "Opciones consultorios", JOptionPane.DEFAULT_OPTION, UIManager.getIcon("OptionPane.questionIcon"), misConsultorios, misConsultorios[0]);
                 
                 switch(resp){
                     
@@ -270,7 +270,7 @@ public class GestorGestionServicio {
                                 }
                             }
                         } catch(NullPointerException np){
-                            JOptionPane.showMessageDialog(vistaGestionServicio, "<html><p style = \" font:14px; \">No se escogió ningún consultorio</p></html>", "Aviso", JOptionPane.OK_OPTION, UIManager.getIcon("OptionPane.informationIcon"));
+                            JOptionPane.showMessageDialog(vistaGestionServicio, "<html><p style = \" font:12px; \">No se escogió ningún consultorio</p></html>", "Aviso", JOptionPane.OK_OPTION, UIManager.getIcon("OptionPane.informationIcon"));
                         }
                     }
                     
@@ -284,12 +284,10 @@ public class GestorGestionServicio {
                                 }
                             }
                         } catch(NullPointerException np){
-                            JOptionPane.showMessageDialog(vistaGestionServicio, "<html><p style = \" font:14px; \">No se escogió ningún consultorio</p></html>", "Aviso", JOptionPane.OK_OPTION, UIManager.getIcon("OptionPane.informationIcon"));
+                            JOptionPane.showMessageDialog(vistaGestionServicio, "<html><p style = \" font:12px; \">No se escogió ningún consultorio</p></html>", "Aviso", JOptionPane.OK_OPTION, UIManager.getIcon("OptionPane.informationIcon"));
                         }
                     }
                 }
-            } else if(resp == null){
-                JOptionPane.showMessageDialog(vistaGestionServicio, "<html><p style = \" font:14px; \">No se escogió ninguna opción</p></html>", "Aviso", JOptionPane.OK_OPTION, UIManager.getIcon("OptionPane.informationIcon"));
             } else if ("Listar".equals(resp)){
                 irListarConsultorio();
             } else if ("Agregar".equals(resp)){
@@ -297,7 +295,7 @@ public class GestorGestionServicio {
             } 
 
         } catch(NullPointerException np){
-            JOptionPane.showMessageDialog(vistaGestionServicio, "<html><p style = \" font:14px; \">Ninguna opción fue seleccionada</p></html>", "Aviso", JOptionPane.OK_OPTION, UIManager.getIcon("OptionPane.informationIcon"));
+            //JOptionPane.showMessageDialog(vistaGestionServicio, "<html><p style = \" font:14px; \">Ninguna opción fue seleccionada</p></html>", "Aviso", JOptionPane.OK_OPTION, UIManager.getIcon("OptionPane.informationIcon"));
             
         }
     }
@@ -326,7 +324,7 @@ public class GestorGestionServicio {
     //Opciones a realizar con un servicio
     private void opcionesServicio(){
         try {
-            String resp = (String) JOptionPane.showInputDialog(vistaGestionServicio, "¿Qué desea hacer?", "Opciones servicios médicos", JOptionPane.DEFAULT_OPTION, UIManager.getIcon("OptionPane.questionIcon"), opciones, opciones[0]);
+            String resp = (String) JOptionPane.showInputDialog(vistaGestionServicio, "<html><p style = \" font:12px; \">¿Qué desea hacer?</p></html>", "Opciones servicios médicos", JOptionPane.DEFAULT_OPTION, UIManager.getIcon("OptionPane.questionIcon"), opciones, opciones[0]);
             
             //Simulación de conversión de datos de un ArrayList a Array String, para ponerlo en el comboBox ;)
             ArrayList<String> servicios = new ArrayList();
@@ -340,7 +338,7 @@ public class GestorGestionServicio {
                 misServicios[i] = (String) arrayDeObjetos[i];
             }
             if(resp != null & !"Agregar".equals(resp) & !"Listar".equals(resp)){
-                String resp2 = (String) JOptionPane.showInputDialog(vistaGestionServicio, "Escoja el servicio", "Lista de servicios", JOptionPane.DEFAULT_OPTION, UIManager.getIcon("OptionPane.questionIcon"), misServicios, misServicios[0]);
+                String resp2 = (String) JOptionPane.showInputDialog(vistaGestionServicio, "<html><p style = \" font:12px; \">Escoja el servicio</p></html>", "Lista de servicios", JOptionPane.DEFAULT_OPTION, UIManager.getIcon("OptionPane.questionIcon"), misServicios, misServicios[0]);
                 
                 switch(resp){
                     
@@ -354,7 +352,7 @@ public class GestorGestionServicio {
                                 }
                             }
                         } catch(NullPointerException np){
-                            JOptionPane.showMessageDialog(vistaGestionServicio, "<html><p style = \" font:14px; \">No se escogió ningún servicio</p></html>", "Aviso", JOptionPane.OK_OPTION, UIManager.getIcon("OptionPane.informationIcon"));
+                            JOptionPane.showMessageDialog(vistaGestionServicio, "<html><p style = \" font:12px; \">No se escogió ningún servicio</p></html>", "Aviso", JOptionPane.OK_OPTION, UIManager.getIcon("OptionPane.informationIcon"));
                         }
                     }
                     
@@ -368,12 +366,10 @@ public class GestorGestionServicio {
                                 }
                             }
                         } catch(NullPointerException np){
-                            JOptionPane.showMessageDialog(vistaGestionServicio, "<html><p style = \" font:14px; \">No se escogió ningún servicio</p></html>", "Aviso", JOptionPane.OK_OPTION, UIManager.getIcon("OptionPane.informationIcon"));
+                            JOptionPane.showMessageDialog(vistaGestionServicio, "<html><p style = \" font:12px; \">No se escogió ningún servicio</p></html>", "Aviso", JOptionPane.OK_OPTION, UIManager.getIcon("OptionPane.informationIcon"));
                         }
                     }
                 }
-            } else if(resp == null){
-                JOptionPane.showMessageDialog(vistaGestionServicio, "<html><p style = \" font:14px; \">No se escogió ninguna opción</p></html>", "Aviso", JOptionPane.OK_OPTION, UIManager.getIcon("OptionPane.informationIcon"));
             } else if ("Listar".equals(resp)){
                 irListarServicio();
             } else if ("Agregar".equals(resp)){
@@ -381,7 +377,7 @@ public class GestorGestionServicio {
             } 
 
         } catch(NullPointerException np){
-            JOptionPane.showMessageDialog(vistaGestionServicio, "<html><p style = \" font:14px; \">Ninguna opción fue seleccionada</p></html>", "Aviso", JOptionPane.OK_OPTION, UIManager.getIcon("OptionPane.informationIcon"));
+            //JOptionPane.showMessageDialog(vistaGestionServicio, "<html><p style = \" font:14px; \">Ninguna opción fue seleccionada</p></html>", "Aviso", JOptionPane.OK_OPTION, UIManager.getIcon("OptionPane.informationIcon"));
             
         }
     }
