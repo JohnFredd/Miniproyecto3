@@ -13,6 +13,7 @@
 
 package vistas;
 
+import controladores.GestorPpalGUI;
 import java.awt.Color;
 import java.awt.event.MouseListener;
 import javax.swing.JButton;
@@ -23,6 +24,7 @@ public class PpalGUI extends javax.swing.JFrame {
     public PpalGUI() {
         this.setContentPane(fondo);
         initComponents();
+        GestorPpalGUI gestorPpal = new GestorPpalGUI(this);
         setVisible(true);
         setLocationRelativeTo(null);
         setResizable(false);
@@ -143,7 +145,7 @@ public class PpalGUI extends javax.swing.JFrame {
     public void addBtnGestionServicioListener(MouseListener listenerBotones){
         btnGestionServicio.addMouseListener(listenerBotones);
     }
-    
+    /*
     public void addBtnGestionCitaListener(MouseListener listenerBotones){
         btnGestionCita.addMouseListener(listenerBotones);
     }
@@ -151,7 +153,7 @@ public class PpalGUI extends javax.swing.JFrame {
     public void addBtnRespaldoListener(MouseListener listenerBotones){
         btnRespaldo.addMouseListener(listenerBotones);
     }
-    
+    */
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnGestionCita;
     private javax.swing.JButton btnGestionServicio;

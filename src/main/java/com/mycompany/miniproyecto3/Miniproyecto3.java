@@ -23,7 +23,6 @@ public class Miniproyecto3 {
 
     public static void main(String[] args) {
         PpalGUI ventanaPpal = new PpalGUI();
-        GestorPpalGUI gestorPpal = new GestorPpalGUI(ventanaPpal);
         
         Afiliado afiliado1 = new Afiliado("Juan", "Hombre", "Debajo de un puente", "Juan@gmail.com", 111111, 38, 111111);
         Afiliado afiliado2 = new Afiliado("Sofia", "Mujer", "Debajo de otro puente", "Sofia@gmail.com", 222222, 24, 222222);

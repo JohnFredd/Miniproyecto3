@@ -13,6 +13,7 @@
 
 package vistas;
 
+import controladores.GestorGestionServicio;
 import java.awt.Color;
 import java.awt.event.MouseListener;
 import javax.swing.JButton;
@@ -23,6 +24,7 @@ public class GestionServicioGUI extends javax.swing.JFrame {
     public GestionServicioGUI() {
         this.setContentPane(fondo);
         initComponents();
+        GestorGestionServicio gestorServicio = new GestorGestionServicio(this);
         setVisible(true);
         setLocationRelativeTo(null);
         setResizable(false);
@@ -157,13 +159,14 @@ public class GestionServicioGUI extends javax.swing.JFrame {
         btnAfiliados.addMouseListener(listenerBotones);
     }
     
+    public void addBtnMedicosListener(MouseListener listenerBotones){
+        btnMedicos.addMouseListener(listenerBotones);
+    }
+    /*
     public void addBtnConsultoriosListener(MouseListener listenerBotones){
         btnConsultorios.addMouseListener(listenerBotones);
     }
     
-    public void addBtnMedicosListener(MouseListener listenerBotones){
-        btnMedicos.addMouseListener(listenerBotones);
-    }
     
     public void addBtnRegresarListener(MouseListener listenerBotones){
         btnRegresar.addMouseListener(listenerBotones);
@@ -171,7 +174,7 @@ public class GestionServicioGUI extends javax.swing.JFrame {
     
     public void addBtnServiciosListener(MouseListener listenerBotones){
         btnServicios.addMouseListener(listenerBotones);
-    }
+    }*/
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAfiliados;

@@ -13,10 +13,12 @@
 
 package vistas;
 
+import controladores.GestorListarAfiliado;
 import java.awt.Color;
 import java.awt.Font;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
+import modelos.Almacenamiento;
 
 public class ListarAfiliado extends javax.swing.JFrame {
 
@@ -29,6 +31,7 @@ public class ListarAfiliado extends javax.swing.JFrame {
         llenarColumnas();
         initComponents();
         diseñoTabla();
+        GestorListarAfiliado gestorAfiliado = new GestorListarAfiliado(this);
         setVisible(true);
         setLocationRelativeTo(null);
         setResizable(false);

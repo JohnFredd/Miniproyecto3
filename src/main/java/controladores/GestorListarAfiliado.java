@@ -1,13 +1,18 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package controladores;
 
-/**
- *
- * @author santy
- */
+import modelos.Almacenamiento;
+import vistas.ListarAfiliado;
+
 public class GestorListarAfiliado {
     
+    private ListarAfiliado ventanaListarAfiliado;
+    //private Almacenamiento almacenamiento;
+
+    public GestorListarAfiliado(ListarAfiliado ventanaListarAfiliado) {
+        this.ventanaListarAfiliado = ventanaListarAfiliado;
+        //this.almacenamiento = almacenamiento;
+    }
+    
+   
 }

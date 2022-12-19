@@ -13,6 +13,7 @@
 
 package vistas;
 
+import controladores.GestorPlantillaMedico;
 import java.awt.Color;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -20,12 +21,14 @@ import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
+import modelos.Almacenamiento;
 
 public class PlantillaMedico extends javax.swing.JFrame {
 
     ImagenFondo fondo = new ImagenFondo();
     
-    public PlantillaMedico() {
+    public PlantillaMedico(String opcion, Almacenamiento almacenamiento) {
+        GestorPlantillaMedico gestorMedico = new GestorPlantillaMedico(this, opcion, almacenamiento);
         this.setContentPane(fondo);
         initComponents();
         setVisible(true);

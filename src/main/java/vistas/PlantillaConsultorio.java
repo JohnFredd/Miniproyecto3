@@ -13,6 +13,7 @@
 
 package vistas;
 
+import controladores.GestorPlantillaConsultorio;
 import java.awt.Color;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -25,6 +26,7 @@ public class PlantillaConsultorio extends javax.swing.JFrame {
     ImagenFondo fondo = new ImagenFondo();
     
     public PlantillaConsultorio() {
+        GestorPlantillaConsultorio gestorConsultorio = new GestorPlantillaConsultorio(this);
         this.setContentPane(fondo);
         initComponents();
         setVisible(true);

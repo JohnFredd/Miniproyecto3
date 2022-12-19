@@ -13,26 +13,41 @@
 
 package controladores;
 
+import modelos.Almacenamiento;
 import vistas.PlantillaMedico;
 
 public class GestorPlantillaMedico {
     
     PlantillaMedico vistaPlantillaMedico;
-
-    public GestorPlantillaMedico(PlantillaMedico vistaPlantillaMedico) {
+    private String opcion;
+    private Almacenamiento almacenamiento;
+    
+    public GestorPlantillaMedico(PlantillaMedico vistaPlantillaMedico, String opcion, Almacenamiento almacenamiento) {
         this.vistaPlantillaMedico = vistaPlantillaMedico;
+        this.opcion = opcion;
+        this.almacenamiento = almacenamiento;
+        modificarPlantilla();
     }
     
+    public void modificarPlantilla(){
+        
+        switch(opcion){
+            case "Actualizar" -> {
+                plantillaActualizarMedico();
+            }
+            case "Eliminar" -> {
+                plantillaEliminarMedico();
+            }
+        }
+    }
     public void plantillaActualizarMedico(){
-        vistaPlantillaMedico = new PlantillaMedico();
         vistaPlantillaMedico.setVisible(true);
         vistaPlantillaMedico.getLblTitulo().setText("Actualizar médico");
         vistaPlantillaMedico.getBtnAgregar().setText("Actualizar médico");
     }
     
     public void plantillaEliminarMedico(){
-        
-        vistaPlantillaMedico = new PlantillaMedico();
+        //Modificando titulos y botones
         vistaPlantillaMedico.setVisible(true);
         vistaPlantillaMedico.getLblTitulo().setText("Eliminar médico");
         vistaPlantillaMedico.getBtnAgregar().setText("Eliminar médico");
