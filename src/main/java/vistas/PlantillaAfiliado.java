@@ -16,8 +16,6 @@ package vistas;
 import controladores.GestorPlantillaAfiliado;
 import java.awt.Color;
 import java.awt.event.MouseListener;
-import java.util.ArrayList;
-import java.util.List;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
@@ -292,6 +290,13 @@ public class PlantillaAfiliado extends javax.swing.JFrame {
     public void setTxtTelefono(JTextField txtTelefono) {
         this.txtTelefono = txtTelefono;
     }
+    public JButton getBtnRegresar() {
+        return btnRegresar;
+    }
+
+    public void setBtnRegresar(JButton btnRegresar) {
+        this.btnRegresar = btnRegresar;
+    }
     public void addBtnRegresarListener(MouseListener listenerBotones){
         btnRegresar.addMouseListener(listenerBotones);
     }
@@ -300,13 +305,6 @@ public class PlantillaAfiliado extends javax.swing.JFrame {
         btnAgregar.addMouseListener(listenerBotones);
     }
 
-    public JButton getBtnRegresar() {
-        return btnRegresar;
-    }
-
-    public void setBtnRegresar(JButton btnRegresar) {
-        this.btnRegresar = btnRegresar;
-    }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregar;

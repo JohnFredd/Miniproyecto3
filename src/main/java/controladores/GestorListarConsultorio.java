@@ -5,22 +5,22 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import modelos.Almacenamiento;
 import vistas.GestionServicioGUI;
-import vistas.ListarAfiliado;
+import vistas.ListarConsultorio;
 
-public class GestorListarAfiliado {
+public class GestorListarConsultorio {
     
-    private ListarAfiliado ventanaListarAfiliado;
+    private ListarConsultorio ventanaListarConsultorio;
 
-    public GestorListarAfiliado(ListarAfiliado ventanaListarAfiliado, Almacenamiento almacenamiento) {
-        this.ventanaListarAfiliado = ventanaListarAfiliado;
-        this.ventanaListarAfiliado.addBtnRegresarListener(new ManejadoraDeMouse());
+    public GestorListarConsultorio(ListarConsultorio ventanaListarConsultorio, Almacenamiento almacenamiento) {
+        this.ventanaListarConsultorio = ventanaListarConsultorio;
+        this.ventanaListarConsultorio.addBtnRegresarListener(new ManejadoraDeMouse());
     }
     class ManejadoraDeMouse extends MouseAdapter{
         
         @Override
         public void mouseClicked(MouseEvent e){
             
-            if (e.getSource() == ventanaListarAfiliado.getBtnRegresar()){
+            if (e.getSource() == ventanaListarConsultorio.getBtnRegresar()){
                 if (e.getButton() == 1){
                     irGestionServicioGUI();  
                 }
@@ -31,7 +31,7 @@ public class GestorListarAfiliado {
         
         //Creación de vistas
         GestionServicioGUI vistaGestionServicio = new GestionServicioGUI();
-        ventanaListarAfiliado.dispose();
+        ventanaListarConsultorio.dispose();
     }
-   
+    
 }

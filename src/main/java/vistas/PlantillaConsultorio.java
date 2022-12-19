@@ -15,22 +15,23 @@ package vistas;
 
 import controladores.GestorPlantillaConsultorio;
 import java.awt.Color;
+import java.awt.event.MouseListener;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
+import modelos.Almacenamiento;
 
 public class PlantillaConsultorio extends javax.swing.JFrame {
 
     ImagenFondo fondo = new ImagenFondo();
     
-    public PlantillaConsultorio() {
-        GestorPlantillaConsultorio gestorConsultorio = new GestorPlantillaConsultorio(this);
+    public PlantillaConsultorio(String opcion, Almacenamiento almacenamiento) {
         this.setContentPane(fondo);
         initComponents();
+        GestorPlantillaConsultorio gestorConsultorio = new GestorPlantillaConsultorio(this, opcion, almacenamiento);
         setVisible(true);
-        //setSize(920,704);
         setLocationRelativeTo(null);
         setResizable(false);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -186,7 +187,18 @@ public class PlantillaConsultorio extends javax.swing.JFrame {
     public void setTxtIdentificador(JTextField txtIdentificador) {
         this.txtIdentificador = txtIdentificador;
     }
+
+    public JButton getBtnRegresar() {
+        return btnRegresar;
+    }
+
+    public void setBtnRegresar(JButton btnRegresar) {
+        this.btnRegresar = btnRegresar;
+    }
     
+    public void addBtnRegresarListener(MouseListener listenerBotones){
+        btnRegresar.addMouseListener(listenerBotones);
+    }
 
     
     // Variables declaration - do not modify//GEN-BEGIN:variables

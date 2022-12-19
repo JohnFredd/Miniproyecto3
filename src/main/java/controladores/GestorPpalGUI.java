@@ -61,27 +61,7 @@ public class GestorPpalGUI {
     
     public void irGestionServicioGUI(){
         GestionServicioGUI ventanaGestionServicio = new GestionServicioGUI();
-        /*
-        //Creación de ventanas
-        PlantillaAfiliado vistaPlantillaAfiliado = new PlantillaAfiliado();
-        PlantillaMedico vistaPlantillaMedico = new PlantillaMedico();
-        PlantillaConsultorio vistaPlantillaConsultorio = new PlantillaConsultorio();
-        PlantillaServicio vistaPlantillaServicio = new PlantillaServicio();
-        */
-        //Creación de gestores
-        /*GestorPlantillaAfiliado gestorAfiliado = new GestorPlantillaAfiliado(vistaPlantillaAfiliado);
-        GestorPlantillaMedico gestorMedico = new GestorPlantillaMedico(vistaPlantillaMedico);
-        GestorPlantillaConsultorio gestorConsultorio = new GestorPlantillaConsultorio(vistaPlantillaConsultorio);
-        GestorPlantillaServicio gestorServicio = new GestorPlantillaServicio(vistaPlantillaServicio);
-        */
-        //GestorGestionServicio gestorGestionServicio = new GestorGestionServicio(ventanaGestionServicio);
-        
-        //Configuración de ventanas
         ventanaGestionServicio.setVisible(true);
-        /*vistaPlantillaAfiliado.dispose();
-        vistaPlantillaMedico.dispose();
-        vistaPlantillaConsultorio.dispose();
-        vistaPlantillaServicio.dispose();*/
         vistaPpal.dispose();
     }
     

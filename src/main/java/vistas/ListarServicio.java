@@ -13,22 +13,27 @@
 
 package vistas;
 
+import controladores.GestorListarServicio;
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.event.MouseListener;
+import javax.swing.JButton;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
+import modelos.Almacenamiento;
 
 public class ListarServicio extends javax.swing.JFrame {
 
     ImagenFondo fondo = new ImagenFondo();
-    private DefaultTableModel modeloTabla = new DefaultTableModel();
+    private final DefaultTableModel modeloTabla = new DefaultTableModel();
     private JTableHeader th;
     
-    public ListarServicio() {
+    public ListarServicio(Almacenamiento almacenamiento) {
         this.setContentPane(fondo);
         llenarColumnas();
         initComponents();
         diseñoTabla();
+        GestorListarServicio gestorListarServicio = new GestorListarServicio(this, almacenamiento);
         setVisible(true);
         setLocationRelativeTo(null);
         setResizable(false);
@@ -143,10 +148,21 @@ public class ListarServicio extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    /**
-     * @param args the command line arguments
-     */
     
+    public JButton getBtnRegresar(){
+        return btnRegresar;
+    }
+
+    /**
+     * @param btnRegresar
+     */
+    public void setBtnRegresar(JButton btnRegresar) {
+        this.btnRegresar = btnRegresar;
+    }
+
+    public void addBtnRegresarListener(MouseListener listenerBotones) {
+        btnRegresar.addMouseListener(listenerBotones);
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnRegresar;
     private javax.swing.JLabel lblTitulo;

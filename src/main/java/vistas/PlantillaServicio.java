@@ -15,19 +15,21 @@ package vistas;
 
 import controladores.GestorPlantillaServicio;
 import java.awt.Color;
+import java.awt.event.MouseListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
+import modelos.Almacenamiento;
 
 public class PlantillaServicio extends javax.swing.JFrame {
 
     ImagenFondo fondo = new ImagenFondo();
     
-    public PlantillaServicio() {
-        GestorPlantillaServicio gestorServicio = new GestorPlantillaServicio(this);
+    public PlantillaServicio(String opcion, Almacenamiento almacenamiento) {
         this.setContentPane(fondo);
         initComponents();
+        GestorPlantillaServicio gestorServicio = new GestorPlantillaServicio(this, opcion, almacenamiento);
         setVisible(true);
         //setSize(920,704);
         setLocationRelativeTo(null);
@@ -155,10 +157,20 @@ public class PlantillaServicio extends javax.swing.JFrame {
         return txtServicio;
     }
 
+    public JButton getBtnRegresar() {
+        return btnRegresar;
+    }
+
+    public void setBtnRegresar(JButton btnRegresar) {
+        this.btnRegresar = btnRegresar;
+    }
+
     public void setTxtServicio(JTextField txtServicio) {
         this.txtServicio = txtServicio;
     }
-    
+    public void addBtnRegresarListener(MouseListener listenerBotones){
+        btnRegresar.addMouseListener(listenerBotones);
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregar;

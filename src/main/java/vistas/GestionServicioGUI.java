@@ -162,20 +162,19 @@ public class GestionServicioGUI extends javax.swing.JFrame {
     public void addBtnMedicosListener(MouseListener listenerBotones){
         btnMedicos.addMouseListener(listenerBotones);
     }
-    /*
+    
     public void addBtnConsultoriosListener(MouseListener listenerBotones){
         btnConsultorios.addMouseListener(listenerBotones);
     }
     
+    public void addBtnServiciosListener(MouseListener listenerBotones){
+        btnServicios.addMouseListener(listenerBotones);
+    }
     
     public void addBtnRegresarListener(MouseListener listenerBotones){
         btnRegresar.addMouseListener(listenerBotones);
     }
     
-    public void addBtnServiciosListener(MouseListener listenerBotones){
-        btnServicios.addMouseListener(listenerBotones);
-    }*/
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAfiliados;
     private javax.swing.JButton btnConsultorios;

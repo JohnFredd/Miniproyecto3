@@ -18,9 +18,6 @@ import java.awt.event.MouseEvent;
 import modelos.Almacenamiento;
 import vistas.GestionServicioGUI;
 import vistas.PlantillaAfiliado;
-import vistas.PlantillaConsultorio;
-import vistas.PlantillaMedico;
-import vistas.PlantillaServicio;
 
 public class GestorPlantillaAfiliado {
     
@@ -31,6 +28,7 @@ public class GestorPlantillaAfiliado {
         this.vistaPlantillaAfiliado = vistaPlantillaAfiliado;
         this.opcion = opcion;
         modificarPlantilla();
+        this.vistaPlantillaAfiliado.addBtnRegresarListener(new ManejadoraDeMouse());
     }
     public void modificarPlantilla(){
         
@@ -45,14 +43,13 @@ public class GestorPlantillaAfiliado {
     }
 
     public void plantillaActualizarAfiliado(){
-        vistaPlantillaAfiliado.setVisible(true);
+        //Modificando título y botones
         vistaPlantillaAfiliado.getLblTitulo().setText("Actualizar afiliado");
         vistaPlantillaAfiliado.getBtnAgregar().setText("Actualizar afiliado");
     }
     
     public void plantillaEliminarAfiliado(){
-        //Modificando títulos y botones
-        vistaPlantillaAfiliado.setVisible(true);
+        //Modificando título y botones
         vistaPlantillaAfiliado.getLblTitulo().setText("Eliminar afiliado");
         vistaPlantillaAfiliado.getBtnAgregar().setText("Eliminar afiliado");
         
@@ -65,7 +62,7 @@ public class GestorPlantillaAfiliado {
         vistaPlantillaAfiliado.getTxtTelefono().setEditable(false);
         vistaPlantillaAfiliado.getComboSexo().setEnabled(false);
     }
-    /*
+    
     class ManejadoraDeMouse extends MouseAdapter{
         
         @Override
@@ -79,7 +76,7 @@ public class GestorPlantillaAfiliado {
 
             if (e.getSource() == vistaPlantillaAfiliado.getBtnRegresar()){
                 if (e.getButton() == 1){
-                    //irGestionServicioGUI();  
+                    irGestionServicioGUI();  
                 }
             }
         }
@@ -87,26 +84,13 @@ public class GestorPlantillaAfiliado {
     
     private void agregarAfiliado() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }*/
-/*
+    }
+
     private void irGestionServicioGUI() {
         
         //Creación de vistas
         GestionServicioGUI vistaGestionServicio = new GestionServicioGUI();
-        PlantillaAfiliado vistaPlantillaAfiliado = new PlantillaAfiliado();
-        PlantillaMedico vistaPlantillaMedico = new PlantillaMedico();
-        PlantillaServicio vistaPlantillaServicio = new PlantillaServicio();
-        PlantillaConsultorio vistaPlantillaConsultorio = new PlantillaConsultorio();
-        
-        //Creación de gestores
-        
-        GestorPlantillaMedico gestorPlantillaMedico = new GestorPlantillaMedico(vistaPlantillaMedico);
-        GestorPlantillaConsultorio gestorPlantillaConsultorio = new GestorPlantillaConsultorio(vistaPlantillaConsultorio);
-        GestorPlantillaServicio gestorPlantillaServicio = new GestorPlantillaServicio(vistaPlantillaServicio);
-        //GestorPlantillaAfiliado gestorPlantillaAfiliado = new GestorPlantillaAfiliado(vistaPlantillaAfiliado);
-        
-        GestorGestionServicio gestorServicio = new GestorGestionServicio(vistaGestionServicio, gestorPlantillaAfiliado,gestorPlantillaMedico,gestorPlantillaConsultorio, gestorPlantillaServicio);
-        vistaGestionServicio.setVisible(true);
-    }*/
+        vistaPlantillaAfiliado.dispose();
+    }
 }
 

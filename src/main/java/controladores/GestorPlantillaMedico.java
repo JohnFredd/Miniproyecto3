@@ -13,20 +13,22 @@
 
 package controladores;
 
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import modelos.Almacenamiento;
+import vistas.GestionServicioGUI;
 import vistas.PlantillaMedico;
 
 public class GestorPlantillaMedico {
     
     PlantillaMedico vistaPlantillaMedico;
     private String opcion;
-    private Almacenamiento almacenamiento;
     
     public GestorPlantillaMedico(PlantillaMedico vistaPlantillaMedico, String opcion, Almacenamiento almacenamiento) {
         this.vistaPlantillaMedico = vistaPlantillaMedico;
         this.opcion = opcion;
-        this.almacenamiento = almacenamiento;
         modificarPlantilla();
+        this.vistaPlantillaMedico.addBtnRegresarListener(new ManejadoraDeMouse());
     }
     
     public void modificarPlantilla(){
@@ -41,14 +43,13 @@ public class GestorPlantillaMedico {
         }
     }
     public void plantillaActualizarMedico(){
-        vistaPlantillaMedico.setVisible(true);
+        //Modificando título y botones
         vistaPlantillaMedico.getLblTitulo().setText("Actualizar médico");
         vistaPlantillaMedico.getBtnAgregar().setText("Actualizar médico");
     }
     
     public void plantillaEliminarMedico(){
-        //Modificando titulos y botones
-        vistaPlantillaMedico.setVisible(true);
+        //Modificando título y botones
         vistaPlantillaMedico.getLblTitulo().setText("Eliminar médico");
         vistaPlantillaMedico.getBtnAgregar().setText("Eliminar médico");
         
@@ -63,5 +64,33 @@ public class GestorPlantillaMedico {
         vistaPlantillaMedico.getListaEspecialidad().setEnabled(false);
     }
     
+    class ManejadoraDeMouse extends MouseAdapter{
+        
+        @Override
+        public void mouseClicked(MouseEvent e){
+            
+            if (e.getSource() == vistaPlantillaMedico.getBtnAgregar()){
+                if (e.getButton() == 1){
+                    agregarAfiliado();
+                }
+            }
+
+            if (e.getSource() == vistaPlantillaMedico.getBtnRegresar()){
+                if (e.getButton() == 1){
+                    irGestionServicioGUI();  
+                }
+            }
+        }
+    }
     
+    private void agregarAfiliado() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    private void irGestionServicioGUI() {
+        
+        //Creación de vistas
+        GestionServicioGUI vistaGestionServicio = new GestionServicioGUI();
+        vistaPlantillaMedico.dispose();
+    }
 }

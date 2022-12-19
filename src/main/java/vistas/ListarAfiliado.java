@@ -16,6 +16,8 @@ package vistas;
 import controladores.GestorListarAfiliado;
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.event.MouseListener;
+import javax.swing.JButton;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 import modelos.Almacenamiento;
@@ -26,12 +28,12 @@ public class ListarAfiliado extends javax.swing.JFrame {
     private DefaultTableModel modeloTabla = new DefaultTableModel();
     private JTableHeader th;
     
-    public ListarAfiliado() {
+    public ListarAfiliado(Almacenamiento almacenamiento) {
         this.setContentPane(fondo);
         llenarColumnas();
         initComponents();
         diseñoTabla();
-        GestorListarAfiliado gestorAfiliado = new GestorListarAfiliado(this);
+        GestorListarAfiliado gestorAfiliado = new GestorListarAfiliado(this, almacenamiento);
         setVisible(true);
         setLocationRelativeTo(null);
         setResizable(false);
@@ -146,8 +148,22 @@ public class ListarAfiliado extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     /**
-     * @param args the command line arguments
+     * @return 
      */
+
+    public JButton getBtnRegresar() {
+        return btnRegresar;
+    }
+
+    /**
+     * @param btnRegresar
+     */
+    public void setBtnRegresar(JButton btnRegresar) {
+        this.btnRegresar = btnRegresar;
+    }
+    public void addBtnRegresarListener(MouseListener listenerBotones){
+        btnRegresar.addMouseListener(listenerBotones);
+    }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnRegresar;
