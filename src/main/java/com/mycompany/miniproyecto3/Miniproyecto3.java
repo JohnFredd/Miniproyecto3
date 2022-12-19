@@ -25,7 +25,7 @@ public class Miniproyecto3 {
         PpalGUI ventanaPpal = new PpalGUI();
         GestorPpalGUI gestorPpal = new GestorPpalGUI(ventanaPpal);
         
-        Afiliado afiliado1 = new Afiliado("Juan", "Hombre", "Debajo de un puente", "Juan@gmail.com", 111111, 38, 111111);
+        /*Afiliado afiliado1 = new Afiliado("Juan", "Hombre", "Debajo de un puente", "Juan@gmail.com", 111111, 38, 111111);
         Afiliado afiliado2 = new Afiliado("Sofia", "Mujer", "Debajo de otro puente", "Sofia@gmail.com", 222222, 24, 222222);
         Medico medico1 = new Medico(null,"Alfonso", "Hombre", "El poblado de ningún lugar", "Alfonso@gmail.com", 333333, 55, 333333);
         Medico medico2 = new Medico(null,"Helicoptero", "Helicoptero", "Helipuerto", "Helicoptero@gmail.com", 444444, 83, 444444);
@@ -57,6 +57,6 @@ public class Miniproyecto3 {
         almacenamiento.setServicios(servicios);
         almacenamiento.setConsultorios(consultorios);
         
-        almacenamiento.hacerBackUp();
+        almacenamiento.hacerBackUp();*/
     }
 }
