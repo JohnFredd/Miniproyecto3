@@ -16,7 +16,6 @@ package modelos;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.ArrayList;
 
 public class Cita implements Serializable {
     
@@ -25,7 +24,7 @@ public class Cita implements Serializable {
     private Servicio servicioRequerido;
     private Afiliado afiliado;
     private Consultorio consultorio;
-    private Medico medicoDisponible;
+    private Medico medico;
 
     public Cita(LocalDate fecha, LocalTime hora, Servicio servicioRequerido, Afiliado afiliado, Consultorio consultorio, Medico medico) {
         this.fecha = fecha;
@@ -33,8 +32,55 @@ public class Cita implements Serializable {
         this.servicioRequerido = servicioRequerido;
         this.afiliado = afiliado;
         this.consultorio = consultorio;
-        this.medicoDisponible = medicoDisponible;
+        this.medico = medico;
     }
-    
+
+    public LocalDate getFecha() {
+        return fecha;
+    }
+
+    public void setFecha(LocalDate fecha) {
+        this.fecha = fecha;
+    }
+
+    public LocalTime getHora() {
+        return hora;
+    }
+
+    public void setHora(LocalTime hora) {
+        this.hora = hora;
+    }
+
+    public Servicio getServicioRequerido() {
+        return servicioRequerido;
+    }
+
+    public void setServicioRequerido(Servicio servicioRequerido) {
+        this.servicioRequerido = servicioRequerido;
+    }
+
+    public Afiliado getAfiliado() {
+        return afiliado;
+    }
+
+    public void setAfiliado(Afiliado afiliado) {
+        this.afiliado = afiliado;
+    }
+
+    public Consultorio getConsultorio() {
+        return consultorio;
+    }
+
+    public void setConsultorio(Consultorio consultorio) {
+        this.consultorio = consultorio;
+    }
+
+    public Medico getMedico() {
+        return medico;
+    }
+
+    public void setMedicoDisponible(Medico medico) {
+        this.medico = medico;
+    }
     
 }

@@ -23,4 +23,21 @@ public class Consultorio implements Serializable{
         this.identificador = identificador;
         this.servicioAsociado = servicioAsociado;
     }
+
+    public String getIdentificador() {
+        return identificador;
+    }
+
+    public void setIdentificador(String identificador) {
+        this.identificador = identificador;
+    }
+
+    public Servicio getServicioAsociado() {
+        return servicioAsociado;
+    }
+
+    public void setServicioAsociado(Servicio servicioAsociado) {
+        this.servicioAsociado = servicioAsociado;
+    }
+    
 }

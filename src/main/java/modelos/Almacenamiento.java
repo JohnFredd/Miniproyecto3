@@ -158,6 +158,100 @@ public class Almacenamiento {
         }
     }
 
+    public void anadirAfiliado(Afiliado afiliado) {
+        afiliados.put(afiliado.getCedula(), afiliado);
+    }
+    
+    public void modificarAfiliado(int cedulaAnterior, Afiliado afiliado) {
+        afiliados.remove(cedulaAnterior);
+        afiliados.put(afiliado.getCedula(), afiliado);
+    }
+    
+    public void eliminarAfiliado(int cedula) {
+        Afiliado afiliado = afiliados.get(cedula);
+        afiliados.remove(cedula);
+        
+        for (int i=0; i<citas.size(); i++) {
+            Cita cita = citas.get(i);
+            if (cita.getAfiliado() == afiliado) {
+                citas.remove(i);
+            }
+        }
+    }
+    
+    public void anadirMedico(Medico medico) {
+        medicos.put(medico.getCedula(), medico);
+    }
+    
+    public void modificarMedico(int cedulaAnterior, Medico medico) {
+        medicos.remove(cedulaAnterior);
+        medicos.put(medico.getCedula(), medico);
+    }
+    
+    public void eliminarMedico(int cedula) {
+        Medico medico = medicos.get(cedula);
+        medicos.remove(cedula);
+        
+        for (int i=0; i<citas.size(); i++) {
+            Cita cita = citas.get(i);
+            if (cita.getMedico() == medico) {
+                citas.remove(i);
+            }
+        }
+    }
+    
+    public void anadirConsultorio(Consultorio consultorio) {
+        consultorios.add(consultorio);
+    }
+    
+    public void modificarConsultorio(int indentificador, Consultorio consultorio) {
+        consultorios.set(indentificador,consultorio);
+    }
+    
+    public void eliminarConsultorio(int indentificador) {
+        Consultorio consultorio = consultorios.get(indentificador);
+        consultorios.remove(indentificador);
+        
+        for (int i=0; i<citas.size(); i++) {
+            Cita cita = citas.get(i);
+            if (cita.getConsultorio() == consultorio) {
+                citas.remove(i);
+            }
+        }
+    }
+    
+    public void anadirServicio(Servicio servicio) {
+        servicios.add(servicio);
+    }
+    
+    public void modificarServicio(int indentificador, Servicio servicio) {
+        servicios.set(indentificador,servicio);
+    }
+    
+    public void eliminarServicio(int indentificador) {
+        Servicio servicio = servicios.get(indentificador);
+        servicios.remove(indentificador);
+        
+        for (int i=0; i<citas.size(); i++) {
+            Cita cita = citas.get(i);
+            if (cita.getServicioRequerido() == servicio) {
+                citas.remove(i);
+            }
+        }
+        for (int i=0; i<consultorios.size(); i++) {
+            Consultorio consultorio = consultorios.get(i);
+            if (consultorio.getServicioAsociado() == servicio) {
+                consultorios.remove(i);
+            }
+        }
+        for (int i=0; i<medicos.size(); i++) {
+            Medico medico = medicos.get(i);
+            while (medico.getServicios().remove(servicio)){
+                
+            }
+        }
+    }
+    
     public HashMap<Integer, Afiliado> getAfiliados() {
         return afiliados;
     }

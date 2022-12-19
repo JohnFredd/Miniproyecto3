@@ -92,6 +92,4 @@ public class Persona implements Serializable{
         this.telefono = telefono;
     }
     
-    
-    
 }
