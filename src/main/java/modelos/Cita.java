@@ -13,20 +13,21 @@
 
 package modelos;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
 
-public class Cita {
+public class Cita implements Serializable {
     
     private LocalDate fecha;
     private LocalTime hora;
     private Servicio servicioRequerido;
     private Afiliado afiliado;
     private Consultorio consultorio;
-    private ArrayList<Medico> medicoDisponible;
+    private Medico medicoDisponible;
 
-    public Cita(LocalDate fecha, LocalTime hora, Servicio servicioRequerido, Afiliado afiliado, Consultorio consultorio, ArrayList<Medico> medicoDisponible) {
+    public Cita(LocalDate fecha, LocalTime hora, Servicio servicioRequerido, Afiliado afiliado, Consultorio consultorio, Medico medico) {
         this.fecha = fecha;
         this.hora = hora;
         this.servicioRequerido = servicioRequerido;
