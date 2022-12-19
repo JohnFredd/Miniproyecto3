@@ -16,6 +16,7 @@ package modelos;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import javax.swing.JFileChooser;
 import javax.swing.JPanel;
 import javax.swing.filechooser.FileNameExtensionFilter;
@@ -70,8 +71,41 @@ public class Almacenamiento {
         }
     }
     
-    public boolean exportarDatosAfiliados() {
-        return true;
+    public void exportarDatosAfiliados() {
+        JFileChooser chooser = new JFileChooser();
+        
+        FileNameExtensionFilter filtro = new FileNameExtensionFilter("*.txt", ".txt");
+        
+        chooser.setFileFilter(filtro);
+        
+        int seleccion = chooser.showSaveDialog(new JPanel());
+        
+        if (seleccion == JFileChooser.APPROVE_OPTION) {
+            try
+            {
+                FileWriter fw = new FileWriter(chooser.getSelectedFile());
+                PrintWriter pw = new PrintWriter(fw);
+
+                Iterator i = afiliados.entrySet().iterator();
+                
+                while(i.hasNext()) {
+                    HashMap.Entry <Integer, Afiliado> mapa = (HashMap.Entry) i.next();
+                    Afiliado afiliado = mapa.getValue();
+                    pw.print(afiliado.getNombre() + ";");
+                    pw.print(afiliado.getSexo() + ";");
+                    pw.print(afiliado.getDireccion() + ";");
+                    pw.print(afiliado.getEmail() + ";");
+                    pw.print(String.valueOf(afiliado.getCedula()) + ";");
+                    pw.print(String.valueOf(afiliado.getEdad()) + ";");
+                    pw.println(String.valueOf(afiliado.getTelefono()));
+                }
+
+                pw.close();
+                System.out.println("Datos guardados exitosamente.");
+            } catch (IOException e) {
+                System.out.println("Error al guardar datos: " + e.getMessage());
+            }
+        }
     }
     
     public void backUpCitas() {

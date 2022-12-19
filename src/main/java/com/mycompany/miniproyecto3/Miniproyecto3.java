@@ -71,6 +71,7 @@ public class Miniproyecto3 {
         
         almacenamiento.hacerBackUp();
         almacenamiento.backUpCitas();
-        almacenamiento.restauracionCitas();*/
+        almacenamiento.restauracionCitas();
+        almacenamiento.exportarDatosAfiliados();*/
     }
 }
