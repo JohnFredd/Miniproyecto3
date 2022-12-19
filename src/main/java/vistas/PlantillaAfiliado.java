@@ -13,19 +13,23 @@
 
 package vistas;
 
+import controladores.GestorPlantillaAfiliado;
 import java.awt.Color;
+import java.awt.event.MouseListener;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
+import modelos.Almacenamiento;
 
 public class PlantillaAfiliado extends javax.swing.JFrame {
 
     ImagenFondo fondo = new ImagenFondo();
     
-    public PlantillaAfiliado() {
+    public PlantillaAfiliado(String opcion, Almacenamiento almacenamiento) {
         this.setContentPane(fondo);
         initComponents();
+        GestorPlantillaAfiliado gestorAfiliado = new GestorPlantillaAfiliado(this, opcion, almacenamiento);
         setVisible(true);
         setLocationRelativeTo(null);
         setResizable(false);
@@ -286,7 +290,21 @@ public class PlantillaAfiliado extends javax.swing.JFrame {
     public void setTxtTelefono(JTextField txtTelefono) {
         this.txtTelefono = txtTelefono;
     }
+    public JButton getBtnRegresar() {
+        return btnRegresar;
+    }
+
+    public void setBtnRegresar(JButton btnRegresar) {
+        this.btnRegresar = btnRegresar;
+    }
+    public void addBtnRegresarListener(MouseListener listenerBotones){
+        btnRegresar.addMouseListener(listenerBotones);
+    }
     
+    public void addBtnAgregarListener(MouseListener listenerBotones){
+        btnAgregar.addMouseListener(listenerBotones);
+    }
+
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregar;

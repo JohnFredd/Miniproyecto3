@@ -13,21 +13,25 @@
 
 package vistas;
 
+import controladores.GestorPlantillaMedico;
 import java.awt.Color;
+import java.awt.event.MouseListener;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
+import modelos.Almacenamiento;
 
 public class PlantillaMedico extends javax.swing.JFrame {
 
     ImagenFondo fondo = new ImagenFondo();
     
-    public PlantillaMedico() {
+    public PlantillaMedico(String opcion, Almacenamiento almacenamiento) {
         this.setContentPane(fondo);
         initComponents();
+        GestorPlantillaMedico gestorMedico = new GestorPlantillaMedico(this, opcion, almacenamiento);
         setVisible(true);
         setLocationRelativeTo(null);
         setResizable(false);
@@ -335,7 +339,9 @@ public class PlantillaMedico extends javax.swing.JFrame {
     public void setScroll(JScrollPane scroll) {
         this.scroll = scroll;
     }
-    
+    public void addBtnRegresarListener(MouseListener listenerBotones){
+        btnRegresar.addMouseListener(listenerBotones);
+    }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregar;
