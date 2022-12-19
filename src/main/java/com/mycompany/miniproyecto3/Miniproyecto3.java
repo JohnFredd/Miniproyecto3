@@ -14,6 +14,8 @@
 package com.mycompany.miniproyecto3;
 
 import controladores.GestorPpalGUI;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 import vistas.PpalGUI;
@@ -33,6 +35,12 @@ public class Miniproyecto3 {
         Servicio servicio2 = new Servicio("Odontología");
         Consultorio consultorio1 = new Consultorio("201",servicio1);
         Consultorio consultorio2 = new Consultorio("202",servicio2);
+        LocalDate fecha1 = LocalDate.now();
+        LocalDate fecha2 = LocalDate.now();
+        LocalTime hora1 = LocalTime.now();
+        LocalTime hora2 = LocalTime.now();
+        Cita cita1 = new Cita(fecha1, hora1, servicio1, afiliado1, consultorio1, medico1);
+        Cita cita2 = new Cita(fecha2, hora2, servicio2, afiliado2, consultorio2, medico2);
         
         HashMap <Integer, Afiliado> afiliados = new HashMap<Integer, Afiliado>();
         afiliados.put(1, afiliado1);
@@ -50,13 +58,20 @@ public class Miniproyecto3 {
         consultorios.add(consultorio1);
         consultorios.add(consultorio2);
         
+        ArrayList <Cita> citas = new ArrayList<Cita>();
+        citas.add(cita1);
+        citas.add(cita2);
+        
         Almacenamiento almacenamiento = new Almacenamiento();
         
         almacenamiento.setAfiliados(afiliados);
         almacenamiento.setMedicos(medicos);
         almacenamiento.setServicios(servicios);
         almacenamiento.setConsultorios(consultorios);
+        almacenamiento.setCitas(citas);
         
-        almacenamiento.hacerBackUp();*/
+        almacenamiento.hacerBackUp();
+        almacenamiento.backUpCitas();
+        almacenamiento.restauracionCitas();*/
     }
 }

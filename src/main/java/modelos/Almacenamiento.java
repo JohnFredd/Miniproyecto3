@@ -16,6 +16,9 @@ package modelos;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.HashMap;
+import javax.swing.JFileChooser;
+import javax.swing.JPanel;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 public class Almacenamiento {
     
@@ -23,6 +26,7 @@ public class Almacenamiento {
     private HashMap <Integer, Medico> medicos;
     private ArrayList <Servicio> servicios;
     private ArrayList <Consultorio> consultorios;
+    private ArrayList <Cita> citas;
     
     public Almacenamiento () {
         restaurarDatos();
@@ -38,6 +42,7 @@ public class Almacenamiento {
             oos.writeObject(medicos);
             oos.writeObject(servicios);
             oos.writeObject(consultorios);
+            oos.writeObject(citas);
             
             oos.close();
             System.out.println("Datos guardados exitosamente.");
@@ -56,6 +61,7 @@ public class Almacenamiento {
             medicos = (HashMap) ois.readObject();
             servicios = (ArrayList) ois.readObject();
             consultorios = (ArrayList) ois.readObject();
+            citas = (ArrayList) ois.readObject();
             
             ois.close();
             System.out.println("Datos recuperados exitosamente.");
@@ -68,12 +74,54 @@ public class Almacenamiento {
         return true;
     }
     
-    public boolean backUpCitas() {
-        return true;
+    public void backUpCitas() {
+        JFileChooser chooser = new JFileChooser();
+        
+        FileNameExtensionFilter filtro = new FileNameExtensionFilter("*.bin", ".bin");
+        
+        chooser.setFileFilter(filtro);
+        
+        int seleccion = chooser.showSaveDialog(new JPanel());
+        
+        if (seleccion == JFileChooser.APPROVE_OPTION) {
+            try
+            {
+                OutputStream os = new FileOutputStream(chooser.getSelectedFile());
+                ObjectOutputStream oos = new ObjectOutputStream(os);
+
+                oos.writeObject(citas);
+
+                oos.close();
+                System.out.println("Datos guardados exitosamente.");
+            } catch (IOException e) {
+                System.out.println("Error al guardar datos: " + e.getMessage());
+            }
+        }
     }
     
-    public boolean restauracionCitas() {
-        return true;
+    public void restauracionCitas() {
+        JFileChooser chooser = new JFileChooser();
+        
+        FileNameExtensionFilter filtro = new FileNameExtensionFilter("*.bin", ".bin");
+        
+        chooser.setFileFilter(filtro);
+        
+        int seleccion = chooser.showOpenDialog(new JPanel());
+        
+        if (seleccion == JFileChooser.APPROVE_OPTION) {
+            try
+            {
+                InputStream is = new FileInputStream(chooser.getSelectedFile());
+                ObjectInputStream ois = new ObjectInputStream(is);
+
+                citas = (ArrayList) ois.readObject();
+
+                ois.close();
+                System.out.println("Datos recuperados exitosamente.");
+            } catch(IOException | ClassNotFoundException e) {
+                System.out.println("Error al recuperar datos: " + e.getMessage());
+            }
+        }
     }
 
     public HashMap<Integer, Afiliado> getAfiliados() {
@@ -106,6 +154,14 @@ public class Almacenamiento {
 
     public void setConsultorios(ArrayList<Consultorio> consultorios) {
         this.consultorios = consultorios;
+    }
+
+    public ArrayList<Cita> getCitas() {
+        return citas;
+    }
+
+    public void setCitas(ArrayList<Cita> citas) {
+        this.citas = citas;
     }
     
 }
