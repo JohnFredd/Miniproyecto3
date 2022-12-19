@@ -93,8 +93,7 @@ public class GestorGestionServicio {
     }
     
     private void irPpal() {
-        PpalGUI ventanaPpal = new PpalGUI();
-        GestorPpalGUI gestorPpal = new GestorPpalGUI(ventanaPpal);
+        PpalGUI ventanaPpal = new PpalGUI("Servicio de salud - Universidad del Valle");
         vistaGestionServicio.dispose();
     }
     
@@ -149,25 +148,25 @@ public class GestorGestionServicio {
     
     private void irAgregarAfiliado(){
         Almacenamiento almacenamiento = new Almacenamiento();
-        PlantillaAfiliado ventanaAgregarAfiliado = new PlantillaAfiliado("Agregar", almacenamiento);
+        PlantillaAfiliado ventanaAgregarAfiliado = new PlantillaAfiliado("Agregar afiliado", "Agregar", almacenamiento);
         vistaGestionServicio.dispose();
     }
     
     private void irActualizarAfiliado() {
         Almacenamiento almacenamiento = new Almacenamiento();
-        PlantillaAfiliado ventanaAgregarAfiliado = new PlantillaAfiliado("Actualizar", almacenamiento);
+        PlantillaAfiliado ventanaAgregarAfiliado = new PlantillaAfiliado("Actualizar afiliado", "Actualizar", almacenamiento);
         vistaGestionServicio.dispose();
     }
     
     private void irListarAfiliado(){
         Almacenamiento almacenamiento = new Almacenamiento();
-        ListarAfiliado ventanaListaAfiliado = new ListarAfiliado(almacenamiento);
+        ListarAfiliado ventanaListaAfiliado = new ListarAfiliado("Lista de afiliados",almacenamiento);
         vistaGestionServicio.dispose();
     }
     
     private void irEliminarAfiliado() {
         Almacenamiento almacenamiento = new Almacenamiento();
-        PlantillaAfiliado ventanaAgregarAfiliado = new PlantillaAfiliado("Eliminar", almacenamiento);
+        PlantillaAfiliado ventanaAgregarAfiliado = new PlantillaAfiliado("Eliminar afiliado", "Eliminar", almacenamiento);
         vistaGestionServicio.dispose();
     }
     
@@ -221,22 +220,22 @@ public class GestorGestionServicio {
     }
     private void irAgregarMedico(){
         Almacenamiento almacenamiento = new Almacenamiento();
-        PlantillaMedico ventanaAgregarMedico = new PlantillaMedico("Agregar", almacenamiento);
+        PlantillaMedico ventanaAgregarMedico = new PlantillaMedico("Agregar médico", "Agregar", almacenamiento);
         vistaGestionServicio.dispose();
     }
     private void irActualizarMedico() {
         Almacenamiento almacenamiento = new Almacenamiento();
-        PlantillaMedico ventanaAgregarMedico = new PlantillaMedico("Actualizar", almacenamiento);
+        PlantillaMedico ventanaAgregarMedico = new PlantillaMedico("Actualizar médico", "Actualizar", almacenamiento);
         vistaGestionServicio.dispose();
     }
     private void irListarMedico(){
         Almacenamiento almacenamiento = new Almacenamiento();
-        ListarMedico ventanaListaMedico = new ListarMedico(almacenamiento);
+        ListarMedico ventanaListaMedico = new ListarMedico("Lista de médicos", almacenamiento);
         vistaGestionServicio.dispose();
     }
     private void irEliminarMedico() {
         Almacenamiento almacenamiento = new Almacenamiento();
-        PlantillaMedico ventanaAgregarMedico = new PlantillaMedico("Eliminar", almacenamiento);
+        PlantillaMedico ventanaAgregarMedico = new PlantillaMedico("Eliminar médico", "Eliminar", almacenamiento);
         vistaGestionServicio.dispose();
     }
     
@@ -305,22 +304,22 @@ public class GestorGestionServicio {
     
     private void irAgregarConsultorio(){
         Almacenamiento almacenamiento = new Almacenamiento();
-        PlantillaConsultorio ventanaAgregarConsultorio = new PlantillaConsultorio("Agregar", almacenamiento);
+        PlantillaConsultorio ventanaAgregarConsultorio = new PlantillaConsultorio("Agregar consultorio", "Agregar", almacenamiento);
         vistaGestionServicio.dispose();
     }
     private void irActualizarConsultorio() {
         Almacenamiento almacenamiento = new Almacenamiento();
-        PlantillaConsultorio ventanaActualizarConsultorio = new PlantillaConsultorio("Actualizar", almacenamiento);
+        PlantillaConsultorio ventanaActualizarConsultorio = new PlantillaConsultorio("Actualizar consultorio", "Actualizar", almacenamiento);
         vistaGestionServicio.dispose();
     }
     private void irListarConsultorio(){
         Almacenamiento almacenamiento = new Almacenamiento();
-        ListarConsultorio ventanaListaConsultorio = new ListarConsultorio(almacenamiento);
+        ListarConsultorio ventanaListaConsultorio = new ListarConsultorio("Listas de consultorios", almacenamiento);
         vistaGestionServicio.dispose();
     }
     private void irEliminarConsultorio() {
         Almacenamiento almacenamiento = new Almacenamiento();
-        PlantillaConsultorio ventanaActualizarConsultorio = new PlantillaConsultorio("Eliminar", almacenamiento);
+        PlantillaConsultorio ventanaActualizarConsultorio = new PlantillaConsultorio("Eliminar consultorio", "Eliminar", almacenamiento);
         vistaGestionServicio.dispose();
     }
     
@@ -388,23 +387,23 @@ public class GestorGestionServicio {
     }
     private void irAgregarServicio(){
         Almacenamiento almacenamiento = new Almacenamiento();
-        PlantillaServicio ventanaAgregarServicio = new PlantillaServicio("Agregar", almacenamiento);
+        PlantillaServicio ventanaAgregarServicio = new PlantillaServicio("Agregar servicio", "Agregar", almacenamiento);
         ventanaAgregarServicio.setVisible(true);
         vistaGestionServicio.dispose();
     }
     private void irActualizarServicio() {
         Almacenamiento almacenamiento = new Almacenamiento();
-        PlantillaServicio ventanaActualizarServicio = new PlantillaServicio("Actualizar", almacenamiento);
+        PlantillaServicio ventanaActualizarServicio = new PlantillaServicio("Actualizar servicio", "Actualizar", almacenamiento);
         vistaGestionServicio.dispose();
     }
     private void irListarServicio(){
         Almacenamiento almacenamiento = new Almacenamiento();
-        ListarServicio ventanaListaServicio = new ListarServicio(almacenamiento);
+        ListarServicio ventanaListaServicio = new ListarServicio("Lista de servicios", almacenamiento);
         vistaGestionServicio.dispose();
     }
     private void irEliminarServicio() {
         Almacenamiento almacenamiento = new Almacenamiento();
-        PlantillaServicio ventanaEliminarServicio = new PlantillaServicio("Eliminar", almacenamiento);
+        PlantillaServicio ventanaEliminarServicio = new PlantillaServicio("Eliminar servicio", "Eliminar", almacenamiento);
         vistaGestionServicio.dispose();
     }
 }

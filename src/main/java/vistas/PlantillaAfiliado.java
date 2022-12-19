@@ -26,11 +26,12 @@ public class PlantillaAfiliado extends javax.swing.JFrame {
 
     ImagenFondo fondo = new ImagenFondo();
     
-    public PlantillaAfiliado(String opcion, Almacenamiento almacenamiento) {
+    public PlantillaAfiliado(String titulo, String opcion, Almacenamiento almacenamiento) {
         this.setContentPane(fondo);
         initComponents();
         GestorPlantillaAfiliado gestorAfiliado = new GestorPlantillaAfiliado(this, opcion, almacenamiento);
         setVisible(true);
+        setTitle(titulo);
         setLocationRelativeTo(null);
         setResizable(false);
     }
@@ -87,9 +88,27 @@ public class PlantillaAfiliado extends javax.swing.JFrame {
         lblCorreo.setFont(new java.awt.Font("Agency FB", 1, 36)); // NOI18N
         lblCorreo.setText("Correo electrónico");
 
+        txtNombre.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        txtNombre.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+
+        txtCedula.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        txtCedula.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+
+        txtEdad.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        txtEdad.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+
         comboSexo.setFont(new java.awt.Font("Agency FB", 1, 18)); // NOI18N
         comboSexo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Masculino", "Femenino" }));
         comboSexo.setSelectedIndex(-1);
+
+        txtTelefono.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        txtTelefono.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+
+        txtDireccion.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        txtDireccion.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+
+        txtCorreo.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        txtCorreo.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
         btnRegresar.setFont(new java.awt.Font("Agency FB", 1, 36)); // NOI18N
         btnRegresar.setText("Regresar");

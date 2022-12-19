@@ -13,7 +13,10 @@
 
 package vistas;
 
+import controladores.GestorGestionDeCitas;
 import java.awt.Color;
+import java.awt.event.MouseListener;
+import javax.swing.JButton;
 
 /**
  *
@@ -23,10 +26,12 @@ public class GestionDeCitas extends javax.swing.JFrame {
 
     ImagenFondo fondo = new ImagenFondo();
     
-    public GestionDeCitas() {
+    public GestionDeCitas(String titulo) {
         this.setContentPane(fondo);
         initComponents();
+        GestorGestionDeCitas gestorGestionCitas = new GestorGestionDeCitas(this);
         setVisible(true);
+        setTitle(titulo);
         setLocationRelativeTo(null);
         setResizable(false);
     }
@@ -80,6 +85,7 @@ public class GestionDeCitas extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(lblTitulo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -92,13 +98,12 @@ public class GestionDeCitas extends javax.swing.JFrame {
                             .addComponent(btnModificar, javax.swing.GroupLayout.DEFAULT_SIZE, 247, Short.MAX_VALUE)
                             .addComponent(btnEliminar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(24, 24, 24)
-                        .addComponent(separador, javax.swing.GroupLayout.PREFERRED_SIZE, 605, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(244, 244, 244)
-                        .addComponent(btnRegresar)))
+                        .addComponent(btnRegresar))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(24, 24, 24)
+                        .addComponent(separador, javax.swing.GroupLayout.PREFERRED_SIZE, 605, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(24, Short.MAX_VALUE))
-            .addComponent(lblTitulo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -116,7 +121,7 @@ public class GestionDeCitas extends javax.swing.JFrame {
                 .addGap(40, 40, 40)
                 .addComponent(btnRegresar, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(separador, javax.swing.GroupLayout.PREFERRED_SIZE, 3, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(separador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(15, 15, 15))
         );
 
@@ -130,9 +135,70 @@ public class GestionDeCitas extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     /**
-     * @param args the command line arguments
+     * @return 
      */
 
+    public JButton getBtnAgendar() {
+        return btnAgendar;
+    }
+
+    public void setBtnAgendar(JButton btnAgendar) {
+        this.btnAgendar = btnAgendar;
+    }
+
+    public JButton getBtnConsultar() {
+        return btnConsultar;
+    }
+
+    public void setBtnConsultar(JButton btnConsultar) {
+        this.btnConsultar = btnConsultar;
+    }
+
+    public JButton getBtnEliminar() {
+        return btnEliminar;
+    }
+
+    public void setBtnEliminar(JButton btnEliminar) {
+        this.btnEliminar = btnEliminar;
+    }
+
+    public JButton getBtnModificar() {
+        return btnModificar;
+    }
+
+    public void setBtnModificar(JButton btnModificar) {
+        this.btnModificar = btnModificar;
+    }
+
+    public JButton getBtnRegresar() {
+        return btnRegresar;
+    }
+
+    /**
+     * @param btnRegresar
+     */
+    public void setBtnRegresar(JButton btnRegresar) {
+        this.btnRegresar = btnRegresar;
+    }
+    public void addBtnAgendarListener(MouseListener listenerBotones){
+            btnAgendar.addMouseListener(listenerBotones);
+        }
+    
+    public void addBtnConsultarListener(MouseListener listenerBotones){
+        btnConsultar.addMouseListener(listenerBotones);
+    }
+    
+    public void addBtnEliminarListener(MouseListener listenerBotones){
+        btnEliminar.addMouseListener(listenerBotones);
+    }
+    
+    public void addBtnModificarListener(MouseListener listenerBotones){
+        btnModificar.addMouseListener(listenerBotones);
+    }
+    
+    public void addBtnRegresarListener(MouseListener listenerBotones){
+        btnRegresar.addMouseListener(listenerBotones);
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgendar;
     private javax.swing.JButton btnConsultar;

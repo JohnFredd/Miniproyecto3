@@ -28,13 +28,14 @@ public class ListarAfiliado extends javax.swing.JFrame {
     private DefaultTableModel modeloTabla = new DefaultTableModel();
     private JTableHeader th;
     
-    public ListarAfiliado(Almacenamiento almacenamiento) {
+    public ListarAfiliado(String titulo, Almacenamiento almacenamiento) {
         this.setContentPane(fondo);
         llenarColumnas();
         initComponents();
         diseñoTabla();
         GestorListarAfiliado gestorAfiliado = new GestorListarAfiliado(this, almacenamiento);
         setVisible(true);
+        setTitle(titulo);
         setLocationRelativeTo(null);
         setResizable(false);
     }

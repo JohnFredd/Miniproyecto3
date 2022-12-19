@@ -30,9 +30,8 @@ public class GestorPpalGUI {
     public GestorPpalGUI(PpalGUI vistaPpal) {
         this.vistaPpal = vistaPpal;
         this.vistaPpal.addBtnGestionServicioListener(new ManejadoraDeMouse());
-        /*this.vistaPpal.addBtnGestionCitaListener(new ManejadoraDeMouse());
-        this.vistaPpal.addBtnRespaldoListener(new ManejadoraDeMouse());*/
-        
+        this.vistaPpal.addBtnGestionCitaListener(new ManejadoraDeMouse());
+        this.vistaPpal.addBtnRespaldoListener(new ManejadoraDeMouse());
     }
     
     class ManejadoraDeMouse extends MouseAdapter{
@@ -44,7 +43,7 @@ public class GestorPpalGUI {
                     irGestionServicioGUI();
                 }
           }
-          /*
+          
           if (e.getSource() == vistaPpal.getBtnGestionCita()){
                 if (e.getButton() == 1){
                     irGestionDeCitas();
@@ -55,24 +54,24 @@ public class GestorPpalGUI {
                 if (e.getButton() == 1){
                     irRespaldo();
                 }
-          }*/
+          }
         }
     }
     
     public void irGestionServicioGUI(){
-        GestionServicioGUI ventanaGestionServicio = new GestionServicioGUI();
+        GestionServicioGUI ventanaGestionServicio = new GestionServicioGUI("Gestión de servicios");
         ventanaGestionServicio.setVisible(true);
         vistaPpal.dispose();
     }
     
     public void irGestionDeCitas(){
-        GestionDeCitas ventanaGestionCitas = new GestionDeCitas();
+        GestionDeCitas ventanaGestionCitas = new GestionDeCitas("Gestión de citas");
         ventanaGestionCitas.setVisible(true);
         vistaPpal.dispose();
     }
     
     public void irRespaldo(){
-        OpcionesDeRespaldo ventanaRespaldo = new OpcionesDeRespaldo();
+        OpcionesDeRespaldo ventanaRespaldo = new OpcionesDeRespaldo("Opciones de respaldo");
         ventanaRespaldo.setVisible(true);
         vistaPpal.dispose();
     }

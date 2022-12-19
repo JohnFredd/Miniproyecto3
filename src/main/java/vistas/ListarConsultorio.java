@@ -28,13 +28,14 @@ public class ListarConsultorio extends javax.swing.JFrame {
     private final DefaultTableModel modeloTabla = new DefaultTableModel();
     private JTableHeader th;
     
-    public ListarConsultorio(Almacenamiento almacenamiento) {
+    public ListarConsultorio(String titulo, Almacenamiento almacenamiento) {
         this.setContentPane(fondo);
         llenarColumnas();
         initComponents();
         diseñoTabla();
         GestorListarConsultorio gestorListarConsultorio = new GestorListarConsultorio(this, almacenamiento);
         setVisible(true);
+        setTitle(titulo);
         setLocationRelativeTo(null);
         setResizable(false);
     }

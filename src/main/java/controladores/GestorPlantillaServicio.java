@@ -81,8 +81,7 @@ public class GestorPlantillaServicio {
 
     private void irGestionServicioGUI() {
         
-        //Creación de vistas
-        GestionServicioGUI vistaGestionServicio = new GestionServicioGUI();
+        GestionServicioGUI vistaGestionServicio = new GestionServicioGUI("Gestión de servicios");
         vistaPlantillaServicio.dispose();
     }
 }

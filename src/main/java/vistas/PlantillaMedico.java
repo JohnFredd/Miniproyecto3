@@ -16,6 +16,8 @@ package vistas;
 import controladores.GestorPlantillaMedico;
 import java.awt.Color;
 import java.awt.event.MouseListener;
+import java.util.ArrayList;
+import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
@@ -27,16 +29,28 @@ import modelos.Almacenamiento;
 public class PlantillaMedico extends javax.swing.JFrame {
 
     ImagenFondo fondo = new ImagenFondo();
+    private DefaultListModel modeloLista = new DefaultListModel();
     
-    public PlantillaMedico(String opcion, Almacenamiento almacenamiento) {
+    public PlantillaMedico(String titulo, String opcion, Almacenamiento almacenamiento) {
         this.setContentPane(fondo);
+        agregarEspecialidades();
         initComponents();
         GestorPlantillaMedico gestorMedico = new GestorPlantillaMedico(this, opcion, almacenamiento);
         setVisible(true);
+        setTitle(titulo);
         setLocationRelativeTo(null);
         setResizable(false);
     }
-
+    
+    public void agregarEspecialidades(){
+        ArrayList<String> especialidades = new ArrayList<>();
+        especialidades.add("Odontología");
+        especialidades.add("Psiquiatría");
+        especialidades.add("Calvo");
+        especialidades.add("Neurología");
+        especialidades.add("Cardiología");
+        modeloLista.addAll(especialidades);    //lista.getSelectedValues() para extraer los datos escogidos
+    }
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
@@ -92,10 +106,28 @@ public class PlantillaMedico extends javax.swing.JFrame {
         lblCorreo.setFont(new java.awt.Font("Agency FB", 1, 36)); // NOI18N
         lblCorreo.setText("Correo Electrónico");
 
-        comboSexo.setFont(new java.awt.Font("Agency FB", 1, 18)); // NOI18N
+        txtNombre.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        txtNombre.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+
+        txtCedula.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        txtCedula.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+
+        txtEdad.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        txtEdad.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+
+        comboSexo.setFont(new java.awt.Font("Agency FB", 1, 20)); // NOI18N
         comboSexo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Masculino", "Femenino" }));
         comboSexo.setSelectedIndex(-1);
         comboSexo.setToolTipText("");
+
+        txtTelefono.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        txtTelefono.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+
+        txtDireccion.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        txtDireccion.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+
+        txtCorreo.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        txtCorreo.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
         btnRegresar.setFont(new java.awt.Font("Agency FB", 1, 36)); // NOI18N
         btnRegresar.setText("Regresar");
@@ -110,11 +142,7 @@ public class PlantillaMedico extends javax.swing.JFrame {
         lblEspecialidad.setFont(new java.awt.Font("Agency FB", 1, 36)); // NOI18N
         lblEspecialidad.setText("Especialidad");
 
-        listaEspecialidad.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Odontología", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
+        listaEspecialidad.setModel(modeloLista);
         listaEspecialidad.setVisibleRowCount(4);
         scroll.setViewportView(listaEspecialidad);
 
@@ -131,47 +159,46 @@ public class PlantillaMedico extends javax.swing.JFrame {
                 .addGap(27, 27, 27)
                 .addGroup(panelPpalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(separador)
-                    .addGroup(panelPpalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addGroup(panelPpalLayout.createSequentialGroup()
-                            .addGroup(panelPpalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addGroup(panelPpalLayout.createSequentialGroup()
-                                    .addComponent(lblCedula, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(29, 29, 29)
-                                    .addComponent(txtCedula, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(panelPpalLayout.createSequentialGroup()
-                                    .addComponent(lblTelefono)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(txtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGap(18, 18, 18)
-                            .addGroup(panelPpalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addGroup(panelPpalLayout.createSequentialGroup()
-                                    .addComponent(lblEdad)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(txtEdad, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(lblSexo)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(comboSexo, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(panelPpalLayout.createSequentialGroup()
-                                    .addComponent(lblDireccion)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(txtDireccion))))
-                        .addGroup(panelPpalLayout.createSequentialGroup()
-                            .addComponent(lblEspecialidad)
-                            .addGap(18, 18, 18)
-                            .addComponent(scroll, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(panelPpalLayout.createSequentialGroup()
-                            .addComponent(btnRegresar)
-                            .addGap(193, 193, 193)
-                            .addComponent(btnAgregar))
-                        .addGroup(panelPpalLayout.createSequentialGroup()
-                            .addComponent(lblNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(18, 18, 18)
-                            .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 718, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(panelPpalLayout.createSequentialGroup()
-                            .addComponent(lblCorreo)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(txtCorreo))))
+                    .addGroup(panelPpalLayout.createSequentialGroup()
+                        .addGroup(panelPpalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(panelPpalLayout.createSequentialGroup()
+                                .addComponent(lblCedula, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(29, 29, 29)
+                                .addComponent(txtCedula, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(panelPpalLayout.createSequentialGroup()
+                                .addComponent(lblTelefono)
+                                .addGap(18, 18, 18)
+                                .addComponent(txtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(18, 18, 18)
+                        .addGroup(panelPpalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(panelPpalLayout.createSequentialGroup()
+                                .addComponent(lblEdad)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtEdad, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(lblSexo)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(comboSexo, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(panelPpalLayout.createSequentialGroup()
+                                .addComponent(lblDireccion)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtDireccion))))
+                    .addGroup(panelPpalLayout.createSequentialGroup()
+                        .addComponent(lblEspecialidad)
+                        .addGap(18, 18, 18)
+                        .addComponent(scroll, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(panelPpalLayout.createSequentialGroup()
+                        .addComponent(btnRegresar)
+                        .addGap(193, 193, 193)
+                        .addComponent(btnAgregar))
+                    .addGroup(panelPpalLayout.createSequentialGroup()
+                        .addComponent(lblNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 718, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(panelPpalLayout.createSequentialGroup()
+                        .addComponent(lblCorreo)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(txtCorreo)))
                 .addContainerGap(30, Short.MAX_VALUE))
         );
         panelPpalLayout.setVerticalGroup(
@@ -234,8 +261,6 @@ public class PlantillaMedico extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-
 
     /**
      * @return 

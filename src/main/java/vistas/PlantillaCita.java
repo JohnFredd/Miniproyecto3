@@ -20,11 +20,11 @@ public class PlantillaCita extends javax.swing.JFrame {
 
     ImagenFondo fondo = new ImagenFondo();
     
-    public PlantillaCita() {
+    public PlantillaCita(String titulo) {
         this.setContentPane(fondo);
         initComponents();
         setVisible(true);
-        //setSize(920,704);
+        setTitle(titulo);
         setLocationRelativeTo(null);
         setResizable(false);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

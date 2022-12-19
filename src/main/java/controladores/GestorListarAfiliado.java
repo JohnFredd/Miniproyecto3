@@ -30,7 +30,7 @@ public class GestorListarAfiliado {
     private void irGestionServicioGUI() {
         
         //Creación de vistas
-        GestionServicioGUI vistaGestionServicio = new GestionServicioGUI();
+        GestionServicioGUI vistaGestionServicio = new GestionServicioGUI("Gestión de servicios");
         ventanaListarAfiliado.dispose();
     }
    

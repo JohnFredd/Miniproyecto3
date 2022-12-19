@@ -21,11 +21,12 @@ public class GestionServicioGUI extends javax.swing.JFrame {
 
     ImagenFondo fondo = new ImagenFondo();
     
-    public GestionServicioGUI() {
+    public GestionServicioGUI(String titulo) {
         this.setContentPane(fondo);
         initComponents();
         GestorGestionServicio gestorServicio = new GestorGestionServicio(this);
         setVisible(true);
+        setTitle(titulo);
         setLocationRelativeTo(null);
         setResizable(false);
     }

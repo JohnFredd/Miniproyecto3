@@ -16,6 +16,8 @@ package vistas;
 import controladores.GestorPlantillaConsultorio;
 import java.awt.Color;
 import java.awt.event.MouseListener;
+import java.util.ArrayList;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
@@ -26,17 +28,29 @@ import modelos.Almacenamiento;
 public class PlantillaConsultorio extends javax.swing.JFrame {
 
     ImagenFondo fondo = new ImagenFondo();
+    private DefaultComboBoxModel modeloCombo = new DefaultComboBoxModel();
     
-    public PlantillaConsultorio(String opcion, Almacenamiento almacenamiento) {
+    public PlantillaConsultorio(String titulo, String opcion, Almacenamiento almacenamiento) {
         this.setContentPane(fondo);
+        agregarServicios();
         initComponents();
         GestorPlantillaConsultorio gestorConsultorio = new GestorPlantillaConsultorio(this, opcion, almacenamiento);
         setVisible(true);
+        setTitle(titulo);
         setLocationRelativeTo(null);
         setResizable(false);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
+    public void agregarServicios(){
+        ArrayList<String> servicios = new ArrayList<>();
+        servicios.add("Odontología");
+        servicios.add("Psiquiatría");
+        servicios.add("Calvo");
+        servicios.add("Neurología");
+        servicios.add("Cardiología");
+        modeloCombo.addAll(servicios);
+    }
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
@@ -61,8 +75,8 @@ public class PlantillaConsultorio extends javax.swing.JFrame {
         lblReferencia1.setFont(new java.awt.Font("Agency FB", 1, 36)); // NOI18N
         lblReferencia1.setText("Identificador");
 
-        comboMedico.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        comboMedico.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        comboMedico.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        comboMedico.setModel(modeloCombo);
 
         btnRegresar.setFont(new java.awt.Font("Agency FB", 1, 36)); // NOI18N
         btnRegresar.setText("Regresar");
@@ -80,7 +94,7 @@ public class PlantillaConsultorio extends javax.swing.JFrame {
         lblReferencia2.setFont(new java.awt.Font("Agency FB", 1, 36)); // NOI18N
         lblReferencia2.setText("Servicio médico asociado ");
 
-        txtIdentificador.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        txtIdentificador.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         txtIdentificador.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
         javax.swing.GroupLayout panelPpalLayout = new javax.swing.GroupLayout(panelPpal);

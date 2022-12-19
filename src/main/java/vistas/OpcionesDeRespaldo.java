@@ -13,20 +13,21 @@
 
 package vistas;
 
+import controladores.GestorOpcionesDeRespaldo;
 import java.awt.Color;
+import java.awt.event.MouseListener;
+import javax.swing.JButton;
 
-/**
- *
- * @author santy
- */
 public class OpcionesDeRespaldo extends javax.swing.JFrame {
 
     ImagenFondo fondo = new ImagenFondo();
     
-    public OpcionesDeRespaldo() {
+    public OpcionesDeRespaldo(String titulo) {
         this.setContentPane(fondo);
         initComponents();
+        GestorOpcionesDeRespaldo gestorRespaldo = new GestorOpcionesDeRespaldo(this);
         setVisible(true);
+        setTitle(titulo);
         setLocationRelativeTo(null);
         setResizable(false);
     }
@@ -36,7 +37,6 @@ public class OpcionesDeRespaldo extends javax.swing.JFrame {
 
         separador = new javax.swing.JSeparator();
         lblTitulo = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
         btnBackup = new javax.swing.JButton();
         btnRestaurar = new javax.swing.JButton();
         btnRegresar = new javax.swing.JButton();
@@ -48,8 +48,6 @@ public class OpcionesDeRespaldo extends javax.swing.JFrame {
 
         lblTitulo.setFont(new java.awt.Font("Agency FB", 1, 48)); // NOI18N
         lblTitulo.setText("Opciones de respaldo");
-
-        jLabel2.setFont(new java.awt.Font("Agency FB", 1, 48)); // NOI18N
 
         btnBackup.setFont(new java.awt.Font("Agency FB", 1, 28)); // NOI18N
         btnBackup.setText("Realizar Backup");
@@ -86,22 +84,15 @@ public class OpcionesDeRespaldo extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(603, 603, 603)
-                        .addComponent(jLabel2))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(19, 19, 19)
                         .addComponent(separador1, javax.swing.GroupLayout.PREFERRED_SIZE, 567, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(242, 242, 242)
                         .addComponent(btnRegresar)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(23, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -128,14 +119,50 @@ public class OpcionesDeRespaldo extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     /**
-     * @param args the command line arguments
+     * @return 
      */
 
+    public JButton getBtnBackup() {
+        return btnBackup;
+    }
+
+    public void setBtnBackup(JButton btnBackup) {
+        this.btnBackup = btnBackup;
+    }
+
+    public JButton getBtnRegresar() {
+        return btnRegresar;
+    }
+
+    public void setBtnRegresar(JButton btnRegresar) {
+        this.btnRegresar = btnRegresar;
+    }
+
+    public JButton getBtnRestaurar() {
+        return btnRestaurar;
+    }
+
+    /**
+     * @param btnRestaurar
+     */
+    public void setBtnRestaurar(JButton btnRestaurar) {
+        this.btnRestaurar = btnRestaurar;
+    }
+
+    public void addBtnRegresarListener(MouseListener listenerBotones){
+        btnRegresar.addMouseListener(listenerBotones);
+    }
+    
+    public void addBtnBackupListener(MouseListener listenerBotones){
+        btnBackup.addMouseListener(listenerBotones);
+    }
+    public void addBtnRestaurarListener(MouseListener listenerBotones){
+        btnRestaurar.addMouseListener(listenerBotones);
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBackup;
     private javax.swing.JButton btnRegresar;
     private javax.swing.JButton btnRestaurar;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel lblTitulo;
     private javax.swing.JSeparator separador;
     private javax.swing.JSeparator separador1;

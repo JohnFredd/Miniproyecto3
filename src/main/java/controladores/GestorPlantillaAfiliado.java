@@ -15,6 +15,7 @@ package controladores;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import modelos.Afiliado;
 import modelos.Almacenamiento;
 import vistas.GestionServicioGUI;
 import vistas.PlantillaAfiliado;
@@ -22,6 +23,7 @@ import vistas.PlantillaAfiliado;
 public class GestorPlantillaAfiliado {
     
     PlantillaAfiliado vistaPlantillaAfiliado;
+    Afiliado modeloAfiliado;
     private String opcion;
     
     public GestorPlantillaAfiliado(PlantillaAfiliado vistaPlantillaAfiliado, String opcion, Almacenamiento almacenamiento) {
@@ -54,12 +56,12 @@ public class GestorPlantillaAfiliado {
         vistaPlantillaAfiliado.getBtnAgregar().setText("Eliminar afiliado");
         
         //Desabilitando campos de texto
-        vistaPlantillaAfiliado.getTxtCedula().setEditable(false);
-        vistaPlantillaAfiliado.getTxtNombre().setEditable(false);
-        vistaPlantillaAfiliado.getTxtEdad().setEditable(false);
-        vistaPlantillaAfiliado.getTxtDireccion().setEditable(false);
-        vistaPlantillaAfiliado.getTxtCorreo().setEditable(false);
-        vistaPlantillaAfiliado.getTxtTelefono().setEditable(false);
+        vistaPlantillaAfiliado.getTxtCedula();
+        vistaPlantillaAfiliado.getTxtNombre();
+        vistaPlantillaAfiliado.getTxtEdad();
+        vistaPlantillaAfiliado.getTxtDireccion();
+        vistaPlantillaAfiliado.getTxtCorreo();
+        vistaPlantillaAfiliado.getTxtTelefono();
         vistaPlantillaAfiliado.getComboSexo().setEnabled(false);
     }
     
@@ -83,13 +85,22 @@ public class GestorPlantillaAfiliado {
     }
     
     private void agregarAfiliado() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        
+        //Obteniendo los datos
+        int cedula = Integer.parseInt(vistaPlantillaAfiliado.getTxtCedula().getText());
+        String nombre = vistaPlantillaAfiliado.getTxtNombre().getText();
+        int edad = Integer.parseInt(vistaPlantillaAfiliado.getTxtEdad().getText());
+        String direccion = vistaPlantillaAfiliado.getTxtDireccion().getText();
+        String correo = vistaPlantillaAfiliado.getTxtCorreo().getText();
+        int telefono = Integer.parseInt(vistaPlantillaAfiliado.getTxtTelefono().getText());
+        String sexo = (String)vistaPlantillaAfiliado.getComboSexo().getSelectedItem();
+        Afiliado afiliado = new Afiliado(nombre, sexo, direccion, correo, cedula, edad, telefono);
     }
 
     private void irGestionServicioGUI() {
         
         //Creación de vistas
-        GestionServicioGUI vistaGestionServicio = new GestionServicioGUI();
+        GestionServicioGUI vistaGestionServicio = new GestionServicioGUI("Gestión de servicios");
         vistaPlantillaAfiliado.dispose();
     }
 }

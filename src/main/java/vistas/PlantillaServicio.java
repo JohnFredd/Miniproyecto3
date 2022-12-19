@@ -26,12 +26,12 @@ public class PlantillaServicio extends javax.swing.JFrame {
 
     ImagenFondo fondo = new ImagenFondo();
     
-    public PlantillaServicio(String opcion, Almacenamiento almacenamiento) {
+    public PlantillaServicio(String titulo, String opcion, Almacenamiento almacenamiento) {
         this.setContentPane(fondo);
         initComponents();
         GestorPlantillaServicio gestorServicio = new GestorPlantillaServicio(this, opcion, almacenamiento);
         setVisible(true);
-        //setSize(920,704);
+        setTitle(titulo);
         setLocationRelativeTo(null);
         setResizable(false);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -73,7 +73,7 @@ public class PlantillaServicio extends javax.swing.JFrame {
         separador.setForeground(new java.awt.Color(0, 0, 0));
         separador.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        txtServicio.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        txtServicio.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         txtServicio.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
         javax.swing.GroupLayout panelPpalLayout = new javax.swing.GroupLayout(panelPpal);

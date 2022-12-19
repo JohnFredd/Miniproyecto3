@@ -28,13 +28,14 @@ public class ListarMedico extends javax.swing.JFrame {
     private final DefaultTableModel modeloTabla = new DefaultTableModel();
     private JTableHeader th;
     
-    public ListarMedico(Almacenamiento almacenamiento) {
+    public ListarMedico(String titulo, Almacenamiento almacenamiento) {
         this.setContentPane(fondo);
         llenarColumnas();
         initComponents();
         diseñoTabla();
         GestorListarMedico gestorListarMedico = new GestorListarMedico(this, almacenamiento);
         setVisible(true);
+        setTitle(titulo);
         setLocationRelativeTo(null);
         setResizable(false);
     }

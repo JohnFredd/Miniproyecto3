@@ -28,13 +28,14 @@ public class ListarServicio extends javax.swing.JFrame {
     private final DefaultTableModel modeloTabla = new DefaultTableModel();
     private JTableHeader th;
     
-    public ListarServicio(Almacenamiento almacenamiento) {
+    public ListarServicio(String titulo, Almacenamiento almacenamiento) {
         this.setContentPane(fondo);
         llenarColumnas();
         initComponents();
         diseñoTabla();
         GestorListarServicio gestorListarServicio = new GestorListarServicio(this, almacenamiento);
         setVisible(true);
+        setTitle(titulo);
         setLocationRelativeTo(null);
         setResizable(false);
     }
