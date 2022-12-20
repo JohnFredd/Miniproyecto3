@@ -14,6 +14,7 @@
 package controladores;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import modelos.Almacenamiento;
 import vistas.GestionDeCitas;
 import vistas.GestionServicioGUI;
 import vistas.OpcionesDeRespaldo;
@@ -26,12 +27,14 @@ import vistas.PpalGUI;
 public class GestorPpalGUI {
     
     private final PpalGUI vistaPpal;
+    private final Almacenamiento almacenamiento;
   
-    public GestorPpalGUI(PpalGUI vistaPpal) {
+    public GestorPpalGUI(PpalGUI vistaPpal, Almacenamiento almacenamiento) {
         this.vistaPpal = vistaPpal;
         this.vistaPpal.addBtnGestionServicioListener(new ManejadoraDeMouse());
         this.vistaPpal.addBtnGestionCitaListener(new ManejadoraDeMouse());
         this.vistaPpal.addBtnRespaldoListener(new ManejadoraDeMouse());
+        this.almacenamiento = almacenamiento;
     }
     
     class ManejadoraDeMouse extends MouseAdapter{

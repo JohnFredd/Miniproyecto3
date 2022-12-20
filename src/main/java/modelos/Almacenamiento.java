@@ -26,13 +26,13 @@ public class Almacenamiento {
     private ArrayList <Consultorio> consultorios;
     private ArrayList <Cita> citas;
     
-    public Almacenamiento () throws IOException {
+    public Almacenamiento () throws IOException, ClassNotFoundException {
         try
         {
             restaurarDatos();
-        } catch (ClassNotFoundException e) {
+        } catch (FileNotFoundException e) {
             
-        } catch (IOException e) {
+        } catch (IOException | ClassNotFoundException e) {
             throw e;
         }
     }
