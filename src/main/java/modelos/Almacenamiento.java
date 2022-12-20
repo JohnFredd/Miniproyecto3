@@ -20,8 +20,8 @@ import java.util.Iterator;
 
 public class Almacenamiento {
     
-    private HashMap <Integer, Afiliado> afiliados;
-    private HashMap <Integer, Medico> medicos;
+    private HashMap <Long, Afiliado> afiliados;
+    private HashMap <Long, Medico> medicos;
     private ArrayList <Servicio> servicios;
     private ArrayList <Consultorio> consultorios;
     private ArrayList <Cita> citas;
@@ -132,16 +132,19 @@ public class Almacenamiento {
         }
     }
 
-    public void anadirAfiliado(Afiliado afiliado) {
+    public boolean anadirAfiliado(Afiliado afiliado) {
+        System.out.println(afiliado.toString());
+        System.out.println("Cédula: "+afiliado.getCedula());
         afiliados.put(afiliado.getCedula(), afiliado);
+        return true;
     }
     
-    public void modificarAfiliado(int cedulaAnterior, Afiliado afiliado) {
+    public void modificarAfiliado(long cedulaAnterior, Afiliado afiliado) {
         afiliados.remove(cedulaAnterior);
         afiliados.put(afiliado.getCedula(), afiliado);
     }
     
-    public void eliminarAfiliado(int cedula) {
+    public void eliminarAfiliado(long cedula) {
         Afiliado afiliado = afiliados.get(cedula);
         afiliados.remove(cedula);
         
@@ -157,12 +160,12 @@ public class Almacenamiento {
         medicos.put(medico.getCedula(), medico);
     }
     
-    public void modificarMedico(int cedulaAnterior, Medico medico) {
+    public void modificarMedico(long cedulaAnterior, Medico medico) {
         medicos.remove(cedulaAnterior);
         medicos.put(medico.getCedula(), medico);
     }
     
-    public void eliminarMedico(int cedula) {
+    public void eliminarMedico(long cedula) {
         Medico medico = medicos.get(cedula);
         medicos.remove(cedula);
         
@@ -226,19 +229,19 @@ public class Almacenamiento {
         }
     }
     
-    public HashMap<Integer, Afiliado> getAfiliados() {
+    public HashMap<Long, Afiliado> getAfiliados() {
         return afiliados;
     }
 
-    public void setAfiliados(HashMap<Integer, Afiliado> afiliados) {
+    public void setAfiliados(HashMap<Long, Afiliado> afiliados) {
         this.afiliados = afiliados;
     }
 
-    public HashMap<Integer, Medico> getMedicos() {
+    public HashMap<Long, Medico> getMedicos() {
         return medicos;
     }
 
-    public void setMedicos(HashMap<Integer, Medico> medicos) {
+    public void setMedicos(HashMap<Long, Medico> medicos) {
         this.medicos = medicos;
     }
 

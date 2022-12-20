@@ -10,9 +10,11 @@ import vistas.GestionDeCitas;
 public class GestorCitasDeAfiliado {
     
     private CitasDeAfiliado ventanaCitasAfiliado;
+    private final Almacenamiento almacenamiento;
 
     public GestorCitasDeAfiliado(CitasDeAfiliado ventanaCitasAfiliado, Almacenamiento almacenamiento) {
         this.ventanaCitasAfiliado = ventanaCitasAfiliado;
+        this.almacenamiento = almacenamiento;
         this.ventanaCitasAfiliado.addBtnRegresarListener(new ManejadoraDeMouse());
     }
     class ManejadoraDeMouse extends MouseAdapter{
@@ -29,7 +31,7 @@ public class GestorCitasDeAfiliado {
     }
     private void irGestionDeCitas() {
         
-        GestionDeCitas vistaGestionCitas = new GestionDeCitas("Gestión de citas");
+        GestionDeCitas vistaGestionCitas = new GestionDeCitas("Gestión de citas", almacenamiento);
         ventanaCitasAfiliado.dispose();
     } 
 }

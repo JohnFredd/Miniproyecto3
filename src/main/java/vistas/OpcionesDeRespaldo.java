@@ -17,15 +17,16 @@ import controladores.GestorOpcionesDeRespaldo;
 import java.awt.Color;
 import java.awt.event.MouseListener;
 import javax.swing.JButton;
+import modelos.Almacenamiento;
 
 public class OpcionesDeRespaldo extends javax.swing.JFrame {
 
     ImagenFondo fondo = new ImagenFondo();
     
-    public OpcionesDeRespaldo(String titulo) {
+    public OpcionesDeRespaldo(String titulo, Almacenamiento almacenamiento) {
         this.setContentPane(fondo);
         initComponents();
-        GestorOpcionesDeRespaldo gestorRespaldo = new GestorOpcionesDeRespaldo(this);
+        GestorOpcionesDeRespaldo gestorRespaldo = new GestorOpcionesDeRespaldo(this, almacenamiento);
         setVisible(true);
         setTitle(titulo);
         setLocationRelativeTo(null);

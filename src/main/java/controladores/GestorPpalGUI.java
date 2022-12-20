@@ -62,19 +62,19 @@ public class GestorPpalGUI {
     }
     
     public void irGestionServicioGUI(){
-        GestionServicioGUI ventanaGestionServicio = new GestionServicioGUI("Gestión de servicios");
+        GestionServicioGUI ventanaGestionServicio = new GestionServicioGUI("Gestión de servicios", almacenamiento);
         ventanaGestionServicio.setVisible(true);
         vistaPpal.dispose();
     }
     
     public void irGestionDeCitas(){
-        GestionDeCitas ventanaGestionCitas = new GestionDeCitas("Gestión de citas");
+        GestionDeCitas ventanaGestionCitas = new GestionDeCitas("Gestión de citas", almacenamiento);
         ventanaGestionCitas.setVisible(true);
         vistaPpal.dispose();
     }
     
     public void irRespaldo(){
-        OpcionesDeRespaldo ventanaRespaldo = new OpcionesDeRespaldo("Opciones de respaldo");
+        OpcionesDeRespaldo ventanaRespaldo = new OpcionesDeRespaldo("Opciones de respaldo", almacenamiento);
         ventanaRespaldo.setVisible(true);
         vistaPpal.dispose();
     }

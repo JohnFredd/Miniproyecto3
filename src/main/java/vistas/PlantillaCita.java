@@ -13,16 +13,19 @@
 
 package vistas;
 
+import controladores.GestorPlantillaCita;
 import java.awt.Color;
 import javax.swing.JFrame;
+import modelos.Almacenamiento;
 
 public class PlantillaCita extends javax.swing.JFrame {
 
     ImagenFondo fondo = new ImagenFondo();
     
-    public PlantillaCita(String titulo) {
+    public PlantillaCita(String titulo, String opcion, Almacenamiento almacenamiento) {
         this.setContentPane(fondo);
         initComponents();
+        GestorPlantillaCita gestorCita = new GestorPlantillaCita(this, opcion, almacenamiento);
         setVisible(true);
         setTitle(titulo);
         setLocationRelativeTo(null);

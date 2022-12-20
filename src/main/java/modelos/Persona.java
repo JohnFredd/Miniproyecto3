@@ -21,12 +21,12 @@ public class Persona implements Serializable{
     protected String sexo;
     protected String direccion;
     protected String email;
-    protected int cedula;
+    protected long cedula;
     protected int edad;
-    protected int telefono;
+    protected long telefono;
     
    
-    public Persona(String nombre, String sexo, String direccion, String email, int cedula, int edad, int telefono) {
+    public Persona(String nombre, String sexo, String direccion, String email, long cedula, int edad, long telefono) {
         this.nombre = nombre;
         this.sexo = sexo;
         this.direccion = direccion;
@@ -68,11 +68,11 @@ public class Persona implements Serializable{
         this.email = email;
     }
 
-    public int getCedula() {
+    public long getCedula() {
         return cedula;
     }
 
-    public void setCedula(int cedula) {
+    public void setCedula(long cedula) {
         this.cedula = cedula;
     }
 
@@ -84,11 +84,11 @@ public class Persona implements Serializable{
         this.edad = edad;
     }
 
-    public int getTelefono() {
+    public long getTelefono() {
         return telefono;
     }
 
-    public void setTelefono(int telefono) {
+    public void setTelefono(long telefono) {
         this.telefono = telefono;
     }
     

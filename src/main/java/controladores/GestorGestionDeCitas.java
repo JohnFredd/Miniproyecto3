@@ -25,10 +25,10 @@ import vistas.PlantillaCita;
 public class GestorGestionDeCitas {
     
     private final GestionDeCitas vistaGestionCitas;
-    
+    private final Almacenamiento almacenamiento;
 
-    public GestorGestionDeCitas(GestionDeCitas vistaGestionCitas) {
-        
+    public GestorGestionDeCitas(GestionDeCitas vistaGestionCitas, Almacenamiento almacenamiento) {
+        this.almacenamiento = almacenamiento;
         //Vista
         this.vistaGestionCitas = vistaGestionCitas;
         
@@ -76,17 +76,16 @@ public class GestorGestionDeCitas {
     
     
     public void irPpal() {
-        PpalGUI ventanaPpal = new PpalGUI("Servicio de salud - Universidad del Valle");
+        PpalGUI ventanaPpal = new PpalGUI("Servicio de salud - Universidad del Valle", almacenamiento);
         vistaGestionCitas.dispose();
     }
     public void irCitasDeAfiliado() {
-        Almacenamiento almacenamiento = new Almacenamiento();
         CitasDeAfiliado ventanaCitasAfiliado = new CitasDeAfiliado("Citas del afiliado", almacenamiento);
         vistaGestionCitas.dispose();
     }
     
     public void irPlantillaCitas(){
-        PlantillaCita ventanaplantillaCita = new PlantillaCita("Agendar Citas");
+        PlantillaCita ventanaplantillaCita = new PlantillaCita("Agendar Citas","Plantilla", almacenamiento);
         vistaGestionCitas.dispose();
     }
     public void elegirCitaAModificar(){

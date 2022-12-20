@@ -95,7 +95,7 @@ public class GestorGestionServicio {
     }
     
     private void irPpal() {
-        PpalGUI ventanaPpal = new PpalGUI("Servicio de salud - Universidad del Valle");
+        PpalGUI ventanaPpal = new PpalGUI("Servicio de salud - Universidad del Valle", almacenamiento);
         vistaGestionServicio.dispose();
     }
     
