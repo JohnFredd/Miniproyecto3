@@ -26,10 +26,10 @@ public class PlantillaAfiliado extends javax.swing.JFrame {
 
     ImagenFondo fondo = new ImagenFondo();
     
-    public PlantillaAfiliado(String titulo, String opcion, Almacenamiento almacenamiento) {
+    public PlantillaAfiliado(String titulo, String opcion, Almacenamiento almacenamiento, long cedula) {
         this.setContentPane(fondo);
         initComponents();
-        GestorPlantillaAfiliado gestorAfiliado = new GestorPlantillaAfiliado(this, opcion, almacenamiento);
+        GestorPlantillaAfiliado gestorAfiliado = new GestorPlantillaAfiliado(this, opcion, almacenamiento, cedula);
         setVisible(true);
         setTitle(titulo);
         setLocationRelativeTo(null);

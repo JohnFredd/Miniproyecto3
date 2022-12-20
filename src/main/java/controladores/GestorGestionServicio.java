@@ -113,7 +113,7 @@ public class GestorGestionServicio {
                     try {
                         cedulaABuscar = (String) JOptionPane.showInputDialog(vistaGestionServicio, "<html><p style = \" font:12px; \">Ingrese la cédula del afiliado a actualizar</p></html>", "Actualizar afiliado", JOptionPane.DEFAULT_OPTION);
                         if(cedulaABuscar.equals("12345")){
-                            irActualizarAfiliado();
+                            irActualizarAfiliado(Integer.parseInt(cedulaABuscar));
 
                         } else if (cedulaABuscar.isBlank()){
                             JOptionPane.showMessageDialog(vistaGestionServicio, "<html><p style = \" font:12px; \">Por favor ingrese una cédula</p></html>", "Error", JOptionPane.OK_OPTION, UIManager.getIcon("OptionPane.errorIcon"));
@@ -131,7 +131,7 @@ public class GestorGestionServicio {
                     String cedulaABuscar = (String) JOptionPane.showInputDialog(vistaGestionServicio,"<html><p style = \" font:12px; \">Ingrese la cédula del afiliado a eliminar</p></html>", "Eliminar afiliado", JOptionPane.DEFAULT_OPTION);
                     try {
                         if(cedulaABuscar.equals("12345")){
-                            irEliminarAfiliado();
+                            irEliminarAfiliado(cedulaABuscar);
 
                         } else if(cedulaABuscar.isBlank()){
                             JOptionPane.showMessageDialog(vistaGestionServicio, "<html><p style = \" font:12px; \">Por favor ingrese una cédula</p></html>", "Cédula inválida", JOptionPane.OK_OPTION, UIManager.getIcon("OptionPane.errorIcon"));
@@ -149,12 +149,12 @@ public class GestorGestionServicio {
     }
     
     private void irAgregarAfiliado(){
-        PlantillaAfiliado ventanaAgregarAfiliado = new PlantillaAfiliado("Agregar afiliado", "Agregar", almacenamiento);
+        PlantillaAfiliado ventanaAgregarAfiliado = new PlantillaAfiliado("Agregar afiliado", "Agregar", almacenamiento, 0);
         vistaGestionServicio.dispose();
     }
     
-    private void irActualizarAfiliado() {
-        PlantillaAfiliado ventanaAgregarAfiliado = new PlantillaAfiliado("Actualizar afiliado", "Actualizar", almacenamiento);
+    private void irActualizarAfiliado(long cedula) {
+        PlantillaAfiliado ventanaAgregarAfiliado = new PlantillaAfiliado("Actualizar afiliado", "Actualizar", almacenamiento, cedula);
         vistaGestionServicio.dispose();
     }
     
@@ -163,8 +163,8 @@ public class GestorGestionServicio {
         vistaGestionServicio.dispose();
     }
     
-    private void irEliminarAfiliado() {
-        PlantillaAfiliado ventanaAgregarAfiliado = new PlantillaAfiliado("Eliminar afiliado", "Eliminar", almacenamiento);
+    private void irEliminarAfiliado(long cedula) {
+        PlantillaAfiliado ventanaAgregarAfiliado = new PlantillaAfiliado("Eliminar afiliado", "Eliminar", almacenamiento, cedula);
         vistaGestionServicio.dispose();
     }
     

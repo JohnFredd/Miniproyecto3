@@ -26,18 +26,20 @@ import vistas.PlantillaAfiliado;
 
 public class GestorPlantillaAfiliado {
     
-    PlantillaAfiliado vistaPlantillaAfiliado;
-    Almacenamiento almacenamiento;
-    Afiliado modeloAfiliado;
+    private PlantillaAfiliado vistaPlantillaAfiliado;
+    private Almacenamiento almacenamiento;
+    private Afiliado modeloAfiliado;
     private String opcion;
+    private long cedula;
     
-    public GestorPlantillaAfiliado(PlantillaAfiliado vistaPlantillaAfiliado, String opcion, Almacenamiento almacenamiento) {
+    public GestorPlantillaAfiliado(PlantillaAfiliado vistaPlantillaAfiliado, String opcion, Almacenamiento almacenamiento, long cedula) {
         this.vistaPlantillaAfiliado = vistaPlantillaAfiliado;
         this.opcion = opcion;
         this.almacenamiento = almacenamiento;
         modificarPlantilla();
         this.vistaPlantillaAfiliado.addBtnAgregarListener(new ManejadoraDeMouse());
         this.vistaPlantillaAfiliado.addBtnRegresarListener(new ManejadoraDeMouse());
+        this.cedula = cedula;
     }
     public void modificarPlantilla(){
         
@@ -95,6 +97,46 @@ public class GestorPlantillaAfiliado {
     }
     
     private void agregarAfiliado() {
+        
+        //Obteniendo los datos
+        long cedula = Long.parseLong(vistaPlantillaAfiliado.getTxtCedula().getText());
+        String nombre = vistaPlantillaAfiliado.getTxtNombre().getText();
+        int edad = Integer.parseInt(vistaPlantillaAfiliado.getTxtEdad().getText());
+        String direccion = vistaPlantillaAfiliado.getTxtDireccion().getText();
+        String correo = vistaPlantillaAfiliado.getTxtCorreo().getText();
+        long telefono = Long.parseLong(vistaPlantillaAfiliado.getTxtTelefono().getText());
+        String sexo = (String)vistaPlantillaAfiliado.getComboSexo().getSelectedItem();
+        
+        Afiliado afiliado = new Afiliado(nombre, sexo, direccion, correo, cedula, edad, telefono);
+        afiliado.setNombre(nombre);
+        afiliado.setSexo(sexo);
+        afiliado.setDireccion(direccion);
+        afiliado.setEmail(correo);
+        afiliado.setCedula(cedula);
+        afiliado.setEdad(edad);
+        afiliado.setTelefono(telefono);
+        try {
+            if (almacenamiento.anadirAfiliado(afiliado)){
+                JOptionPane.showMessageDialog(null, "Afiliado agregado con éxito", "Resultado de agregar", JOptionPane.INFORMATION_MESSAGE);
+                irGestionServicioGUI();
+            } else {
+                JOptionPane.showMessageDialog(null, "Ya existe un afiliado con ese número de cédula", "Resultado de agregar", JOptionPane.ERROR_MESSAGE);
+            }
+        } catch(IOException e){
+            JOptionPane.showMessageDialog(null, "Error: " + e, "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        
+        /*afiliado.setNombre("");
+        afiliado.setSexo("");
+        afiliado.setDireccion("");
+        afiliado.setEmail("");
+        afiliado.setCedula(0);
+        afiliado.setEdad(0);
+        afiliado.setTelefono(0);
+        System.out.println(afiliado.toString());*/
+    }
+    
+    private void actualizarAfiliado() {
         
         //Obteniendo los datos
         long cedula = Long.parseLong(vistaPlantillaAfiliado.getTxtCedula().getText());
