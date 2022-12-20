@@ -112,16 +112,18 @@ public class GestorGestionServicio {
                     String cedulaABuscar;
                     try {
                         cedulaABuscar = (String) JOptionPane.showInputDialog(vistaGestionServicio, "<html><p style = \" font:12px; \">Ingrese la cédula del afiliado a actualizar</p></html>", "Actualizar afiliado", JOptionPane.DEFAULT_OPTION);
-                        if(cedulaABuscar.equals("12345")){
-                            irActualizarAfiliado(Integer.parseInt(cedulaABuscar));
-
-                        } else if (cedulaABuscar.isBlank()){
+                        if (cedulaABuscar.isBlank()){
                             JOptionPane.showMessageDialog(vistaGestionServicio, "<html><p style = \" font:12px; \">Por favor ingrese una cédula</p></html>", "Error", JOptionPane.OK_OPTION, UIManager.getIcon("OptionPane.errorIcon"));
-                        } else if(!cedulaABuscar.equals("12345")){
-                            JOptionPane.showMessageDialog(vistaGestionServicio, "<html><p style = \" font:12px; \">No se encontró ningún afiliado registrado con esa cédula</p></html>", "Afiliado no encontrado", JOptionPane.OK_OPTION, UIManager.getIcon("OptionPane.errorIcon"));
+                        } else {
+                            long cedula = Long.parseLong(cedulaABuscar);
+                            if(almacenamiento.getAfiliados().containsKey(cedula)){
+                                irActualizarAfiliado(cedula);
+                            } else {
+                                JOptionPane.showMessageDialog(vistaGestionServicio, "<html><p style = \" font:12px; \">No se encontró ningún afiliado registrado con esa cédula</p></html>", "Afiliado no encontrado", JOptionPane.OK_OPTION, UIManager.getIcon("OptionPane.errorIcon"));
+                            }
                         }
                     } catch(NullPointerException np){
-                        JOptionPane.showMessageDialog(vistaGestionServicio, "<html><p style = \" font:12px; \">No se ingresó ninguna cédula</p></html>", "Aviso", JOptionPane.OK_OPTION, UIManager.getIcon("OptionPane.informationIcon"));
+
                     }
                 }
                 case "Listar" -> {
@@ -139,12 +141,12 @@ public class GestorGestionServicio {
                             JOptionPane.showMessageDialog(vistaGestionServicio, "<html><p style = \" font:12px; \">No se encontró ningún afiliado registrado con esa cédula</p></html>", "Afiliado no encontrado", JOptionPane.OK_OPTION, UIManager.getIcon("OptionPane.errorIcon"));
                         }
                     } catch(NullPointerException np){
-                        JOptionPane.showMessageDialog(vistaGestionServicio, "<html><p style = \" font:12px; \">No se ingresó ninguna cédula</p></html>", "Aviso", JOptionPane.OK_OPTION, UIManager.getIcon("OptionPane.informationIcon"));
+
                     }
                 }
             }
         } catch(NullPointerException np){
-            //JOptionPane.showMessageDialog(vistaGestionServicio, "<html><p style = \" font:12px; \">Ninguna opción fue seleccionada</p></html>", "Aviso", JOptionPane.OK_OPTION, UIManager.getIcon("OptionPane.informationIcon"));
+
         }
     }
     
