@@ -143,14 +143,18 @@ public class Almacenamiento {
         }
     }
 
-    public void anadirAfiliado(Afiliado afiliado) throws IOException {
-        afiliados.put(afiliado.getCedula(), afiliado);
-        try
-        {
-            hacerBackUp();
-        } catch (IOException e) {
-            throw e;
+    public boolean anadirAfiliado(Afiliado afiliado) throws IOException {
+        if (!afiliados.containsKey(afiliado.getCedula())) {
+            afiliados.put(afiliado.getCedula(), afiliado);
+            try
+            {
+                hacerBackUp();
+                return true;
+            } catch (IOException e) {
+                throw e;
+            }
         }
+        return false;
     }
     
     public void modificarAfiliado(long cedulaAnterior, Afiliado afiliado) throws IOException {

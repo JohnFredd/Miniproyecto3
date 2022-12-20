@@ -114,9 +114,12 @@ public class GestorPlantillaAfiliado {
         afiliado.setEdad(edad);
         afiliado.setTelefono(telefono);
         try {
-            almacenamiento.anadirAfiliado(afiliado);
-            JOptionPane.showMessageDialog(null, "Afiliado agregado con éxito", "Resultado de agregar", JOptionPane.INFORMATION_MESSAGE);
-            irGestionServicioGUI();
+            if (almacenamiento.anadirAfiliado(afiliado)){
+                JOptionPane.showMessageDialog(null, "Afiliado agregado con éxito", "Resultado de agregar", JOptionPane.INFORMATION_MESSAGE);
+                irGestionServicioGUI();
+            } else {
+                JOptionPane.showMessageDialog(null, "Ya existe un afiliado con ese número de cédula", "Resultado de agregar", JOptionPane.ERROR_MESSAGE);
+            }
         } catch(IOException e){
             JOptionPane.showMessageDialog(null, "Error: " + e, "Error", JOptionPane.ERROR_MESSAGE);
         }
