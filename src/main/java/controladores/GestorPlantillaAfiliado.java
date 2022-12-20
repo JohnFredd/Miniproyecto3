@@ -13,12 +13,15 @@
 
 package controladores;
 
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 import modelos.Afiliado;
 import modelos.Almacenamiento;
 import vistas.GestionServicioGUI;
@@ -36,6 +39,9 @@ public class GestorPlantillaAfiliado {
         this.opcion = opcion;
         this.almacenamiento = almacenamiento;
         modificarPlantilla();
+        verificarNumero(vistaPlantillaAfiliado.getTxtCedula());
+        verificarNumero(vistaPlantillaAfiliado.getTxtEdad());
+        verificarNumero(vistaPlantillaAfiliado.getTxtTelefono());
         this.vistaPlantillaAfiliado.addBtnAgregarListener(new ManejadoraDeMouse());
         this.vistaPlantillaAfiliado.addBtnRegresarListener(new ManejadoraDeMouse());
     }
@@ -139,6 +145,18 @@ public class GestorPlantillaAfiliado {
         //Creación de vistas
         GestionServicioGUI vistaGestionServicio = new GestionServicioGUI("Gestión de servicios", almacenamiento);
         vistaPlantillaAfiliado.dispose();
+    }
+    
+    private void verificarNumero(JTextField a){
+        a.addKeyListener(new KeyAdapter(){
+            @Override
+            public void keyTyped(KeyEvent e){
+                char c = e.getKeyChar();
+                if (!Character.isDigit(c) | Character.isSpaceChar(c)){
+                    e.consume();
+                }
+            }
+        });
     }
 }
 
