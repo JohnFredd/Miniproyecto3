@@ -13,12 +13,6 @@
 
 package com.mycompany.miniproyecto3;
 
-import controladores.GestorPpalGUI;
-import java.io.IOException;
-import java.time.LocalDate;
-import java.time.LocalTime;
-import java.util.ArrayList;
-import java.util.HashMap;
 import javax.swing.JOptionPane;
 import vistas.PpalGUI;
 
@@ -31,7 +25,7 @@ public class Miniproyecto3 {
             Almacenamiento almacenamiento = new Almacenamiento();
             PpalGUI ventanaPpal = new PpalGUI("Servicio de salud - Universidad del Valle", almacenamiento);
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Errror: " + e);
+            JOptionPane.showMessageDialog(null, "Error: " + e, "Error", JOptionPane.ERROR_MESSAGE);
         }
         
         /*Afiliado afiliado1 = new Afiliado("Juan", "Hombre", "Debajo de un puente", "Juan@gmail.com", 111111, 38, 111111);

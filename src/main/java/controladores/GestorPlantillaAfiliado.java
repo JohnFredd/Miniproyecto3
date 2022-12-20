@@ -15,6 +15,7 @@ package controladores;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -113,15 +114,12 @@ public class GestorPlantillaAfiliado {
         afiliado.setEdad(edad);
         afiliado.setTelefono(telefono);
         try {
-            if(almacenamiento.anadirAfiliado(afiliado)){
-                JOptionPane.showMessageDialog(null, "Afiliado agregado con éxito", "Resultado de agregar", JOptionPane.INFORMATION_MESSAGE);
-                irGestionServicioGUI();
-            }else{
-                JOptionPane.showMessageDialog(null, "Error al agregar Afiliado", "Resultado de agregar", JOptionPane.ERROR_MESSAGE);
-                }
-            } catch(NullPointerException np){
-                JOptionPane.showMessageDialog(null, "Error: " +np.getMessage(), "Resultado de agregar", JOptionPane.ERROR_MESSAGE);
-            }
+            almacenamiento.anadirAfiliado(afiliado);
+            JOptionPane.showMessageDialog(null, "Afiliado agregado con éxito", "Resultado de agregar", JOptionPane.INFORMATION_MESSAGE);
+            irGestionServicioGUI();
+        } catch(IOException e){
+            JOptionPane.showMessageDialog(null, "Error: " + e, "Error", JOptionPane.ERROR_MESSAGE);
+        }
         
         /*afiliado.setNombre("");
         afiliado.setSexo("");

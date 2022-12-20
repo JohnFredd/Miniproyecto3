@@ -30,8 +30,6 @@ public class Almacenamiento {
         try
         {
             restaurarDatos();
-        } catch (FileNotFoundException e) {
-            
         } catch (IOException | ClassNotFoundException e) {
             throw e;
         }
@@ -69,6 +67,19 @@ public class Almacenamiento {
             citas = (ArrayList) ois.readObject();
             
             ois.close();
+            return true;
+        } catch (FileNotFoundException e) {
+            afiliados = new HashMap();
+            medicos = new HashMap();
+            servicios = new ArrayList();
+            consultorios = new ArrayList();
+            citas = new ArrayList();
+            try
+            {
+                hacerBackUp();
+            } catch (IOException ex) {
+                throw ex;
+            }
             return true;
         } catch(IOException | ClassNotFoundException e) {
             throw e;
@@ -132,19 +143,28 @@ public class Almacenamiento {
         }
     }
 
-    public boolean anadirAfiliado(Afiliado afiliado) {
-        System.out.println(afiliado.toString());
-        System.out.println("Cédula: "+afiliado.getCedula());
+    public void anadirAfiliado(Afiliado afiliado) throws IOException {
         afiliados.put(afiliado.getCedula(), afiliado);
-        return true;
+        try
+        {
+            hacerBackUp();
+        } catch (IOException e) {
+            throw e;
+        }
     }
     
-    public void modificarAfiliado(long cedulaAnterior, Afiliado afiliado) {
+    public void modificarAfiliado(long cedulaAnterior, Afiliado afiliado) throws IOException {
         afiliados.remove(cedulaAnterior);
         afiliados.put(afiliado.getCedula(), afiliado);
+        try
+        {
+            hacerBackUp();
+        } catch (IOException e) {
+            throw e;
+        }
     }
     
-    public void eliminarAfiliado(long cedula) {
+    public void eliminarAfiliado(long cedula) throws IOException {
         Afiliado afiliado = afiliados.get(cedula);
         afiliados.remove(cedula);
         
@@ -154,18 +174,36 @@ public class Almacenamiento {
                 citas.remove(i);
             }
         }
+        try
+        {
+            hacerBackUp();
+        } catch (IOException e) {
+            throw e;
+        }
     }
     
-    public void anadirMedico(Medico medico) {
+    public void anadirMedico(Medico medico) throws IOException {
         medicos.put(medico.getCedula(), medico);
+        try
+        {
+            hacerBackUp();
+        } catch (IOException e) {
+            throw e;
+        }
     }
     
-    public void modificarMedico(long cedulaAnterior, Medico medico) {
+    public void modificarMedico(long cedulaAnterior, Medico medico) throws IOException {
         medicos.remove(cedulaAnterior);
         medicos.put(medico.getCedula(), medico);
+        try
+        {
+            hacerBackUp();
+        } catch (IOException e) {
+            throw e;
+        }
     }
     
-    public void eliminarMedico(long cedula) {
+    public void eliminarMedico(long cedula) throws IOException {
         Medico medico = medicos.get(cedula);
         medicos.remove(cedula);
         
@@ -175,17 +213,35 @@ public class Almacenamiento {
                 citas.remove(i);
             }
         }
+        try
+        {
+            hacerBackUp();
+        } catch (IOException e) {
+            throw e;
+        }
     }
     
-    public void anadirConsultorio(Consultorio consultorio) {
+    public void anadirConsultorio(Consultorio consultorio) throws IOException {
         consultorios.add(consultorio);
+        try
+        {
+            hacerBackUp();
+        } catch (IOException e) {
+            throw e;
+        }
     }
     
-    public void modificarConsultorio(int indentificador, Consultorio consultorio) {
+    public void modificarConsultorio(int indentificador, Consultorio consultorio) throws IOException {
         consultorios.set(indentificador,consultorio);
+        try
+        {
+            hacerBackUp();
+        } catch (IOException e) {
+            throw e;
+        }
     }
     
-    public void eliminarConsultorio(int indentificador) {
+    public void eliminarConsultorio(int indentificador) throws IOException {
         Consultorio consultorio = consultorios.get(indentificador);
         consultorios.remove(indentificador);
         
@@ -195,17 +251,35 @@ public class Almacenamiento {
                 citas.remove(i);
             }
         }
+        try
+        {
+            hacerBackUp();
+        } catch (IOException e) {
+            throw e;
+        }
     }
     
-    public void anadirServicio(Servicio servicio) {
+    public void anadirServicio(Servicio servicio) throws IOException {
         servicios.add(servicio);
+        try
+        {
+            hacerBackUp();
+        } catch (IOException e) {
+            throw e;
+        }
     }
     
-    public void modificarServicio(int indentificador, Servicio servicio) {
+    public void modificarServicio(int indentificador, Servicio servicio) throws IOException {
         servicios.set(indentificador,servicio);
+        try
+        {
+            hacerBackUp();
+        } catch (IOException e) {
+            throw e;
+        }
     }
     
-    public void eliminarServicio(int indentificador) {
+    public void eliminarServicio(int indentificador) throws IOException {
         Servicio servicio = servicios.get(indentificador);
         servicios.remove(indentificador);
         
@@ -221,11 +295,20 @@ public class Almacenamiento {
                 consultorios.remove(i);
             }
         }
-        for (int i=0; i<medicos.size(); i++) {
-            Medico medico = medicos.get(i);
+        Iterator i = medicos.entrySet().iterator();
+        while(i.hasNext()) {
+            HashMap.Entry <Integer, Medico> mapa = (HashMap.Entry) i.next();
+            Medico medico = mapa.getValue();
             while (medico.getServicios().remove(servicio)){
-                
+
             }
+        }
+        
+        try
+        {
+            hacerBackUp();
+        } catch (IOException e) {
+            throw e;
         }
     }
     
