@@ -15,6 +15,8 @@ package controladores;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
+import java.util.List;
 import modelos.Afiliado;
 import modelos.Almacenamiento;
 import vistas.GestionServicioGUI;
@@ -23,12 +25,14 @@ import vistas.PlantillaAfiliado;
 public class GestorPlantillaAfiliado {
     
     PlantillaAfiliado vistaPlantillaAfiliado;
+    Almacenamiento almacenamiento;
     Afiliado modeloAfiliado;
     private String opcion;
     
     public GestorPlantillaAfiliado(PlantillaAfiliado vistaPlantillaAfiliado, String opcion, Almacenamiento almacenamiento) {
         this.vistaPlantillaAfiliado = vistaPlantillaAfiliado;
         this.opcion = opcion;
+        this.almacenamiento = almacenamiento;
         modificarPlantilla();
         this.vistaPlantillaAfiliado.addBtnRegresarListener(new ManejadoraDeMouse());
     }
@@ -100,7 +104,7 @@ public class GestorPlantillaAfiliado {
     private void irGestionServicioGUI() {
         
         //Creación de vistas
-        GestionServicioGUI vistaGestionServicio = new GestionServicioGUI("Gestión de servicios");
+        GestionServicioGUI vistaGestionServicio = new GestionServicioGUI("Gestión de servicios", almacenamiento);
         vistaPlantillaAfiliado.dispose();
     }
 }

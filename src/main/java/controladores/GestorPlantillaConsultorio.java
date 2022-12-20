@@ -23,11 +23,13 @@ import vistas.PlantillaConsultorio;
 public class GestorPlantillaConsultorio {
     
     PlantillaConsultorio vistaPlantillaConsultorio;
+    Almacenamiento almacenamiento;
     private String opcion;
     
     public GestorPlantillaConsultorio(PlantillaConsultorio vistaPlantillaConsultorio, String opcion, Almacenamiento almacenamiento) {
         this.vistaPlantillaConsultorio = vistaPlantillaConsultorio;
         this.opcion = opcion;
+        this.almacenamiento = almacenamiento;
         modificarPlantilla();
         this.vistaPlantillaConsultorio.addBtnRegresarListener(new ManejadoraDeMouse());
     }
@@ -84,7 +86,7 @@ public class GestorPlantillaConsultorio {
     private void irGestionServicioGUI() {
         
         //Creación de vistas
-        GestionServicioGUI vistaGestionServicio = new GestionServicioGUI("Gestión de servicios");
+        GestionServicioGUI vistaGestionServicio = new GestionServicioGUI("Gestión de servicios", almacenamiento);
         vistaPlantillaConsultorio.dispose();
     }
 }

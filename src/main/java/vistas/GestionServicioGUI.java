@@ -17,14 +17,15 @@ import controladores.GestorGestionServicio;
 import java.awt.Color;
 import java.awt.event.MouseListener;
 import javax.swing.JButton;
+import modelos.Almacenamiento;
 public class GestionServicioGUI extends javax.swing.JFrame {
 
     ImagenFondo fondo = new ImagenFondo();
     
-    public GestionServicioGUI(String titulo) {
+    public GestionServicioGUI(String titulo, Almacenamiento almacenamiento) {
         this.setContentPane(fondo);
         initComponents();
-        GestorGestionServicio gestorServicio = new GestorGestionServicio(this);
+        GestorGestionServicio gestorServicio = new GestorGestionServicio(this, almacenamiento);
         setVisible(true);
         setTitle(titulo);
         setLocationRelativeTo(null);

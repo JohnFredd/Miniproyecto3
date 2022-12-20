@@ -22,11 +22,13 @@ import vistas.PlantillaMedico;
 public class GestorPlantillaMedico {
     
     PlantillaMedico vistaPlantillaMedico;
+    Almacenamiento almacenamiento;
     private String opcion;
     
     public GestorPlantillaMedico(PlantillaMedico vistaPlantillaMedico, String opcion, Almacenamiento almacenamiento) {
         this.vistaPlantillaMedico = vistaPlantillaMedico;
         this.opcion = opcion;
+        this.almacenamiento = almacenamiento;
         modificarPlantilla();
         this.vistaPlantillaMedico.addBtnRegresarListener(new ManejadoraDeMouse());
     }
@@ -90,7 +92,7 @@ public class GestorPlantillaMedico {
     private void irGestionServicioGUI() {
         
         //Creación de vistas
-        GestionServicioGUI vistaGestionServicio = new GestionServicioGUI("Gestión de servicios");
+        GestionServicioGUI vistaGestionServicio = new GestionServicioGUI("Gestión de servicios", almacenamiento);
         vistaPlantillaMedico.dispose();
     }
 }

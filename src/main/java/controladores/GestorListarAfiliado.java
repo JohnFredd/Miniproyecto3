@@ -10,9 +10,11 @@ import vistas.ListarAfiliado;
 public class GestorListarAfiliado {
     
     private ListarAfiliado ventanaListarAfiliado;
+    Almacenamiento almacenamiento;
 
     public GestorListarAfiliado(ListarAfiliado ventanaListarAfiliado, Almacenamiento almacenamiento) {
         this.ventanaListarAfiliado = ventanaListarAfiliado;
+        this.almacenamiento = almacenamiento;
         this.ventanaListarAfiliado.addBtnRegresarListener(new ManejadoraDeMouse());
     }
     class ManejadoraDeMouse extends MouseAdapter{
@@ -30,7 +32,7 @@ public class GestorListarAfiliado {
     private void irGestionServicioGUI() {
         
         //Creación de vistas
-        GestionServicioGUI vistaGestionServicio = new GestionServicioGUI("Gestión de servicios");
+        GestionServicioGUI vistaGestionServicio = new GestionServicioGUI("Gestión de servicios", almacenamiento);
         ventanaListarAfiliado.dispose();
     }
    

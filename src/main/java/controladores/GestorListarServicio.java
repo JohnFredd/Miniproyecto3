@@ -10,9 +10,11 @@ import vistas.ListarServicio;
 public class GestorListarServicio {
     
     private ListarServicio ventanaListarServicio;
-
+    Almacenamiento almacenamiento;
+    
     public GestorListarServicio(ListarServicio ventanaListarServicio, Almacenamiento almacenamiento) {
         this.ventanaListarServicio = ventanaListarServicio;
+        this.almacenamiento = almacenamiento;
         this.ventanaListarServicio.addBtnRegresarListener(new ManejadoraDeMouse());
     }
     
@@ -31,7 +33,7 @@ public class GestorListarServicio {
     private void irGestionServicioGUI() {
         
         //Creación de vistas
-        GestionServicioGUI vistaGestionServicio = new GestionServicioGUI("Gestión de servicios");
+        GestionServicioGUI vistaGestionServicio = new GestionServicioGUI("Gestión de servicios", almacenamiento);
         ventanaListarServicio.dispose();
     }
 }

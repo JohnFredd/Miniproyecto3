@@ -10,9 +10,11 @@ import vistas.ListarConsultorio;
 public class GestorListarConsultorio {
     
     private ListarConsultorio ventanaListarConsultorio;
+    Almacenamiento almacenamiento;
 
     public GestorListarConsultorio(ListarConsultorio ventanaListarConsultorio, Almacenamiento almacenamiento) {
         this.ventanaListarConsultorio = ventanaListarConsultorio;
+        this.almacenamiento = almacenamiento;
         this.ventanaListarConsultorio.addBtnRegresarListener(new ManejadoraDeMouse());
     }
     class ManejadoraDeMouse extends MouseAdapter{
@@ -30,7 +32,7 @@ public class GestorListarConsultorio {
     private void irGestionServicioGUI() {
         
         //Creación de vistas
-        GestionServicioGUI vistaGestionServicio = new GestionServicioGUI("Gestión de servicios");
+        GestionServicioGUI vistaGestionServicio = new GestionServicioGUI("Gestión de servicios", almacenamiento);
         ventanaListarConsultorio.dispose();
     }
     

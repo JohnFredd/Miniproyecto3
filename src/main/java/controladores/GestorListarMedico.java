@@ -10,9 +10,11 @@ import vistas.ListarMedico;
 public class GestorListarMedico {
     
     private ListarMedico ventanaListarMedico;
+    Almacenamiento almacenamiento;
 
     public GestorListarMedico(ListarMedico ventanaListarMedico, Almacenamiento almacenamiento) {
         this.ventanaListarMedico = ventanaListarMedico;
+        this.almacenamiento = almacenamiento;
         this.ventanaListarMedico.addBtnRegresarListener(new ManejadoraDeMouse());
     }
     class ManejadoraDeMouse extends MouseAdapter{
@@ -30,7 +32,7 @@ public class GestorListarMedico {
     private void irGestionServicioGUI() {
         
         //Creación de vistas
-        GestionServicioGUI vistaGestionServicio = new GestionServicioGUI("Gestión de servicios");
+        GestionServicioGUI vistaGestionServicio = new GestionServicioGUI("Gestión de servicios", almacenamiento);
         ventanaListarMedico.dispose();
     }
     
