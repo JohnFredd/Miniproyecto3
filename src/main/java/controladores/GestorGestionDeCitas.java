@@ -58,7 +58,7 @@ public class GestorGestionDeCitas {
           }
           if (e.getSource() == vistaGestionCitas.getBtnAgendar()){
               if (e.getButton() == 1){
-                  irPlantillaCitas();
+                  irAgendarCita();
               }
           }
           if (e.getSource() == vistaGestionCitas.getBtnModificar()){
@@ -84,8 +84,8 @@ public class GestorGestionDeCitas {
         vistaGestionCitas.dispose();
     }
     
-    public void irPlantillaCitas(){
-        PlantillaCita ventanaplantillaCita = new PlantillaCita("Agendar Citas","Plantilla", almacenamiento);
+    public void irAgendarCita(){
+        PlantillaCita ventanaplantillaCita = new PlantillaCita("Agendar Citas","Agendar", almacenamiento);
         vistaGestionCitas.dispose();
     }
     public void elegirCitaAModificar(){

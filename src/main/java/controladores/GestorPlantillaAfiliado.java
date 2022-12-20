@@ -13,12 +13,15 @@
 
 package controladores;
 
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 import modelos.Afiliado;
 import modelos.Almacenamiento;
 import vistas.GestionServicioGUI;
@@ -37,6 +40,9 @@ public class GestorPlantillaAfiliado {
         this.opcion = opcion;
         this.almacenamiento = almacenamiento;
         modificarPlantilla();
+        verificarNumero(vistaPlantillaAfiliado.getTxtCedula());
+        verificarNumero(vistaPlantillaAfiliado.getTxtEdad());
+        verificarNumero(vistaPlantillaAfiliado.getTxtTelefono());
         this.vistaPlantillaAfiliado.addBtnAgregarListener(new ManejadoraDeMouse());
         this.vistaPlantillaAfiliado.addBtnRegresarListener(new ManejadoraDeMouse());
         this.cedula = cedula;
@@ -97,43 +103,38 @@ public class GestorPlantillaAfiliado {
     }
     
     private void agregarAfiliado() {
-        
-        //Obteniendo los datos
-        long cedula = Long.parseLong(vistaPlantillaAfiliado.getTxtCedula().getText());
-        String nombre = vistaPlantillaAfiliado.getTxtNombre().getText();
-        int edad = Integer.parseInt(vistaPlantillaAfiliado.getTxtEdad().getText());
-        String direccion = vistaPlantillaAfiliado.getTxtDireccion().getText();
-        String correo = vistaPlantillaAfiliado.getTxtCorreo().getText();
-        long telefono = Long.parseLong(vistaPlantillaAfiliado.getTxtTelefono().getText());
-        String sexo = (String)vistaPlantillaAfiliado.getComboSexo().getSelectedItem();
-        
-        Afiliado afiliado = new Afiliado(nombre, sexo, direccion, correo, cedula, edad, telefono);
-        afiliado.setNombre(nombre);
-        afiliado.setSexo(sexo);
-        afiliado.setDireccion(direccion);
-        afiliado.setEmail(correo);
-        afiliado.setCedula(cedula);
-        afiliado.setEdad(edad);
-        afiliado.setTelefono(telefono);
-        try {
-            if (almacenamiento.anadirAfiliado(afiliado)){
-                JOptionPane.showMessageDialog(null, "Afiliado agregado con éxito", "Resultado de agregar", JOptionPane.INFORMATION_MESSAGE);
-                irGestionServicioGUI();
-            } else {
-                JOptionPane.showMessageDialog(null, "Ya existe un afiliado con ese número de cédula", "Resultado de agregar", JOptionPane.ERROR_MESSAGE);
+        if(!validarCamposVacios()){
+            //Obteniendo los datos
+            long cedula = Long.parseLong(vistaPlantillaAfiliado.getTxtCedula().getText());
+            String nombre = vistaPlantillaAfiliado.getTxtNombre().getText();
+            int edad = Integer.parseInt(vistaPlantillaAfiliado.getTxtEdad().getText());
+            String direccion = vistaPlantillaAfiliado.getTxtDireccion().getText();
+            String correo = vistaPlantillaAfiliado.getTxtCorreo().getText();
+            long telefono = Long.parseLong(vistaPlantillaAfiliado.getTxtTelefono().getText());
+            String sexo = (String)vistaPlantillaAfiliado.getComboSexo().getSelectedItem();
+
+            Afiliado afiliado = new Afiliado(nombre, sexo, direccion, correo, cedula, edad, telefono);
+            afiliado.setNombre(nombre);
+            afiliado.setSexo(sexo);
+            afiliado.setDireccion(direccion);
+            afiliado.setEmail(correo);
+            afiliado.setCedula(cedula);
+            afiliado.setEdad(edad);
+            afiliado.setTelefono(telefono);
+            try {
+                if (almacenamiento.anadirAfiliado(afiliado)){
+                    JOptionPane.showMessageDialog(null, "Afiliado agregado con éxito", "Resultado de agregar", JOptionPane.INFORMATION_MESSAGE);
+                    irGestionServicioGUI();
+                } else {
+                    JOptionPane.showMessageDialog(null, "Ya existe un afiliado con ese número de cédula", "Resultado de agregar", JOptionPane.ERROR_MESSAGE);
+                }
+            } catch(IOException e){
+                JOptionPane.showMessageDialog(null, "Error: " + e, "Error", JOptionPane.ERROR_MESSAGE);
             }
-        } catch(IOException e){
-            JOptionPane.showMessageDialog(null, "Error: " + e, "Error", JOptionPane.ERROR_MESSAGE);
+            
+        } else {
+            JOptionPane.showMessageDialog(null, "Llene todos los campos requeridos antes de continuar.", "Datos incompletos", JOptionPane.ERROR_MESSAGE);
         }
-        
-        /*afiliado.setNombre("");
-        afiliado.setSexo("");
-        afiliado.setDireccion("");
-        afiliado.setEmail("");
-        afiliado.setCedula(0);
-        afiliado.setEdad(0);
-        afiliado.setTelefono(0);
-        System.out.println(afiliado.toString());*/
     }
     
     private void actualizarAfiliado() {
@@ -181,6 +182,39 @@ public class GestorPlantillaAfiliado {
         //Creación de vistas
         GestionServicioGUI vistaGestionServicio = new GestionServicioGUI("Gestión de servicios", almacenamiento);
         vistaPlantillaAfiliado.dispose();
+    }
+    
+    private void verificarNumero(JTextField a){
+        a.addKeyListener(new KeyAdapter(){
+            @Override
+            public void keyTyped(KeyEvent e){
+                char c = e.getKeyChar();
+                if (!Character.isDigit(c) | Character.isSpaceChar(c)){
+                    e.consume();
+                }
+            }
+        });
+    }
+    private boolean validarCamposVacios(){
+        boolean error = false;
+        if(vistaPlantillaAfiliado.getTxtCedula().getText().isBlank())
+            error = true;
+        if(vistaPlantillaAfiliado.getTxtNombre().getText().isBlank())
+            error = true;
+        if(vistaPlantillaAfiliado.getTxtEdad().getText().isBlank())
+            error = true;
+        if(vistaPlantillaAfiliado.getTxtDireccion().getText().isBlank())
+            error = true;
+        if(vistaPlantillaAfiliado.getTxtTelefono().getText().isBlank())
+            error = true;
+        if(vistaPlantillaAfiliado.getTxtCorreo().getText().isBlank())
+            error = true;
+        /*if(vistaPlantillaAfiliado.getComboSexo().getSelectedIndex())
+            error = true;*/
+        String sexo=(String)vistaPlantillaAfiliado.getComboSexo().getSelectedItem();
+        if(!"Masculino".equals(sexo) && !"Femenino".equals(sexo))
+            error = true;
+        return error;
     }
 }
 
