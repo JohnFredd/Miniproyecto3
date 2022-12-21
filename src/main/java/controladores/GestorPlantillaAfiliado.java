@@ -68,6 +68,16 @@ public class GestorPlantillaAfiliado {
         //Modificando título y botones
         vistaPlantillaAfiliado.getLblTitulo().setText("Actualizar afiliado");
         vistaPlantillaAfiliado.getBtnAgregar().setText("Actualizar afiliado");
+        
+        //Ingresando los datos del afiliado a eliminar
+        Afiliado miAfiliado = almacenamiento.getAfiliados().get(cedula);
+        vistaPlantillaAfiliado.getTxtCedula().setText(Long.toString(miAfiliado.getCedula()));
+        vistaPlantillaAfiliado.getTxtEdad().setText(Integer.toString(miAfiliado.getEdad()));
+        vistaPlantillaAfiliado.getTxtTelefono().setText(Long.toString(miAfiliado.getTelefono()));
+        vistaPlantillaAfiliado.getTxtNombre().setText(miAfiliado.getNombre());
+        vistaPlantillaAfiliado.getTxtDireccion().setText(miAfiliado.getDireccion());
+        vistaPlantillaAfiliado.getTxtCorreo().setText(miAfiliado.getEmail());
+        vistaPlantillaAfiliado.getComboSexo().setSelectedItem(miAfiliado.getSexo());
     }
     
     public void plantillaEliminarAfiliado(){

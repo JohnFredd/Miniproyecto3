@@ -35,5 +35,8 @@ public class GestorListarAfiliado {
         GestionServicioGUI vistaGestionServicio = new GestionServicioGUI("Gestión de servicios", almacenamiento);
         ventanaListarAfiliado.dispose();
     }
+    public void insertarAfiliados() {
+        
+    }
    
 }
