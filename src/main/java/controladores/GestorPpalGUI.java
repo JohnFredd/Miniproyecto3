@@ -14,6 +14,7 @@
 package controladores;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import modelos.Almacenamiento;
 import vistas.GestionDeCitas;
 import vistas.GestionServicioGUI;
 import vistas.OpcionesDeRespaldo;
@@ -26,12 +27,14 @@ import vistas.PpalGUI;
 public class GestorPpalGUI {
     
     private final PpalGUI vistaPpal;
+    private final Almacenamiento almacenamiento;
   
-    public GestorPpalGUI(PpalGUI vistaPpal) {
+    public GestorPpalGUI(PpalGUI vistaPpal, Almacenamiento almacenamiento) {
         this.vistaPpal = vistaPpal;
         this.vistaPpal.addBtnGestionServicioListener(new ManejadoraDeMouse());
         this.vistaPpal.addBtnGestionCitaListener(new ManejadoraDeMouse());
         this.vistaPpal.addBtnRespaldoListener(new ManejadoraDeMouse());
+        this.almacenamiento = almacenamiento;
     }
     
     class ManejadoraDeMouse extends MouseAdapter{
@@ -59,19 +62,19 @@ public class GestorPpalGUI {
     }
     
     public void irGestionServicioGUI(){
-        GestionServicioGUI ventanaGestionServicio = new GestionServicioGUI("Gestión de servicios");
+        GestionServicioGUI ventanaGestionServicio = new GestionServicioGUI("Gestión de servicios", almacenamiento);
         ventanaGestionServicio.setVisible(true);
         vistaPpal.dispose();
     }
     
     public void irGestionDeCitas(){
-        GestionDeCitas ventanaGestionCitas = new GestionDeCitas("Gestión de citas");
+        GestionDeCitas ventanaGestionCitas = new GestionDeCitas("Gestión de citas", almacenamiento);
         ventanaGestionCitas.setVisible(true);
         vistaPpal.dispose();
     }
     
     public void irRespaldo(){
-        OpcionesDeRespaldo ventanaRespaldo = new OpcionesDeRespaldo("Opciones de respaldo");
+        OpcionesDeRespaldo ventanaRespaldo = new OpcionesDeRespaldo("Opciones de respaldo", almacenamiento);
         ventanaRespaldo.setVisible(true);
         vistaPpal.dispose();
     }

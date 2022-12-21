@@ -13,6 +13,7 @@
 
 package vistas;
 
+import controladores.GestorPlantillaCita;
 import java.awt.Color;
 import java.awt.event.MouseListener;
 import javax.swing.JButton;
@@ -20,14 +21,17 @@ import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
+import modelos.Almacenamiento;
+
 
 public class PlantillaCita extends javax.swing.JFrame {
 
     ImagenFondo fondo = new ImagenFondo();
     
-    public PlantillaCita(String titulo) {
+    public PlantillaCita(String titulo, Almacenamiento almacenamiento) {
         this.setContentPane(fondo);
         initComponents();
+        GestorPlantillaCita gestorCita = new GestorPlantillaCita(this, almacenamiento);
         setVisible(true);
         setTitle(titulo);
         setLocationRelativeTo(null);

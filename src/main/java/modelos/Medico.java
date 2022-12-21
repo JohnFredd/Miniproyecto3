@@ -20,7 +20,7 @@ public class Medico extends Persona implements Serializable{
     
     private ArrayList<Servicio> servicios;
 
-    public Medico(ArrayList<Servicio> servicios, String nombre, String sexo, String direccion, String email, int cedula, int edad, int telefono) {
+    public Medico(ArrayList<Servicio> servicios, String nombre, String sexo, String direccion, String email, long cedula, int edad, long telefono) {
         super(nombre, sexo, direccion, email, cedula, edad, telefono);
         this.servicios = servicios;
     }

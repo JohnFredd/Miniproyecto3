@@ -17,14 +17,15 @@ import controladores.GestorPpalGUI;
 import java.awt.Color;
 import java.awt.event.MouseListener;
 import javax.swing.JButton;
+import modelos.Almacenamiento;
 
 public class PpalGUI extends javax.swing.JFrame {
 
     ImagenFondo fondo = new ImagenFondo();
-    public PpalGUI(String titulo) {
+    public PpalGUI(String titulo, Almacenamiento almacenamiento) {
         this.setContentPane(fondo);
         initComponents();
-        GestorPpalGUI gestorPpal = new GestorPpalGUI(this);
+        GestorPpalGUI gestorPpal = new GestorPpalGUI(this, almacenamiento);
         setVisible(true);
         setTitle(titulo);
         setLocationRelativeTo(null);

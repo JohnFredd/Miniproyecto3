@@ -17,6 +17,8 @@ import controladores.GestorGestionDeCitas;
 import java.awt.Color;
 import java.awt.event.MouseListener;
 import javax.swing.JButton;
+import javax.swing.JLabel;
+import modelos.Almacenamiento;
 
 /**
  *
@@ -26,10 +28,10 @@ public class GestionDeCitas extends javax.swing.JFrame {
 
     ImagenFondo fondo = new ImagenFondo();
     
-    public GestionDeCitas(String titulo) {
+    public GestionDeCitas(String titulo, Almacenamiento almacenamiento) {
         this.setContentPane(fondo);
         initComponents();
-        GestorGestionDeCitas gestorGestionCitas = new GestorGestionDeCitas(this);
+        GestorGestionDeCitas gestorGestionCitas = new GestorGestionDeCitas(this, almacenamiento);
         setVisible(true);
         setTitle(titulo);
         setLocationRelativeTo(null);
@@ -137,7 +139,15 @@ public class GestionDeCitas extends javax.swing.JFrame {
     /**
      * @return 
      */
-
+    
+    public JLabel getLblTitulo() {
+        return lblTitulo;
+    }
+    
+    public void setLblTitulo(JLabel lblTitulo) {
+        this.lblTitulo = lblTitulo;
+    }    
+    
     public JButton getBtnAgendar() {
         return btnAgendar;
     }

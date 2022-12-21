@@ -15,15 +15,18 @@ package controladores;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import modelos.Almacenamiento;
 import vistas.OpcionesDeRespaldo;
 import vistas.PpalGUI;
 
 public class GestorOpcionesDeRespaldo {
     
     OpcionesDeRespaldo vistaRespaldo;
+    Almacenamiento almacenamiento;
 
-    public GestorOpcionesDeRespaldo(OpcionesDeRespaldo vistaRespaldo) {
+    public GestorOpcionesDeRespaldo(OpcionesDeRespaldo vistaRespaldo, Almacenamiento almacenamiento) {
         this.vistaRespaldo = vistaRespaldo;
+        this.almacenamiento = almacenamiento;
         this.vistaRespaldo.addBtnBackupListener(new ManejadoraDeMouse());
         this.vistaRespaldo.addBtnRestaurarListener(new ManejadoraDeMouse());
         this.vistaRespaldo.addBtnRegresarListener(new ManejadoraDeMouse());
@@ -63,7 +66,7 @@ public class GestorOpcionesDeRespaldo {
     }
 
     private void irPpal() {
-        PpalGUI ventanaPpal = new PpalGUI("Servicio de salud - Universidad del Valle");
+        PpalGUI ventanaPpal = new PpalGUI("Servicio de salud - Universidad del Valle", almacenamiento);
         vistaRespaldo.dispose();
     }
     

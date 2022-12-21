@@ -17,8 +17,12 @@ import java.io.Serializable;
 
 public class Afiliado extends Persona implements Serializable{
     
-    public Afiliado(String nombre, String sexo, String direccion, String email, int cedula, int edad, int telefono) {
+    public Afiliado(String nombre, String sexo, String direccion, String email, long cedula, int edad, long telefono) {
         super(nombre, sexo, direccion, email, cedula, edad, telefono);
     }
     
+    public String toString(){
+        return nombre +","+sexo+","+direccion+","+email+","+String.valueOf(cedula)+","+String.valueOf(edad)+","+String.valueOf(telefono);
+        
+    }
 }
