@@ -328,7 +328,7 @@ public class GestorGestionServicio {
             
             //Simulación de conversión de datos de un ArrayList a Array String, para ponerlo en el comboBox ;)
             ArrayList<String> servicios = new ArrayList();
-            servicios.add("Odontología");
+            //servicios.add("Odontología");
             servicios.add("Psiquiatría");
             servicios.add("Calvo");
 
@@ -382,7 +382,6 @@ public class GestorGestionServicio {
     }
     private void irAgregarServicio(){
         PlantillaServicio ventanaAgregarServicio = new PlantillaServicio("Agregar servicio", "Agregar", almacenamiento);
-        ventanaAgregarServicio.setVisible(true);
         vistaGestionServicio.dispose();
     }
     private void irActualizarServicio() {

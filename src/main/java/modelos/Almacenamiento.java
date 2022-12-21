@@ -267,14 +267,17 @@ public class Almacenamiento {
         }
     }
     
-    public void anadirServicio(Servicio servicio) throws IOException {
-        servicios.add(servicio);
-        try
-        {
-            hacerBackUp();
-        } catch (IOException e) {
-            throw e;
+    public boolean anadirServicio(Servicio servicio) throws IOException {
+        if(!servicios.contains(servicio)){
+            servicios.add(servicio);
+            try
+            {
+                hacerBackUp();
+            } catch (IOException e) {
+                throw e;
+            }
         }
+        return false;
     }
     
     public void modificarServicio(int indentificador, Servicio servicio) throws IOException {

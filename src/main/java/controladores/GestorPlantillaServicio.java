@@ -15,7 +15,10 @@ package controladores;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.IOException;
+import javax.swing.JOptionPane;
 import modelos.Almacenamiento;
+import modelos.Servicio;
 import vistas.GestionServicioGUI;
 import vistas.PlantillaServicio;
 
@@ -30,6 +33,7 @@ public class GestorPlantillaServicio {
         this.almacenamiento = almacenamiento;
         modificarPlantilla();
         this.vistaPlantillaServicio.addBtnRegresarListener(new ManejadoraDeMouse());
+        this.vistaPlantillaServicio.addBtnAgregarListener(new ManejadoraDeMouse());
     }
     
     public void modificarPlantilla(){
@@ -65,7 +69,7 @@ public class GestorPlantillaServicio {
             
             if (e.getSource() == vistaPlantillaServicio.getBtnAgregar()){
                 if (e.getButton() == 1){
-                    agregarAfiliado();
+                    agregarServicio();
                 }
             }
 
@@ -77,8 +81,20 @@ public class GestorPlantillaServicio {
         }
     }
     
-    private void agregarAfiliado() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public void agregarServicio() {
+        String nombre = vistaPlantillaServicio.getTxtServicio().getText();
+        Servicio servicio = new Servicio(nombre);
+        try {
+            //Agregando el servicio
+            if (almacenamiento.anadirServicio(servicio)){
+                JOptionPane.showMessageDialog(null, "Servicio agregado con éxito", "Resultado de agregar", JOptionPane.INFORMATION_MESSAGE);
+                irGestionServicioGUI();
+            } else {
+                JOptionPane.showMessageDialog(null, "Este servicio ya existe", "Resultado de agregar", JOptionPane.ERROR_MESSAGE);
+            }
+        } catch(IOException e){
+            JOptionPane.showMessageDialog(null, "Error al agregar: " + e, "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }
 
     private void irGestionServicioGUI() {
