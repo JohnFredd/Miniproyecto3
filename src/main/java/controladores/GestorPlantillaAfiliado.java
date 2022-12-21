@@ -29,36 +29,45 @@ import vistas.PlantillaAfiliado;
 
 public class GestorPlantillaAfiliado {
     
+<<<<<<< HEAD
+    private final PlantillaAfiliado vistaPlantillaAfiliado;
+    private final Almacenamiento almacenamiento;
+    private final String opcion;
+    private final long cedula;
+=======
     private PlantillaAfiliado vistaPlantillaAfiliado;
     private Almacenamiento almacenamiento;
     private Afiliado modeloAfiliado;
     private String opcion;
-    private long cedula;
+    private long cedulaAnterior;
+>>>>>>> 4258eba8b3e0fd10f971e26390676e36f1561eb1
     
-    public GestorPlantillaAfiliado(PlantillaAfiliado vistaPlantillaAfiliado, String opcion, Almacenamiento almacenamiento, long cedula) {
+    public GestorPlantillaAfiliado(PlantillaAfiliado vistaPlantillaAfiliado, String opcion, Almacenamiento almacenamiento, long cedulaAnterior) {
         this.vistaPlantillaAfiliado = vistaPlantillaAfiliado;
         this.opcion = opcion;
         this.almacenamiento = almacenamiento;
+        this.cedula = cedula;
         modificarPlantilla();
         verificarNumero(vistaPlantillaAfiliado.getTxtCedula());
         verificarNumero(vistaPlantillaAfiliado.getTxtEdad());
         verificarNumero(vistaPlantillaAfiliado.getTxtTelefono());
         this.vistaPlantillaAfiliado.addBtnAgregarListener(new ManejadoraDeMouse());
         this.vistaPlantillaAfiliado.addBtnRegresarListener(new ManejadoraDeMouse());
-        this.cedula = cedula;
+<<<<<<< HEAD
+=======
+        this.cedulaAnterior = cedulaAnterior;
+>>>>>>> 4258eba8b3e0fd10f971e26390676e36f1561eb1
     }
     public void modificarPlantilla(){
-        
         switch(opcion){
             case "Actualizar" -> {
+                
                 plantillaActualizarAfiliado();
             }
             case "Eliminar" -> {
                 plantillaEliminarAfiliado();
+                
             }
-            /*case "Agregar" -> {
-                break;
-            }*/
         }
     }
 
@@ -69,30 +78,29 @@ public class GestorPlantillaAfiliado {
     }
     
     public void plantillaEliminarAfiliado(){
+        
         //Modificando título y botones
         vistaPlantillaAfiliado.getLblTitulo().setText("Eliminar afiliado");
         vistaPlantillaAfiliado.getBtnAgregar().setText("Eliminar afiliado");
         
         //Ingresando los datos del afiliado a eliminar
         Afiliado miAfiliado = almacenamiento.getAfiliados().get(cedula);
-        /*vistaPlantillaAfiliado.getTxtCedula().setText(Long.toString(miAfiliado.getCedula()));
-        vistaPlantillaAfiliado.getTxtTelefono().setText(Long.toString(miAfiliado.getTelefono()));
+        vistaPlantillaAfiliado.getTxtCedula().setText(Long.toString(miAfiliado.getCedula()));
         vistaPlantillaAfiliado.getTxtEdad().setText(Integer.toString(miAfiliado.getEdad()));
+        vistaPlantillaAfiliado.getTxtTelefono().setText(Long.toString(miAfiliado.getTelefono()));
         vistaPlantillaAfiliado.getTxtNombre().setText(miAfiliado.getNombre());
         vistaPlantillaAfiliado.getTxtDireccion().setText(miAfiliado.getDireccion());
         vistaPlantillaAfiliado.getTxtCorreo().setText(miAfiliado.getEmail());
-        vistaPlantillaAfiliado.getComboSexo().setSelectedItem(miAfiliado.getSexo());*/
+        vistaPlantillaAfiliado.getComboSexo().setSelectedItem(miAfiliado.getSexo());
         
         //Desabilitando campos de texto
         vistaPlantillaAfiliado.getTxtCedula().setEditable(false);
-        //vistaPlantillaAfiliado.getTxtCedula().setText("Hola");
-        vistaPlantillaAfiliado.getTxtCedula().setText(String.valueOf(miAfiliado.getCedula()));
-        /*vistaPlantillaAfiliado.getTxtNombre().setEditable(false);
         vistaPlantillaAfiliado.getTxtEdad().setEditable(false);
+        vistaPlantillaAfiliado.getTxtNombre().setEditable(false);
         vistaPlantillaAfiliado.getTxtDireccion().setEditable(false);
         vistaPlantillaAfiliado.getTxtCorreo().setEditable(false);
         vistaPlantillaAfiliado.getTxtTelefono().setEditable(false);
-        vistaPlantillaAfiliado.getComboSexo().setEnabled(false);*/
+        vistaPlantillaAfiliado.getComboSexo().setEnabled(false);
         
     }
     
@@ -113,7 +121,7 @@ public class GestorPlantillaAfiliado {
                 }
             }
             
-            if (e.getSource() == vistaPlantillaAfiliado.getBtnAgregar() && "Eliminar".equals(opcion)){
+            if (e.getSource() == vistaPlantillaAfiliado.getBtnAgregar() && "Actualizar".equals(opcion)){
                 if (e.getButton() == 1){
                     eliminarAfiliado();
                 }
@@ -129,6 +137,7 @@ public class GestorPlantillaAfiliado {
     
     private void agregarAfiliado() {
         if(!validarCamposVacios()){
+            
             //Obteniendo los datos
             long cedula = Long.parseLong(vistaPlantillaAfiliado.getTxtCedula().getText());
             String nombre = vistaPlantillaAfiliado.getTxtNombre().getText();
@@ -137,7 +146,8 @@ public class GestorPlantillaAfiliado {
             String correo = vistaPlantillaAfiliado.getTxtCorreo().getText();
             long telefono = Long.parseLong(vistaPlantillaAfiliado.getTxtTelefono().getText());
             String sexo = (String)vistaPlantillaAfiliado.getComboSexo().getSelectedItem();
-
+            
+            //Estableciendo los datos obtenidos al modelo
             Afiliado afiliado = new Afiliado(nombre, sexo, direccion, correo, cedula, edad, telefono);
             afiliado.setNombre(nombre);
             afiliado.setSexo(sexo);
@@ -147,6 +157,7 @@ public class GestorPlantillaAfiliado {
             afiliado.setEdad(edad);
             afiliado.setTelefono(telefono);
             try {
+                //Agregando el afiliado
                 if (almacenamiento.anadirAfiliado(afiliado)){
                     JOptionPane.showMessageDialog(null, "Afiliado agregado con éxito", "Resultado de agregar", JOptionPane.INFORMATION_MESSAGE);
                     irGestionServicioGUI();
@@ -154,7 +165,7 @@ public class GestorPlantillaAfiliado {
                     JOptionPane.showMessageDialog(null, "Ya existe un afiliado con ese número de cédula", "Resultado de agregar", JOptionPane.ERROR_MESSAGE);
                 }
             } catch(IOException e){
-                JOptionPane.showMessageDialog(null, "Error: " + e, "Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Error al agregar: " + e, "Error", JOptionPane.ERROR_MESSAGE);
             }
             
         } else {
@@ -182,26 +193,25 @@ public class GestorPlantillaAfiliado {
         afiliado.setEdad(edad);
         afiliado.setTelefono(telefono);
         try {
-            if (almacenamiento.anadirAfiliado(afiliado)){
-                JOptionPane.showMessageDialog(null, "Afiliado agregado con éxito", "Resultado de agregar", JOptionPane.INFORMATION_MESSAGE);
-                irGestionServicioGUI();
-            } else {
-                JOptionPane.showMessageDialog(null, "Ya existe un afiliado con ese número de cédula", "Resultado de agregar", JOptionPane.ERROR_MESSAGE);
-            }
+            almacenamiento.modificarAfiliado(cedulaAnterior, afiliado);
+            JOptionPane.showMessageDialog(null, "Afiliado modificado con éxito", "Resultado de modificar", JOptionPane.INFORMATION_MESSAGE);
+            irGestionServicioGUI();
         } catch(IOException e){
-            JOptionPane.showMessageDialog(null, "Error: " + e, "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Error al actualizar: " + e, "Error", JOptionPane.ERROR_MESSAGE);
         }
-        
-        /*afiliado.setNombre("");
-        afiliado.setSexo("");
-        afiliado.setDireccion("");
-        afiliado.setEmail("");
-        afiliado.setCedula(0);
-        afiliado.setEdad(0);
-        afiliado.setTelefono(0);
-        System.out.println(afiliado.toString());*/
     }
 
+    private void eliminarAfiliado(){
+        //Eliminando el afiliado
+        try{
+            almacenamiento.eliminarAfiliado(cedula);
+            JOptionPane.showMessageDialog(null, "Afiliado eliminado con éxito", "Resultado de eliminar", JOptionPane.INFORMATION_MESSAGE);
+            irGestionServicioGUI();
+        } catch(IOException e){
+            JOptionPane.showMessageDialog(null, "Error al eliminar: " + e, "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+    
     private void irGestionServicioGUI() {
         
         //Creación de vistas
@@ -209,15 +219,6 @@ public class GestorPlantillaAfiliado {
         vistaPlantillaAfiliado.dispose();
     }
     
-    private void eliminarAfiliado(){
-        
-        try{
-            almacenamiento.eliminarAfiliado(cedula);
-            
-        } catch(IOException e){
-            JOptionPane.showMessageDialog(null, "Error: " + e, "Error", JOptionPane.ERROR_MESSAGE);
-        }
-    }
     private void verificarNumero(JTextField a){
         a.addKeyListener(new KeyAdapter(){
             @Override
@@ -243,8 +244,6 @@ public class GestorPlantillaAfiliado {
             error = true;
         if(vistaPlantillaAfiliado.getTxtCorreo().getText().isBlank())
             error = true;
-        /*if(vistaPlantillaAfiliado.getComboSexo().getSelectedIndex())
-            error = true;*/
         String sexo=(String)vistaPlantillaAfiliado.getComboSexo().getSelectedItem();
         if(!"Masculino".equals(sexo) && !"Femenino".equals(sexo))
             error = true;
