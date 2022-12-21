@@ -132,13 +132,16 @@ public class GestorGestionServicio {
                 case "Eliminar" -> {
                     String cedulaABuscar = (String) JOptionPane.showInputDialog(vistaGestionServicio,"<html><p style = \" font:12px; \">Ingrese la cédula del afiliado a eliminar</p></html>", "Eliminar afiliado", JOptionPane.DEFAULT_OPTION);
                     try {
-                        if(cedulaABuscar.equals("12345")){
-                            irEliminarAfiliado(cedulaABuscar);
-
-                        } else if(cedulaABuscar.isBlank()){
-                            JOptionPane.showMessageDialog(vistaGestionServicio, "<html><p style = \" font:12px; \">Por favor ingrese una cédula</p></html>", "Cédula inválida", JOptionPane.OK_OPTION, UIManager.getIcon("OptionPane.errorIcon"));
-                        } else if(!cedulaABuscar.equals("12345")){
-                            JOptionPane.showMessageDialog(vistaGestionServicio, "<html><p style = \" font:12px; \">No se encontró ningún afiliado registrado con esa cédula</p></html>", "Afiliado no encontrado", JOptionPane.OK_OPTION, UIManager.getIcon("OptionPane.errorIcon"));
+                        if (cedulaABuscar.isBlank()){
+                            JOptionPane.showMessageDialog(vistaGestionServicio, "<html><p style = \" font:12px; \">Por favor ingrese una cédula</p></html>", "Error", JOptionPane.OK_OPTION, UIManager.getIcon("OptionPane.errorIcon"));
+                        } else {
+                            long cedula = Long.parseLong(cedulaABuscar);
+                            if(almacenamiento.getAfiliados().containsKey(cedula)){
+                                System.out.println("Lo encontré");
+                                irEliminarAfiliado(cedula);
+                            } else {
+                                JOptionPane.showMessageDialog(vistaGestionServicio, "<html><p style = \" font:12px; \">No se encontró ningún afiliado registrado con esa cédula</p></html>", "Afiliado no encontrado", JOptionPane.OK_OPTION, UIManager.getIcon("OptionPane.errorIcon"));
+                            }
                         }
                     } catch(NullPointerException np){
 
@@ -166,7 +169,7 @@ public class GestorGestionServicio {
     }
     
     private void irEliminarAfiliado(long cedula) {
-        PlantillaAfiliado ventanaAgregarAfiliado = new PlantillaAfiliado("Eliminar afiliado", "Eliminar", almacenamiento, cedula);
+        PlantillaAfiliado ventanaEliminarAfiliado = new PlantillaAfiliado("Eliminar afiliado", "Eliminar", almacenamiento, cedula);
         vistaGestionServicio.dispose();
     }
     
