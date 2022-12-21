@@ -73,14 +73,27 @@ public class GestorPlantillaAfiliado {
         vistaPlantillaAfiliado.getLblTitulo().setText("Eliminar afiliado");
         vistaPlantillaAfiliado.getBtnAgregar().setText("Eliminar afiliado");
         
+        //Ingresando los datos del afiliado a eliminar
+        Afiliado miAfiliado = almacenamiento.getAfiliados().get(cedula);
+        /*vistaPlantillaAfiliado.getTxtCedula().setText(Long.toString(miAfiliado.getCedula()));
+        vistaPlantillaAfiliado.getTxtTelefono().setText(Long.toString(miAfiliado.getTelefono()));
+        vistaPlantillaAfiliado.getTxtEdad().setText(Integer.toString(miAfiliado.getEdad()));
+        vistaPlantillaAfiliado.getTxtNombre().setText(miAfiliado.getNombre());
+        vistaPlantillaAfiliado.getTxtDireccion().setText(miAfiliado.getDireccion());
+        vistaPlantillaAfiliado.getTxtCorreo().setText(miAfiliado.getEmail());
+        vistaPlantillaAfiliado.getComboSexo().setSelectedItem(miAfiliado.getSexo());*/
+        
         //Desabilitando campos de texto
-        vistaPlantillaAfiliado.getTxtCedula();
-        vistaPlantillaAfiliado.getTxtNombre();
-        vistaPlantillaAfiliado.getTxtEdad();
-        vistaPlantillaAfiliado.getTxtDireccion();
-        vistaPlantillaAfiliado.getTxtCorreo();
-        vistaPlantillaAfiliado.getTxtTelefono();
-        vistaPlantillaAfiliado.getComboSexo().setEnabled(false);
+        vistaPlantillaAfiliado.getTxtCedula().setEditable(false);
+        //vistaPlantillaAfiliado.getTxtCedula().setText("Hola");
+        vistaPlantillaAfiliado.getTxtCedula().setText(String.valueOf(miAfiliado.getCedula()));
+        /*vistaPlantillaAfiliado.getTxtNombre().setEditable(false);
+        vistaPlantillaAfiliado.getTxtEdad().setEditable(false);
+        vistaPlantillaAfiliado.getTxtDireccion().setEditable(false);
+        vistaPlantillaAfiliado.getTxtCorreo().setEditable(false);
+        vistaPlantillaAfiliado.getTxtTelefono().setEditable(false);
+        vistaPlantillaAfiliado.getComboSexo().setEnabled(false);*/
+        
     }
     
     class ManejadoraDeMouse extends MouseAdapter{
@@ -88,12 +101,24 @@ public class GestorPlantillaAfiliado {
         @Override
         public void mouseClicked(MouseEvent e){
             
-            if (e.getSource() == vistaPlantillaAfiliado.getBtnAgregar()){
+            if (e.getSource() == vistaPlantillaAfiliado.getBtnAgregar() && "Agregar".equals(opcion)){
                 if (e.getButton() == 1){
                     agregarAfiliado();
                 }
             }
 
+            if (e.getSource() == vistaPlantillaAfiliado.getBtnAgregar() && "Actualizar".equals(opcion)){
+                if (e.getButton() == 1){
+                    actualizarAfiliado();
+                }
+            }
+            
+            if (e.getSource() == vistaPlantillaAfiliado.getBtnAgregar() && "Eliminar".equals(opcion)){
+                if (e.getButton() == 1){
+                    eliminarAfiliado();
+                }
+            }
+            
             if (e.getSource() == vistaPlantillaAfiliado.getBtnRegresar()){
                 if (e.getButton() == 1){
                     irGestionServicioGUI();  
@@ -172,6 +197,15 @@ public class GestorPlantillaAfiliado {
         vistaPlantillaAfiliado.dispose();
     }
     
+    private void eliminarAfiliado(){
+        
+        try{
+            almacenamiento.eliminarAfiliado(cedula);
+            
+        } catch(IOException e){
+            JOptionPane.showMessageDialog(null, "Error: " + e, "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
     private void verificarNumero(JTextField a){
         a.addKeyListener(new KeyAdapter(){
             @Override
