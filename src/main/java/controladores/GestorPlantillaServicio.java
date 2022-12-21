@@ -82,18 +82,22 @@ public class GestorPlantillaServicio {
     }
     
     public void agregarServicio() {
-        String nombre = vistaPlantillaServicio.getTxtServicio().getText();
-        Servicio servicio = new Servicio(nombre);
-        try {
-            //Agregando el servicio
-            if (almacenamiento.anadirServicio(servicio)){
-                JOptionPane.showMessageDialog(null, "Servicio agregado con éxito", "Resultado de agregar", JOptionPane.INFORMATION_MESSAGE);
-                irGestionServicioGUI();
-            } else {
-                JOptionPane.showMessageDialog(null, "Este servicio ya existe", "Resultado de agregar", JOptionPane.ERROR_MESSAGE);
+        if(!validarCamposVacios()){
+            String nombre = vistaPlantillaServicio.getTxtServicio().getText();
+            Servicio servicio = new Servicio(nombre);
+            try {
+                //Agregando el servicio
+                if (almacenamiento.anadirServicio(servicio)){
+                    JOptionPane.showMessageDialog(null, "Servicio agregado con éxito", "Resultado de agregar", JOptionPane.INFORMATION_MESSAGE);
+                    irGestionServicioGUI();
+                } else {
+                    JOptionPane.showMessageDialog(null, "Este servicio ya existe", "Resultado de agregar", JOptionPane.ERROR_MESSAGE);
+                }
+            } catch(IOException e){
+                JOptionPane.showMessageDialog(null, "Error al agregar: " + e, "Error", JOptionPane.ERROR_MESSAGE);
             }
-        } catch(IOException e){
-            JOptionPane.showMessageDialog(null, "Error al agregar: " + e, "Error", JOptionPane.ERROR_MESSAGE);
+        } else{
+            JOptionPane.showMessageDialog(null, "Llene todos los campos requeridos antes de continuar.", "Datos incompletos", JOptionPane.ERROR_MESSAGE);
         }
     }
 
@@ -101,5 +105,11 @@ public class GestorPlantillaServicio {
         
         GestionServicioGUI vistaGestionServicio = new GestionServicioGUI("Gestión de servicios", almacenamiento);
         vistaPlantillaServicio.dispose();
+    }
+    private boolean validarCamposVacios(){
+        boolean error = false;
+        if(vistaPlantillaServicio.getTxtServicio().getText().isBlank())
+            error = true;
+        return error;
     }
 }

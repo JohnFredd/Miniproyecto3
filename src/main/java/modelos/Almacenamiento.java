@@ -268,16 +268,55 @@ public class Almacenamiento {
     }
     
     public boolean anadirServicio(Servicio servicio) throws IOException {
-        if(!servicios.contains(servicio)){
+        /*if(!servicios.contains(servicio)){
             servicios.add(servicio);
             try
             {
                 hacerBackUp();
+                return true;
             } catch (IOException e) {
                 throw e;
             }
         }
-        return false;
+        return false;*/
+        boolean error = false;
+        if(!servicios.isEmpty()){
+            for(int i = 0; i<servicios.size(); i++){
+                System.out.println("HOLA");
+                System.out.println("Nombres en array:"+servicios.get(i).getNombre());
+                if(!servicios.get(i).getNombre().equals(servicio.getNombre())){
+                    System.out.println("Entré al if");
+                    servicios.add(servicio);
+                    try
+                    {
+                        hacerBackUp();
+                        System.out.println("Tamaño del arreglo: " + servicios.size());
+                        error = true;
+                        return error;
+                    } catch (IOException e) {
+                        throw e;
+                    }
+                }
+                System.out.println("No entré al if");
+                error = false;
+                System.out.println("Estado error: "+error);
+                return error;
+            }
+            System.out.println("Error: "+ error);
+            return error;
+            
+        } else{
+            System.out.println("Entré al else");
+            servicios.add(servicio);
+            try
+            {
+                hacerBackUp();
+                error = true;
+                return error;
+            } catch (IOException e) {
+                throw e;
+            }
+        }
     }
     
     public void modificarServicio(int indentificador, Servicio servicio) throws IOException {
