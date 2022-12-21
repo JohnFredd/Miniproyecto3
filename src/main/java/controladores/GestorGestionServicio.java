@@ -156,6 +156,7 @@ public class GestorGestionServicio {
     
     private void irAgregarAfiliado(){
         PlantillaAfiliado ventanaAgregarAfiliado = new PlantillaAfiliado("Agregar afiliado", "Agregar", almacenamiento, 0);
+        System.out.println("Se creó");
         vistaGestionServicio.dispose();
     }
     
