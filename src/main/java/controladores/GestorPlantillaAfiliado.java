@@ -29,21 +29,12 @@ import vistas.PlantillaAfiliado;
 
 public class GestorPlantillaAfiliado {
     
-<<<<<<< HEAD
-    private final PlantillaAfiliado vistaPlantillaAfiliado;
-    private final Almacenamiento almacenamiento;
-    private final String opcion;
-    private long cedula;
-    private Afiliado modeloAfiliado;
-    private long cedulaAnterior;
-=======
 
     private final PlantillaAfiliado vistaPlantillaAfiliado;
     private final Almacenamiento almacenamiento;
     private final String opcion;
     private final long cedula;
     //private long cedulaAnterior;
->>>>>>> 9c2eea55e2f24c0ee64cfd854837b98c080dd1e8
 
     
     public GestorPlantillaAfiliado(PlantillaAfiliado vistaPlantillaAfiliado, String opcion, Almacenamiento almacenamiento, long cedula) {
@@ -59,10 +50,6 @@ public class GestorPlantillaAfiliado {
         this.vistaPlantillaAfiliado.addBtnAgregarListener(new ManejadoraDeMouse());
         this.vistaPlantillaAfiliado.addBtnRegresarListener(new ManejadoraDeMouse());
 
-<<<<<<< HEAD
-        this.cedulaAnterior = cedulaAnterior;
-=======
->>>>>>> 9c2eea55e2f24c0ee64cfd854837b98c080dd1e8
     }
     public void modificarPlantilla(){
         switch(opcion){
