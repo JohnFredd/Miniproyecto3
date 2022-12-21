@@ -18,6 +18,7 @@ import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
+import modelos.Afiliado;
 import modelos.Almacenamiento;
 import vistas.GestionServicioGUI;
 import vistas.ListarAfiliado;
@@ -137,7 +138,7 @@ public class GestorGestionServicio {
                         } else {
                             long cedula = Long.parseLong(cedulaABuscar);
                             if(almacenamiento.getAfiliados().containsKey(cedula)){
-                                System.out.println("Lo encontré");
+                                Afiliado miAfiliado = almacenamiento.getAfiliados().get(cedula);
                                 irEliminarAfiliado(cedula);
                             } else {
                                 JOptionPane.showMessageDialog(vistaGestionServicio, "<html><p style = \" font:12px; \">No se encontró ningún afiliado registrado con esa cédula</p></html>", "Afiliado no encontrado", JOptionPane.OK_OPTION, UIManager.getIcon("OptionPane.errorIcon"));
@@ -218,7 +219,7 @@ public class GestorGestionServicio {
                 }
             }
         } catch(NullPointerException np){
-            //JOptionPane.showMessageDialog(vistaGestionServicio, "<html><p style = \" font:12px; \">Ninguna opción fue seleccionada</p></html>", "Aviso", JOptionPane.OK_OPTION, UIManager.getIcon("OptionPane.informationIcon"));
+            
         }
     }
     private void irAgregarMedico(){
@@ -294,7 +295,6 @@ public class GestorGestionServicio {
             } 
 
         } catch(NullPointerException np){
-            //JOptionPane.showMessageDialog(vistaGestionServicio, "<html><p style = \" font:14px; \">Ninguna opción fue seleccionada</p></html>", "Aviso", JOptionPane.OK_OPTION, UIManager.getIcon("OptionPane.informationIcon"));
             
         }
     }
@@ -372,7 +372,6 @@ public class GestorGestionServicio {
             } 
 
         } catch(NullPointerException np){
-            //JOptionPane.showMessageDialog(vistaGestionServicio, "<html><p style = \" font:14px; \">Ninguna opción fue seleccionada</p></html>", "Aviso", JOptionPane.OK_OPTION, UIManager.getIcon("OptionPane.informationIcon"));
             
         }
     }
