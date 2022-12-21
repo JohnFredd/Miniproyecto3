@@ -14,7 +14,12 @@
 package vistas;
 
 import java.awt.Color;
+import java.awt.event.MouseListener;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JTextField;
 
 public class PlantillaCita extends javax.swing.JFrame {
 
@@ -30,6 +35,86 @@ public class PlantillaCita extends javax.swing.JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
+  public JLabel getLblTitulo() {
+        return lblTitulo;
+    }
+    /**
+     * @param lblTitulo
+     */
+    public void setLblTitulo(JLabel lblTitulo) {
+        this.lblTitulo = lblTitulo;
+    }    
+    public JLabel getLblNombre() {
+        return lblNombre;
+    }
+    public void setLblNombre(JLabel lblNombre) {
+        this.lblNombre = lblNombre;
+    }   
+    public JLabel getLblCedula() {
+        return lblCedula;
+    }
+    public void setLblCedula(JLabel lblCedula) {
+        this.lblCedula = lblCedula;
+    }    
+    public JLabel lblServicio() {
+        return lblServicio;
+    }
+    public void setLblServicio(JLabel lblServicio) {
+        this.lblServicio = lblServicio;
+    }   
+    public JLabel lblDia() {
+        return lblServicio;
+    }
+    public void setLblDia(JLabel lblDia) {
+        this.lblDia = lblDia;
+    }    
+    public JLabel lblMes() {
+        return lblServicio;
+    }
+    public void setLblMes(JLabel lblMes) {
+        this.lblMes = lblMes;
+    }   
+    public JLabel lblAnio() {
+        return lblAnio;
+    }
+    public void setLblAño(JLabel lblAnio) {
+        this.lblAnio = lblAnio;
+    }  
+    public JButton getBtnRegresar() {
+        return btnRegresar;
+    }
+    public void setBtnRegresar(JButton btnRegresar) {
+        this.btnRegresar = btnRegresar;
+    }
+    public void addBtnRegresarListener(MouseListener listenerBotones){
+        btnRegresar.addMouseListener(listenerBotones);
+    }
+    public JButton getBtnAgendar() {
+        return btnAgendar;
+    }
+    public void setBtnAgendar(JButton btnAgendar) {
+        this.btnAgendar = btnAgendar;
+    }
+    public void addBtnAgendarListener(MouseListener listenerBotones){
+        btnAgendar.addMouseListener(listenerBotones);
+    }
+    public JButton getBtnAgendar1() {
+        return btnAgendar1;
+    }
+    public void setBtnAgendar1(JButton btnAgendar1) {
+        this.btnAgendar1 = btnAgendar1;
+    }
+    public void addBtnAgendar1Listener(MouseListener listenerBotones){
+        btnAgendar1.addMouseListener(listenerBotones);
+    }
+    public JComboBox<String> comboMedico() {
+        return comboMedico;
+    }
+
+    public void setComboMedico(JComboBox<String> comboMedico) {
+        this.comboMedico = comboMedico;
+    }
+    
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
@@ -47,11 +132,10 @@ public class PlantillaCita extends javax.swing.JFrame {
         lblDia = new javax.swing.JLabel();
         lblMes = new javax.swing.JLabel();
         lblAnio = new javax.swing.JLabel();
-        lblHora = new javax.swing.JLabel();
-        comboHora = new javax.swing.JComboBox<>();
         jTextField3 = new javax.swing.JTextField();
         jTextField4 = new javax.swing.JTextField();
         jTextField5 = new javax.swing.JTextField();
+        btnAgendar = new javax.swing.JButton();
         panelDetallesCIta = new javax.swing.JPanel();
         lblMedico = new javax.swing.JLabel();
         lblConsultorio = new javax.swing.JLabel();
@@ -59,9 +143,9 @@ public class PlantillaCita extends javax.swing.JFrame {
         comboConsultorio = new javax.swing.JComboBox<>();
         lblReferencia = new javax.swing.JLabel();
         jTextField2 = new javax.swing.JTextField();
-        btnAgendar = new javax.swing.JButton();
         btnRegresar = new javax.swing.JButton();
         separador = new javax.swing.JSeparator();
+        btnAgendar1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -147,7 +231,7 @@ public class PlantillaCita extends javax.swing.JFrame {
                 .addGap(21, 21, 21)
                 .addComponent(lblServicio, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(64, 64, 64)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         panelMotivoCitaLayout.setVerticalGroup(
@@ -171,13 +255,6 @@ public class PlantillaCita extends javax.swing.JFrame {
 
         lblAnio.setFont(new java.awt.Font("Agency FB", 1, 24)); // NOI18N
         lblAnio.setText("Año");
-
-        lblHora.setFont(new java.awt.Font("Agency FB", 1, 24)); // NOI18N
-        lblHora.setText("Hora");
-
-        comboHora.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        comboHora.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        comboHora.setAlignmentX(1.0F);
 
         jTextField3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jTextField3.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -203,29 +280,40 @@ public class PlantillaCita extends javax.swing.JFrame {
             }
         });
 
+        btnAgendar.setFont(new java.awt.Font("Agency FB", 1, 24)); // NOI18N
+        btnAgendar.setText("Comprobar Disponibilidad");
+        btnAgendar.setFocusPainted(false);
+        btnAgendar.setRequestFocusEnabled(false);
+        btnAgendar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAgendarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout panelFechaCitaLayout = new javax.swing.GroupLayout(panelFechaCita);
         panelFechaCita.setLayout(panelFechaCitaLayout);
         panelFechaCitaLayout.setHorizontalGroup(
             panelFechaCitaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelFechaCitaLayout.createSequentialGroup()
-                .addGroup(panelFechaCitaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(lblHora, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(panelFechaCitaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(panelFechaCitaLayout.createSequentialGroup()
-                            .addGap(21, 21, 21)
-                            .addGroup(panelFechaCitaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(lblDia, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(lblMes, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelFechaCitaLayout.createSequentialGroup()
-                            .addContainerGap()
-                            .addComponent(lblAnio, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGroup(panelFechaCitaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelFechaCitaLayout.createSequentialGroup()
+                        .addGap(21, 21, 21)
+                        .addGroup(panelFechaCitaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblDia, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblMes, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelFechaCitaLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(lblAnio, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(panelFechaCitaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(comboHora, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jTextField3)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTextField5, javax.swing.GroupLayout.Alignment.LEADING))
-                .addGap(38, 38, 38))
+                .addGroup(panelFechaCitaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(jTextField4, javax.swing.GroupLayout.DEFAULT_SIZE, 252, Short.MAX_VALUE)
+                    .addComponent(jTextField5)
+                    .addComponent(jTextField3))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelFechaCitaLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(btnAgendar)
+                .addGap(69, 69, 69))
         );
         panelFechaCitaLayout.setVerticalGroup(
             panelFechaCitaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -242,12 +330,12 @@ public class PlantillaCita extends javax.swing.JFrame {
                 .addGroup(panelFechaCitaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblAnio)
                     .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
-                .addGroup(panelFechaCitaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblHora)
-                    .addComponent(comboHora, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(26, 26, 26))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
+                .addComponent(btnAgendar)
+                .addGap(25, 25, 25))
         );
+
+        btnAgendar.setBackground(Color.WHITE);
 
         panelDetallesCIta.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2), "Detalles de la Cita", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 18))); // NOI18N
         panelDetallesCIta.setOpaque(false);
@@ -267,7 +355,6 @@ public class PlantillaCita extends javax.swing.JFrame {
         lblReferencia.setFont(new java.awt.Font("Agency FB", 1, 24)); // NOI18N
         lblReferencia.setText("Número de referencia");
 
-        jTextField2.setEditable(false);
         jTextField2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jTextField2.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         jTextField2.addActionListener(new java.awt.event.ActionListener() {
@@ -294,7 +381,7 @@ public class PlantillaCita extends javax.swing.JFrame {
                     .addGroup(panelDetallesCItaLayout.createSequentialGroup()
                         .addComponent(lblReferencia)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jTextField2)))
                 .addGap(21, 21, 21))
         );
         panelDetallesCItaLayout.setVerticalGroup(
@@ -308,17 +395,12 @@ public class PlantillaCita extends javax.swing.JFrame {
                 .addGroup(panelDetallesCItaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(lblConsultorio)
                     .addComponent(comboConsultorio, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 73, Short.MAX_VALUE)
                 .addGroup(panelDetallesCItaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblReferencia)
                     .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(26, 26, 26))
         );
-
-        btnAgendar.setFont(new java.awt.Font("Agency FB", 1, 36)); // NOI18N
-        btnAgendar.setText("Agendar cita");
-        btnAgendar.setFocusPainted(false);
-        btnAgendar.setRequestFocusEnabled(false);
 
         btnRegresar.setFont(new java.awt.Font("Agency FB", 1, 36)); // NOI18N
         btnRegresar.setText("Regresar");
@@ -327,6 +409,11 @@ public class PlantillaCita extends javax.swing.JFrame {
 
         separador.setForeground(new java.awt.Color(0, 0, 0));
         separador.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+        btnAgendar1.setFont(new java.awt.Font("Agency FB", 1, 36)); // NOI18N
+        btnAgendar1.setText("Agendar cita");
+        btnAgendar1.setFocusPainted(false);
+        btnAgendar1.setRequestFocusEnabled(false);
 
         javax.swing.GroupLayout panelPpalLayout = new javax.swing.GroupLayout(panelPpal);
         panelPpal.setLayout(panelPpalLayout);
@@ -339,8 +426,8 @@ public class PlantillaCita extends javax.swing.JFrame {
                         .addGroup(panelPpalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(panelPpalLayout.createSequentialGroup()
                                 .addComponent(btnRegresar)
-                                .addGap(164, 164, 164)
-                                .addComponent(btnAgendar))
+                                .addGap(169, 169, 169)
+                                .addComponent(btnAgendar1))
                             .addGroup(panelPpalLayout.createSequentialGroup()
                                 .addGroup(panelPpalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(panelDatosAfiliado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -352,7 +439,7 @@ public class PlantillaCita extends javax.swing.JFrame {
                     .addGroup(panelPpalLayout.createSequentialGroup()
                         .addGap(255, 255, 255)
                         .addComponent(lblTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 331, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(30, Short.MAX_VALUE))
+                .addContainerGap(18, Short.MAX_VALUE))
             .addGroup(panelPpalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(panelPpalLayout.createSequentialGroup()
                     .addGap(27, 27, 27)
@@ -372,11 +459,11 @@ public class PlantillaCita extends javax.swing.JFrame {
                 .addGroup(panelPpalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(panelFechaCita, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(panelDetallesCIta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(28, 28, 28)
+                .addGap(18, 18, 18)
                 .addGroup(panelPpalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnAgendar)
+                    .addComponent(btnAgendar1)
                     .addComponent(btnRegresar))
-                .addContainerGap(42, Short.MAX_VALUE))
+                .addContainerGap(33, Short.MAX_VALUE))
             .addGroup(panelPpalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelPpalLayout.createSequentialGroup()
                     .addContainerGap(635, Short.MAX_VALUE)
@@ -384,18 +471,24 @@ public class PlantillaCita extends javax.swing.JFrame {
                     .addGap(18, 18, 18)))
         );
 
-        btnAgendar.setBackground(Color.WHITE);
         btnRegresar.setBackground(Color.WHITE);
+        btnAgendar.setBackground(Color.WHITE);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panelPpal, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(panelPpal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panelPpal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(panelPpal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         pack();
@@ -429,16 +522,19 @@ public class PlantillaCita extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField7ActionPerformed
 
+    private void btnAgendarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgendarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnAgendarActionPerformed
+
     /**
      * @param args the command line arguments
      */
-    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgendar;
+    private javax.swing.JButton btnAgendar1;
     private javax.swing.JButton btnRegresar;
     private javax.swing.JComboBox<String> comboConsultorio;
-    private javax.swing.JComboBox<String> comboHora;
     private javax.swing.JComboBox<String> comboMedico;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
@@ -451,7 +547,6 @@ public class PlantillaCita extends javax.swing.JFrame {
     private javax.swing.JLabel lblCedula;
     private javax.swing.JLabel lblConsultorio;
     private javax.swing.JLabel lblDia;
-    private javax.swing.JLabel lblHora;
     private javax.swing.JLabel lblMedico;
     private javax.swing.JLabel lblMes;
     private javax.swing.JLabel lblNombre;
