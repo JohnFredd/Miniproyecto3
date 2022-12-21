@@ -156,7 +156,6 @@ public class GestorGestionServicio {
     
     private void irAgregarAfiliado(){
         PlantillaAfiliado ventanaAgregarAfiliado = new PlantillaAfiliado("Agregar afiliado", "Agregar", almacenamiento, 0);
-        System.out.println("Se creó");
         vistaGestionServicio.dispose();
     }
     
@@ -188,13 +187,15 @@ public class GestorGestionServicio {
                     String cedulaABuscar;
                     try {
                         cedulaABuscar = (String) JOptionPane.showInputDialog(vistaGestionServicio, "<html><p style = \" font:12px; \">Ingrese la cédula del médico a actualizar</p></html>", "Actualizar médico", JOptionPane.DEFAULT_OPTION);
-                        if(cedulaABuscar.equals("12345")){
-                            irActualizarMedico();
-
-                        } else if (cedulaABuscar.isBlank()){
-                            JOptionPane.showMessageDialog(vistaGestionServicio, "<html><p style = \" font:12px; \">Por favor ingrese una cédula</p></html>", "Cédula inválida", JOptionPane.OK_OPTION, UIManager.getIcon("OptionPane.errorIcon"));
-                        } else if(!cedulaABuscar.equals("12345")){
-                            JOptionPane.showMessageDialog(vistaGestionServicio, "<html><p style = \" font:12px; \">No se encontró ningún médico registrado con esa cédula</p></html>", "Médico no encontrado", JOptionPane.OK_OPTION, UIManager.getIcon("OptionPane.errorIcon"));
+                        if (cedulaABuscar.isBlank()){
+                            JOptionPane.showMessageDialog(vistaGestionServicio, "<html><p style = \" font:12px; \">Por favor ingrese una cédula</p></html>", "Error", JOptionPane.OK_OPTION, UIManager.getIcon("OptionPane.errorIcon"));
+                        } else {
+                            long cedula = Long.parseLong(cedulaABuscar);
+                            if(almacenamiento.getMedicos().containsKey(cedula)){
+                                irActualizarMedico(cedula);
+                            } else {
+                                JOptionPane.showMessageDialog(vistaGestionServicio, "<html><p style = \" font:12px; \">No se encontró ningún médico registrado con esa cédula</p></html>", "Afiliado no encontrado", JOptionPane.OK_OPTION, UIManager.getIcon("OptionPane.errorIcon"));
+                            }
                         }
                     } catch(NullPointerException np){
                         JOptionPane.showMessageDialog(vistaGestionServicio, "<html><p style = \" font:12px; \">No se ingresó ninguna cédula</p></html>", "Aviso", JOptionPane.OK_OPTION, UIManager.getIcon("OptionPane.informationIcon"));
@@ -206,13 +207,15 @@ public class GestorGestionServicio {
                 case "Eliminar" -> {
                     String cedulaABuscar = (String) JOptionPane.showInputDialog(vistaGestionServicio, "Ingrese la cédula del médico a eliminar", "Eliminar médico", JOptionPane.DEFAULT_OPTION);
                     try {
-                        if(cedulaABuscar.equals("12345")){
-                            irEliminarMedico();
-
-                        } else if(cedulaABuscar.isBlank()){
-                            JOptionPane.showMessageDialog(vistaGestionServicio, "<html><p style = \" font:12px; \">Por favor ingrese una cédula</p></html>", "Médico no encontrado", JOptionPane.OK_OPTION, UIManager.getIcon("OptionPane.errorIcon"));
-                        } else if(!cedulaABuscar.equals("12345")){
-                            JOptionPane.showMessageDialog(vistaGestionServicio, "<html><p style = \" font:12px; \">No se encontró ningún médico registrado con esa cédula</p></html>", "Médico no encontrado", JOptionPane.OK_OPTION, UIManager.getIcon("OptionPane.errorIcon"));
+                        if (cedulaABuscar.isBlank()){
+                            JOptionPane.showMessageDialog(vistaGestionServicio, "<html><p style = \" font:12px; \">Por favor ingrese una cédula</p></html>", "Error", JOptionPane.OK_OPTION, UIManager.getIcon("OptionPane.errorIcon"));
+                        } else {
+                            long cedula = Long.parseLong(cedulaABuscar);
+                            if(almacenamiento.getMedicos().containsKey(cedula)){
+                                irEliminarMedico(cedula);
+                            } else {
+                                JOptionPane.showMessageDialog(vistaGestionServicio, "<html><p style = \" font:12px; \">No se encontró ningún médico registrado con esa cédula</p></html>", "Afiliado no encontrado", JOptionPane.OK_OPTION, UIManager.getIcon("OptionPane.errorIcon"));
+                            }
                         }
                     } catch(NullPointerException np){
                         JOptionPane.showMessageDialog(vistaGestionServicio, "<html><p style = \" font:12px; \">No se ingresó ninguna cédula</p></html>", "Aviso", JOptionPane.OK_OPTION, UIManager.getIcon("OptionPane.informationIcon"));
@@ -224,19 +227,19 @@ public class GestorGestionServicio {
         }
     }
     private void irAgregarMedico(){
-        PlantillaMedico ventanaAgregarMedico = new PlantillaMedico("Agregar médico", "Agregar", almacenamiento);
+        PlantillaMedico ventanaAgregarMedico = new PlantillaMedico("Agregar médico", "Agregar", almacenamiento, 0);
         vistaGestionServicio.dispose();
     }
-    private void irActualizarMedico() {
-        PlantillaMedico ventanaAgregarMedico = new PlantillaMedico("Actualizar médico", "Actualizar", almacenamiento);
+    private void irActualizarMedico(long cedula) {
+        PlantillaMedico ventanaAgregarMedico = new PlantillaMedico("Actualizar médico", "Actualizar", almacenamiento, cedula);
         vistaGestionServicio.dispose();
     }
     private void irListarMedico(){
         ListarMedico ventanaListaMedico = new ListarMedico("Lista de médicos", almacenamiento);
         vistaGestionServicio.dispose();
     }
-    private void irEliminarMedico() {
-        PlantillaMedico ventanaAgregarMedico = new PlantillaMedico("Eliminar médico", "Eliminar", almacenamiento);
+    private void irEliminarMedico(long cedula) {
+        PlantillaMedico ventanaAgregarMedico = new PlantillaMedico("Eliminar médico", "Eliminar", almacenamiento, cedula);
         vistaGestionServicio.dispose();
     }
     
@@ -324,7 +327,7 @@ public class GestorGestionServicio {
             
             //Simulación de conversión de datos de un ArrayList a Array String, para ponerlo en el comboBox ;)
             ArrayList<String> servicios = new ArrayList();
-            servicios.add("Odontología");
+            //servicios.add("Odontología");
             servicios.add("Psiquiatría");
             servicios.add("Calvo");
 
@@ -378,7 +381,6 @@ public class GestorGestionServicio {
     }
     private void irAgregarServicio(){
         PlantillaServicio ventanaAgregarServicio = new PlantillaServicio("Agregar servicio", "Agregar", almacenamiento);
-        ventanaAgregarServicio.setVisible(true);
         vistaGestionServicio.dispose();
     }
     private void irActualizarServicio() {

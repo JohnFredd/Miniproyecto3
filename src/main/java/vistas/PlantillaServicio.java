@@ -171,6 +171,10 @@ public class PlantillaServicio extends javax.swing.JFrame {
     public void addBtnRegresarListener(MouseListener listenerBotones){
         btnRegresar.addMouseListener(listenerBotones);
     }
+    
+    public void addBtnAgregarListener(MouseListener listenerBotones){
+        btnAgregar.addMouseListener(listenerBotones);
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregar;
