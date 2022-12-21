@@ -33,9 +33,9 @@ public class GestorPlantillaAfiliado {
     private Almacenamiento almacenamiento;
     private Afiliado modeloAfiliado;
     private String opcion;
-    private long cedula;
+    private long cedulaAnterior;
     
-    public GestorPlantillaAfiliado(PlantillaAfiliado vistaPlantillaAfiliado, String opcion, Almacenamiento almacenamiento, long cedula) {
+    public GestorPlantillaAfiliado(PlantillaAfiliado vistaPlantillaAfiliado, String opcion, Almacenamiento almacenamiento, long cedulaAnterior) {
         this.vistaPlantillaAfiliado = vistaPlantillaAfiliado;
         this.opcion = opcion;
         this.almacenamiento = almacenamiento;
@@ -45,7 +45,7 @@ public class GestorPlantillaAfiliado {
         verificarNumero(vistaPlantillaAfiliado.getTxtTelefono());
         this.vistaPlantillaAfiliado.addBtnAgregarListener(new ManejadoraDeMouse());
         this.vistaPlantillaAfiliado.addBtnRegresarListener(new ManejadoraDeMouse());
-        this.cedula = cedula;
+        this.cedulaAnterior = cedulaAnterior;
     }
     public void modificarPlantilla(){
         
@@ -157,24 +157,12 @@ public class GestorPlantillaAfiliado {
         afiliado.setEdad(edad);
         afiliado.setTelefono(telefono);
         try {
-            if (almacenamiento.anadirAfiliado(afiliado)){
-                JOptionPane.showMessageDialog(null, "Afiliado agregado con éxito", "Resultado de agregar", JOptionPane.INFORMATION_MESSAGE);
-                irGestionServicioGUI();
-            } else {
-                JOptionPane.showMessageDialog(null, "Ya existe un afiliado con ese número de cédula", "Resultado de agregar", JOptionPane.ERROR_MESSAGE);
-            }
+            almacenamiento.modificarAfiliado(cedulaAnterior, afiliado);
+            JOptionPane.showMessageDialog(null, "Afiliado modificado con éxito", "Resultado de modificar", JOptionPane.INFORMATION_MESSAGE);
+            irGestionServicioGUI();
         } catch(IOException e){
             JOptionPane.showMessageDialog(null, "Error: " + e, "Error", JOptionPane.ERROR_MESSAGE);
         }
-        
-        /*afiliado.setNombre("");
-        afiliado.setSexo("");
-        afiliado.setDireccion("");
-        afiliado.setEmail("");
-        afiliado.setCedula(0);
-        afiliado.setEdad(0);
-        afiliado.setTelefono(0);
-        System.out.println(afiliado.toString());*/
     }
 
     private void irGestionServicioGUI() {
