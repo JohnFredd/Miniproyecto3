@@ -34,15 +34,15 @@ public class GestorPlantillaAfiliado {
     private final Almacenamiento almacenamiento;
     private final String opcion;
     private final long cedula;
-    private long cedulaAnterior;
+    //private long cedulaAnterior;
 
     
-    public GestorPlantillaAfiliado(PlantillaAfiliado vistaPlantillaAfiliado, String opcion, Almacenamiento almacenamiento, long cedulaAnterior) {
+    public GestorPlantillaAfiliado(PlantillaAfiliado vistaPlantillaAfiliado, String opcion, Almacenamiento almacenamiento, long cedula) {
         this.vistaPlantillaAfiliado = vistaPlantillaAfiliado;
         this.opcion = opcion;
         this.almacenamiento = almacenamiento;
-        this.cedulaAnterior = cedulaAnterior;
-        //this.cedula = cedula;
+        //this.cedulaAnterior = cedulaAnterior;
+        this.cedula = cedula;
         modificarPlantilla();
         verificarNumero(vistaPlantillaAfiliado.getTxtCedula());
         verificarNumero(vistaPlantillaAfiliado.getTxtEdad());
@@ -114,7 +114,7 @@ public class GestorPlantillaAfiliado {
                 }
             }
             
-            if (e.getSource() == vistaPlantillaAfiliado.getBtnAgregar() && "Actualizar".equals(opcion)){
+            if (e.getSource() == vistaPlantillaAfiliado.getBtnAgregar() && "Eliminar".equals(opcion)){
                 if (e.getButton() == 1){
                     eliminarAfiliado();
                 }
@@ -186,7 +186,7 @@ public class GestorPlantillaAfiliado {
         afiliado.setEdad(edad);
         afiliado.setTelefono(telefono);
         try {
-            almacenamiento.modificarAfiliado(cedulaAnterior, afiliado);
+            almacenamiento.modificarAfiliado(cedula, afiliado);
             JOptionPane.showMessageDialog(null, "Afiliado modificado con éxito", "Resultado de modificar", JOptionPane.INFORMATION_MESSAGE);
             irGestionServicioGUI();
         } catch(IOException e){
