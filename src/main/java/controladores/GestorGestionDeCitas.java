@@ -27,11 +27,12 @@ public class GestorGestionDeCitas {
     
     private final GestionDeCitas vistaGestionCitas;
     private final Almacenamiento almacenamiento;
+   
 
-    public GestorGestionDeCitas(GestionDeCitas vistaGestionCitas,Almacenamiento almacenamiento) {
+    public GestorGestionDeCitas(GestionDeCitas vistaGestionCitas, Almacenamiento almacenamiento) {
        
         this.almacenamiento = almacenamiento;
-        
+ 
         //Vista
         this.vistaGestionCitas = vistaGestionCitas;
         
@@ -61,20 +62,16 @@ public class GestorGestionDeCitas {
           }
           if (e.getSource() == vistaGestionCitas.getBtnAgendar()){
               if (e.getButton() == 1){
-                  irPlantillaCita();
+                  irAgendarCita();
               }
           }
           if (e.getSource() == vistaGestionCitas.getBtnModificar()){
-              if (e.getButton() == 1){
-                  vistaGestionCitas.getLblTitulo().setText("Modificar Cita");
-                  vistaGestionCitas.getBtnAgendar().setText("Modificar Cita");
+              if (e.getButton() == 1){                  
                   elegirCitaAModificar();
               }
           }
          if (e.getSource() == vistaGestionCitas.getBtnEliminar()){
-              if (e.getButton() == 1){
-                  vistaGestionCitas.getLblTitulo().setText("Eliminar Cita");
-                  vistaGestionCitas.getBtnAgendar().setText("Eliminar Cita");
+              if (e.getButton() == 1){  
                   elegirCitaAEliminar();
               }
           }
@@ -92,20 +89,28 @@ public class GestorGestionDeCitas {
     }
     
     public void irAgendarCita(){
-        PlantillaCita ventanaplantillaCita = new PlantillaCita("Agendar Citas", almacenamiento);
+        
+        PlantillaCita ventanaplantillaCita = new PlantillaCita("Agendar Citas","Agendar", almacenamiento);
         vistaGestionCitas.dispose();
     }
-    public void irPlantillaCita(){
-        PlantillaCita ventanaplantillaCita = new PlantillaCita("Agendar Citas", almacenamiento);
+    public void irModificarCita(){
+        
+        PlantillaCita ventanaplantillaCita = new PlantillaCita("Agendar Citas","Modificar", almacenamiento);
         vistaGestionCitas.dispose();
     }
-      
+    
+     public void irEliminarCita(){
+        
+        PlantillaCita ventanaplantillaCita = new PlantillaCita("Agendar Citas","Eliminar", almacenamiento);
+        vistaGestionCitas.dispose();
+    }
+     
     public void elegirCitaAModificar(){
         String NumRefABuscar;
                     try {
                         NumRefABuscar = (String) JOptionPane.showInputDialog(vistaGestionCitas, "<html><p style = \" font:12px; \">Ingrese el numero de referencia de la cita a modificar</p></html>", "Modificar cita", JOptionPane.DEFAULT_OPTION);
                         if(NumRefABuscar.equals("12345")){
-                            irPlantillaCita();
+                            irModificarCita();
 
                         } else if (NumRefABuscar.isBlank()){
                             JOptionPane.showMessageDialog(vistaGestionCitas, "<html><p style = \" font:12px; \">Por favor ingrese un numero de referencia</p></html>", "Error", JOptionPane.OK_OPTION, UIManager.getIcon("OptionPane.errorIcon"));
@@ -121,7 +126,7 @@ public class GestorGestionDeCitas {
         try {
             NumRefABuscar = (String) JOptionPane.showInputDialog(vistaGestionCitas, "<html><p style = \" font:12px; \">Ingrese el numero de referencia de la cita a eliminar</p></html>", "Modificar cita", JOptionPane.DEFAULT_OPTION);
             if(NumRefABuscar.equals("12345")){
-                irPlantillaCita();
+                irEliminarCita();
 
             } else if (NumRefABuscar.isBlank()){
                 JOptionPane.showMessageDialog(vistaGestionCitas, "<html><p style = \" font:12px; \">Por favor ingrese un numero de referencia de cita</p></html>", "Error", JOptionPane.OK_OPTION, UIManager.getIcon("OptionPane.errorIcon"));
