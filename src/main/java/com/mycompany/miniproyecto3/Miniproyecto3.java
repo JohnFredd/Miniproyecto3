@@ -24,7 +24,7 @@ public class Miniproyecto3 {
         {
             Almacenamiento almacenamiento = new Almacenamiento();
             PpalGUI ventanaPpal = new PpalGUI("Servicio de salud - Universidad del Valle", almacenamiento);
-        } catch (Exception e) {
+        }catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Error: " + e, "Error", JOptionPane.ERROR_MESSAGE);
         }
         
