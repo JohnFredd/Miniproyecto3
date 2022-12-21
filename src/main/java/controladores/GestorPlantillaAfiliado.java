@@ -179,7 +179,7 @@ public class GestorPlantillaAfiliado {
     private void actualizarAfiliado() {
         
         //Obteniendo los datos
-        long cedula = Long.parseLong(vistaPlantillaAfiliado.getTxtCedula().getText());
+        long cedulaNueva = Long.parseLong(vistaPlantillaAfiliado.getTxtCedula().getText());
         String nombre = vistaPlantillaAfiliado.getTxtNombre().getText();
         int edad = Integer.parseInt(vistaPlantillaAfiliado.getTxtEdad().getText());
         String direccion = vistaPlantillaAfiliado.getTxtDireccion().getText();
@@ -187,12 +187,12 @@ public class GestorPlantillaAfiliado {
         long telefono = Long.parseLong(vistaPlantillaAfiliado.getTxtTelefono().getText());
         String sexo = (String)vistaPlantillaAfiliado.getComboSexo().getSelectedItem();
         
-        Afiliado afiliado = new Afiliado(nombre, sexo, direccion, correo, cedula, edad, telefono);
+        Afiliado afiliado = new Afiliado(nombre, sexo, direccion, correo, cedulaNueva, edad, telefono);
         afiliado.setNombre(nombre);
         afiliado.setSexo(sexo);
         afiliado.setDireccion(direccion);
         afiliado.setEmail(correo);
-        afiliado.setCedula(cedula);
+        afiliado.setCedula(cedulaNueva);
         afiliado.setEdad(edad);
         afiliado.setTelefono(telefono);
         try {

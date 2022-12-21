@@ -15,6 +15,7 @@ public class GestorListarAfiliado {
     public GestorListarAfiliado(ListarAfiliado ventanaListarAfiliado, Almacenamiento almacenamiento) {
         this.ventanaListarAfiliado = ventanaListarAfiliado;
         this.almacenamiento = almacenamiento;
+        insertarAfiliados();
         this.ventanaListarAfiliado.addBtnRegresarListener(new ManejadoraDeMouse());
     }
     class ManejadoraDeMouse extends MouseAdapter{
@@ -36,7 +37,7 @@ public class GestorListarAfiliado {
         ventanaListarAfiliado.dispose();
     }
     public void insertarAfiliados() {
-        
+         
     }
    
 }
