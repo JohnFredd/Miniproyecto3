@@ -186,14 +186,18 @@ public class Almacenamiento {
         }
     }
     
-    public void anadirMedico(Medico medico) throws IOException {
-        medicos.put(medico.getCedula(), medico);
-        try
-        {
-            hacerBackUp();
-        } catch (IOException e) {
-            throw e;
+    public boolean anadirMedico(Medico medico) throws IOException {
+        if (!medicos.containsKey(medico.getCedula())) {
+            medicos.put(medico.getCedula(), medico);
+            try
+            {
+                hacerBackUp();
+                return true;
+            } catch (IOException e) {
+                throw e;
+            }
         }
+        return false;
     }
     
     public void modificarMedico(long cedulaAnterior, Medico medico) throws IOException {

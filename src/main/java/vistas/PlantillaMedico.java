@@ -31,11 +31,11 @@ public class PlantillaMedico extends javax.swing.JFrame {
     ImagenFondo fondo = new ImagenFondo();
     private DefaultListModel modeloLista = new DefaultListModel();
     
-    public PlantillaMedico(String titulo, String opcion, Almacenamiento almacenamiento) {
+    public PlantillaMedico(String titulo, String opcion, Almacenamiento almacenamiento, long cedula) {
         this.setContentPane(fondo);
         agregarEspecialidades();
         initComponents();
-        GestorPlantillaMedico gestorMedico = new GestorPlantillaMedico(this, opcion, almacenamiento);
+        GestorPlantillaMedico gestorMedico = new GestorPlantillaMedico(this, opcion, almacenamiento, cedula);
         setVisible(true);
         setTitle(titulo);
         setLocationRelativeTo(null);
@@ -366,6 +366,18 @@ public class PlantillaMedico extends javax.swing.JFrame {
     }
     public void addBtnRegresarListener(MouseListener listenerBotones){
         btnRegresar.addMouseListener(listenerBotones);
+    }
+    
+    public void addBtnAgregarListener(MouseListener listenerBotones){
+        btnAgregar.addMouseListener(listenerBotones);
+    }
+
+    public DefaultListModel getModeloLista() {
+        return modeloLista;
+    }
+
+    public void setModeloLista(DefaultListModel modeloLista) {
+        this.modeloLista = modeloLista;
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
