@@ -29,6 +29,7 @@ public class GestionDeCitas extends javax.swing.JFrame {
     ImagenFondo fondo = new ImagenFondo();
     
     public GestionDeCitas(String titulo, Almacenamiento almacenamiento) {
+        
         this.setContentPane(fondo);
         initComponents();
         GestorGestionDeCitas gestorGestionCitas = new GestorGestionDeCitas(this, almacenamiento);

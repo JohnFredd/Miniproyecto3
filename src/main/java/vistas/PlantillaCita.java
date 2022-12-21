@@ -28,10 +28,10 @@ public class PlantillaCita extends javax.swing.JFrame {
 
     ImagenFondo fondo = new ImagenFondo();
     
-    public PlantillaCita(String titulo, Almacenamiento almacenamiento) {
+    public PlantillaCita(String titulo,String opcion, Almacenamiento almacenamiento) {
         this.setContentPane(fondo);
         initComponents();
-        GestorPlantillaCita gestorCita = new GestorPlantillaCita(this, almacenamiento);
+        GestorPlantillaCita gestorCita = new GestorPlantillaCita(this, opcion,almacenamiento);
         setVisible(true);
         setTitle(titulo);
         setLocationRelativeTo(null);
@@ -60,25 +60,25 @@ public class PlantillaCita extends javax.swing.JFrame {
     public void setLblCedula(JLabel lblCedula) {
         this.lblCedula = lblCedula;
     }    
-    public JLabel lblServicio() {
+    public JLabel getlblServicio() {
         return lblServicio;
     }
     public void setLblServicio(JLabel lblServicio) {
         this.lblServicio = lblServicio;
     }   
-    public JLabel lblDia() {
+    public JLabel getlblDia() {
         return lblServicio;
     }
     public void setLblDia(JLabel lblDia) {
         this.lblDia = lblDia;
     }    
-    public JLabel lblMes() {
+    public JLabel getlblMes() {
         return lblServicio;
     }
     public void setLblMes(JLabel lblMes) {
         this.lblMes = lblMes;
     }   
-    public JLabel lblAnio() {
+    public JLabel getlblAnio() {
         return lblAnio;
     }
     public void setLblAño(JLabel lblAnio) {
@@ -102,16 +102,17 @@ public class PlantillaCita extends javax.swing.JFrame {
     public void addBtnAgendarListener(MouseListener listenerBotones){
         btnAgendar.addMouseListener(listenerBotones);
     }
-    public JButton getBtnAgendar1() {
-        return btnAgendar1;
+    public JButton getBtnVerificar() {
+        return btnVerificar;
     }
-    public void setBtnAgendar1(JButton btnAgendar1) {
-        this.btnAgendar1 = btnAgendar1;
+    public void setBtnVerificar(JButton btnVerificar) {
+        this.btnVerificar = btnVerificar;
     }
-    public void addBtnAgendar1Listener(MouseListener listenerBotones){
-        btnAgendar1.addMouseListener(listenerBotones);
+    public void addBtnVerificarListener(MouseListener listenerBotones){
+        btnVerificar.addMouseListener(listenerBotones);
     }
-    public JComboBox<String> comboMedico() {
+    
+    public JComboBox<String> getcomboMedico() {
         return comboMedico;
     }
 
@@ -139,7 +140,7 @@ public class PlantillaCita extends javax.swing.JFrame {
         jTextField3 = new javax.swing.JTextField();
         jTextField4 = new javax.swing.JTextField();
         jTextField5 = new javax.swing.JTextField();
-        btnAgendar = new javax.swing.JButton();
+        btnVerificar = new javax.swing.JButton();
         panelDetallesCIta = new javax.swing.JPanel();
         lblMedico = new javax.swing.JLabel();
         lblConsultorio = new javax.swing.JLabel();
@@ -149,7 +150,7 @@ public class PlantillaCita extends javax.swing.JFrame {
         jTextField2 = new javax.swing.JTextField();
         btnRegresar = new javax.swing.JButton();
         separador = new javax.swing.JSeparator();
-        btnAgendar1 = new javax.swing.JButton();
+        btnAgendar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -284,13 +285,13 @@ public class PlantillaCita extends javax.swing.JFrame {
             }
         });
 
-        btnAgendar.setFont(new java.awt.Font("Agency FB", 1, 24)); // NOI18N
-        btnAgendar.setText("Comprobar Disponibilidad");
-        btnAgendar.setFocusPainted(false);
-        btnAgendar.setRequestFocusEnabled(false);
-        btnAgendar.addActionListener(new java.awt.event.ActionListener() {
+        btnVerificar.setFont(new java.awt.Font("Agency FB", 1, 24)); // NOI18N
+        btnVerificar.setText("Comprobar Disponibilidad");
+        btnVerificar.setFocusPainted(false);
+        btnVerificar.setRequestFocusEnabled(false);
+        btnVerificar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAgendarActionPerformed(evt);
+                btnVerificarActionPerformed(evt);
             }
         });
 
@@ -316,7 +317,7 @@ public class PlantillaCita extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelFechaCitaLayout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(btnAgendar)
+                .addComponent(btnVerificar)
                 .addGap(69, 69, 69))
         );
         panelFechaCitaLayout.setVerticalGroup(
@@ -335,11 +336,11 @@ public class PlantillaCita extends javax.swing.JFrame {
                     .addComponent(lblAnio)
                     .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
-                .addComponent(btnAgendar)
+                .addComponent(btnVerificar)
                 .addGap(25, 25, 25))
         );
 
-        btnAgendar.setBackground(Color.WHITE);
+        btnVerificar.setBackground(Color.WHITE);
 
         panelDetallesCIta.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2), "Detalles de la Cita", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 18))); // NOI18N
         panelDetallesCIta.setOpaque(false);
@@ -414,10 +415,10 @@ public class PlantillaCita extends javax.swing.JFrame {
         separador.setForeground(new java.awt.Color(0, 0, 0));
         separador.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        btnAgendar1.setFont(new java.awt.Font("Agency FB", 1, 36)); // NOI18N
-        btnAgendar1.setText("Agendar cita");
-        btnAgendar1.setFocusPainted(false);
-        btnAgendar1.setRequestFocusEnabled(false);
+        btnAgendar.setFont(new java.awt.Font("Agency FB", 1, 36)); // NOI18N
+        btnAgendar.setText("Agendar cita");
+        btnAgendar.setFocusPainted(false);
+        btnAgendar.setRequestFocusEnabled(false);
 
         javax.swing.GroupLayout panelPpalLayout = new javax.swing.GroupLayout(panelPpal);
         panelPpal.setLayout(panelPpalLayout);
@@ -431,7 +432,7 @@ public class PlantillaCita extends javax.swing.JFrame {
                             .addGroup(panelPpalLayout.createSequentialGroup()
                                 .addComponent(btnRegresar)
                                 .addGap(169, 169, 169)
-                                .addComponent(btnAgendar1))
+                                .addComponent(btnAgendar))
                             .addGroup(panelPpalLayout.createSequentialGroup()
                                 .addGroup(panelPpalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(panelDatosAfiliado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -465,7 +466,7 @@ public class PlantillaCita extends javax.swing.JFrame {
                     .addComponent(panelDetallesCIta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addGroup(panelPpalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnAgendar1)
+                    .addComponent(btnAgendar)
                     .addComponent(btnRegresar))
                 .addContainerGap(33, Short.MAX_VALUE))
             .addGroup(panelPpalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -476,7 +477,7 @@ public class PlantillaCita extends javax.swing.JFrame {
         );
 
         btnRegresar.setBackground(Color.WHITE);
-        btnAgendar.setBackground(Color.WHITE);
+        btnVerificar.setBackground(Color.WHITE);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -526,9 +527,9 @@ public class PlantillaCita extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField7ActionPerformed
 
-    private void btnAgendarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgendarActionPerformed
+    private void btnVerificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerificarActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnAgendarActionPerformed
+    }//GEN-LAST:event_btnVerificarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -536,8 +537,8 @@ public class PlantillaCita extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgendar;
-    private javax.swing.JButton btnAgendar1;
     private javax.swing.JButton btnRegresar;
+    private javax.swing.JButton btnVerificar;
     private javax.swing.JComboBox<String> comboConsultorio;
     private javax.swing.JComboBox<String> comboMedico;
     private javax.swing.JTextField jTextField1;

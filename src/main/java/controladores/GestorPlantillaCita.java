@@ -17,99 +17,115 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.List;
-import modelos.Afiliado;
 import modelos.Almacenamiento;
 import modelos.Cita;
-import vistas.GestionServicioGUI;
-import vistas.PlantillaAfiliado;
+import controladores.GestorGestionDeCitas;
+import vistas.GestionDeCitas;
 import vistas.PlantillaCita;
 
 public class GestorPlantillaCita {
     
     PlantillaCita vistaPlantillaCita;
     Almacenamiento almacenamiento;
-    Cita cita;
-    private String opcion;
+    //Cita cita;
+    private final String opcion;
     
-    public GestorPlantillaCita(PlantillaCita vistaPlantillaCita, Almacenamiento almacenamiento) {
-        this.vistaPlantillaCita = vistaPlantillaCita;
-        this.opcion = opcion;
+    public GestorPlantillaCita(PlantillaCita vistaPlantillaCita, String opcion, Almacenamiento almacenamiento) {
         this.almacenamiento = almacenamiento;
-        //modificarPlantilla();
-        //this.vistaPlantillaCita.addBtnRegresarListener(new ManejadoraDeMouse());
-    }
-    /*public void modificarPlantilla(){
+        this.opcion = opcion;
         
-        switch(opcion){
-            case "Actualizar" -> {
-                plantillaActualizarCita();
+        //vista
+        this.vistaPlantillaCita = vistaPlantillaCita;
+        modificarPlantilla();
+        //Añadiendo Listeners
+        this.vistaPlantillaCita.addBtnRegresarListener(new ManejadoraDeMouse());
+        this.vistaPlantillaCita.addBtnAgendarListener(new ManejadoraDeMouse());
+        this.vistaPlantillaCita.addBtnVerificarListener(new ManejadoraDeMouse());
+    }
+    
+    public void modificarPlantilla(){
+        switch (opcion) {
+        
+            case "Modificar" -> {
+                plantillaModificarCita();
             }
+            
             case "Eliminar" -> {
                 plantillaEliminarCita();
             }
-        }
-    }*/
-/*
-    public void plantillaActualizarCita(){
+    }
+    }
+    public void plantillaModificarCita(){
         //Modificando título y botones
-        vistaPlantillaCita.getLblTitulo().setText("Actualizar afiliado");
-        vistaPlantillaCita.getBtnAgregar().setText("Actualizar afiliado");
+        vistaPlantillaCita.getLblTitulo().setText("Modificar Cita");
+        vistaPlantillaCita.getBtnAgendar().setText("Modificar Cita");
     }
     
     public void plantillaEliminarCita(){
         //Modificando título y botones
-        vistaPlantillaCita.getLblTitulo().setText("Eliminar afiliado");
-        vistaPlantillaCita.getBtnAgregar().setText("Eliminar afiliado");
+        vistaPlantillaCita.getLblTitulo().setText("Eliminar Cita");
+        vistaPlantillaCita.getBtnAgendar().setText("Eliminar Cita");
         
-        //Desabilitando campos de texto
-        vistaPlantillaCita.getTxtCedula();
-        vistaPlantillaCita.getTxtNombre();
-        vistaPlantillaCita.getTxtEdad();
-        vistaPlantillaCita.getTxtDireccion();
-        vistaPlantillaCita.getTxtCorreo();
-        vistaPlantillaCita.getTxtTelefono();
-        vistaPlantillaCita.getComboSexo().setEnabled(false);
-    }*/
-    /*
+        
+/*//Desabilitando campos de texto
+        vistaPlantillaCita.getLblCedula().setEnabled(false);
+        vistaPlantillaCita.getLblNombre().setEnabled(false);
+        vistaPlantillaCita.getlblDia().setEnabled(false);
+        vistaPlantillaCita.getlblMes().setEnabled(false);
+        vistaPlantillaCita.getlblAnio().setEnabled(false);
+        vistaPlantillaCita.getlblServicio().setEnabled(false);
+    */    
+    }
+    
     class ManejadoraDeMouse extends MouseAdapter{
         
         @Override
         public void mouseClicked(MouseEvent e){
             
-            if (e.getSource() == vistaPlantillaCita.getBtnAgregar()){
+            if (e.getSource() == vistaPlantillaCita.getBtnAgendar()&& "Modificar".equals(opcion)){
                 if (e.getButton() == 1){
-                    agregarAfiliado();
+                    plantillaModificarCita();
                 }
             }
+            if (e.getSource() == vistaPlantillaCita.getBtnAgendar()&& "Eliminar".equals(opcion)){
+                if (e.getButton() == 1){
+                    plantillaEliminarCita();
+                }
+            }
+            /*if (e.getSource() == vistaGestionCitas.getBtnAgendar()&& "Agendar".equals(opcion)){
+                if (e.getButton() == 1){
+                    agendarCita();
+                }
+            }*/
 
             if (e.getSource() == vistaPlantillaCita.getBtnRegresar()){
                 if (e.getButton() == 1){
-                    irGestionServicioGUI();  
+                    irGestionCitasGUI();  
                 }
             }
         }
     }
-    */
-    private void agregarAfiliado() {
-        /*
-        //Obteniendo los datos
-        int cedula = Integer.parseInt(vistaPlantillaAfiliado.getTxtCedula().getText());
+    
+   /* private void agendarCita() {
+        
+       //Obteniendo los datos
+        int cedula = Integer.parseInt(vistaPlantillaCita.getLblCedula().getText());
         String nombre = vistaPlantillaAfiliado.getTxtNombre().getText();
-        int edad = Integer.parseInt(vistaPlantillaAfiliado.getTxtEdad().getText());
+        int edad = Integer.parseInt(vistaPlantillaCita.getTxtEdad().getText());
         String direccion = vistaPlantillaAfiliado.getTxtDireccion().getText();
         String correo = vistaPlantillaAfiliado.getTxtCorreo().getText();
         int telefono = Integer.parseInt(vistaPlantillaAfiliado.getTxtTelefono().getText());
         String sexo = (String)vistaPlantillaAfiliado.getComboSexo().getSelectedItem();
         Afiliado afiliado = new Afiliado(nombre, sexo, direccion, correo, cedula, edad, telefono);
         System.out.println(afiliado.toString());
-        almacenamiento.anadirAfiliado(afiliado);*/
+        almacenamiento.anadirAfiliado(afiliado);
     }
-
-    private void irGestionServicioGUI() {
-        /*
+*/
+    public void irGestionCitasGUI() {
+        
         //Creación de vistas
-        GestionServicioGUI vistaGestionServicio = new GestionServicioGUI("Gestión de servicios", almacenamiento);
-        vistaPlantillaAfiliado.dispose();*/
+        GestionDeCitas vistaGestionCitas= new GestionDeCitas("Gestión de Citas", almacenamiento);
+        vistaPlantillaCita.dispose();
     }
 }
 
