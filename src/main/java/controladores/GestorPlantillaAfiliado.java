@@ -25,6 +25,7 @@ import javax.swing.JTextField;
 import modelos.Afiliado;
 import modelos.Almacenamiento;
 import vistas.GestionServicioGUI;
+import vistas.ListarAfiliado;
 import vistas.PlantillaAfiliado;
 
 public class GestorPlantillaAfiliado {
@@ -34,14 +35,12 @@ public class GestorPlantillaAfiliado {
     private final Almacenamiento almacenamiento;
     private final String opcion;
     private final long cedula;
-    //private long cedulaAnterior;
 
     
     public GestorPlantillaAfiliado(PlantillaAfiliado vistaPlantillaAfiliado, String opcion, Almacenamiento almacenamiento, long cedula) {
         this.vistaPlantillaAfiliado = vistaPlantillaAfiliado;
         this.opcion = opcion;
         this.almacenamiento = almacenamiento;
-        //this.cedulaAnterior = cedulaAnterior;
         this.cedula = cedula;
         modificarPlantilla();
         verificarNumero(vistaPlantillaAfiliado.getTxtCedula());
@@ -59,6 +58,10 @@ public class GestorPlantillaAfiliado {
             }
             case "Eliminar" -> {
                 plantillaEliminarAfiliado();
+                
+            }
+            case "Consultar" -> {
+                plantillaConsultarAfiliado();
                 
             }
         }
@@ -107,6 +110,35 @@ public class GestorPlantillaAfiliado {
         
     }
     
+    public void plantillaConsultarAfiliado(){
+        
+        //Modificando título y botones
+        vistaPlantillaAfiliado.getLblTitulo().setText("Consultar afiliado");
+        vistaPlantillaAfiliado.getBtnAgregar().setText("Regresar");
+        
+        //Ingresando los datos del afiliado a eliminar
+        Afiliado miAfiliado = almacenamiento.getAfiliados().get(cedula);
+        vistaPlantillaAfiliado.getTxtCedula().setText(Long.toString(miAfiliado.getCedula()));
+        vistaPlantillaAfiliado.getTxtEdad().setText(Integer.toString(miAfiliado.getEdad()));
+        vistaPlantillaAfiliado.getTxtTelefono().setText(Long.toString(miAfiliado.getTelefono()));
+        vistaPlantillaAfiliado.getTxtNombre().setText(miAfiliado.getNombre());
+        vistaPlantillaAfiliado.getTxtDireccion().setText(miAfiliado.getDireccion());
+        vistaPlantillaAfiliado.getTxtCorreo().setText(miAfiliado.getEmail());
+        vistaPlantillaAfiliado.getComboSexo().setSelectedItem(miAfiliado.getSexo());
+        
+        //Desabilitando campos de texto
+        vistaPlantillaAfiliado.getTxtCedula().setEditable(false);
+        vistaPlantillaAfiliado.getTxtEdad().setEditable(false);
+        vistaPlantillaAfiliado.getTxtNombre().setEditable(false);
+        vistaPlantillaAfiliado.getTxtDireccion().setEditable(false);
+        vistaPlantillaAfiliado.getTxtCorreo().setEditable(false);
+        vistaPlantillaAfiliado.getTxtTelefono().setEditable(false);
+        vistaPlantillaAfiliado.getComboSexo().setEnabled(false);
+        
+        //Quitando boton regresar
+        vistaPlantillaAfiliado.getBtnRegresar().setVisible(false);
+    }
+    
     class ManejadoraDeMouse extends MouseAdapter{
         
         @Override
@@ -130,6 +162,12 @@ public class GestorPlantillaAfiliado {
                 }
             }
             
+            if (e.getSource() == vistaPlantillaAfiliado.getBtnAgregar() && "Consultar".equals(opcion)){
+                if (e.getButton() == 1){
+                    irListarAfiliado();
+                }
+            }
+            
             if (e.getSource() == vistaPlantillaAfiliado.getBtnRegresar()){
                 if (e.getButton() == 1){
                     irGestionServicioGUI();  
@@ -142,7 +180,7 @@ public class GestorPlantillaAfiliado {
         if(!validarCamposVacios()){
             
             //Obteniendo los datos
-            long cedula = Long.parseLong(vistaPlantillaAfiliado.getTxtCedula().getText());
+            long cedulaNueva = Long.parseLong(vistaPlantillaAfiliado.getTxtCedula().getText());
             String nombre = vistaPlantillaAfiliado.getTxtNombre().getText();
             int edad = Integer.parseInt(vistaPlantillaAfiliado.getTxtEdad().getText());
             String direccion = vistaPlantillaAfiliado.getTxtDireccion().getText();
@@ -151,14 +189,7 @@ public class GestorPlantillaAfiliado {
             String sexo = (String)vistaPlantillaAfiliado.getComboSexo().getSelectedItem();
             
             //Estableciendo los datos obtenidos al modelo
-            Afiliado afiliado = new Afiliado(nombre, sexo, direccion, correo, cedula, edad, telefono);
-            afiliado.setNombre(nombre);
-            afiliado.setSexo(sexo);
-            afiliado.setDireccion(direccion);
-            afiliado.setEmail(correo);
-            afiliado.setCedula(cedula);
-            afiliado.setEdad(edad);
-            afiliado.setTelefono(telefono);
+            Afiliado afiliado = new Afiliado(nombre, sexo, direccion, correo, cedulaNueva, edad, telefono);
             try {
                 //Agregando el afiliado
                 if (almacenamiento.anadirAfiliado(afiliado)){
@@ -188,13 +219,6 @@ public class GestorPlantillaAfiliado {
         String sexo = (String)vistaPlantillaAfiliado.getComboSexo().getSelectedItem();
         
         Afiliado afiliado = new Afiliado(nombre, sexo, direccion, correo, cedulaNueva, edad, telefono);
-        afiliado.setNombre(nombre);
-        afiliado.setSexo(sexo);
-        afiliado.setDireccion(direccion);
-        afiliado.setEmail(correo);
-        afiliado.setCedula(cedulaNueva);
-        afiliado.setEdad(edad);
-        afiliado.setTelefono(telefono);
         try {
             almacenamiento.modificarAfiliado(cedula, afiliado);
             JOptionPane.showMessageDialog(null, "Afiliado modificado con éxito", "Resultado de modificar", JOptionPane.INFORMATION_MESSAGE);
@@ -219,6 +243,13 @@ public class GestorPlantillaAfiliado {
         
         //Creación de vistas
         GestionServicioGUI vistaGestionServicio = new GestionServicioGUI("Gestión de servicios", almacenamiento);
+        vistaPlantillaAfiliado.dispose();
+    }
+    
+    private void irListarAfiliado() {
+        
+        //Creación de vistas
+        ListarAfiliado ventanaListaAfiliado = new ListarAfiliado("Lista de afiliados",almacenamiento);
         vistaPlantillaAfiliado.dispose();
     }
     
