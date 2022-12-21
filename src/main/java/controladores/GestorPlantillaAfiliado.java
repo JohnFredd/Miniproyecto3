@@ -29,12 +29,20 @@ import vistas.PlantillaAfiliado;
 
 public class GestorPlantillaAfiliado {
     
+<<<<<<< HEAD
     private final PlantillaAfiliado vistaPlantillaAfiliado;
     private final Almacenamiento almacenamiento;
     private final String opcion;
     private final long cedula;
+=======
+    private PlantillaAfiliado vistaPlantillaAfiliado;
+    private Almacenamiento almacenamiento;
+    private Afiliado modeloAfiliado;
+    private String opcion;
+    private long cedulaAnterior;
+>>>>>>> 4258eba8b3e0fd10f971e26390676e36f1561eb1
     
-    public GestorPlantillaAfiliado(PlantillaAfiliado vistaPlantillaAfiliado, String opcion, Almacenamiento almacenamiento, long cedula) {
+    public GestorPlantillaAfiliado(PlantillaAfiliado vistaPlantillaAfiliado, String opcion, Almacenamiento almacenamiento, long cedulaAnterior) {
         this.vistaPlantillaAfiliado = vistaPlantillaAfiliado;
         this.opcion = opcion;
         this.almacenamiento = almacenamiento;
@@ -45,6 +53,10 @@ public class GestorPlantillaAfiliado {
         verificarNumero(vistaPlantillaAfiliado.getTxtTelefono());
         this.vistaPlantillaAfiliado.addBtnAgregarListener(new ManejadoraDeMouse());
         this.vistaPlantillaAfiliado.addBtnRegresarListener(new ManejadoraDeMouse());
+<<<<<<< HEAD
+=======
+        this.cedulaAnterior = cedulaAnterior;
+>>>>>>> 4258eba8b3e0fd10f971e26390676e36f1561eb1
     }
     public void modificarPlantilla(){
         switch(opcion){
@@ -181,12 +193,9 @@ public class GestorPlantillaAfiliado {
         afiliado.setEdad(edad);
         afiliado.setTelefono(telefono);
         try {
-            if (almacenamiento.anadirAfiliado(afiliado)){
-                JOptionPane.showMessageDialog(null, "Afiliado agregado con éxito", "Resultado de agregar", JOptionPane.INFORMATION_MESSAGE);
-                irGestionServicioGUI();
-            } else {
-                JOptionPane.showMessageDialog(null, "Ya existe un afiliado con ese número de cédula", "Resultado de agregar", JOptionPane.ERROR_MESSAGE);
-            }
+            almacenamiento.modificarAfiliado(cedulaAnterior, afiliado);
+            JOptionPane.showMessageDialog(null, "Afiliado modificado con éxito", "Resultado de modificar", JOptionPane.INFORMATION_MESSAGE);
+            irGestionServicioGUI();
         } catch(IOException e){
             JOptionPane.showMessageDialog(null, "Error al actualizar: " + e, "Error", JOptionPane.ERROR_MESSAGE);
         }
