@@ -81,9 +81,9 @@ public class ListarServicio extends javax.swing.JFrame {
         lblTitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblTitulo.setText("Lista servicios");
 
-        tablaContenido.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
         tablaContenido.setFont(new java.awt.Font("Agency FB", 1, 18)); // NOI18N
         tablaContenido.setModel(modeloTabla);
+        tablaContenido.setRowHeight(30);
         tablaContenido.getTableHeader().setReorderingAllowed(false);
         scroll.setViewportView(tablaContenido);
 
@@ -163,6 +163,10 @@ public class ListarServicio extends javax.swing.JFrame {
 
     public void addBtnRegresarListener(MouseListener listenerBotones) {
         btnRegresar.addMouseListener(listenerBotones);
+    }
+    
+    public void anadirFilaTabla(Object[] fila) {
+        modeloTabla.addRow(fila);
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnRegresar;

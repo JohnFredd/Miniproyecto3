@@ -78,12 +78,23 @@ public class GestorPlantillaMedico {
         vistaPlantillaMedico.getTxtDireccion().setText(miMedico.getDireccion());
         vistaPlantillaMedico.getTxtCorreo().setText(miMedico.getEmail());
         vistaPlantillaMedico.getComboSexo().setSelectedItem(miMedico.getSexo());
-        //vistaPlantillaMedico.getListaEspecialidad().setSelectedIndices(vistaPlantillaMedico.getListaEspecialidad().getSelectedValuesList());
-        /*
-        for(int i = 0; i<vistaPlantillaMedico.getListaEspecialidad().getModel().getSize(); i++){
-            if(miMedico.getServicios().get(i).toString().equals(vistaPlantillaMedico.getListaEspecialidad().getModel().getElementAt(i)));
-                vistaPlantillaMedico.getListaEspecialidad().setSelectedValue(miMedico.getServicios().get(i), true);
-        }*/
+        
+        //Hacer que se seleccionen los servicios del medico
+        ArrayList <Integer> seleccionados = new ArrayList();
+        for(int i = 0; i<miMedico.getServicios().size(); i++){
+            String servicio = "";
+            servicio += miMedico.getServicios().get(i);
+            for(int o = 0; o<vistaPlantillaMedico.getListaEspecialidad().getModel().getSize(); o++){
+                if(servicio.equals(vistaPlantillaMedico.getListaEspecialidad().getModel().getElementAt(o))){
+                    seleccionados.add(o);
+                }
+            }
+        }
+        int[] indices = new int[seleccionados.size()];
+        for (int i = 0; i<seleccionados.size(); i++) {
+            indices[i] = seleccionados.get(i);
+        }
+        vistaPlantillaMedico.getListaEspecialidad().setSelectedIndices(indices);
     }
     
     public void plantillaEliminarMedico(){
