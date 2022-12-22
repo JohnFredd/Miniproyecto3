@@ -26,10 +26,10 @@ public class PlantillaServicio extends javax.swing.JFrame {
 
     ImagenFondo fondo = new ImagenFondo();
     
-    public PlantillaServicio(String titulo, String opcion, Almacenamiento almacenamiento) {
+    public PlantillaServicio(String titulo, String opcion, Almacenamiento almacenamiento, String servicio) {
         this.setContentPane(fondo);
         initComponents();
-        GestorPlantillaServicio gestorServicio = new GestorPlantillaServicio(this, opcion, almacenamiento);
+        GestorPlantillaServicio gestorServicio = new GestorPlantillaServicio(this, opcion, almacenamiento, servicio);
         setVisible(true);
         setTitle(titulo);
         setLocationRelativeTo(null);

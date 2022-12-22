@@ -16,6 +16,7 @@ package controladores;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.IOException;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import modelos.Almacenamiento;
 import modelos.Servicio;
@@ -27,9 +28,11 @@ public class GestorPlantillaServicio {
     PlantillaServicio vistaPlantillaServicio;
     Almacenamiento almacenamiento;
     String opcion;
-    public GestorPlantillaServicio(PlantillaServicio vistaPlantillaServicio, String opcion, Almacenamiento almacenamiento) {
+    String servicio;
+    public GestorPlantillaServicio(PlantillaServicio vistaPlantillaServicio, String opcion, Almacenamiento almacenamiento, String servicio) {
         this.vistaPlantillaServicio = vistaPlantillaServicio;
         this.opcion = opcion;
+        this.servicio = servicio;
         this.almacenamiento = almacenamiento;
         modificarPlantilla();
         this.vistaPlantillaServicio.addBtnRegresarListener(new ManejadoraDeMouse());
@@ -51,12 +54,30 @@ public class GestorPlantillaServicio {
         //Modificando título y botones
         vistaPlantillaServicio.getLblTitulo().setText("Actualizar servicio");
         vistaPlantillaServicio.getBtnAgregar().setText("Actualizar servicio");
+        
+        //Agregando los datos del servicio
+        ArrayList<Servicio> servicios = almacenamiento.getServicios();
+        for(int i = 0; i<servicios.size(); i++){
+            if(servicios.get(i).getNombre().equalsIgnoreCase(servicio)){
+                vistaPlantillaServicio.getTxtServicio().setText(servicios.get(i).getNombre());
+            } 
+        }
     }
     
     public void plantillaEliminarServicio(){
         //Modificando título y botones
         vistaPlantillaServicio.getLblTitulo().setText("Eliminar servicio");
         vistaPlantillaServicio.getBtnAgregar().setText("Eliminar servicio");
+        
+        //Agregando los datos del servicio
+        ArrayList<Servicio> servicios = almacenamiento.getServicios();
+        for(int i = 0; i<servicios.size(); i++){
+            if(!servicios.get(i).getNombre().equals(servicio)){
+                vistaPlantillaServicio.getTxtServicio().setText("");
+            } else{
+                vistaPlantillaServicio.getTxtServicio().setText(vistaPlantillaServicio.getTxtServicio().getText());
+            }
+        }
         
         //Desabilitando campos de texto
         vistaPlantillaServicio.getTxtServicio().setEditable(false);
@@ -67,9 +88,20 @@ public class GestorPlantillaServicio {
         @Override
         public void mouseClicked(MouseEvent e){
             
-            if (e.getSource() == vistaPlantillaServicio.getBtnAgregar()){
+            if (e.getSource() == vistaPlantillaServicio.getBtnAgregar() && "Agregar".equals(opcion)){
                 if (e.getButton() == 1){
                     agregarServicio();
+                }
+            }
+            
+            if (e.getSource() == vistaPlantillaServicio.getBtnAgregar()&& "Actualizar".equals(opcion)){
+                if (e.getButton() == 1){
+                    actualizarServicio();
+                }
+            }
+            if (e.getSource() == vistaPlantillaServicio.getBtnAgregar() && "Eliminar".equals(opcion)){
+                if (e.getButton() == 1){
+                    eliminarServicio();
                 }
             }
 
@@ -100,7 +132,33 @@ public class GestorPlantillaServicio {
             JOptionPane.showMessageDialog(null, "Llene todos los campos requeridos antes de continuar.", "Datos incompletos", JOptionPane.ERROR_MESSAGE);
         }
     }
+    public void actualizarServicio() {
+        if(!validarCamposVacios()) {
+            String nombreNuevo = vistaPlantillaServicio.getTxtServicio().getText();
+            Servicio miServicio = new Servicio(nombreNuevo);
+            ArrayList<Servicio> servicios = almacenamiento.getServicios();
+            //Se recorre el ArrayList de servicios en búsqueda del servicio con el nombre anterior para así actualizarlo
+            for(int i = 0; i<servicios.size(); i++){
+                if(servicios.get(i).getNombre().equalsIgnoreCase(servicio)){
+                    try {
+                        //Actualizando el servicio
+                        almacenamiento.modificarServicio(i, miServicio);
+                        JOptionPane.showMessageDialog(null, "Servicio modificado con éxito", "Resultado de agregar", JOptionPane.INFORMATION_MESSAGE);
+                        irGestionServicioGUI();
 
+                    } catch(IOException e){
+                        JOptionPane.showMessageDialog(null, "Error al modificar: " + e, "Error", JOptionPane.ERROR_MESSAGE);
+                    }
+                }
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Llene todos los campos requeridos antes de continuar.", "Datos incompletos", JOptionPane.ERROR_MESSAGE);   
+        }
+    }
+    
+    public void eliminarServicio() {
+        
+    }
     private void irGestionServicioGUI() {
         
         GestionServicioGUI vistaGestionServicio = new GestionServicioGUI("Gestión de servicios", almacenamiento);

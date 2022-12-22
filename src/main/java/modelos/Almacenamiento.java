@@ -272,7 +272,7 @@ public class Almacenamiento {
         boolean puedeAgregar = false;
         if(!servicios.isEmpty()){
             for(int i = 0; i<servicios.size(); i++){
-                if(!servicios.get(i).getNombre().equals(servicio.getNombre())){
+                if(!servicios.get(i).getNombre().equalsIgnoreCase(servicio.getNombre())){
                     puedeAgregar = true;
                 } else{
                     puedeAgregar = false;
@@ -332,6 +332,7 @@ public class Almacenamiento {
                 consultorios.remove(i);
             }
         }
+        
         Iterator i = medicos.entrySet().iterator();
         while(i.hasNext()) {
             HashMap.Entry <Integer, Medico> mapa = (HashMap.Entry) i.next();

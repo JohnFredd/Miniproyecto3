@@ -360,7 +360,7 @@ public class GestorGestionServicio {
                             if (resp2 != null){
                                 for (String miServicio : misServicios) {
                                     if (miServicio.equals(resp2)) {
-                                        irEliminarServicio();
+                                        irEliminarServicio(resp2);
                                     }
                                 }
                             }
@@ -380,19 +380,19 @@ public class GestorGestionServicio {
         }
     }
     private void irAgregarServicio(){
-        PlantillaServicio ventanaAgregarServicio = new PlantillaServicio("Agregar servicio", "Agregar", almacenamiento);
+        PlantillaServicio ventanaAgregarServicio = new PlantillaServicio("Agregar servicio", "Agregar", almacenamiento, null);
         vistaGestionServicio.dispose();
     }
-    private void irActualizarServicio(String resp) {
-        PlantillaServicio ventanaActualizarServicio = new PlantillaServicio("Actualizar servicio", "Actualizar", almacenamiento);
+    private void irActualizarServicio(String servicio) {
+        PlantillaServicio ventanaActualizarServicio = new PlantillaServicio("Actualizar servicio", "Actualizar", almacenamiento, servicio);
         vistaGestionServicio.dispose();
     }
     private void irListarServicio(){
         ListarServicio ventanaListaServicio = new ListarServicio("Lista de servicios", almacenamiento);
         vistaGestionServicio.dispose();
     }
-    private void irEliminarServicio() {
-        PlantillaServicio ventanaEliminarServicio = new PlantillaServicio("Eliminar servicio", "Eliminar", almacenamiento);
+    private void irEliminarServicio(String servicio) {
+        PlantillaServicio ventanaEliminarServicio = new PlantillaServicio("Eliminar servicio", "Eliminar", almacenamiento, servicio);
         vistaGestionServicio.dispose();
     }
 }
