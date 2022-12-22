@@ -268,45 +268,32 @@ public class Almacenamiento {
     }
     
     public boolean anadirServicio(Servicio servicio) throws IOException {
-        /*if(!servicios.contains(servicio)){
-            servicios.add(servicio);
-            try
-            {
-                hacerBackUp();
-                return true;
-            } catch (IOException e) {
-                throw e;
-            }
-        }
-        return false;*/
+        
         boolean error = false;
         if(!servicios.isEmpty()){
             for(int i = 0; i<servicios.size(); i++){
-                System.out.println("HOLA");
-                System.out.println("Nombres en array:"+servicios.get(i).getNombre());
                 if(!servicios.get(i).getNombre().equals(servicio.getNombre())){
-                    System.out.println("Entré al if");
-                    servicios.add(servicio);
-                    try
-                    {
-                        hacerBackUp();
-                        System.out.println("Tamaño del arreglo: " + servicios.size());
-                        error = true;
-                        return error;
-                    } catch (IOException e) {
-                        throw e;
-                    }
+                    error = true;
+                } else{
+                    error = false;
+                    return error;
                 }
-                System.out.println("No entré al if");
-                error = false;
-                System.out.println("Estado error: "+error);
-                return error;
             }
-            System.out.println("Error: "+ error);
+            if(error == true){
+                servicios.add(servicio);
+                try
+                {
+                    hacerBackUp();
+                    System.out.println("Añadido");
+                    error = true;
+                    return error;
+                } catch (IOException e) {
+                    throw e;
+                }
+            }
             return error;
             
         } else{
-            System.out.println("Entré al else");
             servicios.add(servicio);
             try
             {
