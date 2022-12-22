@@ -3,18 +3,24 @@ package controladores;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
+import java.util.Iterator;
 import modelos.Almacenamiento;
+import modelos.Servicio;
 import vistas.GestionServicioGUI;
 import vistas.ListarServicio;
 
 public class GestorListarServicio {
     
     private ListarServicio ventanaListarServicio;
-    Almacenamiento almacenamiento;
+    private Almacenamiento almacenamiento;
+    private ArrayList <Servicio> servicios;
     
     public GestorListarServicio(ListarServicio ventanaListarServicio, Almacenamiento almacenamiento) {
         this.ventanaListarServicio = ventanaListarServicio;
         this.almacenamiento = almacenamiento;
+        servicios = almacenamiento.getServicios();
+        insertarServicios();
         this.ventanaListarServicio.addBtnRegresarListener(new ManejadoraDeMouse());
     }
     
@@ -35,5 +41,15 @@ public class GestorListarServicio {
         //Creación de vistas
         GestionServicioGUI vistaGestionServicio = new GestionServicioGUI("Gestión de servicios", almacenamiento);
         ventanaListarServicio.dispose();
+    }
+    public void insertarServicios() {
+        Iterator i = servicios.iterator();
+
+        while(i.hasNext()) {
+            Servicio servicio = (Servicio) i.next();
+            Object[] fila = new Object[1];
+            fila[0] = servicio.getNombre();
+            ventanaListarServicio.anadirFilaTabla(fila);
+        }
     }
 }
