@@ -66,7 +66,7 @@ public class PlantillaServicio extends javax.swing.JFrame {
         btnRegresar.setRequestFocusEnabled(false);
 
         btnAgregar.setFont(new java.awt.Font("Agency FB", 1, 36)); // NOI18N
-        btnAgregar.setText("Agregar servicio médico");
+        btnAgregar.setText("Agregar servicio");
         btnAgregar.setFocusPainted(false);
         btnAgregar.setRequestFocusEnabled(false);
 
@@ -93,7 +93,7 @@ public class PlantillaServicio extends javax.swing.JFrame {
                             .addComponent(separador, javax.swing.GroupLayout.PREFERRED_SIZE, 704, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(panelPpalLayout.createSequentialGroup()
                                 .addComponent(btnRegresar)
-                                .addGap(45, 45, 45)
+                                .addGap(86, 86, 86)
                                 .addComponent(btnAgregar)))))
                 .addContainerGap(32, Short.MAX_VALUE))
         );

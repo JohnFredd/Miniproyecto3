@@ -58,7 +58,7 @@
                               <Component id="separador" min="-2" pref="704" max="-2" attributes="0"/>
                               <Group type="102" attributes="0">
                                   <Component id="btnRegresar" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="86" max="-2" attributes="0"/>
                                   <Component id="btnAgregar" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
@@ -126,7 +126,7 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Agency FB" size="36" style="1"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Agregar servicio m&#xe9;dico"/>
+            <Property name="text" type="java.lang.String" value="Agregar servicio"/>
             <Property name="focusPainted" type="boolean" value="false"/>
             <Property name="requestFocusEnabled" type="boolean" value="false"/>
           </Properties>

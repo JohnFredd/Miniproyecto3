@@ -337,37 +337,42 @@ public class GestorGestionServicio {
             }
             
             if(resp != null & !"Agregar".equals(resp) & !"Listar".equals(resp)){
-                String resp2 = (String) JOptionPane.showInputDialog(vistaGestionServicio, "<html><p style = \" font:12px; \">Escoja el servicio</p></html>", "Lista de servicios", JOptionPane.DEFAULT_OPTION, UIManager.getIcon("OptionPane.questionIcon"), misServicios, misServicios[0]);
-                
-                switch(resp){
-                    
-                    case "Actualizar" -> {
-                        try {
-                            if (resp2 != null){
-                                for (String miServicio : misServicios) {
-                                    if (miServicio.equals(resp2)) {
-                                        irActualizarServicio(resp2);
+                if(misServicios.length != 0){
+                    String resp2 = (String) JOptionPane.showInputDialog(vistaGestionServicio, "<html><p style = \" font:12px; \">Escoja el servicio</p></html>", "Lista de servicios", JOptionPane.DEFAULT_OPTION, UIManager.getIcon("OptionPane.questionIcon"), misServicios, misServicios[0]);
+                    switch(resp){
+
+                        case "Actualizar" -> {
+                            try {
+                                if (resp2 != null){
+                                    for (String miServicio : misServicios) {
+                                        if (miServicio.equals(resp2)) {
+                                            irActualizarServicio(resp2);
+                                        }
                                     }
                                 }
+                            } catch(NullPointerException np){
+                                JOptionPane.showMessageDialog(vistaGestionServicio, "<html><p style = \" font:12px; \">No se escogió ningún servicio</p></html>", "Aviso", JOptionPane.OK_OPTION, UIManager.getIcon("OptionPane.informationIcon"));
                             }
-                        } catch(NullPointerException np){
-                            JOptionPane.showMessageDialog(vistaGestionServicio, "<html><p style = \" font:12px; \">No se escogió ningún servicio</p></html>", "Aviso", JOptionPane.OK_OPTION, UIManager.getIcon("OptionPane.informationIcon"));
+                        }
+
+                        case "Eliminar" -> {
+                            try {
+                                if (resp2 != null){
+                                    for (String miServicio : misServicios) {
+                                        if (miServicio.equals(resp2)) {
+                                            irEliminarServicio(resp2);
+                                        }
+                                    }
+                                }
+                            } catch(NullPointerException np){
+                                JOptionPane.showMessageDialog(vistaGestionServicio, "<html><p style = \" font:12px; \">No se escogió ningún servicio</p></html>", "Aviso", JOptionPane.OK_OPTION, UIManager.getIcon("OptionPane.informationIcon"));
+                            }
                         }
                     }
                     
-                    case "Eliminar" -> {
-                        try {
-                            if (resp2 != null){
-                                for (String miServicio : misServicios) {
-                                    if (miServicio.equals(resp2)) {
-                                        irEliminarServicio(resp2);
-                                    }
-                                }
-                            }
-                        } catch(NullPointerException np){
-                            JOptionPane.showMessageDialog(vistaGestionServicio, "<html><p style = \" font:12px; \">No se escogió ningún servicio</p></html>", "Aviso", JOptionPane.OK_OPTION, UIManager.getIcon("OptionPane.informationIcon"));
-                        }
-                    }
+                } else{
+                    JOptionPane.showMessageDialog(vistaGestionServicio, "<html><p style = \" font:12px; \">Agregue un servicio primero</p></html>", "Aviso", JOptionPane.OK_OPTION, UIManager.getIcon("OptionPane.informationIcon"));
+
                 }
             } else if ("Listar".equals(resp)){
                 irListarServicio();

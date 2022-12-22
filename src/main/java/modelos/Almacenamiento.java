@@ -284,7 +284,6 @@ public class Almacenamiento {
                 try
                 {
                     hacerBackUp();
-                    System.out.println("Añadido");
                     puedeAgregar = true;
                     return puedeAgregar;
                 } catch (IOException e) {
@@ -307,6 +306,7 @@ public class Almacenamiento {
     }
     
     public void modificarServicio(int indentificador, Servicio servicio) throws IOException {
+        
         servicios.set(indentificador,servicio);
         try
         {
