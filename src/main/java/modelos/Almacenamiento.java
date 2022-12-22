@@ -268,16 +268,42 @@ public class Almacenamiento {
     }
     
     public boolean anadirServicio(Servicio servicio) throws IOException {
-        if(!servicios.contains(servicio)){
+        
+        boolean puedeAgregar = false;
+        if(!servicios.isEmpty()){
+            for(int i = 0; i<servicios.size(); i++){
+                if(!servicios.get(i).getNombre().equals(servicio.getNombre())){
+                    puedeAgregar = true;
+                } else{
+                    puedeAgregar = false;
+                    return puedeAgregar;
+                }
+            }
+            if(puedeAgregar == true){
+                servicios.add(servicio);
+                try
+                {
+                    hacerBackUp();
+                    System.out.println("Añadido");
+                    puedeAgregar = true;
+                    return puedeAgregar;
+                } catch (IOException e) {
+                    throw e;
+                }
+            }
+            return puedeAgregar;
+            
+        } else{
             servicios.add(servicio);
             try
             {
                 hacerBackUp();
+                puedeAgregar = true;
+                return puedeAgregar;
             } catch (IOException e) {
                 throw e;
             }
         }
-        return false;
     }
     
     public void modificarServicio(int indentificador, Servicio servicio) throws IOException {
