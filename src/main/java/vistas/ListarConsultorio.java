@@ -70,6 +70,7 @@ public class ListarConsultorio extends javax.swing.JFrame {
         tablaContenido = new javax.swing.JTable();
         btnRegresar = new javax.swing.JButton();
         separador = new javax.swing.JSeparator();
+        btnConsultar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -82,6 +83,8 @@ public class ListarConsultorio extends javax.swing.JFrame {
         tablaContenido.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
         tablaContenido.setFont(new java.awt.Font("Agency FB", 1, 18)); // NOI18N
         tablaContenido.setModel(modeloTabla);
+        tablaContenido.setRowHeight(30);
+        tablaContenido.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         tablaContenido.getTableHeader().setReorderingAllowed(false);
         scroll.setViewportView(tablaContenido);
 
@@ -93,6 +96,11 @@ public class ListarConsultorio extends javax.swing.JFrame {
         separador.setForeground(new java.awt.Color(0, 0, 0));
         separador.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
+        btnConsultar.setFont(new java.awt.Font("Agency FB", 1, 36)); // NOI18N
+        btnConsultar.setText("Consultar");
+        btnConsultar.setFocusPainted(false);
+        btnConsultar.setRequestFocusEnabled(false);
+
         javax.swing.GroupLayout panelPpalLayout = new javax.swing.GroupLayout(panelPpal);
         panelPpal.setLayout(panelPpalLayout);
         panelPpalLayout.setHorizontalGroup(
@@ -100,13 +108,14 @@ public class ListarConsultorio extends javax.swing.JFrame {
             .addComponent(lblTitulo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelPpalLayout.createSequentialGroup()
                 .addContainerGap(58, Short.MAX_VALUE)
-                .addGroup(panelPpalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelPpalLayout.createSequentialGroup()
-                        .addComponent(scroll, javax.swing.GroupLayout.PREFERRED_SIZE, 794, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(48, 48, 48))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelPpalLayout.createSequentialGroup()
-                        .addComponent(btnRegresar)
-                        .addGap(372, 372, 372))))
+                .addComponent(scroll, javax.swing.GroupLayout.PREFERRED_SIZE, 794, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(48, 48, 48))
+            .addGroup(panelPpalLayout.createSequentialGroup()
+                .addGap(185, 185, 185)
+                .addComponent(btnRegresar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnConsultar)
+                .addGap(148, 148, 148))
             .addGroup(panelPpalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(panelPpalLayout.createSequentialGroup()
                     .addGap(49, 49, 49)
@@ -120,9 +129,11 @@ public class ListarConsultorio extends javax.swing.JFrame {
                 .addComponent(lblTitulo)
                 .addGap(18, 18, 18)
                 .addComponent(scroll, javax.swing.GroupLayout.PREFERRED_SIZE, 440, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(34, 34, 34)
-                .addComponent(btnRegresar)
-                .addContainerGap(41, Short.MAX_VALUE))
+                .addGap(39, 39, 39)
+                .addGroup(panelPpalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnRegresar)
+                    .addComponent(btnConsultar))
+                .addContainerGap(86, Short.MAX_VALUE))
             .addGroup(panelPpalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelPpalLayout.createSequentialGroup()
                     .addContainerGap(654, Short.MAX_VALUE)
@@ -130,6 +141,8 @@ public class ListarConsultorio extends javax.swing.JFrame {
                     .addGap(19, 19, 19)))
         );
 
+        btnRegresar.setOpaque(true);
+        btnRegresar.setBackground(Color.WHITE);
         btnRegresar.setOpaque(true);
         btnRegresar.setBackground(Color.WHITE);
 
@@ -165,7 +178,9 @@ public class ListarConsultorio extends javax.swing.JFrame {
         btnRegresar.addMouseListener(listenerBotones);
     }
     
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnConsultar;
     private javax.swing.JButton btnRegresar;
     private javax.swing.JLabel lblTitulo;
     private javax.swing.JPanel panelPpal;
