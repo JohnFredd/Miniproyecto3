@@ -289,7 +289,7 @@ public class PlantillaMedico extends javax.swing.JFrame {
     public void setComboSexo(JComboBox<String> comboSexo) {
         this.comboSexo = comboSexo;
     }
-
+    
     public JLabel getLblTitulo() {
         return lblTitulo;
     }
@@ -378,6 +378,11 @@ public class PlantillaMedico extends javax.swing.JFrame {
 
     public void setModeloLista(DefaultListModel modeloLista) {
         this.modeloLista = modeloLista;
+    }
+    
+    public void cambiarEspecialidades(ArrayList<String> especialidades){
+        modeloLista.clear();
+        modeloLista.addAll(especialidades);    //lista.getSelectedValues() para extraer los datos escogidos
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables

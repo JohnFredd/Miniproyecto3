@@ -23,11 +23,11 @@ import java.util.Arrays;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
-import modelos.Afiliado;
 import modelos.Almacenamiento;
 import modelos.Medico;
 import modelos.Servicio;
 import vistas.GestionServicioGUI;
+import vistas.ListarMedico;
 import vistas.PlantillaMedico;
 
 public class GestorPlantillaMedico {
@@ -57,6 +57,10 @@ public class GestorPlantillaMedico {
             }
             case "Eliminar" -> {
                 plantillaEliminarMedico();
+            }
+            case "Consultar" -> {
+                plantillaConsultarMedico();
+                
             }
         }
     }
@@ -106,6 +110,57 @@ public class GestorPlantillaMedico {
         vistaPlantillaMedico.getTxtTelefono().setEditable(false);
         vistaPlantillaMedico.getComboSexo().setEnabled(false);
         vistaPlantillaMedico.getListaEspecialidad().setEnabled(false);
+        
+        //Cambiando lista especialidades
+        ArrayList <String> lista = new ArrayList();
+        ArrayList <Servicio> servicios = miMedico.getServicios();
+        for (int i = 0; i < servicios.size(); i++) {
+            String servicio = "";
+            servicio += servicios.get(i);
+            lista.add(servicio);
+        }
+        vistaPlantillaMedico.cambiarEspecialidades(lista);
+    }
+    
+    public void plantillaConsultarMedico(){
+        
+        //Modificando título y botones
+        vistaPlantillaMedico.getLblTitulo().setText("Consultar medico");
+        vistaPlantillaMedico.getBtnAgregar().setText("Regresar");
+        
+        //Ingresando los datos del afiliado a eliminar
+        Medico miMedico = almacenamiento.getMedicos().get(cedula);
+        vistaPlantillaMedico.getTxtCedula().setText(Long.toString(miMedico.getCedula()));
+        vistaPlantillaMedico.getTxtEdad().setText(Integer.toString(miMedico.getEdad()));
+        vistaPlantillaMedico.getTxtTelefono().setText(Long.toString(miMedico.getTelefono()));
+        vistaPlantillaMedico.getTxtNombre().setText(miMedico.getNombre());
+        vistaPlantillaMedico.getTxtDireccion().setText(miMedico.getDireccion());
+        vistaPlantillaMedico.getTxtCorreo().setText(miMedico.getEmail());
+        vistaPlantillaMedico.getComboSexo().setSelectedItem(miMedico.getSexo());
+        
+        //Desabilitando campos de texto
+        vistaPlantillaMedico.getTxtCedula().setEditable(false);
+        vistaPlantillaMedico.getTxtEdad().setEditable(false);
+        vistaPlantillaMedico.getTxtNombre().setEditable(false);
+        vistaPlantillaMedico.getListaEspecialidad().setEnabled(false);
+        vistaPlantillaMedico.getTxtDireccion().setEditable(false);
+        vistaPlantillaMedico.getTxtCorreo().setEditable(false);
+        vistaPlantillaMedico.getTxtTelefono().setEditable(false);
+        vistaPlantillaMedico.getComboSexo().setEnabled(false);
+        
+        //Quitando boton regresar
+        vistaPlantillaMedico.getBtnRegresar().setVisible(false);
+        
+        //Cambiando lista especialidades
+        ArrayList <String> lista = new ArrayList();
+        ArrayList <Servicio> servicios = miMedico.getServicios();
+        for (int i = 0; i < servicios.size(); i++) {
+            String servicio = "";
+            servicio += servicios.get(i);
+            lista.add(servicio);
+        }
+        vistaPlantillaMedico.cambiarEspecialidades(lista);
+        
     }
     
     class ManejadoraDeMouse extends MouseAdapter{
@@ -128,6 +183,12 @@ public class GestorPlantillaMedico {
             if (e.getSource() == vistaPlantillaMedico.getBtnAgregar() && "Eliminar".equals(opcion)){
                 if (e.getButton() == 1){
                     eliminarMedico();
+                }
+            }
+            
+            if (e.getSource() == vistaPlantillaMedico.getBtnAgregar() && "Consultar".equals(opcion)){
+                if (e.getButton() == 1){
+                    irListarMedico();
                 }
             }
 
@@ -215,6 +276,13 @@ public class GestorPlantillaMedico {
     public void irGestionServicioGUI() {
         
         GestionServicioGUI vistaGestionServicio = new GestionServicioGUI("Gestión de servicios", almacenamiento);
+        vistaPlantillaMedico.dispose();
+    }
+    
+    private void irListarMedico() {
+        
+        //Creación de vistas
+        ListarMedico ventanaListaMedico = new ListarMedico("Lista de afiliados",almacenamiento);
         vistaPlantillaMedico.dispose();
     }
     
