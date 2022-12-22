@@ -269,37 +269,37 @@ public class Almacenamiento {
     
     public boolean anadirServicio(Servicio servicio) throws IOException {
         
-        boolean error = false;
+        boolean puedeAgregar = false;
         if(!servicios.isEmpty()){
             for(int i = 0; i<servicios.size(); i++){
                 if(!servicios.get(i).getNombre().equals(servicio.getNombre())){
-                    error = true;
+                    puedeAgregar = true;
                 } else{
-                    error = false;
-                    return error;
+                    puedeAgregar = false;
+                    return puedeAgregar;
                 }
             }
-            if(error == true){
+            if(puedeAgregar == true){
                 servicios.add(servicio);
                 try
                 {
                     hacerBackUp();
                     System.out.println("Añadido");
-                    error = true;
-                    return error;
+                    puedeAgregar = true;
+                    return puedeAgregar;
                 } catch (IOException e) {
                     throw e;
                 }
             }
-            return error;
+            return puedeAgregar;
             
         } else{
             servicios.add(servicio);
             try
             {
                 hacerBackUp();
-                error = true;
-                return error;
+                puedeAgregar = true;
+                return puedeAgregar;
             } catch (IOException e) {
                 throw e;
             }
