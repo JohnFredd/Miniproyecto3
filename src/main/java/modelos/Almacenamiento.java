@@ -23,7 +23,7 @@ public class Almacenamiento {
     private HashMap <Long, Afiliado> afiliados;
     private HashMap <Long, Medico> medicos;
     private ArrayList <Servicio> servicios;
-    private ArrayList <Consultorio> consultorios;
+    private HashMap <String, Consultorio> consultorios;
     private ArrayList <Cita> citas;
     
     public Almacenamiento () throws IOException, ClassNotFoundException {
@@ -63,7 +63,7 @@ public class Almacenamiento {
             afiliados = (HashMap) ois.readObject();
             medicos = (HashMap) ois.readObject();
             servicios = (ArrayList) ois.readObject();
-            consultorios = (ArrayList) ois.readObject();
+            consultorios = (HashMap) ois.readObject();
             citas = (ArrayList) ois.readObject();
             
             ois.close();
@@ -72,7 +72,7 @@ public class Almacenamiento {
             afiliados = new HashMap();
             medicos = new HashMap();
             servicios = new ArrayList();
-            consultorios = new ArrayList();
+            consultorios = new HashMap();
             citas = new ArrayList();
             try
             {
@@ -231,7 +231,7 @@ public class Almacenamiento {
     
     public boolean anadirConsultorio(Consultorio consultorio) throws IOException {
         if (!consultorios.containsKey(consultorio.getIdentificador())) {
-            medicos.put(consultorio.getIdentificador(), consultorio);
+            consultorios.put(consultorio.getIdentificador(), consultorio);
             try
             {
                 hacerBackUp();
@@ -243,8 +243,9 @@ public class Almacenamiento {
         return false;
     }
     
-    public void modificarConsultorio(int indentificador, Consultorio consultorio) throws IOException {
-        consultorios.set(indentificador,consultorio);
+    public void modificarConsultorio(String indentificadorAnterior, Consultorio consultorio) throws IOException {
+        consultorios.remove(indentificadorAnterior);
+        consultorios.put(consultorio.getIdentificador(), consultorio);
         try
         {
             hacerBackUp();
@@ -253,7 +254,7 @@ public class Almacenamiento {
         }
     }
     
-    public void eliminarConsultorio(int indentificador) throws IOException {
+    public void eliminarConsultorio(String indentificador) throws IOException {
         Consultorio consultorio = consultorios.get(indentificador);
         consultorios.remove(indentificador);
         
@@ -378,11 +379,11 @@ public class Almacenamiento {
         this.servicios = servicios;
     }
 
-    public ArrayList<Consultorio> getConsultorios() {
+    public HashMap<String, Consultorio> getConsultorios() {
         return consultorios;
     }
 
-    public void setConsultorios(ArrayList<Consultorio> consultorios) {
+    public void setConsultorios(HashMap<String, Consultorio> consultorios) {
         this.consultorios = consultorios;
     }
 
