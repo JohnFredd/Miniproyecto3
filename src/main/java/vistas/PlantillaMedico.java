@@ -25,6 +25,7 @@ import javax.swing.JList;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import modelos.Almacenamiento;
+import modelos.Servicio;
 
 public class PlantillaMedico extends javax.swing.JFrame {
 
@@ -33,7 +34,6 @@ public class PlantillaMedico extends javax.swing.JFrame {
     
     public PlantillaMedico(String titulo, String opcion, Almacenamiento almacenamiento, long cedula) {
         this.setContentPane(fondo);
-        agregarEspecialidades();
         initComponents();
         GestorPlantillaMedico gestorMedico = new GestorPlantillaMedico(this, opcion, almacenamiento, cedula);
         setVisible(true);
@@ -42,14 +42,9 @@ public class PlantillaMedico extends javax.swing.JFrame {
         setResizable(false);
     }
     
-    public void agregarEspecialidades(){
-        ArrayList<String> especialidades = new ArrayList<>();
-        especialidades.add("Odontología");
-        especialidades.add("Psiquiatría");
-        especialidades.add("Calvo");
-        especialidades.add("Neurología");
-        especialidades.add("Cardiología");
-        modeloLista.addAll(especialidades);    //lista.getSelectedValues() para extraer los datos escogidos
+    public void agregarEspecialidades(ArrayList<String> especialidades){
+        
+        modeloLista.addAll(especialidades);
     }
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {

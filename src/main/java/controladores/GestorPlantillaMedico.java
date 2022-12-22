@@ -42,6 +42,7 @@ public class GestorPlantillaMedico {
         this.almacenamiento = almacenamiento;
         this.cedula = cedula;
         modificarPlantilla();
+        traerServicios();
         verificarNumero(vistaPlantillaMedico.getTxtCedula());
         verificarNumero(vistaPlantillaMedico.getTxtEdad());
         verificarNumero(vistaPlantillaMedico.getTxtTelefono());
@@ -122,6 +123,8 @@ public class GestorPlantillaMedico {
         vistaPlantillaMedico.getComboSexo().setEnabled(false);
         vistaPlantillaMedico.getListaEspecialidad().setEnabled(false);
         
+        
+                
         //Cambiando lista especialidades
         ArrayList <String> lista = new ArrayList();
         ArrayList <Servicio> servicios = miMedico.getServicios();
@@ -284,6 +287,17 @@ public class GestorPlantillaMedico {
         } catch(IOException e){
             JOptionPane.showMessageDialog(null, "Error al eliminar: " + e, "Error", JOptionPane.ERROR_MESSAGE);
         }
+    }
+    public void traerServicios() {
+        //Lista de todos los servicios
+        ArrayList<Servicio> misServicios = almacenamiento.getServicios(); 
+        ArrayList<String> allServices = new ArrayList();
+        for (int i = 0; i < misServicios.size(); i++) {
+            String servicio = "";
+            servicio += misServicios.get(i).getNombre();
+            allServices.add(servicio);
+        }
+        vistaPlantillaMedico.agregarEspecialidades(allServices);
     }
     
     public void irGestionServicioGUI() {
