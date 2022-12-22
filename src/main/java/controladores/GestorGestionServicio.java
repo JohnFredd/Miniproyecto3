@@ -20,6 +20,7 @@ import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import modelos.Afiliado;
 import modelos.Almacenamiento;
+import modelos.Servicio;
 import vistas.GestionServicioGUI;
 import vistas.ListarAfiliado;
 import vistas.ListarConsultorio;
@@ -325,17 +326,16 @@ public class GestorGestionServicio {
         try {
             String resp = (String) JOptionPane.showInputDialog(vistaGestionServicio, "<html><p style = \" font:12px; \">¿Qué desea hacer?</p></html>", "Opciones servicios médicos", JOptionPane.DEFAULT_OPTION, UIManager.getIcon("OptionPane.questionIcon"), opciones, opciones[0]);
             
-            //Simulación de conversión de datos de un ArrayList a Array String, para ponerlo en el comboBox ;)
-            ArrayList<String> servicios = new ArrayList();
-            //servicios.add("Odontología");
-            servicios.add("Psiquiatría");
-            servicios.add("Calvo");
-
-            Object[] arrayDeObjetos = servicios.toArray();
+            //Convirtiendo los servicios actuales a String[]
+            ArrayList<Servicio> servicios = almacenamiento.getServicios();
             String[] misServicios = new String[servicios.size()];
-            for (int i= 0; i<arrayDeObjetos.length; i++){
-                misServicios[i] = (String) arrayDeObjetos[i];
+            
+            for (int i= 0; i<servicios.size(); i++){
+                String servicio = "";
+                servicio += servicios.get(i).getNombre();
+                misServicios[i] = servicio;
             }
+            
             if(resp != null & !"Agregar".equals(resp) & !"Listar".equals(resp)){
                 String resp2 = (String) JOptionPane.showInputDialog(vistaGestionServicio, "<html><p style = \" font:12px; \">Escoja el servicio</p></html>", "Lista de servicios", JOptionPane.DEFAULT_OPTION, UIManager.getIcon("OptionPane.questionIcon"), misServicios, misServicios[0]);
                 
@@ -346,7 +346,7 @@ public class GestorGestionServicio {
                             if (resp2 != null){
                                 for (String miServicio : misServicios) {
                                     if (miServicio.equals(resp2)) {
-                                        irActualizarServicio();
+                                        irActualizarServicio(resp2);
                                     }
                                 }
                             }
@@ -383,7 +383,7 @@ public class GestorGestionServicio {
         PlantillaServicio ventanaAgregarServicio = new PlantillaServicio("Agregar servicio", "Agregar", almacenamiento);
         vistaGestionServicio.dispose();
     }
-    private void irActualizarServicio() {
+    private void irActualizarServicio(String resp) {
         PlantillaServicio ventanaActualizarServicio = new PlantillaServicio("Actualizar servicio", "Actualizar", almacenamiento);
         vistaGestionServicio.dispose();
     }
