@@ -41,8 +41,8 @@ public class GestorPlantillaMedico {
         this.opcion = opcion;
         this.almacenamiento = almacenamiento;
         this.cedula = cedula;
-        modificarPlantilla();
         traerServicios();
+        modificarPlantilla();
         verificarNumero(vistaPlantillaMedico.getTxtCedula());
         verificarNumero(vistaPlantillaMedico.getTxtEdad());
         verificarNumero(vistaPlantillaMedico.getTxtTelefono());
