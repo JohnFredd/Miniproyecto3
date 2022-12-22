@@ -30,11 +30,11 @@ public class PlantillaConsultorio extends javax.swing.JFrame {
     ImagenFondo fondo = new ImagenFondo();
     private DefaultComboBoxModel modeloCombo = new DefaultComboBoxModel();
     
-    public PlantillaConsultorio(String titulo, String opcion, Almacenamiento almacenamiento) {
+    public PlantillaConsultorio(String titulo, String opcion, Almacenamiento almacenamiento, String id) {
         this.setContentPane(fondo);
         agregarServicios();
         initComponents();
-        GestorPlantillaConsultorio gestorConsultorio = new GestorPlantillaConsultorio(this, opcion, almacenamiento);
+        GestorPlantillaConsultorio gestorConsultorio = new GestorPlantillaConsultorio(this, opcion, almacenamiento, id);
         setVisible(true);
         setTitle(titulo);
         setLocationRelativeTo(null);
@@ -57,7 +57,7 @@ public class PlantillaConsultorio extends javax.swing.JFrame {
         panelPpal = new javax.swing.JPanel();
         lblTitulo = new javax.swing.JLabel();
         lblReferencia1 = new javax.swing.JLabel();
-        comboMedico = new javax.swing.JComboBox<>();
+        comboServicio = new javax.swing.JComboBox<>();
         btnRegresar = new javax.swing.JButton();
         btnAgregar = new javax.swing.JButton();
         separador = new javax.swing.JSeparator();
@@ -75,8 +75,8 @@ public class PlantillaConsultorio extends javax.swing.JFrame {
         lblReferencia1.setFont(new java.awt.Font("Agency FB", 1, 36)); // NOI18N
         lblReferencia1.setText("Identificador");
 
-        comboMedico.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        comboMedico.setModel(modeloCombo);
+        comboServicio.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        comboServicio.setModel(modeloCombo);
 
         btnRegresar.setFont(new java.awt.Font("Agency FB", 1, 36)); // NOI18N
         btnRegresar.setText("Regresar");
@@ -107,7 +107,7 @@ public class PlantillaConsultorio extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelPpalLayout.createSequentialGroup()
                         .addComponent(lblReferencia2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(comboMedico, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(comboServicio, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelPpalLayout.createSequentialGroup()
                         .addComponent(lblReferencia1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -143,7 +143,7 @@ public class PlantillaConsultorio extends javax.swing.JFrame {
                             .addComponent(btnRegresar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(36, 36, 36))
                     .addGroup(panelPpalLayout.createSequentialGroup()
-                        .addComponent(comboMedico, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(comboServicio, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addComponent(separador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(19, 19, 19))
@@ -186,12 +186,12 @@ public class PlantillaConsultorio extends javax.swing.JFrame {
         this.lblTitulo = lblTitulo;
     }
 
-    public JComboBox<String> getComboMedico() {
-        return comboMedico;
+    public JComboBox<String> getComboServicio() {
+        return comboServicio;
     }
 
-    public void setComboMedico(JComboBox<String> comboMedico) {
-        this.comboMedico = comboMedico;
+    public void setComboServicio(JComboBox<String> comboServicio) {
+        this.comboServicio = comboServicio;
     }
 
     public JTextField getTxtIdentificador() {
@@ -218,7 +218,7 @@ public class PlantillaConsultorio extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregar;
     private javax.swing.JButton btnRegresar;
-    private javax.swing.JComboBox<String> comboMedico;
+    private javax.swing.JComboBox<String> comboServicio;
     private javax.swing.JLabel lblReferencia1;
     private javax.swing.JLabel lblReferencia2;
     private javax.swing.JLabel lblTitulo;

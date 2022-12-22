@@ -113,7 +113,11 @@ public class GestorPlantillaServicio {
     
     public void agregarServicio() {
         if(!validarCamposVacios()){
+            
+            //Obteniendo los datos de la ventana
             String nombre = vistaPlantillaServicio.getTxtServicio().getText();
+            
+            //Creando el servicio
             Servicio servicio = new Servicio(nombre);
             try {
                 //Agregando el servicio
@@ -143,11 +147,11 @@ public class GestorPlantillaServicio {
                     try {
                         //Actualizando el servicio
                         almacenamiento.modificarServicio(i, miServicio);
-                        JOptionPane.showMessageDialog(null, "Servicio modificado con éxito", "Resultado de agregar", JOptionPane.INFORMATION_MESSAGE);
+                        JOptionPane.showMessageDialog(null, "Servicio actualizado con éxito", "Resultado de actualizar", JOptionPane.INFORMATION_MESSAGE);
                         irGestionServicioGUI();
 
                     } catch(IOException e){
-                        JOptionPane.showMessageDialog(null, "Error al modificar: " + e, "Error", JOptionPane.ERROR_MESSAGE);
+                        JOptionPane.showMessageDialog(null, "Error al actualizar: " + e, "Error", JOptionPane.ERROR_MESSAGE);
                     }
                 }
             }

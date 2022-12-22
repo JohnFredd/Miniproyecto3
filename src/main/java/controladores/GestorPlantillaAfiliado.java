@@ -179,7 +179,7 @@ public class GestorPlantillaAfiliado {
     private void agregarAfiliado() {
         if(!validarCamposVacios()){
             
-            //Obteniendo los datos
+            //Obteniendo los datos de la ventana
             long cedulaNueva = Long.parseLong(vistaPlantillaAfiliado.getTxtCedula().getText());
             String nombre = vistaPlantillaAfiliado.getTxtNombre().getText();
             int edad = Integer.parseInt(vistaPlantillaAfiliado.getTxtEdad().getText());
@@ -221,7 +221,7 @@ public class GestorPlantillaAfiliado {
         Afiliado afiliado = new Afiliado(nombre, sexo, direccion, correo, cedulaNueva, edad, telefono);
         try {
             almacenamiento.modificarAfiliado(cedula, afiliado);
-            JOptionPane.showMessageDialog(null, "Afiliado modificado con éxito", "Resultado de modificar", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Afiliado actualizado con éxito", "Resultado de actualizar", JOptionPane.INFORMATION_MESSAGE);
             irGestionServicioGUI();
         } catch(IOException e){
             JOptionPane.showMessageDialog(null, "Error al actualizar: " + e, "Error", JOptionPane.ERROR_MESSAGE);

@@ -70,6 +70,7 @@ public class GestorPlantillaMedico {
         //Modificando título y botones
         vistaPlantillaMedico.getLblTitulo().setText("Actualizar médico");
         vistaPlantillaMedico.getBtnAgregar().setText("Actualizar médico");
+        
         //Ingresando los datos del médico
         Medico miMedico = almacenamiento.getMedicos().get(cedula);
         vistaPlantillaMedico.getTxtCedula().setText(Long.toString(miMedico.getCedula()));
@@ -217,7 +218,7 @@ public class GestorPlantillaMedico {
     public void agregarMedico() {
         if(!validarCamposVacios()){
             
-            //Obteniendo los datos
+            //Obteniendo los datos de la ventana
             long cedulaNueva = Long.parseLong(vistaPlantillaMedico.getTxtCedula().getText());
             String nombre = vistaPlantillaMedico.getTxtNombre().getText();
             int edad = Integer.parseInt(vistaPlantillaMedico.getTxtEdad().getText());
@@ -268,7 +269,7 @@ public class GestorPlantillaMedico {
             
             try {
                 almacenamiento.modificarMedico(cedula, medico);
-                JOptionPane.showMessageDialog(null, "Médico modificado con éxito", "Resultado de modificar", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Médico actualizado con éxito", "Resultado de actualizar", JOptionPane.INFORMATION_MESSAGE);
                 irGestionServicioGUI();
             } catch(IOException e){
                 JOptionPane.showMessageDialog(null, "Error al actualizar: " + e, "Error", JOptionPane.ERROR_MESSAGE);

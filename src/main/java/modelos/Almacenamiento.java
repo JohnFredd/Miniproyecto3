@@ -229,14 +229,18 @@ public class Almacenamiento {
         }
     }
     
-    public void anadirConsultorio(Consultorio consultorio) throws IOException {
-        consultorios.add(consultorio);
-        try
-        {
-            hacerBackUp();
-        } catch (IOException e) {
-            throw e;
+    public boolean anadirConsultorio(Consultorio consultorio) throws IOException {
+        if (!consultorios.containsKey(consultorio.getIdentificador())) {
+            medicos.put(consultorio.getIdentificador(), consultorio);
+            try
+            {
+                hacerBackUp();
+                return true;
+            } catch (IOException e) {
+                throw e;
+            }
         }
+        return false;
     }
     
     public void modificarConsultorio(int indentificador, Consultorio consultorio) throws IOException {

@@ -20,6 +20,7 @@ import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import modelos.Afiliado;
 import modelos.Almacenamiento;
+import modelos.Consultorio;
 import modelos.Servicio;
 import vistas.GestionServicioGUI;
 import vistas.ListarAfiliado;
@@ -249,47 +250,43 @@ public class GestorGestionServicio {
         try {
             String resp = (String) JOptionPane.showInputDialog(vistaGestionServicio, "<html><p style = \" font:12px; \">¿Qué desea hacer?</p></html>", "Opciones consultorios", JOptionPane.DEFAULT_OPTION, UIManager.getIcon("OptionPane.questionIcon"), opciones, opciones[0]);
             
-            //Simulación de conversión de datos de un ArrayList a Array String, para ponerlo en el comboBox ;)
-            ArrayList<String> consultorios = new ArrayList();
-            consultorios.add("Consultorio 1");
-            consultorios.add("Consultorio 2");
-            consultorios.add("Laboratorio 3");
-
-            Object[] arrayDeObjetos = consultorios.toArray();
-            String[] misConsultorios = new String[consultorios.size()];
-            for (int i= 0; i<arrayDeObjetos.length; i++){
-                misConsultorios[i] = (String) arrayDeObjetos[i];
-            }
             if(resp != null & !"Agregar".equals(resp) & !"Listar".equals(resp)){
-                String resp2 = (String) JOptionPane.showInputDialog(vistaGestionServicio, "<html><p style = \" font:12px; \">Escoja el consultorio/laboratorio</p></html>", "Opciones consultorios", JOptionPane.DEFAULT_OPTION, UIManager.getIcon("OptionPane.questionIcon"), misConsultorios, misConsultorios[0]);
                 
                 switch(resp){
                     
                     case "Actualizar" -> {
+                        String idABuscar;
                         try {
-                            if (resp2 != null){
-                                for (String miConsultorio : misConsultorios) {
-                                    if (miConsultorio.equals(resp2)) {
-                                        irActualizarConsultorio();
-                                    }
+                            idABuscar = (String) JOptionPane.showInputDialog(vistaGestionServicio, "<html><p style = \" font:12px; \">Ingrese el identificador del consultorio a actualizar</p></html>", "Actualizar afiliado", JOptionPane.DEFAULT_OPTION);
+                            if (idABuscar.isBlank()){
+                                JOptionPane.showMessageDialog(vistaGestionServicio, "<html><p style = \" font:12px; \">Por favor ingrese un identificador</p></html>", "Error", JOptionPane.OK_OPTION, UIManager.getIcon("OptionPane.errorIcon"));
+                            } else {
+                                if(almacenamiento.getConsultorios().containsKey(idABuscar)){
+                                    irActualizarConsultorio(idABuscar);
+                                } else {
+                                    JOptionPane.showMessageDialog(vistaGestionServicio, "<html><p style = \" font:12px; \">No se encontró ningún consultorio registrado con ese identificador</p></html>", "Afiliado no encontrado", JOptionPane.OK_OPTION, UIManager.getIcon("OptionPane.errorIcon"));
                                 }
                             }
                         } catch(NullPointerException np){
-                            JOptionPane.showMessageDialog(vistaGestionServicio, "<html><p style = \" font:12px; \">No se escogió ningún consultorio</p></html>", "Aviso", JOptionPane.OK_OPTION, UIManager.getIcon("OptionPane.informationIcon"));
+
                         }
                     }
                     
                     case "Eliminar" -> {
+                        String idABuscar;
                         try {
-                            if (resp2 != null){
-                                for (String miConsultorio : misConsultorios) {
-                                    if (miConsultorio.equals(resp2)) {
-                                        irEliminarConsultorio();
-                                    }
+                            idABuscar = (String) JOptionPane.showInputDialog(vistaGestionServicio, "<html><p style = \" font:12px; \">Ingrese el identificador del consultorio a eliminar</p></html>", "Actualizar afiliado", JOptionPane.DEFAULT_OPTION);
+                            if (idABuscar.isBlank()){
+                                JOptionPane.showMessageDialog(vistaGestionServicio, "<html><p style = \" font:12px; \">Por favor ingrese un identificador</p></html>", "Error", JOptionPane.OK_OPTION, UIManager.getIcon("OptionPane.errorIcon"));
+                            } else {
+                                if(almacenamiento.getConsultorios().containsKey(idABuscar)){
+                                    irEliminarConsultorio(idABuscar);
+                                } else {
+                                    JOptionPane.showMessageDialog(vistaGestionServicio, "<html><p style = \" font:12px; \">No se encontró ningún consultorio registrado con ese identificador</p></html>", "Afiliado no encontrado", JOptionPane.OK_OPTION, UIManager.getIcon("OptionPane.errorIcon"));
                                 }
                             }
                         } catch(NullPointerException np){
-                            JOptionPane.showMessageDialog(vistaGestionServicio, "<html><p style = \" font:12px; \">No se escogió ningún consultorio</p></html>", "Aviso", JOptionPane.OK_OPTION, UIManager.getIcon("OptionPane.informationIcon"));
+
                         }
                     }
                 }
@@ -305,24 +302,24 @@ public class GestorGestionServicio {
     }
     
     private void irAgregarConsultorio(){
-        PlantillaConsultorio ventanaAgregarConsultorio = new PlantillaConsultorio("Agregar consultorio", "Agregar", almacenamiento);
+        PlantillaConsultorio ventanaAgregarConsultorio = new PlantillaConsultorio("Agregar consultorio", "Agregar", almacenamiento, null);
         vistaGestionServicio.dispose();
     }
-    private void irActualizarConsultorio() {
-        PlantillaConsultorio ventanaActualizarConsultorio = new PlantillaConsultorio("Actualizar consultorio", "Actualizar", almacenamiento);
+    private void irActualizarConsultorio(String id) {
+        PlantillaConsultorio ventanaActualizarConsultorio = new PlantillaConsultorio("Actualizar consultorio", "Actualizar", almacenamiento, id);
         vistaGestionServicio.dispose();
     }
     private void irListarConsultorio(){
         ListarConsultorio ventanaListaConsultorio = new ListarConsultorio("Listas de consultorios", almacenamiento);
         vistaGestionServicio.dispose();
     }
-    private void irEliminarConsultorio() {
-        PlantillaConsultorio ventanaActualizarConsultorio = new PlantillaConsultorio("Eliminar consultorio", "Eliminar", almacenamiento);
+    private void irEliminarConsultorio(String id) {
+        PlantillaConsultorio ventanaActualizarConsultorio = new PlantillaConsultorio("Eliminar consultorio", "Eliminar", almacenamiento, id);
         vistaGestionServicio.dispose();
     }
     
     //Opciones a realizar con un servicio
-    private void opcionesServicio(){
+    public void opcionesServicio(){
         try {
             String resp = (String) JOptionPane.showInputDialog(vistaGestionServicio, "<html><p style = \" font:12px; \">¿Qué desea hacer?</p></html>", "Opciones servicios médicos", JOptionPane.DEFAULT_OPTION, UIManager.getIcon("OptionPane.questionIcon"), opciones, opciones[0]);
             
