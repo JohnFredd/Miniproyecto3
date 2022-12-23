@@ -80,7 +80,7 @@ public class GestorListarMedico {
         int fila = ventanaListarMedico.filaSeleccionada();
         if (fila != -1) {
             long cedula = ventanaListarMedico.afiliadoSeleccionado(fila);
-            PlantillaMedico ventanaAgregarAfiliado = new PlantillaMedico("Consultar afiliado", "Consultar", almacenamiento, cedula);
+            PlantillaMedico ventanaConsultarMedico = new PlantillaMedico("Consultar afiliado", "Consultar", almacenamiento, cedula);
             ventanaListarMedico.dispose();
         } else {
             JOptionPane.showMessageDialog(null, "Ninguna entrada seleccionada", "Error", JOptionPane.ERROR_MESSAGE);

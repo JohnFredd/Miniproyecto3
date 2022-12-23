@@ -32,7 +32,6 @@ public class PlantillaConsultorio extends javax.swing.JFrame {
     
     public PlantillaConsultorio(String titulo, String opcion, Almacenamiento almacenamiento, String id) {
         this.setContentPane(fondo);
-        agregarServicios();
         initComponents();
         GestorPlantillaConsultorio gestorConsultorio = new GestorPlantillaConsultorio(this, opcion, almacenamiento, id);
         setVisible(true);
@@ -42,13 +41,8 @@ public class PlantillaConsultorio extends javax.swing.JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
-    public void agregarServicios(){
-        ArrayList<String> servicios = new ArrayList<>();
-        servicios.add("Odontología");
-        servicios.add("Psiquiatría");
-        servicios.add("Calvo");
-        servicios.add("Neurología");
-        servicios.add("Cardiología");
+    public void agregarServicios(ArrayList<String> servicios){
+        
         modeloCombo.addAll(servicios);
     }
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -212,6 +206,10 @@ public class PlantillaConsultorio extends javax.swing.JFrame {
     
     public void addBtnRegresarListener(MouseListener listenerBotones){
         btnRegresar.addMouseListener(listenerBotones);
+    }
+    
+    public void addBtnAgregarListener(MouseListener listenerBotones){
+        btnAgregar.addMouseListener(listenerBotones);
     }
 
     

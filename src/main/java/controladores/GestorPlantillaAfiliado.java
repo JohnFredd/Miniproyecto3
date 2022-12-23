@@ -114,7 +114,8 @@ public class GestorPlantillaAfiliado {
         
         //Modificando título y botones
         vistaPlantillaAfiliado.getLblTitulo().setText("Consultar afiliado");
-        vistaPlantillaAfiliado.getBtnAgregar().setText("Regresar");
+        vistaPlantillaAfiliado.getBtnAgregar().setVisible(false);
+        vistaPlantillaAfiliado.getBtnRegresar().setVisible(true);
         
         //Ingresando los datos del afiliado a eliminar
         Afiliado miAfiliado = almacenamiento.getAfiliados().get(cedula);
@@ -136,7 +137,7 @@ public class GestorPlantillaAfiliado {
         vistaPlantillaAfiliado.getComboSexo().setEnabled(false);
         
         //Quitando boton regresar
-        vistaPlantillaAfiliado.getBtnRegresar().setVisible(false);
+        
     }
     
     class ManejadoraDeMouse extends MouseAdapter{
@@ -168,9 +169,13 @@ public class GestorPlantillaAfiliado {
                 }
             }
             
-            if (e.getSource() == vistaPlantillaAfiliado.getBtnRegresar()){
+            if (e.getSource() == vistaPlantillaAfiliado.getBtnRegresar() && !"Consultar".equals(opcion)){
                 if (e.getButton() == 1){
                     irGestionServicioGUI();  
+                }
+            } else {
+                if (e.getButton() == 1){
+                    irListarAfiliado();
                 }
             }
         }
@@ -208,23 +213,35 @@ public class GestorPlantillaAfiliado {
     }
     
     private void actualizarAfiliado() {
+        if(!validarCamposVacios()){
+            
+            //Obteniendo los datos
+            long cedulaNueva = Long.parseLong(vistaPlantillaAfiliado.getTxtCedula().getText());
+            String nombre = vistaPlantillaAfiliado.getTxtNombre().getText();
+            int edad = Integer.parseInt(vistaPlantillaAfiliado.getTxtEdad().getText());
+            String direccion = vistaPlantillaAfiliado.getTxtDireccion().getText();
+            String correo = vistaPlantillaAfiliado.getTxtCorreo().getText();
+            long telefono = Long.parseLong(vistaPlantillaAfiliado.getTxtTelefono().getText());
+            String sexo = (String)vistaPlantillaAfiliado.getComboSexo().getSelectedItem();
+            
+            //Verifica si al actualizar el afiliado se ingresa una cédula que ya existía
+            if(!almacenamiento.getAfiliados().containsKey(cedulaNueva) || almacenamiento.getAfiliados().get(cedula).getCedula() == (cedulaNueva)){
+                //Creando el afiliado
+                Afiliado afiliado = new Afiliado(nombre, sexo, direccion, correo, cedulaNueva, edad, telefono);
+                try {
+                    //Actualizando los datos de afiliado
+                    almacenamiento.modificarAfiliado(cedula, afiliado);
+                    JOptionPane.showMessageDialog(null, "Afiliado actualizado con éxito", "Resultado de actualizar", JOptionPane.INFORMATION_MESSAGE);
+                    irGestionServicioGUI();
+                } catch(IOException e){
+                    JOptionPane.showMessageDialog(null, "Error al actualizar: " + e, "Error", JOptionPane.ERROR_MESSAGE);
+                }
+            } else{
+                JOptionPane.showMessageDialog(null, "Ya existe un afiliado con esa cédula", "Error", JOptionPane.ERROR_MESSAGE);
+            }
         
-        //Obteniendo los datos
-        long cedulaNueva = Long.parseLong(vistaPlantillaAfiliado.getTxtCedula().getText());
-        String nombre = vistaPlantillaAfiliado.getTxtNombre().getText();
-        int edad = Integer.parseInt(vistaPlantillaAfiliado.getTxtEdad().getText());
-        String direccion = vistaPlantillaAfiliado.getTxtDireccion().getText();
-        String correo = vistaPlantillaAfiliado.getTxtCorreo().getText();
-        long telefono = Long.parseLong(vistaPlantillaAfiliado.getTxtTelefono().getText());
-        String sexo = (String)vistaPlantillaAfiliado.getComboSexo().getSelectedItem();
-        
-        Afiliado afiliado = new Afiliado(nombre, sexo, direccion, correo, cedulaNueva, edad, telefono);
-        try {
-            almacenamiento.modificarAfiliado(cedula, afiliado);
-            JOptionPane.showMessageDialog(null, "Afiliado actualizado con éxito", "Resultado de actualizar", JOptionPane.INFORMATION_MESSAGE);
-            irGestionServicioGUI();
-        } catch(IOException e){
-            JOptionPane.showMessageDialog(null, "Error al actualizar: " + e, "Error", JOptionPane.ERROR_MESSAGE);
+        } else{
+            JOptionPane.showMessageDialog(null, "Llene todos los campos requeridos antes de continuar.", "Datos incompletos", JOptionPane.ERROR_MESSAGE);            
         }
     }
 

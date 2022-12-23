@@ -97,13 +97,13 @@ public class GestorGestionServicio {
 
     }
     
-    private void irPpal() {
+    public void irPpal() {
         PpalGUI ventanaPpal = new PpalGUI("Servicio de salud - Universidad del Valle", almacenamiento);
         vistaGestionServicio.dispose();
     }
     
     //Opciones a realizar con un afiliado
-    private void opcionesAfiliado(){
+    public void opcionesAfiliado(){
         try {
             String resp = (String) JOptionPane.showInputDialog(vistaGestionServicio, "<html><p style = \" font:12px; \">¿Qué desea hacer?</p></html>", "Opciones afiliados", JOptionPane.DEFAULT_OPTION, UIManager.getIcon("OptionPane.questionIcon"), opciones, opciones[0]);
 
@@ -156,34 +156,38 @@ public class GestorGestionServicio {
         }
     }
     
-    private void irAgregarAfiliado(){
+    public void irAgregarAfiliado(){
         PlantillaAfiliado ventanaAgregarAfiliado = new PlantillaAfiliado("Agregar afiliado", "Agregar", almacenamiento, 0);
         vistaGestionServicio.dispose();
     }
     
-    private void irActualizarAfiliado(long cedula) {
+    public void irActualizarAfiliado(long cedula) {
         PlantillaAfiliado ventanaAgregarAfiliado = new PlantillaAfiliado("Actualizar afiliado", "Actualizar", almacenamiento, cedula);
         vistaGestionServicio.dispose();
     }
     
-    private void irListarAfiliado(){
+    public void irListarAfiliado(){
         ListarAfiliado ventanaListaAfiliado = new ListarAfiliado("Lista de afiliados",almacenamiento);
         vistaGestionServicio.dispose();
     }
     
-    private void irEliminarAfiliado(long cedula) {
+    public void irEliminarAfiliado(long cedula) {
         PlantillaAfiliado ventanaEliminarAfiliado = new PlantillaAfiliado("Eliminar afiliado", "Eliminar", almacenamiento, cedula);
         vistaGestionServicio.dispose();
     }
     
     //Opciones a realizar con un médico
-    private void opcionesMedico(){
+    public void opcionesMedico(){
         try {
             String resp = (String) JOptionPane.showInputDialog(vistaGestionServicio, "<html><p style = \" font:12px; \">¿Qué desea hacer?</p></html>", "Opciones médicos", JOptionPane.DEFAULT_OPTION, UIManager.getIcon("OptionPane.questionIcon"), opciones, opciones[0]);
 
             switch(resp){
                 case "Agregar" -> {
-                    irAgregarMedico();
+                    if(!almacenamiento.getServicios().isEmpty()){
+                        irAgregarMedico();
+                    } else {
+                            JOptionPane.showMessageDialog(null, "Antes de agregar un médico, agregue un servicio.", "Datos incompletos", JOptionPane.ERROR_MESSAGE);                    
+                    }
                 }
                 case "Actualizar" -> {
                     String cedulaABuscar;
@@ -198,6 +202,7 @@ public class GestorGestionServicio {
                             } else {
                                 JOptionPane.showMessageDialog(vistaGestionServicio, "<html><p style = \" font:12px; \">No se encontró ningún médico registrado con esa cédula</p></html>", "Afiliado no encontrado", JOptionPane.OK_OPTION, UIManager.getIcon("OptionPane.errorIcon"));
                             }
+                            
                         }
                     } catch(NullPointerException np){
                         JOptionPane.showMessageDialog(vistaGestionServicio, "<html><p style = \" font:12px; \">No se ingresó ninguna cédula</p></html>", "Aviso", JOptionPane.OK_OPTION, UIManager.getIcon("OptionPane.informationIcon"));
@@ -228,25 +233,25 @@ public class GestorGestionServicio {
             
         }
     }
-    private void irAgregarMedico(){
+    public void irAgregarMedico(){
         PlantillaMedico ventanaAgregarMedico = new PlantillaMedico("Agregar médico", "Agregar", almacenamiento, 0);
         vistaGestionServicio.dispose();
     }
-    private void irActualizarMedico(long cedula) {
+    public void irActualizarMedico(long cedula) {
         PlantillaMedico ventanaAgregarMedico = new PlantillaMedico("Actualizar médico", "Actualizar", almacenamiento, cedula);
         vistaGestionServicio.dispose();
     }
-    private void irListarMedico(){
+    public void irListarMedico(){
         ListarMedico ventanaListaMedico = new ListarMedico("Lista de médicos", almacenamiento);
         vistaGestionServicio.dispose();
     }
-    private void irEliminarMedico(long cedula) {
+    public void irEliminarMedico(long cedula) {
         PlantillaMedico ventanaAgregarMedico = new PlantillaMedico("Eliminar médico", "Eliminar", almacenamiento, cedula);
         vistaGestionServicio.dispose();
     }
     
     //Opciones a realizar con un consultorio
-    private void opcionesConsultorio(){
+    public void opcionesConsultorio(){
         try {
             String resp = (String) JOptionPane.showInputDialog(vistaGestionServicio, "<html><p style = \" font:12px; \">¿Qué desea hacer?</p></html>", "Opciones consultorios", JOptionPane.DEFAULT_OPTION, UIManager.getIcon("OptionPane.questionIcon"), opciones, opciones[0]);
             
@@ -293,7 +298,12 @@ public class GestorGestionServicio {
             } else if ("Listar".equals(resp)){
                 irListarConsultorio();
             } else if ("Agregar".equals(resp)){
-                irAgregarConsultorio();
+                if(!almacenamiento.getServicios().isEmpty()){
+                    irAgregarConsultorio();
+                } else {
+                    JOptionPane.showMessageDialog(null, "Antes de agregar un consultorio, agregue un servicio.", "Datos incompletos", JOptionPane.ERROR_MESSAGE);
+                
+                }
             } 
 
         } catch(NullPointerException np){
@@ -301,19 +311,19 @@ public class GestorGestionServicio {
         }
     }
     
-    private void irAgregarConsultorio(){
-        PlantillaConsultorio ventanaAgregarConsultorio = new PlantillaConsultorio("Agregar consultorio", "Agregar", almacenamiento, null);
+    public void irAgregarConsultorio(){
+        PlantillaConsultorio ventanaAgregarConsultorio = new PlantillaConsultorio("Agregar consultorio", "Agregar", almacenamiento, "");
         vistaGestionServicio.dispose();
     }
-    private void irActualizarConsultorio(String id) {
+    public void irActualizarConsultorio(String id) {
         PlantillaConsultorio ventanaActualizarConsultorio = new PlantillaConsultorio("Actualizar consultorio", "Actualizar", almacenamiento, id);
         vistaGestionServicio.dispose();
     }
-    private void irListarConsultorio(){
+    public void irListarConsultorio(){
         ListarConsultorio ventanaListaConsultorio = new ListarConsultorio("Listas de consultorios", almacenamiento);
         vistaGestionServicio.dispose();
     }
-    private void irEliminarConsultorio(String id) {
+    public void irEliminarConsultorio(String id) {
         PlantillaConsultorio ventanaActualizarConsultorio = new PlantillaConsultorio("Eliminar consultorio", "Eliminar", almacenamiento, id);
         vistaGestionServicio.dispose();
     }
@@ -381,19 +391,19 @@ public class GestorGestionServicio {
             
         }
     }
-    private void irAgregarServicio(){
+    public void irAgregarServicio(){
         PlantillaServicio ventanaAgregarServicio = new PlantillaServicio("Agregar servicio", "Agregar", almacenamiento, null);
         vistaGestionServicio.dispose();
     }
-    private void irActualizarServicio(String servicio) {
+    public void irActualizarServicio(String servicio) {
         PlantillaServicio ventanaActualizarServicio = new PlantillaServicio("Actualizar servicio", "Actualizar", almacenamiento, servicio);
         vistaGestionServicio.dispose();
     }
-    private void irListarServicio(){
+    public void irListarServicio(){
         ListarServicio ventanaListaServicio = new ListarServicio("Lista de servicios", almacenamiento);
         vistaGestionServicio.dispose();
     }
-    private void irEliminarServicio(String servicio) {
+    public void irEliminarServicio(String servicio) {
         PlantillaServicio ventanaEliminarServicio = new PlantillaServicio("Eliminar servicio", "Eliminar", almacenamiento, servicio);
         vistaGestionServicio.dispose();
     }

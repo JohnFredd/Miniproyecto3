@@ -16,6 +16,7 @@ package controladores;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.IOException;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import modelos.Almacenamiento;
 import modelos.Consultorio;
@@ -36,8 +37,10 @@ public class GestorPlantillaConsultorio {
         this.opcion = opcion;
         this.id = id;
         this.almacenamiento = almacenamiento;
+        traerServicios();
         modificarPlantilla();
         this.vistaPlantillaConsultorio.addBtnRegresarListener(new ManejadoraDeMouse());
+        this.vistaPlantillaConsultorio.addBtnAgregarListener(new ManejadoraDeMouse());
     }
     public void modificarPlantilla(){
         
@@ -109,18 +112,19 @@ public class GestorPlantillaConsultorio {
 
     }
     public void agregarConsultorio() {
+        
         if(!validarCamposVacios()){
-            
+
             //Obteniendo los datos de la ventana
             String nuevoId = vistaPlantillaConsultorio.getTxtIdentificador().getText();
             String servicio = (String)vistaPlantillaConsultorio.getComboServicio().getSelectedItem();
             Servicio miServicio= new Servicio(servicio);
-            
+
             //Creando el consultorio
             Consultorio miConsultorio = new Consultorio(nuevoId, miServicio);
-            
+
             try {
-                //Agregando el médico
+                //Agregando el consultorio
                 if (almacenamiento.anadirConsultorio(miConsultorio)){
                     JOptionPane.showMessageDialog(null, "Consultorio agregado con éxito", "Resultado de agregar", JOptionPane.INFORMATION_MESSAGE);
                     irGestionServicioGUI();
@@ -143,24 +147,36 @@ public class GestorPlantillaConsultorio {
             String servicio = (String)vistaPlantillaConsultorio.getComboServicio().getSelectedItem();
             Servicio miServicio= new Servicio(servicio);
             
-            //Creando el consultorio
-            Consultorio miConsultorio = new Consultorio(nuevoId, miServicio);
-            
-            try {
-                almacenamiento.modificarConsultorio(id, miConsultorio);
-                JOptionPane.showMessageDialog(null, "Consultorio modificado con éxito", "Resultado de actualizar", JOptionPane.INFORMATION_MESSAGE);
-                irGestionServicioGUI();
-            } catch(IOException e){
-                JOptionPane.showMessageDialog(null, "Error al actualizar: " + e, "Error", JOptionPane.ERROR_MESSAGE);
+            //Verifica si al actualizar el consultorio se ingresa un identificador que ya existía
+            if(!almacenamiento.getConsultorios().containsKey(nuevoId) || almacenamiento.getConsultorios().get(id).getIdentificador().equalsIgnoreCase(nuevoId)){
+                
+                //Creando el consultorio
+                Consultorio miConsultorio = new Consultorio(nuevoId, miServicio);
+
+                try {
+                    almacenamiento.modificarConsultorio(id, miConsultorio);
+                    JOptionPane.showMessageDialog(null, "Consultorio modificado con éxito", "Resultado de actualizar", JOptionPane.INFORMATION_MESSAGE);
+                    irGestionServicioGUI();
+                } catch(IOException e){
+                    JOptionPane.showMessageDialog(null, "Error al actualizar: " + e, "Error", JOptionPane.ERROR_MESSAGE);
+                }
+            } else{
+                JOptionPane.showMessageDialog(null, "Ya existe un consultorio con ese identificador", "Error", JOptionPane.ERROR_MESSAGE);
             }
-            
         } else {
              JOptionPane.showMessageDialog(null, "Llene todos los campos requeridos antes de continuar.", "Datos incompletos", JOptionPane.ERROR_MESSAGE);
         }
     }
     
     public void eliminarConsultorio() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        //Eliminando el consultorio
+        try{
+            almacenamiento.eliminarConsultorio(id);
+            JOptionPane.showMessageDialog(null, "Consultorio eliminado con éxito", "Resultado de eliminar", JOptionPane.INFORMATION_MESSAGE);
+            irGestionServicioGUI();
+        } catch(IOException e){
+            JOptionPane.showMessageDialog(null, "Error al eliminar: " + e, "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }
     
     public void irGestionServicioGUI() {
@@ -170,12 +186,23 @@ public class GestorPlantillaConsultorio {
         vistaPlantillaConsultorio.dispose();
     }
     
+    public void traerServicios() {
+        //Lista de todos los servicios
+        ArrayList<Servicio> misServicios = almacenamiento.getServicios(); 
+        ArrayList<String> allServices = new ArrayList();
+        for (int i = 0; i < misServicios.size(); i++) {
+            String servicio = "";
+            servicio += misServicios.get(i).getNombre();
+            allServices.add(servicio);
+        }
+        vistaPlantillaConsultorio.agregarServicios(allServices);
+    }
     public boolean validarCamposVacios(){
         boolean error = false;
         if(vistaPlantillaConsultorio.getTxtIdentificador().getText().isBlank())
             error = true;
         String servicioAsociado = (String)vistaPlantillaConsultorio.getComboServicio().getSelectedItem();
-        if(servicioAsociado == null)
+        if("".equals(servicioAsociado))
             error = true;
         return error;
     }

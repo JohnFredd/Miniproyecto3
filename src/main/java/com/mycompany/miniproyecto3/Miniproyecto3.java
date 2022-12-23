@@ -13,6 +13,7 @@
 
 package com.mycompany.miniproyecto3;
 
+import java.util.Arrays;
 import javax.swing.JOptionPane;
 import vistas.PpalGUI;
 
@@ -25,6 +26,7 @@ public class Miniproyecto3 {
             Almacenamiento almacenamiento = new Almacenamiento();
             PpalGUI ventanaPpal = new PpalGUI("Servicio de salud - Universidad del Valle", almacenamiento);
         }catch (Exception e) {
+            System.out.println(Arrays.toString(e.getStackTrace()));
             JOptionPane.showMessageDialog(null, "Error: " + e, "Error", JOptionPane.ERROR_MESSAGE);
         }
     }

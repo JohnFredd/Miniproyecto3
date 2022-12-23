@@ -136,31 +136,44 @@ public class GestorPlantillaServicio {
     }
     public void actualizarServicio() {
         
+        //Obteniendo datos de la ventana
+        String nombreNuevo = vistaPlantillaServicio.getTxtServicio().getText();
+        
+        //Creando el servicio con el nuevo nombre
+        Servicio miServicio = new Servicio(nombreNuevo);
+        
+        //Convirtiendo los servicios actuales a String[]
         ArrayList<Servicio> servicios = almacenamiento.getServicios();
-        if(!validarCamposVacios()) {
-            String nombreNuevo = vistaPlantillaServicio.getTxtServicio().getText();
-            Servicio miServicio = new Servicio(nombreNuevo);
+        String[] misServicios = new String[servicios.size()];
 
-            //Se recorre el ArrayList de servicios en búsqueda del servicio con el nombre anterior para así actualizarlo
-            for(int i = 0; i<servicios.size(); i++){
-                if(servicios.get(i).getNombre().equalsIgnoreCase(servicio)){
+        for (int i= 0; i<servicios.size(); i++){
+            String servicio = "";
+            servicio += servicios.get(i).getNombre();
+            misServicios[i] = servicio;
+        }
+        if(!validarCamposVacios()) {
+            
+            for (int i = 0; i<misServicios.length; i++) {
+                
+                if(misServicios[i].equalsIgnoreCase(nombreNuevo)){
+                    JOptionPane.showMessageDialog(null, "Ya existe un servicio con ese nombre", "Error", JOptionPane.ERROR_MESSAGE);
+                    break;
+                }
+                if (i < misServicios.length && !misServicios[i].equalsIgnoreCase(nombreNuevo) && misServicios[i].equalsIgnoreCase(servicio)) {
                     try {
                         //Actualizando el servicio
                         almacenamiento.modificarServicio(i, miServicio);
                         JOptionPane.showMessageDialog(null, "Servicio actualizado con éxito", "Resultado de actualizar", JOptionPane.INFORMATION_MESSAGE);
                         irGestionServicioGUI();
-
                     } catch(IOException e){
                         JOptionPane.showMessageDialog(null, "Error al actualizar: " + e, "Error", JOptionPane.ERROR_MESSAGE);
                     }
                 }
             }
         } else {
-            JOptionPane.showMessageDialog(null, "Llene todos los campos requeridos antes de continuar.", "Datos incompletos", JOptionPane.ERROR_MESSAGE);   
+            JOptionPane.showMessageDialog(null, "Llene todos los campos requeridos antes de continuar.", "Datos incompletos", JOptionPane.ERROR_MESSAGE);
         }
-        
     }
-    
     public void eliminarServicio() {
         ArrayList<Servicio> servicios = almacenamiento.getServicios();
         //Se recorre el ArrayList de servicios en búsqueda del servicio con el nombre anterior para así actualizarlo

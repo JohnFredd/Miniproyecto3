@@ -141,7 +141,9 @@ public class GestorPlantillaMedico {
         
         //Modificando título y botones
         vistaPlantillaMedico.getLblTitulo().setText("Consultar medico");
-        vistaPlantillaMedico.getBtnAgregar().setText("Regresar");
+        //vistaPlantillaMedico.getBtnRegresar().setText("Regresar");
+        vistaPlantillaMedico.getBtnRegresar().setVisible(true);
+        vistaPlantillaMedico.getBtnAgregar().setVisible(false);
         
         //Ingresando los datos del afiliado a eliminar
         Medico miMedico = almacenamiento.getMedicos().get(cedula);
@@ -164,7 +166,7 @@ public class GestorPlantillaMedico {
         vistaPlantillaMedico.getComboSexo().setEnabled(false);
         
         //Quitando boton regresar
-        vistaPlantillaMedico.getBtnRegresar().setVisible(false);
+        
         
         //Cambiando lista especialidades
         ArrayList <String> lista = new ArrayList();
@@ -201,23 +203,22 @@ public class GestorPlantillaMedico {
                 }
             }
             
-            if (e.getSource() == vistaPlantillaMedico.getBtnAgregar() && "Consultar".equals(opcion)){
-                if (e.getButton() == 1){
-                    irListarMedico();
-                }
-            }
-
-            if (e.getSource() == vistaPlantillaMedico.getBtnRegresar()){
+            if (e.getSource() == vistaPlantillaMedico.getBtnRegresar()&& !"Consultar".equals(opcion)){
                 if (e.getButton() == 1){
                     irGestionServicioGUI();  
+                }
+            } else {
+                if (e.getButton() == 1){
+                    irListarMedico();
                 }
             }
         }
     }
     
     public void agregarMedico() {
+        
         if(!validarCamposVacios()){
-            
+
             //Obteniendo los datos de la ventana
             long cedulaNueva = Long.parseLong(vistaPlantillaMedico.getTxtCedula().getText());
             String nombre = vistaPlantillaMedico.getTxtNombre().getText();
@@ -226,10 +227,10 @@ public class GestorPlantillaMedico {
             String correo = vistaPlantillaMedico.getTxtCorreo().getText();
             long telefono = Long.parseLong(vistaPlantillaMedico.getTxtTelefono().getText());
             String sexo = (String)vistaPlantillaMedico.getComboSexo().getSelectedItem();
-            
+
             List<String> listaEspecialidades = vistaPlantillaMedico.getListaEspecialidad().getSelectedValuesList();
             ArrayList<Servicio> misEspecialidades = new ArrayList(listaEspecialidades);
-            
+
             //Creando el médico
             Medico medico = new Medico(misEspecialidades,nombre, sexo, direccion, correo, cedulaNueva, edad, telefono);
             try {
@@ -243,10 +244,11 @@ public class GestorPlantillaMedico {
             } catch(IOException e){
                 JOptionPane.showMessageDialog(null, "Error al agregar: " + e, "Error", JOptionPane.ERROR_MESSAGE);
             }
-            
+
         } else {
             JOptionPane.showMessageDialog(null, "Llene todos los campos requeridos antes de continuar.", "Datos incompletos", JOptionPane.ERROR_MESSAGE);
         }
+        
     }
     
     public void actualizarMedico() {
@@ -264,15 +266,21 @@ public class GestorPlantillaMedico {
             List<String> listaEspecialidades = vistaPlantillaMedico.getListaEspecialidad().getSelectedValuesList();
             ArrayList<Servicio> misEspecialidades = new ArrayList(listaEspecialidades);
             
-            //Creando el médico
-            Medico medico = new Medico(misEspecialidades,nombre, sexo, direccion, correo, cedulaNueva, edad, telefono);
-            
-            try {
-                almacenamiento.modificarMedico(cedula, medico);
-                JOptionPane.showMessageDialog(null, "Médico actualizado con éxito", "Resultado de actualizar", JOptionPane.INFORMATION_MESSAGE);
-                irGestionServicioGUI();
-            } catch(IOException e){
-                JOptionPane.showMessageDialog(null, "Error al actualizar: " + e, "Error", JOptionPane.ERROR_MESSAGE);
+            //Verifica si al actualizar el médico se ingresa una cédula que ya existía
+            if(!almacenamiento.getAfiliados().containsKey(cedulaNueva) || almacenamiento.getAfiliados().get(cedula).getCedula() == (cedulaNueva)){
+                //Creando el médico
+                Medico medico = new Medico(misEspecialidades,nombre, sexo, direccion, correo, cedulaNueva, edad, telefono);
+
+                try {
+                    //Actualizando los datos de médico
+                    almacenamiento.modificarMedico(cedula, medico);
+                    JOptionPane.showMessageDialog(null, "Médico actualizado con éxito", "Resultado de actualizar", JOptionPane.INFORMATION_MESSAGE);
+                    irGestionServicioGUI();
+                } catch(IOException e){
+                    JOptionPane.showMessageDialog(null, "Error al actualizar: " + e, "Error", JOptionPane.ERROR_MESSAGE);
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "Ya existe un médico con esa cédula", "Error", JOptionPane.ERROR_MESSAGE);
             }
         } else {
             JOptionPane.showMessageDialog(null, "Llene todos los campos requeridos antes de continuar.", "Datos incompletos", JOptionPane.ERROR_MESSAGE);
@@ -280,6 +288,7 @@ public class GestorPlantillaMedico {
     }
     
     public void eliminarMedico() {
+        
         //Eliminando el afiliado
         try{
             almacenamiento.eliminarMedico(cedula);
@@ -290,7 +299,7 @@ public class GestorPlantillaMedico {
         }
     }
     public void traerServicios() {
-        //Lista de todos los servicios
+        //Lista de todos los servicios agregados previamente
         ArrayList<Servicio> misServicios = almacenamiento.getServicios(); 
         ArrayList<String> allServices = new ArrayList();
         for (int i = 0; i < misServicios.size(); i++) {
