@@ -43,6 +43,7 @@ public class PlantillaConsultorio extends javax.swing.JFrame {
 
     public void agregarServicios(ArrayList<String> servicios){
         
+        //Se agregan los servicios disponibles
         modeloCombo.addAll(servicios);
     }
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
