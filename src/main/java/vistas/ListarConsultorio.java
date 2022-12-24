@@ -41,8 +41,8 @@ public class ListarConsultorio extends javax.swing.JFrame {
     }
 
     public void llenarColumnas(){
-        modeloTabla.addColumn("Nombre");
         modeloTabla.addColumn("Identificador");
+        modeloTabla.addColumn("Servicio");
         
     }
     public void diseñoTabla(){
@@ -70,7 +70,6 @@ public class ListarConsultorio extends javax.swing.JFrame {
         tablaContenido = new javax.swing.JTable();
         btnRegresar = new javax.swing.JButton();
         separador = new javax.swing.JSeparator();
-        btnConsultar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -95,11 +94,6 @@ public class ListarConsultorio extends javax.swing.JFrame {
         separador.setForeground(new java.awt.Color(0, 0, 0));
         separador.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        btnConsultar.setFont(new java.awt.Font("Agency FB", 1, 36)); // NOI18N
-        btnConsultar.setText("Consultar");
-        btnConsultar.setFocusPainted(false);
-        btnConsultar.setRequestFocusEnabled(false);
-
         javax.swing.GroupLayout panelPpalLayout = new javax.swing.GroupLayout(panelPpal);
         panelPpal.setLayout(panelPpalLayout);
         panelPpalLayout.setHorizontalGroup(
@@ -107,11 +101,8 @@ public class ListarConsultorio extends javax.swing.JFrame {
             .addComponent(lblTitulo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelPpalLayout.createSequentialGroup()
                 .addContainerGap(58, Short.MAX_VALUE)
-                .addGroup(panelPpalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(panelPpalLayout.createSequentialGroup()
-                        .addComponent(btnRegresar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnConsultar))
+                .addGroup(panelPpalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnRegresar)
                     .addComponent(scroll, javax.swing.GroupLayout.PREFERRED_SIZE, 794, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(48, 48, 48))
             .addGroup(panelPpalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -128,9 +119,7 @@ public class ListarConsultorio extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(scroll, javax.swing.GroupLayout.PREFERRED_SIZE, 460, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 57, Short.MAX_VALUE)
-                .addGroup(panelPpalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnRegresar)
-                    .addComponent(btnConsultar))
+                .addComponent(btnRegresar)
                 .addGap(48, 48, 48))
             .addGroup(panelPpalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelPpalLayout.createSequentialGroup()
@@ -141,8 +130,6 @@ public class ListarConsultorio extends javax.swing.JFrame {
 
         btnRegresar.setOpaque(true);
         btnRegresar.setBackground(Color.WHITE);
-        btnConsultar.setOpaque(true);
-        btnConsultar.setBackground(Color.WHITE);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -181,7 +168,6 @@ public class ListarConsultorio extends javax.swing.JFrame {
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnConsultar;
     private javax.swing.JButton btnRegresar;
     private javax.swing.JLabel lblTitulo;
     private javax.swing.JPanel panelPpal;

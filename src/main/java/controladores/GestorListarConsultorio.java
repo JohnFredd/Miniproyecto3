@@ -50,7 +50,7 @@ public class GestorListarConsultorio {
             Consultorio consultorio = mapa.getValue();
             Object[] fila = new Object[2];
             fila[0] = consultorio.getIdentificador();
-            fila[1] = consultorio.getServicioAsociado();
+            fila[1] = consultorio.getServicioAsociado().getNombre();
             ventanaListarConsultorio.anadirFilaTabla(fila);
         }
     }
