@@ -53,7 +53,7 @@ public class GestorListarAfiliado {
         Iterator i = afiliados.entrySet().iterator();
 
         while(i.hasNext()) {
-            HashMap.Entry <Integer, Afiliado> mapa = (HashMap.Entry) i.next();
+            HashMap.Entry <Long, Afiliado> mapa = (HashMap.Entry) i.next();
             Afiliado afiliado = mapa.getValue();
             Object[] fila = new Object[4];
             fila[0] = afiliado.getNombre();

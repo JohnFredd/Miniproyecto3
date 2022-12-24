@@ -55,7 +55,7 @@ public class GestorListarMedico {
         Iterator i = medicos.entrySet().iterator();
 
         while(i.hasNext()) {
-            HashMap.Entry <Integer, Medico> mapa = (HashMap.Entry) i.next();
+            HashMap.Entry <Long, Medico> mapa = (HashMap.Entry) i.next();
             Medico medico = mapa.getValue();
             Object[] fila = new Object[5];
             fila[0] = medico.getNombre();

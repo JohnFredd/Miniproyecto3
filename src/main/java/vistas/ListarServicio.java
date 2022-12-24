@@ -84,6 +84,7 @@ public class ListarServicio extends javax.swing.JFrame {
         tablaContenido.setFont(new java.awt.Font("Agency FB", 1, 18)); // NOI18N
         tablaContenido.setModel(modeloTabla);
         tablaContenido.setRowHeight(30);
+        tablaContenido.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         tablaContenido.getTableHeader().setReorderingAllowed(false);
         scroll.setViewportView(tablaContenido);
 
