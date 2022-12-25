@@ -203,11 +203,12 @@ public class GestorPlantillaMedico {
                 }
             }
             
-            if (e.getSource() == vistaPlantillaMedico.getBtnRegresar()&& !"Consultar".equals(opcion)){
+            if (e.getSource() == vistaPlantillaMedico.getBtnRegresar() && !"Consultar".equals(opcion)){
                 if (e.getButton() == 1){
                     irGestionServicioGUI();  
                 }
-            } else {
+            } 
+            if (e.getSource() == vistaPlantillaMedico.getBtnRegresar() && "Consultar".equals(opcion)) {
                 if (e.getButton() == 1){
                     irListarMedico();
                 }
@@ -239,7 +240,7 @@ public class GestorPlantillaMedico {
                     JOptionPane.showMessageDialog(null, "Médico agregado con éxito", "Resultado de agregar", JOptionPane.INFORMATION_MESSAGE);
                     irGestionServicioGUI();
                 } else {
-                    JOptionPane.showMessageDialog(null, "Ya existe un médico con ese número de cédula", "Resultado de agregar", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "Ya existe una persona con ese número de cédula", "Resultado de agregar", JOptionPane.ERROR_MESSAGE);
                 }
             } catch(IOException e){
                 JOptionPane.showMessageDialog(null, "Error al agregar: " + e, "Error", JOptionPane.ERROR_MESSAGE);
@@ -316,14 +317,14 @@ public class GestorPlantillaMedico {
         vistaPlantillaMedico.dispose();
     }
     
-    private void irListarMedico() {
+    public void irListarMedico() {
         
         //Creación de vistas
         ListarMedico ventanaListaMedico = new ListarMedico("Lista de afiliados",almacenamiento);
         vistaPlantillaMedico.dispose();
     }
     
-    private void verificarNumero(JTextField a){
+    public void verificarNumero(JTextField a){
         a.addKeyListener(new KeyAdapter(){
             @Override
             public void keyTyped(KeyEvent e){
@@ -334,7 +335,7 @@ public class GestorPlantillaMedico {
             }
         });
     }
-    private boolean validarCamposVacios(){
+    public boolean validarCamposVacios(){
         boolean error = false;
         if(vistaPlantillaMedico.getTxtCedula().getText().isBlank())
             error = true;

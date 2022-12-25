@@ -335,7 +335,7 @@ public class PlantillaCita extends javax.swing.JFrame {
                 .addGroup(panelFechaCitaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblAnio)
                     .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
                 .addComponent(btnVerificar)
                 .addGap(25, 25, 25))
         );
@@ -477,7 +477,7 @@ public class PlantillaCita extends javax.swing.JFrame {
         );
 
         btnRegresar.setBackground(Color.WHITE);
-        btnVerificar.setBackground(Color.WHITE);
+        btnAgendar.setBackground(Color.WHITE);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

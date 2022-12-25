@@ -13,11 +13,14 @@
 
 package controladores;
 
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.IOException;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 import modelos.Almacenamiento;
 import modelos.Consultorio;
 import modelos.Servicio;
@@ -39,6 +42,7 @@ public class GestorPlantillaConsultorio {
         this.almacenamiento = almacenamiento;
         traerServicios();
         modificarPlantilla();
+        verificarSintaxis(vistaPlantillaConsultorio.getTxtIdentificador());
         this.vistaPlantillaConsultorio.addBtnRegresarListener(new ManejadoraDeMouse());
         this.vistaPlantillaConsultorio.addBtnAgregarListener(new ManejadoraDeMouse());
     }
@@ -160,12 +164,10 @@ public class GestorPlantillaConsultorio {
                 } catch(IOException e){
                     JOptionPane.showMessageDialog(null, "Error al actualizar: " + e, "Error", JOptionPane.ERROR_MESSAGE);
                 }
-            } else{
+            } else
                 JOptionPane.showMessageDialog(null, "Ya existe un consultorio con ese identificador", "Error", JOptionPane.ERROR_MESSAGE);
-            }
-        } else {
+        } else 
              JOptionPane.showMessageDialog(null, "Llene todos los campos requeridos antes de continuar.", "Datos incompletos", JOptionPane.ERROR_MESSAGE);
-        }
     }
     
     public void eliminarConsultorio() {
@@ -197,12 +199,32 @@ public class GestorPlantillaConsultorio {
         }
         vistaPlantillaConsultorio.agregarServicios(allServices);
     }
+    
+    public void verificarSintaxis(JTextField a){
+        a.addKeyListener(new KeyAdapter(){
+            @Override
+            public void keyTyped(KeyEvent e){
+                char c = e.getKeyChar();
+                if (Character.isSpaceChar(c)){
+                    e.consume();
+                }
+                if (Character.isLowerCase(c)){
+                    String cadenaMayus = (""+c).toUpperCase();
+                    c = cadenaMayus.charAt(0);
+                    e.setKeyChar(c);
+                }
+            }
+        });
+    }
+    
     public boolean validarCamposVacios(){
+        
         boolean error = false;
+        
         if(vistaPlantillaConsultorio.getTxtIdentificador().getText().isBlank())
             error = true;
-        String servicioAsociado = (String)vistaPlantillaConsultorio.getComboServicio().getSelectedItem();
-        if("".equals(servicioAsociado))
+        
+        if(vistaPlantillaConsultorio.getComboServicio().getSelectedItem() == null)
             error = true;
         return error;
     }

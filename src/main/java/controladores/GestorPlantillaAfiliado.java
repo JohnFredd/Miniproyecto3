@@ -163,17 +163,12 @@ public class GestorPlantillaAfiliado {
                 }
             }
             
-            if (e.getSource() == vistaPlantillaAfiliado.getBtnAgregar() && "Consultar".equals(opcion)){
-                if (e.getButton() == 1){
-                    irListarAfiliado();
-                }
-            }
-            
             if (e.getSource() == vistaPlantillaAfiliado.getBtnRegresar() && !"Consultar".equals(opcion)){
                 if (e.getButton() == 1){
                     irGestionServicioGUI();  
                 }
-            } else {
+            } 
+            if (e.getSource() == vistaPlantillaAfiliado.getBtnRegresar() && "Consultar".equals(opcion)) {
                 if (e.getButton() == 1){
                     irListarAfiliado();
                 }
@@ -181,7 +176,7 @@ public class GestorPlantillaAfiliado {
         }
     }
     
-    private void agregarAfiliado() {
+    public void agregarAfiliado() {
         if(!validarCamposVacios()){
             
             //Obteniendo los datos de la ventana
@@ -201,7 +196,7 @@ public class GestorPlantillaAfiliado {
                     JOptionPane.showMessageDialog(null, "Afiliado agregado con éxito", "Resultado de agregar", JOptionPane.INFORMATION_MESSAGE);
                     irGestionServicioGUI();
                 } else {
-                    JOptionPane.showMessageDialog(null, "Ya existe un afiliado con ese número de cédula", "Resultado de agregar", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "Ya existe una persona con ese número de cédula", "Resultado de agregar", JOptionPane.ERROR_MESSAGE);
                 }
             } catch(IOException e){
                 JOptionPane.showMessageDialog(null, "Error al agregar: " + e, "Error", JOptionPane.ERROR_MESSAGE);
@@ -212,7 +207,7 @@ public class GestorPlantillaAfiliado {
         }
     }
     
-    private void actualizarAfiliado() {
+    public void actualizarAfiliado() {
         if(!validarCamposVacios()){
             
             //Obteniendo los datos
@@ -245,7 +240,7 @@ public class GestorPlantillaAfiliado {
         }
     }
 
-    private void eliminarAfiliado(){
+    public void eliminarAfiliado(){
         //Eliminando el afiliado
         try{
             almacenamiento.eliminarAfiliado(cedula);
@@ -256,21 +251,21 @@ public class GestorPlantillaAfiliado {
         }
     }
     
-    private void irGestionServicioGUI() {
+    public void irGestionServicioGUI() {
         
         //Creación de vistas
         GestionServicioGUI vistaGestionServicio = new GestionServicioGUI("Gestión de servicios", almacenamiento);
         vistaPlantillaAfiliado.dispose();
     }
     
-    private void irListarAfiliado() {
+    public void irListarAfiliado() {
         
         //Creación de vistas
         ListarAfiliado ventanaListaAfiliado = new ListarAfiliado("Lista de afiliados",almacenamiento);
         vistaPlantillaAfiliado.dispose();
     }
     
-    private void verificarNumero(JTextField a){
+    public void verificarNumero(JTextField a){
         a.addKeyListener(new KeyAdapter(){
             @Override
             public void keyTyped(KeyEvent e){
@@ -281,7 +276,7 @@ public class GestorPlantillaAfiliado {
             }
         });
     }
-    private boolean validarCamposVacios(){
+    public boolean validarCamposVacios(){
         boolean error = false;
         if(vistaPlantillaAfiliado.getTxtCedula().getText().isBlank())
             error = true;

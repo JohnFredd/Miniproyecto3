@@ -140,7 +140,7 @@ public class GestorGestionServicio {
                         } else {
                             long cedula = Long.parseLong(cedulaABuscar);
                             if(almacenamiento.getAfiliados().containsKey(cedula)){
-                                Afiliado miAfiliado = almacenamiento.getAfiliados().get(cedula);
+                                //Afiliado miAfiliado = almacenamiento.getAfiliados().get(cedula);
                                 irEliminarAfiliado(cedula);
                             } else {
                                 JOptionPane.showMessageDialog(vistaGestionServicio, "<html><p style = \" font:12px; \">No se encontró ningún afiliado registrado con esa cédula</p></html>", "Afiliado no encontrado", JOptionPane.OK_OPTION, UIManager.getIcon("OptionPane.errorIcon"));

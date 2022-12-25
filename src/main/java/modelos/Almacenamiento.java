@@ -144,7 +144,7 @@ public class Almacenamiento {
     }
 
     public boolean anadirAfiliado(Afiliado afiliado) throws IOException {
-        if (!afiliados.containsKey(afiliado.getCedula())) {
+        if (!afiliados.containsKey(afiliado.getCedula()) && !medicos.containsKey(afiliado.getCedula())) {
             afiliados.put(afiliado.getCedula(), afiliado);
             try
             {
@@ -187,7 +187,7 @@ public class Almacenamiento {
     }
     
     public boolean anadirMedico(Medico medico) throws IOException {
-        if (!medicos.containsKey(medico.getCedula())) {
+        if (!medicos.containsKey(medico.getCedula()) && !afiliados.containsKey(medico.getCedula())) {
             medicos.put(medico.getCedula(), medico);
             try
             {
