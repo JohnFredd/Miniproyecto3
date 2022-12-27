@@ -69,21 +69,11 @@ public class PlantillaCita extends javax.swing.JFrame {
     public JLabel getlblDia() {
         return lblServicio;
     }
-    public void setLblDia(JLabel lblDia) {
-        this.lblDia = lblDia;
-    }    
+     
     public JLabel getlblMes() {
         return lblServicio;
     }
-    public void setLblMes(JLabel lblMes) {
-        this.lblMes = lblMes;
-    }   
-    public JLabel getlblAnio() {
-        return lblAnio;
-    }
-    public void setLblAño(JLabel lblAnio) {
-        this.lblAnio = lblAnio;
-    }  
+     
     public JButton getBtnRegresar() {
         return btnRegresar;
     }
