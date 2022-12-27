@@ -13,9 +13,12 @@
 
 package vistas;
 
+import com.toedter.calendar.JDateChooser;
 import controladores.GestorPlantillaCita;
 import java.awt.Color;
 import java.awt.event.MouseListener;
+import java.util.ArrayList;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
@@ -27,6 +30,7 @@ import modelos.Almacenamiento;
 public class PlantillaCita extends javax.swing.JFrame {
 
     ImagenFondo fondo = new ImagenFondo();
+    private DefaultComboBoxModel modeloCombo = new DefaultComboBoxModel();
     
     public PlantillaCita(String titulo,String opcion, String motivoCita, long cedula, Almacenamiento almacenamiento) {
         this.setContentPane(fondo);
@@ -38,7 +42,10 @@ public class PlantillaCita extends javax.swing.JFrame {
         setResizable(false);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
-
+    
+    public void anadirMedicosCombo(ArrayList<String> fila){
+        modeloCombo.addAll(fila);
+    }
     public JLabel getLblTitulo() {
         return lblTitulo;
     }
@@ -69,19 +76,14 @@ public class PlantillaCita extends javax.swing.JFrame {
     public JLabel getlblDia() {
         return lblServicio;
     }
-     
     public JLabel getlblMes() {
         return lblServicio;
     }
-     
     public JButton getBtnRegresar() {
         return btnRegresar;
     }
     public void setBtnRegresar(JButton btnRegresar) {
         this.btnRegresar = btnRegresar;
-    }
-    public void addBtnRegresarListener(MouseListener listenerBotones){
-        btnRegresar.addMouseListener(listenerBotones);
     }
     public JButton getBtnAgendar() {
         return btnAgendar;
@@ -89,43 +91,30 @@ public class PlantillaCita extends javax.swing.JFrame {
     public void setBtnAgendar(JButton btnAgendar) {
         this.btnAgendar = btnAgendar;
     }
-    public void addBtnAgendarListener(MouseListener listenerBotones){
-        btnAgendar.addMouseListener(listenerBotones);
-    }
     public JButton getBtnVerificar() {
         return btnVerificar;
     }
     public void setBtnVerificar(JButton btnVerificar) {
         this.btnVerificar = btnVerificar;
     }
-    public void addBtnVerificarListener(MouseListener listenerBotones){
-        btnVerificar.addMouseListener(listenerBotones);
-    }
-    
     public JComboBox<String> getcomboMedico() {
         return comboMedico;
     }
-
     public void setComboMedico(JComboBox<String> comboMedico) {
         this.comboMedico = comboMedico;
     }
-
     public JTextField getTxtCedula() {
         return txtCedula;
     }
-
     public void setTxtCedula(JTextField txtCedula) {
         this.txtCedula = txtCedula;
     }
-
     public JTextField getTxtConsultorio() {
         return txtConsultorio;
     }
-
     public void setTxtConsultorio(JTextField txtConsultorio) {
         this.txtConsultorio = txtConsultorio;
     }
-
     public JTextField getTxtNombre() {
         return txtNombre;
     }
@@ -149,8 +138,37 @@ public class PlantillaCita extends javax.swing.JFrame {
     public void setTxtServicio(JTextField txtServicio) {
         this.txtServicio = txtServicio;
     }
+
+    public JDateChooser getDateChooser() {
+        return dateChooser;
+    }
+
+    public void setDateChooser(JDateChooser dateChooser) {
+        this.dateChooser = dateChooser;
+    }
+
+    public JButton getBtnAsignar() {
+        return btnAsignar;
+    }
+
+    public void setBtnAsignar(JButton btnAsignar) {
+        this.btnAsignar = btnAsignar;
+    }
     
+    public void addBtnRegresarListener(MouseListener listenerBotones){
+        btnRegresar.addMouseListener(listenerBotones);
+    }
     
+    public void addBtnVerificarListener(MouseListener listenerBotones){
+        btnVerificar.addMouseListener(listenerBotones);
+    }
+    public void addBtnAgendarListener(MouseListener listenerBotones){
+        btnAgendar.addMouseListener(listenerBotones);
+    }
+    
+    public void addBtnAsignarListener(MouseListener listenerBotones){
+        btnAsignar.addMouseListener(listenerBotones);
+    }
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
@@ -166,8 +184,8 @@ public class PlantillaCita extends javax.swing.JFrame {
         txtServicio = new javax.swing.JTextField();
         panelFechaCita = new javax.swing.JPanel();
         btnVerificar = new javax.swing.JButton();
-        jDateChooser1 = new com.toedter.calendar.JDateChooser();
-        lblNombre1 = new javax.swing.JLabel();
+        dateChooser = new com.toedter.calendar.JDateChooser();
+        lblEscoja = new javax.swing.JLabel();
         panelDetallesCIta = new javax.swing.JPanel();
         lblMedico = new javax.swing.JLabel();
         lblConsultorio = new javax.swing.JLabel();
@@ -273,9 +291,11 @@ public class PlantillaCita extends javax.swing.JFrame {
         btnVerificar.setFocusPainted(false);
         btnVerificar.setRequestFocusEnabled(false);
 
-        lblNombre1.setFont(new java.awt.Font("Agency FB", 1, 24)); // NOI18N
-        lblNombre1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblNombre1.setText("Escoja la fecha");
+        dateChooser.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+
+        lblEscoja.setFont(new java.awt.Font("Agency FB", 1, 24)); // NOI18N
+        lblEscoja.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblEscoja.setText("Escoja la fecha");
 
         javax.swing.GroupLayout panelFechaCitaLayout = new javax.swing.GroupLayout(panelFechaCita);
         panelFechaCita.setLayout(panelFechaCitaLayout);
@@ -284,18 +304,18 @@ public class PlantillaCita extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelFechaCitaLayout.createSequentialGroup()
                 .addGap(0, 80, Short.MAX_VALUE)
                 .addGroup(panelFechaCitaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jDateChooser1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(dateChooser, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnVerificar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(lblNombre1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(lblEscoja, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(69, 69, 69))
         );
         panelFechaCitaLayout.setVerticalGroup(
             panelFechaCitaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelFechaCitaLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(lblNombre1)
+                .addComponent(lblEscoja)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(dateChooser, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(47, 47, 47)
                 .addComponent(btnVerificar)
                 .addGap(25, 25, 25))
@@ -312,9 +332,8 @@ public class PlantillaCita extends javax.swing.JFrame {
         lblConsultorio.setFont(new java.awt.Font("Agency FB", 1, 24)); // NOI18N
         lblConsultorio.setText("Consultorio");
 
-        comboMedico.setEditable(true);
-        comboMedico.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        comboMedico.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        comboMedico.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        comboMedico.setModel(modeloCombo);
         comboMedico.setEnabled(false);
 
         lblReferencia.setFont(new java.awt.Font("Agency FB", 1, 24)); // NOI18N
@@ -330,6 +349,7 @@ public class PlantillaCita extends javax.swing.JFrame {
 
         btnAsignar.setFont(new java.awt.Font("Agency FB", 1, 24)); // NOI18N
         btnAsignar.setText("Asignar consultorio");
+        btnAsignar.setEnabled(false);
         btnAsignar.setFocusPainted(false);
         btnAsignar.setRequestFocusEnabled(false);
 
@@ -350,12 +370,12 @@ public class PlantillaCita extends javax.swing.JFrame {
                             .addComponent(lblConsultorio))
                         .addGap(91, 91, 91)
                         .addGroup(panelDetallesCItaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtConsultorio)
                             .addComponent(comboMedico, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelDetallesCItaLayout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addGap(0, 11, Short.MAX_VALUE)
                                 .addComponent(btnAsignar)
-                                .addGap(9, 9, 9)))))
+                                .addGap(9, 9, 9))
+                            .addComponent(txtConsultorio, javax.swing.GroupLayout.Alignment.TRAILING))))
                 .addGap(21, 21, 21))
         );
         panelDetallesCItaLayout.setVerticalGroup(
@@ -441,7 +461,7 @@ public class PlantillaCita extends javax.swing.JFrame {
                 .addGroup(panelPpalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAgendar)
                     .addComponent(btnRegresar))
-                .addContainerGap(47, Short.MAX_VALUE))
+                .addContainerGap(46, Short.MAX_VALUE))
             .addGroup(panelPpalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelPpalLayout.createSequentialGroup()
                     .addContainerGap(635, Short.MAX_VALUE)
@@ -482,12 +502,12 @@ public class PlantillaCita extends javax.swing.JFrame {
     private javax.swing.JButton btnRegresar;
     private javax.swing.JButton btnVerificar;
     private javax.swing.JComboBox<String> comboMedico;
-    private com.toedter.calendar.JDateChooser jDateChooser1;
+    private com.toedter.calendar.JDateChooser dateChooser;
     private javax.swing.JLabel lblCedula;
     private javax.swing.JLabel lblConsultorio;
+    private javax.swing.JLabel lblEscoja;
     private javax.swing.JLabel lblMedico;
     private javax.swing.JLabel lblNombre;
-    private javax.swing.JLabel lblNombre1;
     private javax.swing.JLabel lblReferencia;
     private javax.swing.JLabel lblServicio;
     private javax.swing.JLabel lblTitulo;

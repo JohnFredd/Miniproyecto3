@@ -20,6 +20,11 @@ import java.util.List;
 import modelos.Almacenamiento;
 import modelos.Cita;
 import controladores.GestorGestionDeCitas;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Iterator;
+import javax.swing.JOptionPane;
+import modelos.Medico;
 import vistas.CitasDeAfiliado;
 import vistas.GestionDeCitas;
 import vistas.PlantillaCita;
@@ -31,15 +36,17 @@ public class GestorPlantillaCita {
     private final String opcion;
     private final String motivoCita;
     private final long cedula;
+    private HashMap<Long, Medico> medicos;
     
     public GestorPlantillaCita(PlantillaCita vistaPlantillaCita, String opcion, String motivoCita, long cedula, Almacenamiento almacenamiento) {
         this.almacenamiento = almacenamiento;
         this.opcion = opcion;
         this.motivoCita = motivoCita;
         this.cedula = cedula;
-        
+        medicos = almacenamiento.getMedicos();
         //vista
         this.vistaPlantillaCita = vistaPlantillaCita;
+        medicosDisponibles();
         modificarPlantilla();
         //Añadiendo Listeners
         this.vistaPlantillaCita.addBtnRegresarListener(new ManejadoraDeMouse());
@@ -119,6 +126,12 @@ public class GestorPlantillaCita {
                     irCitasAfiliadoGUI();  
                 }
             }
+            
+            if (e.getSource() == vistaPlantillaCita.getBtnVerificar()){
+                if (e.getButton() == 1){
+                    actualizarMedicosHora();  
+                }
+            }
         }
     }
     
@@ -128,6 +141,29 @@ public class GestorPlantillaCita {
        
     }
     
+    public void actualizarMedicosHora() {
+       
+       //Obteniendo los datos
+       Date date = vistaPlantillaCita.getDateChooser().getDate();
+       long d = date.getTime();
+       java.sql.Date fecha = new java.sql.Date(d);
+       JOptionPane.showMessageDialog(vistaPlantillaCita, "La fecha es: " +fecha);
+       vistaPlantillaCita.getcomboMedico().setEnabled(true);
+       vistaPlantillaCita.getBtnAsignar().setEnabled(true);
+       
+    }
+    
+    public void medicosDisponibles(){
+        Iterator i = medicos.entrySet().iterator();
+
+        while(i.hasNext()) {
+            HashMap.Entry <Long, Medico> mapa = (HashMap.Entry) i.next();
+            Medico medico = mapa.getValue();
+            ArrayList<String> misMedicos = new ArrayList();
+            misMedicos.add(medico.getNombre());
+            vistaPlantillaCita.anadirMedicosCombo(misMedicos);
+        }
+    }
     public void modificarCita() {
        
        //Obteniendo los datos

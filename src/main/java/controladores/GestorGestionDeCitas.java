@@ -22,6 +22,8 @@ import javax.swing.UIManager;
 import modelos.Afiliado;
 import modelos.Almacenamiento;
 import modelos.Cita;
+import modelos.Consultorio;
+import modelos.Medico;
 import modelos.Servicio;
 import vistas.CitasDeAfiliado;
 import vistas.GestionDeCitas;
@@ -118,20 +120,22 @@ public class GestorGestionDeCitas {
     
     public void irAgendarCita(){
         HashMap<Long, Afiliado> misAfiliados = almacenamiento.getAfiliados();
-
-        if(misAfiliados.isEmpty()){
-            JOptionPane.showMessageDialog(vistaGestionCitas, "<html><p style = \" font:12px; \">Agregue un afiiliado primero</p></html>", "Aviso", JOptionPane.OK_OPTION, UIManager.getIcon("OptionPane.informationIcon"));
+        HashMap<Long, Medico> misMedicos = almacenamiento.getMedicos();
+        HashMap<String, Consultorio> misConsultorios = almacenamiento.getConsultorios();
+        ArrayList<Servicio> serviciosMedicos = almacenamiento.getServicios();
+        
+        if(misAfiliados.isEmpty() | misMedicos.isEmpty() | misConsultorios.isEmpty() | serviciosMedicos.isEmpty()){
+            JOptionPane.showMessageDialog(vistaGestionCitas, "<html><p style = \" font:12px; \">Debe agregar por lo menos: 1 afiliado, 1 médico, 1 consultorio y 1 servicio</p></html>", "Aviso", JOptionPane.OK_OPTION, UIManager.getIcon("OptionPane.informationIcon"));
         
         } else {
             String cedulaABuscar;
 
             //Convirtiendo los servicios actuales a String[]
-            ArrayList<Servicio> servicios = almacenamiento.getServicios();
-            String[] misServicios = new String[servicios.size()];
+            String[] misServicios = new String[serviciosMedicos.size()];
 
-            for (int i= 0; i<servicios.size(); i++){
+            for (int i= 0; i<serviciosMedicos.size(); i++){
                 String servicio = "";
-                servicio += servicios.get(i).getNombre();
+                servicio += serviciosMedicos.get(i).getNombre();
                 misServicios[i] = servicio;
             }
 
