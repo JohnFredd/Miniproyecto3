@@ -19,6 +19,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
+import modelos.Afiliado;
 import modelos.Almacenamiento;
 import modelos.Cita;
 import modelos.Servicio;
@@ -88,66 +89,78 @@ public class GestorGestionDeCitas {
     }
     
     public void irCitasDeAfiliado() {
-        String cedulaABuscar;
-        
-        try {
-            cedulaABuscar = (String) JOptionPane.showInputDialog(vistaGestionCitas, "<html><p style = \" font:12px; \">Ingrese la cédula del afiliado</p></html>", "Agendar cita", JOptionPane.DEFAULT_OPTION);
-            
-            if (cedulaABuscar.isBlank()){
-                JOptionPane.showMessageDialog(vistaGestionCitas, "<html><p style = \" font:12px; \">Por favor ingrese una cédula</p></html>", "Error", JOptionPane.OK_OPTION, UIManager.getIcon("OptionPane.errorIcon"));
-            } else {
-                long cedula = Long.parseLong(cedulaABuscar);
-                
-                if(!almacenamiento.getAfiliados().containsKey(cedula)){   //Verificar también si el afiliado tiene citas
-                    JOptionPane.showMessageDialog(vistaGestionCitas, "<html><p style = \" font:12px; \">No se encontró ningún afiliado registrado con esa cédula</p></html>", "Afiliado no encontrado", JOptionPane.OK_OPTION, UIManager.getIcon("OptionPane.errorIcon"));
+        HashMap<Integer, Cita> misCitas = almacenamiento.getCitas();
+        if(!misCitas.isEmpty()){
+            String cedulaABuscar;
+
+            try {
+                cedulaABuscar = (String) JOptionPane.showInputDialog(vistaGestionCitas, "<html><p style = \" font:12px; \">Ingrese la cédula del afiliado</p></html>", "Agendar cita", JOptionPane.DEFAULT_OPTION);
+
+                if (cedulaABuscar.isBlank()){
+                    JOptionPane.showMessageDialog(vistaGestionCitas, "<html><p style = \" font:12px; \">Por favor ingrese una cédula</p></html>", "Error", JOptionPane.OK_OPTION, UIManager.getIcon("OptionPane.errorIcon"));
                 } else {
-                    CitasDeAfiliado ventanaConsultarCitasAfiliado = new CitasDeAfiliado("Citas del afiliado", "Consultar", cedula, almacenamiento);
-                    vistaGestionCitas.dispose();
+                    long cedula = Long.parseLong(cedulaABuscar);
+
+                    if(!almacenamiento.getAfiliados().containsKey(cedula)){   //Verificar también si el afiliado tiene citas
+                        JOptionPane.showMessageDialog(vistaGestionCitas, "<html><p style = \" font:12px; \">No se encontró ningún afiliado registrado con esa cédula</p></html>", "Afiliado no encontrado", JOptionPane.OK_OPTION, UIManager.getIcon("OptionPane.errorIcon"));
+                    } else {
+                        CitasDeAfiliado ventanaConsultarCitasAfiliado = new CitasDeAfiliado("Citas del afiliado", "Consultar", cedula, almacenamiento);
+                        vistaGestionCitas.dispose();
+                    }
                 }
+            } catch(NullPointerException np){
+
             }
-        } catch(NullPointerException np){
-            
+        } else {
+            JOptionPane.showMessageDialog(vistaGestionCitas, "<html><p style = \" font:12px; \">Agregue una cita primero</p></html>", "Aviso", JOptionPane.OK_OPTION, UIManager.getIcon("OptionPane.informationIcon"));            
         }
     }
     
     public void irAgendarCita(){
-        String cedulaABuscar;
-        
-        //Convirtiendo los servicios actuales a String[]
-        ArrayList<Servicio> servicios = almacenamiento.getServicios();
-        String[] misServicios = new String[servicios.size()];
+        HashMap<Long, Afiliado> misAfiliados = almacenamiento.getAfiliados();
 
-        for (int i= 0; i<servicios.size(); i++){
-            String servicio = "";
-            servicio += servicios.get(i).getNombre();
-            misServicios[i] = servicio;
-        }
+        if(misAfiliados.isEmpty()){
+            JOptionPane.showMessageDialog(vistaGestionCitas, "<html><p style = \" font:12px; \">Agregue un afiiliado primero</p></html>", "Aviso", JOptionPane.OK_OPTION, UIManager.getIcon("OptionPane.informationIcon"));
         
-        try {
-            cedulaABuscar = (String) JOptionPane.showInputDialog(vistaGestionCitas, "<html><p style = \" font:12px; \">Ingrese la cédula del afiliado</p></html>", "Agendar cita", JOptionPane.DEFAULT_OPTION);
-            
-            if (cedulaABuscar.isBlank()){
-                JOptionPane.showMessageDialog(vistaGestionCitas, "<html><p style = \" font:12px; \">Por favor ingrese una cédula</p></html>", "Error", JOptionPane.OK_OPTION, UIManager.getIcon("OptionPane.errorIcon"));
-            } else {
-                long cedula = Long.parseLong(cedulaABuscar);
-                
-                if(!almacenamiento.getAfiliados().containsKey(cedula)){
-                    JOptionPane.showMessageDialog(vistaGestionCitas, "<html><p style = \" font:12px; \">No se encontró ningún afiliado registrado con esa cédula</p></html>", "Afiliado no encontrado", JOptionPane.OK_OPTION, UIManager.getIcon("OptionPane.errorIcon"));
+        } else {
+            String cedulaABuscar;
+
+            //Convirtiendo los servicios actuales a String[]
+            ArrayList<Servicio> servicios = almacenamiento.getServicios();
+            String[] misServicios = new String[servicios.size()];
+
+            for (int i= 0; i<servicios.size(); i++){
+                String servicio = "";
+                servicio += servicios.get(i).getNombre();
+                misServicios[i] = servicio;
+            }
+
+            try {
+                cedulaABuscar = (String) JOptionPane.showInputDialog(vistaGestionCitas, "<html><p style = \" font:12px; \">Ingrese la cédula del afiliado</p></html>", "Agendar cita", JOptionPane.DEFAULT_OPTION);
+
+                if (cedulaABuscar.isBlank()){
+                    JOptionPane.showMessageDialog(vistaGestionCitas, "<html><p style = \" font:12px; \">Por favor ingrese una cédula</p></html>", "Error", JOptionPane.OK_OPTION, UIManager.getIcon("OptionPane.errorIcon"));
                 } else {
-                    String motivoCita = (String) JOptionPane.showInputDialog(vistaGestionCitas, "<html><p style = \" font:12px; \">Escoja el motivo de la cita</p></html>", "Lista de servicios", JOptionPane.DEFAULT_OPTION, UIManager.getIcon("OptionPane.questionIcon"), misServicios, misServicios[0]);
-                    
-                    if (motivoCita != null){
-                        for (String miServicio : misServicios) {
-                            if (miServicio.equals(motivoCita)) {
-                                PlantillaCita ventanaAgendarCita = new PlantillaCita("Agendar Citas", "Agendar", motivoCita, cedula, almacenamiento);
-                                vistaGestionCitas.dispose();
+                    long cedula = Long.parseLong(cedulaABuscar);
+
+                    if(!almacenamiento.getAfiliados().containsKey(cedula)){
+                        JOptionPane.showMessageDialog(vistaGestionCitas, "<html><p style = \" font:12px; \">No se encontró ningún afiliado registrado con esa cédula</p></html>", "Afiliado no encontrado", JOptionPane.OK_OPTION, UIManager.getIcon("OptionPane.errorIcon"));
+                    } else {
+                        String motivoCita = (String) JOptionPane.showInputDialog(vistaGestionCitas, "<html><p style = \" font:12px; \">Escoja el motivo de la cita</p></html>", "Lista de servicios", JOptionPane.DEFAULT_OPTION, UIManager.getIcon("OptionPane.questionIcon"), misServicios, misServicios[0]);
+
+                        if (motivoCita != null){
+                            for (String miServicio : misServicios) {
+                                if (miServicio.equals(motivoCita)) {
+                                    PlantillaCita ventanaAgendarCita = new PlantillaCita("Agendar Citas", "Agendar", motivoCita, cedula, almacenamiento);
+                                    vistaGestionCitas.dispose();
+                                }
                             }
                         }
                     }
                 }
-            }
-        } catch(NullPointerException np){
+            } catch(NullPointerException np){
 
+            }
         }
     }
     

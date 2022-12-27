@@ -175,13 +175,9 @@ public class PlantillaCita extends javax.swing.JFrame {
         lblServicio = new javax.swing.JLabel();
         txtServicio = new javax.swing.JTextField();
         panelFechaCita = new javax.swing.JPanel();
-        lblDia = new javax.swing.JLabel();
-        lblMes = new javax.swing.JLabel();
-        lblAnio = new javax.swing.JLabel();
-        txtAnio = new javax.swing.JTextField();
-        txtMes = new javax.swing.JTextField();
-        txtDia = new javax.swing.JTextField();
         btnVerificar = new javax.swing.JButton();
+        jDateChooser1 = new com.toedter.calendar.JDateChooser();
+        lblNombre1 = new javax.swing.JLabel();
         panelDetallesCIta = new javax.swing.JPanel();
         lblMedico = new javax.swing.JLabel();
         lblConsultorio = new javax.swing.JLabel();
@@ -279,73 +275,38 @@ public class PlantillaCita extends javax.swing.JFrame {
                 .addContainerGap(44, Short.MAX_VALUE))
         );
 
-        panelFechaCita.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2), "Fecha y Hora de la Cita", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 18))); // NOI18N
+        panelFechaCita.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2), "Fecha de la Cita", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 18))); // NOI18N
         panelFechaCita.setOpaque(false);
-
-        lblDia.setFont(new java.awt.Font("Agency FB", 1, 24)); // NOI18N
-        lblDia.setText("Día");
-
-        lblMes.setFont(new java.awt.Font("Agency FB", 1, 24)); // NOI18N
-        lblMes.setText("Mes");
-
-        lblAnio.setFont(new java.awt.Font("Agency FB", 1, 24)); // NOI18N
-        lblAnio.setText("Año");
-
-        txtAnio.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        txtAnio.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-
-        txtMes.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        txtMes.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-
-        txtDia.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        txtDia.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
         btnVerificar.setFont(new java.awt.Font("Agency FB", 1, 24)); // NOI18N
         btnVerificar.setText("Comprobar Disponibilidad");
         btnVerificar.setFocusPainted(false);
         btnVerificar.setRequestFocusEnabled(false);
 
+        lblNombre1.setFont(new java.awt.Font("Agency FB", 1, 24)); // NOI18N
+        lblNombre1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblNombre1.setText("Escoja la fecha");
+
         javax.swing.GroupLayout panelFechaCitaLayout = new javax.swing.GroupLayout(panelFechaCita);
         panelFechaCita.setLayout(panelFechaCitaLayout);
         panelFechaCitaLayout.setHorizontalGroup(
             panelFechaCitaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelFechaCitaLayout.createSequentialGroup()
-                .addGroup(panelFechaCitaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panelFechaCitaLayout.createSequentialGroup()
-                        .addGap(21, 21, 21)
-                        .addGroup(panelFechaCitaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblDia, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblMes, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelFechaCitaLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(lblAnio, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(panelFechaCitaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(txtMes, javax.swing.GroupLayout.DEFAULT_SIZE, 252, Short.MAX_VALUE)
-                    .addComponent(txtDia)
-                    .addComponent(txtAnio))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelFechaCitaLayout.createSequentialGroup()
                 .addGap(0, 80, Short.MAX_VALUE)
-                .addComponent(btnVerificar)
+                .addGroup(panelFechaCitaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(jDateChooser1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnVerificar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lblNombre1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(69, 69, 69))
         );
         panelFechaCitaLayout.setVerticalGroup(
             panelFechaCitaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelFechaCitaLayout.createSequentialGroup()
-                .addGap(15, 15, 15)
-                .addGroup(panelFechaCitaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(lblDia)
-                    .addComponent(txtDia, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lblNombre1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(panelFechaCitaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblMes)
-                    .addComponent(txtMes, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(panelFechaCitaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblAnio)
-                    .addComponent(txtAnio, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
+                .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(47, 47, 47)
                 .addComponent(btnVerificar)
                 .addGap(25, 25, 25))
         );
@@ -531,13 +492,12 @@ public class PlantillaCita extends javax.swing.JFrame {
     private javax.swing.JButton btnRegresar;
     private javax.swing.JButton btnVerificar;
     private javax.swing.JComboBox<String> comboMedico;
-    private javax.swing.JLabel lblAnio;
+    private com.toedter.calendar.JDateChooser jDateChooser1;
     private javax.swing.JLabel lblCedula;
     private javax.swing.JLabel lblConsultorio;
-    private javax.swing.JLabel lblDia;
     private javax.swing.JLabel lblMedico;
-    private javax.swing.JLabel lblMes;
     private javax.swing.JLabel lblNombre;
+    private javax.swing.JLabel lblNombre1;
     private javax.swing.JLabel lblReferencia;
     private javax.swing.JLabel lblServicio;
     private javax.swing.JLabel lblTitulo;
@@ -547,11 +507,8 @@ public class PlantillaCita extends javax.swing.JFrame {
     private javax.swing.JPanel panelMotivoCita;
     private javax.swing.JPanel panelPpal;
     private javax.swing.JSeparator separador;
-    private javax.swing.JTextField txtAnio;
     private javax.swing.JTextField txtCedula;
     private javax.swing.JTextField txtConsultorio;
-    private javax.swing.JTextField txtDia;
-    private javax.swing.JTextField txtMes;
     private javax.swing.JTextField txtNombre;
     private javax.swing.JTextField txtReferencia;
     private javax.swing.JTextField txtServicio;
