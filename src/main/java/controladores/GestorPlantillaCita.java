@@ -20,19 +20,23 @@ import java.util.List;
 import modelos.Almacenamiento;
 import modelos.Cita;
 import controladores.GestorGestionDeCitas;
+import vistas.CitasDeAfiliado;
 import vistas.GestionDeCitas;
 import vistas.PlantillaCita;
 
 public class GestorPlantillaCita {
     
-    PlantillaCita vistaPlantillaCita;
-    Almacenamiento almacenamiento;
-    //Cita cita;
+    private final PlantillaCita vistaPlantillaCita;
+    private final Almacenamiento almacenamiento;
     private final String opcion;
+    private final String motivoCita;
+    private final long cedula;
     
-    public GestorPlantillaCita(PlantillaCita vistaPlantillaCita, String opcion, Almacenamiento almacenamiento) {
+    public GestorPlantillaCita(PlantillaCita vistaPlantillaCita, String opcion, String motivoCita, long cedula, Almacenamiento almacenamiento) {
         this.almacenamiento = almacenamiento;
         this.opcion = opcion;
+        this.motivoCita = motivoCita;
+        this.cedula = cedula;
         
         //vista
         this.vistaPlantillaCita = vistaPlantillaCita;
@@ -46,6 +50,9 @@ public class GestorPlantillaCita {
     public void modificarPlantilla(){
         switch (opcion) {
         
+            case "Agendar" -> {
+                plantillaAgendarCita();
+            }
             case "Modificar" -> {
                 plantillaModificarCita();
             }
@@ -53,28 +60,30 @@ public class GestorPlantillaCita {
             case "Eliminar" -> {
                 plantillaEliminarCita();
             }
+        }
     }
+    
+    public void plantillaAgendarCita(){
+        
+        //Ingresando nombre, cédula y motivo de cita en interfaz
+        vistaPlantillaCita.getTxtNombre().setText(almacenamiento.getAfiliados().get(cedula).getNombre());
+        vistaPlantillaCita.getTxtCedula().setText(String.valueOf(cedula));
+        vistaPlantillaCita.getTxtServicio().setText(motivoCita);
     }
+    
     public void plantillaModificarCita(){
+        
         //Modificando título y botones
         vistaPlantillaCita.getLblTitulo().setText("Modificar Cita");
         vistaPlantillaCita.getBtnAgendar().setText("Modificar Cita");
     }
     
     public void plantillaEliminarCita(){
+        
         //Modificando título y botones
         vistaPlantillaCita.getLblTitulo().setText("Eliminar Cita");
         vistaPlantillaCita.getBtnAgendar().setText("Eliminar Cita");
         
-        
-/*//Desabilitando campos de texto
-        vistaPlantillaCita.getLblCedula().setEnabled(false);
-        vistaPlantillaCita.getLblNombre().setEnabled(false);
-        vistaPlantillaCita.getlblDia().setEnabled(false);
-        vistaPlantillaCita.getlblMes().setEnabled(false);
-        vistaPlantillaCita.getlblAnio().setEnabled(false);
-        vistaPlantillaCita.getlblServicio().setEnabled(false);
-    */    
     }
     
     class ManejadoraDeMouse extends MouseAdapter{
@@ -82,49 +91,64 @@ public class GestorPlantillaCita {
         @Override
         public void mouseClicked(MouseEvent e){
             
+            if (e.getSource() == vistaPlantillaCita.getBtnAgendar()&& "Agendar".equals(opcion)){
+                if (e.getButton() == 1){
+                    agendarCita();
+                }
+            }
+            
             if (e.getSource() == vistaPlantillaCita.getBtnAgendar()&& "Modificar".equals(opcion)){
                 if (e.getButton() == 1){
-                    plantillaModificarCita();
+                    modificarCita();
                 }
             }
             if (e.getSource() == vistaPlantillaCita.getBtnAgendar()&& "Eliminar".equals(opcion)){
                 if (e.getButton() == 1){
-                    plantillaEliminarCita();
+                    eliminarCita();
                 }
             }
-            /*if (e.getSource() == vistaGestionCitas.getBtnAgendar()&& "Agendar".equals(opcion)){
-                if (e.getButton() == 1){
-                    agendarCita();
-                }
-            }*/
 
-            if (e.getSource() == vistaPlantillaCita.getBtnRegresar()){
+            if (e.getSource() == vistaPlantillaCita.getBtnRegresar() && !"Consultar".equals(opcion)){
                 if (e.getButton() == 1){
                     irGestionCitasGUI();  
+                }
+            }
+            
+            if (e.getSource() == vistaPlantillaCita.getBtnRegresar() && "Consultar".equals(opcion)){
+                if (e.getButton() == 1){
+                    irCitasAfiliadoGUI();  
                 }
             }
         }
     }
     
-   /* private void agendarCita() {
-        
+    public void agendarCita() {
+       
        //Obteniendo los datos
-        int cedula = Integer.parseInt(vistaPlantillaCita.getLblCedula().getText());
-        String nombre = vistaPlantillaAfiliado.getTxtNombre().getText();
-        int edad = Integer.parseInt(vistaPlantillaCita.getTxtEdad().getText());
-        String direccion = vistaPlantillaAfiliado.getTxtDireccion().getText();
-        String correo = vistaPlantillaAfiliado.getTxtCorreo().getText();
-        int telefono = Integer.parseInt(vistaPlantillaAfiliado.getTxtTelefono().getText());
-        String sexo = (String)vistaPlantillaAfiliado.getComboSexo().getSelectedItem();
-        Afiliado afiliado = new Afiliado(nombre, sexo, direccion, correo, cedula, edad, telefono);
-        System.out.println(afiliado.toString());
-        almacenamiento.anadirAfiliado(afiliado);
+       
     }
-*/
+    
+    public void modificarCita() {
+       
+       //Obteniendo los datos
+       
+    }
+    
+    public void eliminarCita() {
+       
+       //Obteniendo los datos
+       
+    }
+
     public void irGestionCitasGUI() {
         
-        //Creación de vistas
         GestionDeCitas vistaGestionCitas= new GestionDeCitas("Gestión de Citas", almacenamiento);
+        vistaPlantillaCita.dispose();
+    }
+    
+    public void irCitasAfiliadoGUI() {
+        
+        CitasDeAfiliado vistaCitasAfiliado= new CitasDeAfiliado("Gestión de Citas", "Consultar", cedula, almacenamiento);
         vistaPlantillaCita.dispose();
     }
 }

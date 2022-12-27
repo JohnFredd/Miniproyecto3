@@ -16,12 +16,14 @@ package vistas;
 import controladores.GestorPpalGUI;
 import java.awt.Color;
 import java.awt.event.MouseListener;
+import java.io.FileNotFoundException;
 import javax.swing.JButton;
 import modelos.Almacenamiento;
 
 public class PpalGUI extends javax.swing.JFrame {
-
+    
     ImagenFondo fondo = new ImagenFondo();
+    
     public PpalGUI(String titulo, Almacenamiento almacenamiento) {
         this.setContentPane(fondo);
         initComponents();

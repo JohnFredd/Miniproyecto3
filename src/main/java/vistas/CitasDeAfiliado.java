@@ -29,12 +29,12 @@ public class CitasDeAfiliado extends javax.swing.JFrame {
     private final DefaultTableModel modeloTabla = new DefaultTableModel();
     private JTableHeader th;
     
-    public CitasDeAfiliado(String titulo, Almacenamiento almacenamiento) {
+    public CitasDeAfiliado(String titulo, String opcion, long cedula, Almacenamiento almacenamiento) {
         this.setContentPane(fondo);
         llenarColumnas();
         initComponents();
         diseñoTabla();
-        GestorCitasDeAfiliado gestorCitasAfiliado = new GestorCitasDeAfiliado(this, almacenamiento);
+        GestorCitasDeAfiliado gestorCitasAfiliado = new GestorCitasDeAfiliado(this, opcion, cedula, almacenamiento);
         setVisible(true);
         setTitle(titulo);
         setLocationRelativeTo(null);

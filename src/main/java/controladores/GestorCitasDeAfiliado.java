@@ -11,10 +11,14 @@ public class GestorCitasDeAfiliado {
     
     private CitasDeAfiliado ventanaCitasAfiliado;
     private final Almacenamiento almacenamiento;
-
-    public GestorCitasDeAfiliado(CitasDeAfiliado ventanaCitasAfiliado, Almacenamiento almacenamiento) {
+    private final long cedula;
+    private final String opcion;
+    
+    public GestorCitasDeAfiliado(CitasDeAfiliado ventanaCitasAfiliado, String opcion, long cedula, Almacenamiento almacenamiento) {
         this.ventanaCitasAfiliado = ventanaCitasAfiliado;
         this.almacenamiento = almacenamiento;
+        this.cedula = cedula;
+        this.opcion = opcion;
         this.ventanaCitasAfiliado.addBtnRegresarListener(new ManejadoraDeMouse());
     }
     class ManejadoraDeMouse extends MouseAdapter{
