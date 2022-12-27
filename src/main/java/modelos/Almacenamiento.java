@@ -24,7 +24,7 @@ public class Almacenamiento {
     private HashMap <Long, Medico> medicos;
     private ArrayList <Servicio> servicios;
     private HashMap <String, Consultorio> consultorios;
-    private ArrayList <Cita> citas;
+    private HashMap <Integer, Cita> citas;
     
     public Almacenamiento () throws IOException, ClassNotFoundException {
         try
@@ -64,7 +64,7 @@ public class Almacenamiento {
             medicos = (HashMap) ois.readObject();
             servicios = (ArrayList) ois.readObject();
             consultorios = (HashMap) ois.readObject();
-            citas = (ArrayList) ois.readObject();
+            citas = (HashMap) ois.readObject();
             
             ois.close();
             return true;
@@ -73,7 +73,7 @@ public class Almacenamiento {
             medicos = new HashMap();
             servicios = new ArrayList();
             consultorios = new HashMap();
-            citas = new ArrayList();
+            citas = new HashMap();
             try
             {
                 hacerBackUp();
@@ -134,7 +134,7 @@ public class Almacenamiento {
             InputStream is = new FileInputStream(ruta);
             ObjectInputStream ois = new ObjectInputStream(is);
 
-            citas = (ArrayList) ois.readObject();
+            citas = (HashMap) ois.readObject();
 
             ois.close();
             return true;
@@ -355,6 +355,43 @@ public class Almacenamiento {
         }
     }
     
+    public boolean anadirCita(Cita cita) throws IOException {
+        if (!citas.containsKey(cita.getNumeroReferencia())) {
+            citas.put(cita.getNumeroReferencia(), cita);
+            try
+            {
+                hacerBackUp();
+                return true;
+            } catch (IOException e) {
+                throw e;
+            }
+        }
+        return false;
+    }
+    
+    public void modificarCita(int referenciaAnterior, Cita cita) throws IOException {
+        citas.remove(referenciaAnterior);
+        citas.put(cita.getNumeroReferencia(), cita);
+        try
+        {
+            hacerBackUp();
+        } catch (IOException e) {
+            throw e;
+        }
+    }
+    
+    public void eliminarCita(int numeroReferencia) throws IOException {
+        Cita cita = citas.get(numeroReferencia);
+        citas.remove(numeroReferencia);
+        
+        try
+        {
+            hacerBackUp();
+        } catch (IOException e) {
+            throw e;
+        }
+    }
+    
     public HashMap<Long, Afiliado> getAfiliados() {
         return afiliados;
     }
@@ -387,11 +424,11 @@ public class Almacenamiento {
         this.consultorios = consultorios;
     }
 
-    public ArrayList<Cita> getCitas() {
+    public HashMap<Integer, Cita> getCitas() {
         return citas;
     }
 
-    public void setCitas(ArrayList<Cita> citas) {
+    public void setCitas(HashMap<Integer, Cita> citas) {
         this.citas = citas;
     }
     

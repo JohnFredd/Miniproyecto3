@@ -19,6 +19,7 @@ import java.time.LocalTime;
 
 public class Cita implements Serializable {
     
+    private int numeroReferencia;
     private LocalDate fecha;
     private LocalTime hora;
     private Servicio servicioRequerido;
@@ -26,13 +27,22 @@ public class Cita implements Serializable {
     private Consultorio consultorio;
     private Medico medico;
 
-    public Cita(LocalDate fecha, LocalTime hora, Servicio servicioRequerido, Afiliado afiliado, Consultorio consultorio, Medico medico) {
+    public Cita(int numeroReferencia, LocalDate fecha, LocalTime hora, Servicio servicioRequerido, Afiliado afiliado, Consultorio consultorio, Medico medico) {
+        this.numeroReferencia = numeroReferencia;
         this.fecha = fecha;
         this.hora = hora;
         this.servicioRequerido = servicioRequerido;
         this.afiliado = afiliado;
         this.consultorio = consultorio;
         this.medico = medico;
+    }
+
+    public int getNumeroReferencia() {
+        return numeroReferencia;
+    }
+
+    public void setNumeroReferencia(int numeroReferencia) {
+        this.numeroReferencia = numeroReferencia;
     }
 
     public LocalDate getFecha() {
