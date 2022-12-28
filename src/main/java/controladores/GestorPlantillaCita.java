@@ -16,17 +16,11 @@ package controladores;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
-import java.util.List;
 import modelos.Almacenamiento;
-import modelos.Cita;
-import controladores.GestorGestionDeCitas;
-import java.util.Arrays;
 import java.util.Date;
-import java.util.EventListener;
 import java.util.HashMap;
 import java.util.Iterator;
 import javax.swing.JOptionPane;
-import javax.swing.UIManager;
 import modelos.Medico;
 import modelos.Servicio;
 import vistas.CitasDeAfiliado;
@@ -40,7 +34,7 @@ public class GestorPlantillaCita {
     private final String opcion;
     private final String motivoCita;
     private final long cedula;
-    private HashMap<Long, Medico> medicos;
+    private final HashMap<Long, Medico> medicos;
     
     public GestorPlantillaCita(PlantillaCita vistaPlantillaCita, String opcion, String motivoCita, long cedula, Almacenamiento almacenamiento) {
         this.almacenamiento = almacenamiento;
