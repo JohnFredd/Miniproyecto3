@@ -127,70 +127,56 @@ public class GestorGestionDeCitas {
         
         if(misAfiliados.isEmpty() | misMedicos.isEmpty() | misConsultorios.isEmpty() | serviciosMedicos.isEmpty()){
             JOptionPane.showMessageDialog(vistaGestionCitas, "<html><p style = \" font:12px; \">Debe agregar por lo menos: 1 afiliado, 1 médico, 1 consultorio y 1 servicio</p></html>", "Aviso", JOptionPane.OK_OPTION, UIManager.getIcon("OptionPane.informationIcon"));
-        
-        } else {
-            String cedulaABuscar;
+            return;
+        }
 
-            //Convirtiendo los servicios actuales a String[]
-            String[] misServicios = new String[serviciosMedicos.size()];
+        //Convirtiendo los servicios actuales a String[]
+        String[] misServicios = new String[serviciosMedicos.size()];
 
-            for (int i= 0; i<serviciosMedicos.size(); i++){
-                String servicio = "";
-                servicio += serviciosMedicos.get(i).getNombre();
-                misServicios[i] = servicio;
+        for (int i= 0; i<serviciosMedicos.size(); i++){
+            misServicios[i] = serviciosMedicos.get(i).getNombre();
+        }
+
+        try {
+            String cedulaABuscar = (String) JOptionPane.showInputDialog(vistaGestionCitas, "<html><p style = \" font:12px; \">Ingrese la cédula del afiliado</p></html>", "Agendar cita", JOptionPane.DEFAULT_OPTION);
+            long cedula;
+            if (cedulaABuscar.isBlank()){
+                JOptionPane.showMessageDialog(vistaGestionCitas, "<html><p style = \" font:12px; \">Por favor ingrese una cédula</p></html>", "Error", JOptionPane.OK_OPTION, UIManager.getIcon("OptionPane.errorIcon"));
+                return;
+            }
+            try {
+                cedula = Long.parseLong(cedulaABuscar);
+            }
+            catch (NumberFormatException e) {
+                JOptionPane.showMessageDialog(null, "Por favor ingrese una cédula válida", "Error", JOptionPane.ERROR_MESSAGE);
+                return;
             }
 
-            try {
-                cedulaABuscar = (String) JOptionPane.showInputDialog(vistaGestionCitas, "<html><p style = \" font:12px; \">Ingrese la cédula del afiliado</p></html>", "Agendar cita", JOptionPane.DEFAULT_OPTION);
+            if(!almacenamiento.getAfiliados().containsKey(cedula)){
+                JOptionPane.showMessageDialog(vistaGestionCitas, "<html><p style = \" font:12px; \">No se encontró ningún afiliado registrado con esa cédula</p></html>", "Afiliado no encontrado", JOptionPane.OK_OPTION, UIManager.getIcon("OptionPane.errorIcon"));
+                return;
+            }
+            String motivoCita = (String) JOptionPane.showInputDialog(vistaGestionCitas, "<html><p style = \" font:12px; \">Escoja el motivo de la cita</p></html>", "Lista de servicios", JOptionPane.DEFAULT_OPTION, UIManager.getIcon("OptionPane.questionIcon"), misServicios, misServicios[0]);
 
-                if (cedulaABuscar.isBlank()){
-                    JOptionPane.showMessageDialog(vistaGestionCitas, "<html><p style = \" font:12px; \">Por favor ingrese una cédula</p></html>", "Error", JOptionPane.OK_OPTION, UIManager.getIcon("OptionPane.errorIcon"));
-                } else {
-                    long cedula = Long.parseLong(cedulaABuscar);
-                    
-                    if(!almacenamiento.getAfiliados().containsKey(cedula)){
-                        JOptionPane.showMessageDialog(vistaGestionCitas, "<html><p style = \" font:12px; \">No se encontró ningún afiliado registrado con esa cédula</p></html>", "Afiliado no encontrado", JOptionPane.OK_OPTION, UIManager.getIcon("OptionPane.errorIcon"));
-                    } else {
-                        String motivoCita = (String) JOptionPane.showInputDialog(vistaGestionCitas, "<html><p style = \" font:12px; \">Escoja el motivo de la cita</p></html>", "Lista de servicios", JOptionPane.DEFAULT_OPTION, UIManager.getIcon("OptionPane.questionIcon"), misServicios, misServicios[0]);
-                        
-                        if (motivoCita != null){
-                            
-                            Iterator i = misMedicos.entrySet().iterator();
-                            int cont = 0; //Si lo quitas muestra dos veces el mensaje de la linea 184
-                            boolean ventanaCreada = false; //Si lo quitas crea dos ventanas em 178 :v
-                            
-                            while(i.hasNext()) {
-                                HashMap.Entry <Long, Medico> mapa = (HashMap.Entry) i.next();
-                                ArrayList<Servicio> servicioDelMedico = mapa.getValue().getServicios();
+            Iterator i = misMedicos.entrySet().iterator();
 
-                                //Convirtiendo los servicios del médico a String[]
-                                String[] servicioDelMedicoStr = new String[servicioDelMedico.size()];
-                                for (int o = 0; o < servicioDelMedico.size(); o++){
-                                    String servicio = "";
-                                    servicio += servicioDelMedico.get(o);
-                                    servicioDelMedicoStr[o] = servicio;
-                                }
-                                
-                                //Verificando si existe un médico con la especialidad del servicio requerido
-                                for (String servicioAux : servicioDelMedicoStr) {
-                                    if (servicioAux.contains(motivoCita) && ventanaCreada == false) {
-                                        PlantillaCita ventanaAgendarCita = new PlantillaCita("Agendar Citas", "Agendar", motivoCita, cedula, almacenamiento);
-                                        vistaGestionCitas.dispose();
-                                        ventanaCreada = true;
-                                        break; 
-                                    } else if (!servicioAux.equals(motivoCita) && cont < 1){
-                                        JOptionPane.showMessageDialog(vistaGestionCitas, "<html><p style = \" font:12px; \">No se encontró ningún médico que preste ese servicio</p></html>", "Médico sin servicio requerido", JOptionPane.OK_OPTION, UIManager.getIcon("OptionPane.errorIcon"));
-                                        cont +=1;
-                                        break;
-                                    }
-                                }
-                            }  
-                        }
+            while(i.hasNext()) {
+                HashMap.Entry <Long, Medico> mapa = (HashMap.Entry) i.next();
+                ArrayList<Servicio> servicioDelMedico = mapa.getValue().getServicios();
+
+                for (int o = 0; o < servicioDelMedico.size(); o++){
+                    String servicio = "";
+                    servicio += servicioDelMedico.get(o);
+                    if (servicio.equals(motivoCita)) {
+                        PlantillaCita ventanaAgendarCita = new PlantillaCita("Agendar Citas", "Agendar", motivoCita, cedula, almacenamiento);
+                        vistaGestionCitas.dispose();
+                        return;
                     }
                 }
-            } catch(NullPointerException np){
-
             }
+            JOptionPane.showMessageDialog(vistaGestionCitas, "<html><p style = \" font:12px; \">No se encontró ningún médico que preste ese servicio</p></html>", "Médico sin servicio requerido", JOptionPane.OK_OPTION, UIManager.getIcon("OptionPane.errorIcon"));
+        } catch(NullPointerException np){
+            
         }
     }
     
