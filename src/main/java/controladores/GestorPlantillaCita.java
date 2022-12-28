@@ -22,6 +22,7 @@ import modelos.Cita;
 import controladores.GestorGestionDeCitas;
 import java.util.Arrays;
 import java.util.Date;
+import java.util.EventListener;
 import java.util.HashMap;
 import java.util.Iterator;
 import javax.swing.JOptionPane;
@@ -47,10 +48,9 @@ public class GestorPlantillaCita {
         this.motivoCita = motivoCita;
         this.cedula = cedula;
         medicos = almacenamiento.getMedicos();
-        //vista
         this.vistaPlantillaCita = vistaPlantillaCita;
-        //medicosDisponibles();
         modificarPlantilla();
+        vistaPlantillaCita.getTxtReferencia().setText("0001");
         //Añadiendo Listeners
         this.vistaPlantillaCita.addBtnRegresarListener(new ManejadoraDeMouse());
         this.vistaPlantillaCita.addBtnAgendarListener(new ManejadoraDeMouse());
@@ -170,7 +170,7 @@ public class GestorPlantillaCita {
        long d = date.getTime();
        java.sql.Date fecha = new java.sql.Date(d);
        JOptionPane.showMessageDialog(vistaPlantillaCita, "La fecha es: " +fecha);
-       vistaPlantillaCita.getcomboMedico().setEnabled(true);
+       vistaPlantillaCita.getComboMedico().setEnabled(true);
        vistaPlantillaCita.getBtnAsignar().setEnabled(true);
        
     }
@@ -208,7 +208,13 @@ public class GestorPlantillaCita {
     }
     
     public void asignarConsultorio(){
-        //Asignando consultorios
+        if(!validarCamposVacios()){
+            //Asignando consultorios
+            vistaPlantillaCita.getTxtConsultorio().setText("C101");
+            vistaPlantillaCita.getBtnAgendar().setEnabled(true);
+        } else {
+            JOptionPane.showMessageDialog(null, "Llene todos los campos requeridos antes de continuar.", "Datos incompletos", JOptionPane.ERROR_MESSAGE);
+        }
     }
     
     public void modificarCita() {
@@ -233,6 +239,14 @@ public class GestorPlantillaCita {
         
         CitasDeAfiliado vistaCitasAfiliado= new CitasDeAfiliado("Gestión de Citas", "Consultar", cedula, almacenamiento);
         vistaPlantillaCita.dispose();
+    }
+    
+    public boolean validarCamposVacios(){
+        boolean error = false;
+        
+        if(vistaPlantillaCita.getComboMedico().getModel().getSelectedItem() == null)
+            error = true;
+        return error;
     }
 }
 

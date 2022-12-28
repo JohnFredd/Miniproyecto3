@@ -17,6 +17,7 @@ import com.toedter.calendar.JDateChooser;
 import controladores.GestorPlantillaCita;
 import java.awt.Color;
 import java.awt.event.MouseListener;
+import java.beans.PropertyChangeListener;
 import java.util.ArrayList;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
@@ -97,7 +98,7 @@ public class PlantillaCita extends javax.swing.JFrame {
     public void setBtnVerificar(JButton btnVerificar) {
         this.btnVerificar = btnVerificar;
     }
-    public JComboBox<String> getcomboMedico() {
+    public JComboBox<String> getComboMedico() {
         return comboMedico;
     }
     public void setComboMedico(JComboBox<String> comboMedico) {
@@ -340,11 +341,11 @@ public class PlantillaCita extends javax.swing.JFrame {
         lblReferencia.setText("Número de referencia");
 
         txtReferencia.setEditable(false);
-        txtReferencia.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        txtReferencia.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         txtReferencia.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
         txtConsultorio.setEditable(false);
-        txtConsultorio.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        txtConsultorio.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         txtConsultorio.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
         btnAsignar.setFont(new java.awt.Font("Agency FB", 1, 24)); // NOI18N
@@ -410,6 +411,7 @@ public class PlantillaCita extends javax.swing.JFrame {
 
         btnAgendar.setFont(new java.awt.Font("Agency FB", 1, 36)); // NOI18N
         btnAgendar.setText("Agendar cita");
+        btnAgendar.setEnabled(false);
         btnAgendar.setFocusPainted(false);
         btnAgendar.setRequestFocusEnabled(false);
 
@@ -461,7 +463,7 @@ public class PlantillaCita extends javax.swing.JFrame {
                 .addGroup(panelPpalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAgendar)
                     .addComponent(btnRegresar))
-                .addContainerGap(46, Short.MAX_VALUE))
+                .addContainerGap(48, Short.MAX_VALUE))
             .addGroup(panelPpalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelPpalLayout.createSequentialGroup()
                     .addContainerGap(635, Short.MAX_VALUE)
