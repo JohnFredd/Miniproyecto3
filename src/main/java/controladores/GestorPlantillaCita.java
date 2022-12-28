@@ -55,6 +55,7 @@ public class GestorPlantillaCita {
         this.vistaPlantillaCita.addBtnRegresarListener(new ManejadoraDeMouse());
         this.vistaPlantillaCita.addBtnAgendarListener(new ManejadoraDeMouse());
         this.vistaPlantillaCita.addBtnVerificarListener(new ManejadoraDeMouse());
+        this.vistaPlantillaCita.addBtnAsignarListener(new ManejadoraDeMouse());
     }
     
     public void modificarPlantilla(){
@@ -85,6 +86,11 @@ public class GestorPlantillaCita {
         //Modificando título y botones
         vistaPlantillaCita.getLblTitulo().setText("Modificar Cita");
         vistaPlantillaCita.getBtnAgendar().setText("Modificar Cita");
+        
+        //Ingresando nombre, cédula y motivo de cita en interfaz
+        vistaPlantillaCita.getTxtNombre().setText(almacenamiento.getAfiliados().get(cedula).getNombre());
+        vistaPlantillaCita.getTxtCedula().setText(String.valueOf(cedula));
+        vistaPlantillaCita.getTxtServicio().setText(motivoCita);
     }
     
     public void plantillaEliminarCita(){
@@ -92,6 +98,11 @@ public class GestorPlantillaCita {
         //Modificando título y botones
         vistaPlantillaCita.getLblTitulo().setText("Eliminar Cita");
         vistaPlantillaCita.getBtnAgendar().setText("Eliminar Cita");
+        
+        //Ingresando nombre, cédula y motivo de cita en interfaz
+        vistaPlantillaCita.getTxtNombre().setText(almacenamiento.getAfiliados().get(cedula).getNombre());
+        vistaPlantillaCita.getTxtCedula().setText(String.valueOf(cedula));
+        vistaPlantillaCita.getTxtServicio().setText(motivoCita);
         
     }
     
@@ -135,13 +146,21 @@ public class GestorPlantillaCita {
                     actualizarMedicosHora();  
                 }
             }
+            
+            if (e.getSource() == vistaPlantillaCita.getBtnAsignar()){
+                if (e.getButton() == 1){
+                    asignarConsultorio(); 
+                }
+            }
         }
     }
     
     public void agendarCita() {
        
        //Obteniendo los datos
-       
+       Date date = vistaPlantillaCita.getDateChooser().getDate();
+       long d = date.getTime();
+       java.sql.Date fecha = new java.sql.Date(d);
     }
     
     public void actualizarMedicosHora() {
@@ -186,6 +205,10 @@ public class GestorPlantillaCita {
                 }
             }
         }
+    }
+    
+    public void asignarConsultorio(){
+        //Asignando consultorios
     }
     
     public void modificarCita() {

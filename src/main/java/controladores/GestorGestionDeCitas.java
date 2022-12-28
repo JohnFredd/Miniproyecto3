@@ -218,6 +218,14 @@ public class GestorGestionDeCitas {
             JOptionPane.showMessageDialog(vistaGestionCitas, "<html><p style = \" font:12px; \">Agregue una cita primero</p></html>", "Aviso", JOptionPane.OK_OPTION, UIManager.getIcon("OptionPane.informationIcon"));
         }
     }
+    
+    public void irModificarCita(int numRef){
+        String motivoCita = almacenamiento.getCitas().get(numRef).getServicioRequerido().getNombre();
+        long cedula = almacenamiento.getCitas().get(numRef).getAfiliado().getCedula();
+        PlantillaCita ventanaModificarCita = new PlantillaCita("Agendar Citas", "Modificar", motivoCita, cedula, almacenamiento);
+        vistaGestionCitas.dispose();
+    }
+    
     public void elegirCitaAEliminar(){
         HashMap<Integer, Cita> misCitas = almacenamiento.getCitas();
         
@@ -241,13 +249,6 @@ public class GestorGestionDeCitas {
         } else {
             JOptionPane.showMessageDialog(vistaGestionCitas, "<html><p style = \" font:12px; \">Agregue una cita primero</p></html>", "Aviso", JOptionPane.OK_OPTION, UIManager.getIcon("OptionPane.informationIcon"));
         }
-    }
-    
-    public void irModificarCita(int numRef){
-        String motivoCita = almacenamiento.getCitas().get(numRef).getServicioRequerido().getNombre();
-        long cedula = almacenamiento.getCitas().get(numRef).getAfiliado().getCedula();
-        PlantillaCita ventanaModificarCita = new PlantillaCita("Agendar Citas", "Modificar", motivoCita, cedula, almacenamiento);
-        vistaGestionCitas.dispose();
     }
     
     public void irEliminarCita(int numRef){
