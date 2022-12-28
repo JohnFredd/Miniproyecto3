@@ -20,11 +20,14 @@ import java.util.List;
 import modelos.Almacenamiento;
 import modelos.Cita;
 import controladores.GestorGestionDeCitas;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
 import javax.swing.JOptionPane;
+import javax.swing.UIManager;
 import modelos.Medico;
+import modelos.Servicio;
 import vistas.CitasDeAfiliado;
 import vistas.GestionDeCitas;
 import vistas.PlantillaCita;
@@ -46,7 +49,7 @@ public class GestorPlantillaCita {
         medicos = almacenamiento.getMedicos();
         //vista
         this.vistaPlantillaCita = vistaPlantillaCita;
-        medicosDisponibles();
+        //medicosDisponibles();
         modificarPlantilla();
         //Añadiendo Listeners
         this.vistaPlantillaCita.addBtnRegresarListener(new ManejadoraDeMouse());
@@ -63,7 +66,6 @@ public class GestorPlantillaCita {
             case "Modificar" -> {
                 plantillaModificarCita();
             }
-            
             case "Eliminar" -> {
                 plantillaEliminarCita();
             }
@@ -129,6 +131,7 @@ public class GestorPlantillaCita {
             
             if (e.getSource() == vistaPlantillaCita.getBtnVerificar()){
                 if (e.getButton() == 1){
+                    medicosDisponibles();
                     actualizarMedicosHora();  
                 }
             }
@@ -153,17 +156,38 @@ public class GestorPlantillaCita {
        
     }
     
+    
+    // Actualiza el comboBox con los médicos que prestan el servicio requerido
     public void medicosDisponibles(){
+        
         Iterator i = medicos.entrySet().iterator();
-
+        ArrayList<String> misMedicos = new ArrayList();
+        
         while(i.hasNext()) {
             HashMap.Entry <Long, Medico> mapa = (HashMap.Entry) i.next();
-            Medico medico = mapa.getValue();
-            ArrayList<String> misMedicos = new ArrayList();
-            misMedicos.add(medico.getNombre());
-            vistaPlantillaCita.anadirMedicosCombo(misMedicos);
+            ArrayList<Servicio> servicioDelMedico = mapa.getValue().getServicios();
+            
+            //Convirtiendo los servicios del médico a String[]
+            String[] servicioDelMedicoStr = new String[servicioDelMedico.size()];
+            for (int o= 0; o<servicioDelMedico.size(); o++){
+                String servicio = "";
+                servicio += servicioDelMedico.get(o);
+                servicioDelMedicoStr[o] = servicio;
+            }
+            
+            //Verificando qué médico posee la especialidad del servicio requerido
+            for (String misServicios : servicioDelMedicoStr) {
+                if (misServicios.equals(motivoCita)) {
+                    Medico medico = mapa.getValue();
+                    misMedicos.add(medico.getNombre());
+                    vistaPlantillaCita.anadirMedicosCombo(misMedicos);
+                    misMedicos.removeAll(misMedicos);
+                    break; 
+                }
+            }
         }
     }
+    
     public void modificarCita() {
        
        //Obteniendo los datos

@@ -17,6 +17,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import modelos.Afiliado;
@@ -150,16 +151,44 @@ public class GestorGestionDeCitas {
                     if(!almacenamiento.getAfiliados().containsKey(cedula)){
                         JOptionPane.showMessageDialog(vistaGestionCitas, "<html><p style = \" font:12px; \">No se encontró ningún afiliado registrado con esa cédula</p></html>", "Afiliado no encontrado", JOptionPane.OK_OPTION, UIManager.getIcon("OptionPane.errorIcon"));
                     } else {
+                        
                         String motivoCita = (String) JOptionPane.showInputDialog(vistaGestionCitas, "<html><p style = \" font:12px; \">Escoja el motivo de la cita</p></html>", "Lista de servicios", JOptionPane.DEFAULT_OPTION, UIManager.getIcon("OptionPane.questionIcon"), misServicios, misServicios[0]);
-
                         if (motivoCita != null){
-                            for (String miServicio : misServicios) {
-                                if (miServicio.equals(motivoCita)) {
-                                    PlantillaCita ventanaAgendarCita = new PlantillaCita("Agendar Citas", "Agendar", motivoCita, cedula, almacenamiento);
-                                    vistaGestionCitas.dispose();
+                            Iterator i = misMedicos.entrySet().iterator();
+                            ArrayList<String> misMedicos2 = new ArrayList();
+                            int cont = 0;
+                            boolean ventanaCreada = false;
+                            
+                            while(i.hasNext()) {
+                                HashMap.Entry <Long, Medico> mapa = (HashMap.Entry) i.next();
+                                ArrayList<Servicio> servicioDelMedico = mapa.getValue().getServicios();
+
+                                //Convirtiendo los servicios del médico a String[]
+                                String[] servicioDelMedicoStr = new String[servicioDelMedico.size()];
+                                for (int o= 0; o<servicioDelMedico.size(); o++){
+                                    String servicio = "";
+                                    servicio += servicioDelMedico.get(o);
+                                    servicioDelMedicoStr[o] = servicio;
                                 }
-                            }
+                                
+                                //Verificando si existe un médico con la especialidad del servicio requerido
+                                for (String misServicios2 : servicioDelMedicoStr) {
+                                    if (misServicios2.contains(motivoCita) && ventanaCreada == false) {
+                                        Medico medico = mapa.getValue();
+                                        PlantillaCita ventanaAgendarCita = new PlantillaCita("Agendar Citas", "Agendar", motivoCita, cedula, almacenamiento);
+                                        vistaGestionCitas.dispose();
+                                        misMedicos2.removeAll(misMedicos2);
+                                        ventanaCreada = true;
+                                        break; 
+                                    } else if (!misServicios2.equals(motivoCita) && cont < 1){
+                                        JOptionPane.showMessageDialog(vistaGestionCitas, "<html><p style = \" font:12px; \">No se encontró ningún médico que preste ese servicio</p></html>", "Afiliado no encontrado", JOptionPane.OK_OPTION, UIManager.getIcon("OptionPane.errorIcon"));
+                                        cont +=1;
+                                        break;
+                                    }
+                                }
+                            }  
                         }
+                        
                     }
                 }
             } catch(NullPointerException np){
