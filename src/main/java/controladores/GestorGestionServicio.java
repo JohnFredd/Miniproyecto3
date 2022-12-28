@@ -103,49 +103,84 @@ public class GestorGestionServicio {
     //Opciones a realizar con un afiliado
     public void opcionesAfiliado(){
         try {
-            String resp = (String) JOptionPane.showInputDialog(vistaGestionServicio, "<html><p style = \" font:12px; \">¿Qué desea hacer?</p></html>", "Opciones afiliados", JOptionPane.DEFAULT_OPTION, UIManager.getIcon("OptionPane.questionIcon"), opciones, opciones[0]);
+            String resp = (String) JOptionPane.showInputDialog(vistaGestionServicio, 
+                    "<html><p style = \" font:12px; \">¿Qué desea hacer?</p></html>", 
+                    "Opciones afiliados", JOptionPane.DEFAULT_OPTION, 
+                    UIManager.getIcon("OptionPane.questionIcon"), opciones, opciones[0]);
 
             switch(resp){
                 case "Agregar" -> {
                     irAgregarAfiliado();
                 }
                 case "Actualizar" -> {
-                    String cedulaABuscar;
-                    try {
-                        cedulaABuscar = (String) JOptionPane.showInputDialog(vistaGestionServicio, "<html><p style = \" font:12px; \">Ingrese la cédula del afiliado a actualizar</p></html>", "Actualizar afiliado", JOptionPane.DEFAULT_OPTION);
+                    try{
+                        String cedulaABuscar = (String) JOptionPane.showInputDialog(vistaGestionServicio, 
+                                "<html><p style = \" font:12px; \">Ingrese la cédula del afiliado "
+                                + "a actualizar</p></html>", "Actualizar afiliado", 
+                                JOptionPane.DEFAULT_OPTION);
+                        long cedula;
                         if (cedulaABuscar.isBlank()){
-                            JOptionPane.showMessageDialog(vistaGestionServicio, "<html><p style = \" font:12px; \">Por favor ingrese una cédula</p></html>", "Error", JOptionPane.OK_OPTION, UIManager.getIcon("OptionPane.errorIcon"));
-                        } else {
-                            long cedula = Long.parseLong(cedulaABuscar);
-                            if(almacenamiento.getAfiliados().containsKey(cedula)){
-                                irActualizarAfiliado(cedula);
-                            } else {
-                                JOptionPane.showMessageDialog(vistaGestionServicio, "<html><p style = \" font:12px; \">No se encontró ningún afiliado registrado con esa cédula</p></html>", "Afiliado no encontrado", JOptionPane.OK_OPTION, UIManager.getIcon("OptionPane.errorIcon"));
-                            }
+                            JOptionPane.showMessageDialog(vistaGestionServicio, 
+                                    "<html><p style = \" font:12px; \">Por favor ingrese una "
+                                    + "cédula</p></html>", "Error", JOptionPane.OK_OPTION, 
+                                    UIManager.getIcon("OptionPane.errorIcon"));
+                            return;
                         }
-                    } catch(NullPointerException np){
-
+                        try{
+                            cedula = Long.parseLong(cedulaABuscar);
+                        } catch (NumberFormatException e) {
+                            JOptionPane.showMessageDialog(null, "Por favor ingrese una cédula "
+                                    + "válida", "Error", JOptionPane.ERROR_MESSAGE);
+                            return;  
+                        }
+                        if(!almacenamiento.getAfiliados().containsKey(cedula)){
+                            JOptionPane.showMessageDialog(vistaGestionServicio, 
+                                    "<html><p style = \" font:12px; \">No se encontró ningún "
+                                    + "afiliado registrado con esa cédula</p></html>", 
+                                    "Afiliado no encontrado", JOptionPane.OK_OPTION, 
+                                    UIManager.getIcon("OptionPane.errorIcon"));
+                            return;
+                        }
+                        irActualizarAfiliado(cedula);
+                    } catch (NullPointerException np) {
+                        
                     }
                 }
                 case "Listar" -> {
                     irListarAfiliado();
                 }
                 case "Eliminar" -> {
-                    String cedulaABuscar = (String) JOptionPane.showInputDialog(vistaGestionServicio,"<html><p style = \" font:12px; \">Ingrese la cédula del afiliado a eliminar</p></html>", "Eliminar afiliado", JOptionPane.DEFAULT_OPTION);
-                    try {
+                    try{
+                        String cedulaABuscar = (String) JOptionPane.showInputDialog(vistaGestionServicio, 
+                                "<html><p style = \" font:12px; \">Ingrese la cédula del afiliado "
+                                        + "a actualizar</p></html>", "Actualizar afiliado", 
+                                        JOptionPane.DEFAULT_OPTION);
+                        long cedula;
                         if (cedulaABuscar.isBlank()){
-                            JOptionPane.showMessageDialog(vistaGestionServicio, "<html><p style = \" font:12px; \">Por favor ingrese una cédula</p></html>", "Error", JOptionPane.OK_OPTION, UIManager.getIcon("OptionPane.errorIcon"));
-                        } else {
-                            long cedula = Long.parseLong(cedulaABuscar);
-                            if(almacenamiento.getAfiliados().containsKey(cedula)){
-                                //Afiliado miAfiliado = almacenamiento.getAfiliados().get(cedula);
-                                irEliminarAfiliado(cedula);
-                            } else {
-                                JOptionPane.showMessageDialog(vistaGestionServicio, "<html><p style = \" font:12px; \">No se encontró ningún afiliado registrado con esa cédula</p></html>", "Afiliado no encontrado", JOptionPane.OK_OPTION, UIManager.getIcon("OptionPane.errorIcon"));
-                            }
+                            JOptionPane.showMessageDialog(vistaGestionServicio, 
+                                    "<html><p style = \" font:12px; \">Por favor ingrese una "
+                                            + "cédula</p></html>", "Error", JOptionPane.OK_OPTION, 
+                                            UIManager.getIcon("OptionPane.errorIcon"));
+                            return;
                         }
-                    } catch(NullPointerException np){
-
+                        try{
+                            cedula = Long.parseLong(cedulaABuscar);
+                        } catch (NumberFormatException e) {
+                            JOptionPane.showMessageDialog(null, "Por favor ingrese una cédula "
+                                    + "válida", "Error", JOptionPane.ERROR_MESSAGE);
+                            return;  
+                        }
+                        if(!almacenamiento.getAfiliados().containsKey(cedula)){
+                            JOptionPane.showMessageDialog(vistaGestionServicio, 
+                                    "<html><p style = \" font:12px; \">No se encontró ningún afiliado"
+                                    + " registrado con esa cédula</p></html>", 
+                                    "Afiliado no encontrado", JOptionPane.OK_OPTION, 
+                                    UIManager.getIcon("OptionPane.errorIcon"));
+                            return;
+                        }
+                        irEliminarAfiliado(cedula);
+                    } catch (NullPointerException np) {
+                        
                     }
                 }
             }
@@ -155,75 +190,117 @@ public class GestorGestionServicio {
     }
     
     public void irAgregarAfiliado(){
-        PlantillaAfiliado ventanaAgregarAfiliado = new PlantillaAfiliado("Agregar afiliado", "Agregar", almacenamiento, 0);
+        PlantillaAfiliado ventanaAgregarAfiliado = new PlantillaAfiliado("Agregar afiliado", 
+                "Agregar", almacenamiento, 0);
         vistaGestionServicio.dispose();
     }
     
     public void irActualizarAfiliado(long cedula) {
-        PlantillaAfiliado ventanaAgregarAfiliado = new PlantillaAfiliado("Actualizar afiliado", "Actualizar", almacenamiento, cedula);
+        PlantillaAfiliado ventanaAgregarAfiliado = new PlantillaAfiliado("Actualizar afiliado", 
+                "Actualizar", almacenamiento, cedula);
         vistaGestionServicio.dispose();
     }
     
     public void irListarAfiliado(){
-        ListarAfiliado ventanaListaAfiliado = new ListarAfiliado("Lista de afiliados",almacenamiento);
+        ListarAfiliado ventanaListaAfiliado = new ListarAfiliado("Lista de afiliados", 
+                almacenamiento);
         vistaGestionServicio.dispose();
     }
     
     public void irEliminarAfiliado(long cedula) {
-        PlantillaAfiliado ventanaEliminarAfiliado = new PlantillaAfiliado("Eliminar afiliado", "Eliminar", almacenamiento, cedula);
+        PlantillaAfiliado ventanaEliminarAfiliado = new PlantillaAfiliado("Eliminar afiliado", 
+                "Eliminar", almacenamiento, cedula);
         vistaGestionServicio.dispose();
     }
     
     //Opciones a realizar con un médico
     public void opcionesMedico(){
         try {
-            String resp = (String) JOptionPane.showInputDialog(vistaGestionServicio, "<html><p style = \" font:12px; \">¿Qué desea hacer?</p></html>", "Opciones médicos", JOptionPane.DEFAULT_OPTION, UIManager.getIcon("OptionPane.questionIcon"), opciones, opciones[0]);
+            String resp = (String) JOptionPane.showInputDialog(vistaGestionServicio, 
+                    "<html><p style = \" font:12px; \">¿Qué desea hacer?</p></html>", 
+                    "Opciones médicos", JOptionPane.DEFAULT_OPTION, 
+                    UIManager.getIcon("OptionPane.questionIcon"), opciones, opciones[0]);
 
             switch(resp){
                 case "Agregar" -> {
-                    if(!almacenamiento.getServicios().isEmpty()){
-                        irAgregarMedico();
-                    } else {
-                            JOptionPane.showMessageDialog(null, "Antes de agregar un médico, agregue un servicio.", "Datos incompletos", JOptionPane.ERROR_MESSAGE);                    
-                    }
+                    if(almacenamiento.getServicios().isEmpty()){
+                        JOptionPane.showMessageDialog(null, "Antes de agregar un médico, "
+                                + "agregue un servicio.", "Datos incompletos", 
+                                JOptionPane.ERROR_MESSAGE);                    
+                        return;
+                    } 
+                    irAgregarMedico();
                 }
                 case "Actualizar" -> {
-                    String cedulaABuscar;
-                    try {
-                        cedulaABuscar = (String) JOptionPane.showInputDialog(vistaGestionServicio, "<html><p style = \" font:12px; \">Ingrese la cédula del médico a actualizar</p></html>", "Actualizar médico", JOptionPane.DEFAULT_OPTION);
+                    try{
+                        String cedulaABuscar = (String) JOptionPane.showInputDialog(vistaGestionServicio, 
+                                "<html><p style = \" font:12px; \">Ingrese la cédula del médico a "
+                                        + "actualizar</p></html>", "Actualizar médico", 
+                                        JOptionPane.DEFAULT_OPTION);
+                        long cedula;
                         if (cedulaABuscar.isBlank()){
-                            JOptionPane.showMessageDialog(vistaGestionServicio, "<html><p style = \" font:12px; \">Por favor ingrese una cédula</p></html>", "Error", JOptionPane.OK_OPTION, UIManager.getIcon("OptionPane.errorIcon"));
-                        } else {
-                            long cedula = Long.parseLong(cedulaABuscar);
-                            if(almacenamiento.getMedicos().containsKey(cedula)){
-                                irActualizarMedico(cedula);
-                            } else {
-                                JOptionPane.showMessageDialog(vistaGestionServicio, "<html><p style = \" font:12px; \">No se encontró ningún médico registrado con esa cédula</p></html>", "Afiliado no encontrado", JOptionPane.OK_OPTION, UIManager.getIcon("OptionPane.errorIcon"));
-                            }
-                            
+                            JOptionPane.showMessageDialog(vistaGestionServicio, 
+                                    "<html><p style = \" font:12px; \">Por favor ingrese una "
+                                            + "cédula</p></html>", "Error", JOptionPane.OK_OPTION,
+                                            UIManager.getIcon("OptionPane.errorIcon"));
+                            return;
                         }
-                    } catch(NullPointerException np){
-                        JOptionPane.showMessageDialog(vistaGestionServicio, "<html><p style = \" font:12px; \">No se ingresó ninguna cédula</p></html>", "Aviso", JOptionPane.OK_OPTION, UIManager.getIcon("OptionPane.informationIcon"));
+                        try{
+                            cedula = Long.parseLong(cedulaABuscar);
+                        } catch (NumberFormatException e) {
+                            JOptionPane.showMessageDialog(null, "Por favor ingrese una cédula "
+                                    + "válida", "Error", JOptionPane.ERROR_MESSAGE);
+                            return;  
+                        }
+                        if(!almacenamiento.getMedicos().containsKey(cedula)){
+                            JOptionPane.showMessageDialog(vistaGestionServicio, 
+                                    "<html><p style = \" font:12px; \">No se encontró ningún médico"
+                                            + " registrado con esa cédula</p></html>", 
+                                    "Médico no encontrado", JOptionPane.OK_OPTION, 
+                                    UIManager.getIcon("OptionPane.errorIcon"));
+                            return;
+                        }
+                        irActualizarMedico(cedula);
+                    } catch (NullPointerException np) {
+                        
                     }
                 }
                 case "Listar" -> {
                     irListarMedico();
                 }
                 case "Eliminar" -> {
-                    String cedulaABuscar = (String) JOptionPane.showInputDialog(vistaGestionServicio, "Ingrese la cédula del médico a eliminar", "Eliminar médico", JOptionPane.DEFAULT_OPTION);
-                    try {
+                    try{
+                        String cedulaABuscar = (String) JOptionPane.showInputDialog(vistaGestionServicio, 
+                                "<html><p style = \" font:12px; \">Ingrese la cédula del médico a "
+                                        + "eliminar</p></html>", "Eliminar médico", 
+                                        JOptionPane.DEFAULT_OPTION);
+                        long cedula;
                         if (cedulaABuscar.isBlank()){
-                            JOptionPane.showMessageDialog(vistaGestionServicio, "<html><p style = \" font:12px; \">Por favor ingrese una cédula</p></html>", "Error", JOptionPane.OK_OPTION, UIManager.getIcon("OptionPane.errorIcon"));
-                        } else {
-                            long cedula = Long.parseLong(cedulaABuscar);
-                            if(almacenamiento.getMedicos().containsKey(cedula)){
-                                irEliminarMedico(cedula);
-                            } else {
-                                JOptionPane.showMessageDialog(vistaGestionServicio, "<html><p style = \" font:12px; \">No se encontró ningún médico registrado con esa cédula</p></html>", "Afiliado no encontrado", JOptionPane.OK_OPTION, UIManager.getIcon("OptionPane.errorIcon"));
-                            }
+                            JOptionPane.showMessageDialog(vistaGestionServicio, 
+                                    "<html><p style = \" font:12px; \">Por favor ingrese una "
+                                    + "cédula</p></html>", "Error", 
+                                    JOptionPane.OK_OPTION, 
+                                    UIManager.getIcon("OptionPane.errorIcon"));
+                            return;
                         }
-                    } catch(NullPointerException np){
-                        JOptionPane.showMessageDialog(vistaGestionServicio, "<html><p style = \" font:12px; \">No se ingresó ninguna cédula</p></html>", "Aviso", JOptionPane.OK_OPTION, UIManager.getIcon("OptionPane.informationIcon"));
+                        try{
+                            cedula = Long.parseLong(cedulaABuscar);
+                        } catch (NumberFormatException e) {
+                            JOptionPane.showMessageDialog(null, "Por favor ingrese una cédula "
+                                    + "válida", "Error", JOptionPane.ERROR_MESSAGE);
+                            return;  
+                        }
+                        if(!almacenamiento.getMedicos().containsKey(cedula)){
+                            JOptionPane.showMessageDialog(vistaGestionServicio, 
+                                    "<html><p style = \" font:12px; \">No se encontró ningún "
+                                    + "médico registrado con esa cédula</p></html>", 
+                                    "Médico no encontrado", JOptionPane.OK_OPTION, 
+                                    UIManager.getIcon("OptionPane.errorIcon"));
+                            return;
+                        }
+                        irEliminarMedico(cedula);
+                    } catch (NullPointerException np) {
+                        
                     }
                 }
             }
@@ -232,11 +309,13 @@ public class GestorGestionServicio {
         }
     }
     public void irAgregarMedico(){
-        PlantillaMedico ventanaAgregarMedico = new PlantillaMedico("Agregar médico", "Agregar", almacenamiento, 0);
+        PlantillaMedico ventanaAgregarMedico = new PlantillaMedico("Agregar médico", 
+                "Agregar", almacenamiento, 0);
         vistaGestionServicio.dispose();
     }
     public void irActualizarMedico(long cedula) {
-        PlantillaMedico ventanaAgregarMedico = new PlantillaMedico("Actualizar médico", "Actualizar", almacenamiento, cedula);
+        PlantillaMedico ventanaAgregarMedico = new PlantillaMedico("Actualizar médico", 
+                "Actualizar", almacenamiento, cedula);
         vistaGestionServicio.dispose();
     }
     public void irListarMedico(){
@@ -244,92 +323,124 @@ public class GestorGestionServicio {
         vistaGestionServicio.dispose();
     }
     public void irEliminarMedico(long cedula) {
-        PlantillaMedico ventanaAgregarMedico = new PlantillaMedico("Eliminar médico", "Eliminar", almacenamiento, cedula);
+        PlantillaMedico ventanaAgregarMedico = new PlantillaMedico("Eliminar médico", 
+                "Eliminar", almacenamiento, cedula);
         vistaGestionServicio.dispose();
     }
     
     //Opciones a realizar con un consultorio
     public void opcionesConsultorio(){
         try {
-            String resp = (String) JOptionPane.showInputDialog(vistaGestionServicio, "<html><p style = \" font:12px; \">¿Qué desea hacer?</p></html>", "Opciones consultorios", JOptionPane.DEFAULT_OPTION, UIManager.getIcon("OptionPane.questionIcon"), opciones, opciones[0]);
+            String resp = (String) JOptionPane.showInputDialog(vistaGestionServicio, 
+                    "<html><p style = \" font:12px; \">¿Qué desea hacer?</p></html>", 
+                    "Opciones consultorios", JOptionPane.DEFAULT_OPTION, 
+                    UIManager.getIcon("OptionPane.questionIcon"), opciones, opciones[0]);
             
-            if(resp != null & !"Agregar".equals(resp) & !"Listar".equals(resp)){
+            switch(resp){
+                case "Agregar" -> {
+                    if(almacenamiento.getServicios().isEmpty()){
+                    JOptionPane.showMessageDialog(null, "Antes de agregar un consultorio, "
+                            + "agregue un servicio.", "Datos incompletos", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
+                irAgregarConsultorio();
+                }
                 
-                switch(resp){
-                    
-                    case "Actualizar" -> {
-                        String idABuscar;
-                        try {
-                            idABuscar = (String) JOptionPane.showInputDialog(vistaGestionServicio, "<html><p style = \" font:12px; \">Ingrese el identificador del consultorio a actualizar</p></html>", "Actualizar afiliado", JOptionPane.DEFAULT_OPTION);
-                            if (idABuscar.isBlank()){
-                                JOptionPane.showMessageDialog(vistaGestionServicio, "<html><p style = \" font:12px; \">Por favor ingrese un identificador</p></html>", "Error", JOptionPane.OK_OPTION, UIManager.getIcon("OptionPane.errorIcon"));
-                            } else {
-                                if(almacenamiento.getConsultorios().containsKey(idABuscar)){
-                                    irActualizarConsultorio(idABuscar);
-                                } else {
-                                    JOptionPane.showMessageDialog(vistaGestionServicio, "<html><p style = \" font:12px; \">No se encontró ningún consultorio registrado con ese identificador</p></html>", "Afiliado no encontrado", JOptionPane.OK_OPTION, UIManager.getIcon("OptionPane.errorIcon"));
-                                }
-                            }
-                        } catch(NullPointerException np){
-
+                case "Listar" -> {
+                    irListarConsultorio();
+                }
+                
+                case "Actualizar" -> {
+                    try {
+                        String idABuscar = (String) JOptionPane.showInputDialog(vistaGestionServicio, 
+                                "<html><p style = \" font:12px; \">Ingrese el identificador del "
+                                        + "consultorio a actualizar</p></html>", "Actualizar "
+                                        + "consultorio", JOptionPane.DEFAULT_OPTION);
+                        if (idABuscar.isBlank()){
+                            JOptionPane.showMessageDialog(vistaGestionServicio, 
+                                    "<html><p style = \" font:12px; \">Por favor ingrese un "
+                                            + "identificador</p></html>", "Error", 
+                                            JOptionPane.OK_OPTION, 
+                                            UIManager.getIcon("OptionPane.errorIcon"));
+                            return;
+                        } 
+                        if(!almacenamiento.getConsultorios().containsKey(idABuscar)){
+                            JOptionPane.showMessageDialog(vistaGestionServicio, 
+                                    "<html><p style = \" font:12px; \">No se encontró ningún "
+                                            + "consultorio registrado con ese identificador</p></html>", 
+                                    "Consultorio no encontrado", JOptionPane.OK_OPTION, 
+                                    UIManager.getIcon("OptionPane.errorIcon"));
+                            return;
                         }
-                    }
-                    
-                    case "Eliminar" -> {
-                        String idABuscar;
-                        try {
-                            idABuscar = (String) JOptionPane.showInputDialog(vistaGestionServicio, "<html><p style = \" font:12px; \">Ingrese el identificador del consultorio a eliminar</p></html>", "Actualizar afiliado", JOptionPane.DEFAULT_OPTION);
-                            if (idABuscar.isBlank()){
-                                JOptionPane.showMessageDialog(vistaGestionServicio, "<html><p style = \" font:12px; \">Por favor ingrese un identificador</p></html>", "Error", JOptionPane.OK_OPTION, UIManager.getIcon("OptionPane.errorIcon"));
-                            } else {
-                                if(almacenamiento.getConsultorios().containsKey(idABuscar)){
-                                    irEliminarConsultorio(idABuscar);
-                                } else {
-                                    JOptionPane.showMessageDialog(vistaGestionServicio, "<html><p style = \" font:12px; \">No se encontró ningún consultorio registrado con ese identificador</p></html>", "Afiliado no encontrado", JOptionPane.OK_OPTION, UIManager.getIcon("OptionPane.errorIcon"));
-                                }
-                            }
-                        } catch(NullPointerException np){
+                        irActualizarConsultorio(idABuscar);
 
-                        }
+                    } catch(NullPointerException np){
+
                     }
                 }
-            } else if ("Listar".equals(resp)){
-                irListarConsultorio();
-            } else if ("Agregar".equals(resp)){
-                if(!almacenamiento.getServicios().isEmpty()){
-                    irAgregarConsultorio();
-                } else {
-                    JOptionPane.showMessageDialog(null, "Antes de agregar un consultorio, agregue un servicio.", "Datos incompletos", JOptionPane.ERROR_MESSAGE);
-                
-                }
-            } 
 
+                case "Eliminar" -> {
+                    try {
+                        String idABuscar = (String) JOptionPane.showInputDialog(vistaGestionServicio, 
+                                "<html><p style = \" font:12px; \">Ingrese el identificador del "
+                                + "consultorio a eliminar</p></html>", 
+                                "Eliminar consultorio", JOptionPane.DEFAULT_OPTION);
+                        if (idABuscar.isBlank()){
+                            JOptionPane.showMessageDialog(vistaGestionServicio, 
+                                    "<html><p style = \" font:12px; \">Por favor ingrese un "
+                                    + "identificador</p></html>", "Error", 
+                                    JOptionPane.OK_OPTION, 
+                                    UIManager.getIcon("OptionPane.errorIcon"));
+                            return;
+                        } 
+                        if(!almacenamiento.getConsultorios().containsKey(idABuscar)){
+                            JOptionPane.showMessageDialog(vistaGestionServicio, 
+                                    "<html><p style = \" font:12px; \">No se encontró ningún "
+                                            + "consultorio registrado con ese identificador</p></html>", 
+                                    "Consultorio no encontrado", JOptionPane.OK_OPTION, 
+                                    UIManager.getIcon("OptionPane.errorIcon"));
+                            return;
+                        }
+                        irEliminarConsultorio(idABuscar);
+
+                    } catch(NullPointerException np){
+
+                    }
+                }
+            }
         } catch(NullPointerException np){
             
         }
     }
     
     public void irAgregarConsultorio(){
-        PlantillaConsultorio ventanaAgregarConsultorio = new PlantillaConsultorio("Agregar consultorio", "Agregar", almacenamiento, "");
+        PlantillaConsultorio ventanaAgregarConsultorio = new PlantillaConsultorio("Agregar "
+                + "consultorio", "Agregar", almacenamiento, "");
         vistaGestionServicio.dispose();
     }
     public void irActualizarConsultorio(String id) {
-        PlantillaConsultorio ventanaActualizarConsultorio = new PlantillaConsultorio("Actualizar consultorio", "Actualizar", almacenamiento, id);
+        PlantillaConsultorio ventanaActualizarConsultorio = new PlantillaConsultorio("Actualizar "
+                + "consultorio", "Actualizar", almacenamiento, id);
         vistaGestionServicio.dispose();
     }
     public void irListarConsultorio(){
-        ListarConsultorio ventanaListaConsultorio = new ListarConsultorio("Listas de consultorios", almacenamiento);
+        ListarConsultorio ventanaListaConsultorio = new ListarConsultorio("Listas de consultorios",
+                almacenamiento);
         vistaGestionServicio.dispose();
     }
     public void irEliminarConsultorio(String id) {
-        PlantillaConsultorio ventanaActualizarConsultorio = new PlantillaConsultorio("Eliminar consultorio", "Eliminar", almacenamiento, id);
+        PlantillaConsultorio ventanaActualizarConsultorio = new PlantillaConsultorio("Eliminar "
+                + "consultorio", "Eliminar", almacenamiento, id);
         vistaGestionServicio.dispose();
     }
     
     //Opciones a realizar con un servicio
     public void opcionesServicio(){
         try {
-            String resp = (String) JOptionPane.showInputDialog(vistaGestionServicio, "<html><p style = \" font:12px; \">¿Qué desea hacer?</p></html>", "Opciones servicios médicos", JOptionPane.DEFAULT_OPTION, UIManager.getIcon("OptionPane.questionIcon"), opciones, opciones[0]);
+            String resp = (String) JOptionPane.showInputDialog(vistaGestionServicio, 
+                    "<html><p style = \" font:12px; \">¿Qué desea hacer?</p></html>", 
+                    "Opciones servicios médicos", JOptionPane.DEFAULT_OPTION, 
+                    UIManager.getIcon("OptionPane.questionIcon"), opciones, opciones[0]);
             
             //Convirtiendo los servicios actuales a String[]
             ArrayList<Servicio> servicios = almacenamiento.getServicios();
@@ -340,61 +451,57 @@ public class GestorGestionServicio {
                 servicio += servicios.get(i).getNombre();
                 misServicios[i] = servicio;
             }
-            
-            if(resp != null & !"Agregar".equals(resp) & !"Listar".equals(resp)){
-                if(misServicios.length != 0){
-                    String resp2 = (String) JOptionPane.showInputDialog(vistaGestionServicio, "<html><p style = \" font:12px; \">Escoja el servicio</p></html>", "Lista de servicios", JOptionPane.DEFAULT_OPTION, UIManager.getIcon("OptionPane.questionIcon"), misServicios, misServicios[0]);
-                    switch(resp){
-
-                        case "Actualizar" -> {
-                            try {
-                                if (resp2 != null){
-                                    for (String miServicio : misServicios) {
-                                        if (miServicio.equals(resp2)) {
-                                            irActualizarServicio(resp2);
-                                        }
-                                    }
-                                }
-                            } catch(NullPointerException np){
-                                JOptionPane.showMessageDialog(vistaGestionServicio, "<html><p style = \" font:12px; \">No se escogió ningún servicio</p></html>", "Aviso", JOptionPane.OK_OPTION, UIManager.getIcon("OptionPane.informationIcon"));
-                            }
-                        }
-
-                        case "Eliminar" -> {
-                            try {
-                                if (resp2 != null){
-                                    for (String miServicio : misServicios) {
-                                        if (miServicio.equals(resp2)) {
-                                            irEliminarServicio(resp2);
-                                        }
-                                    }
-                                }
-                            } catch(NullPointerException np){
-                                JOptionPane.showMessageDialog(vistaGestionServicio, "<html><p style = \" font:12px; \">No se escogió ningún servicio</p></html>", "Aviso", JOptionPane.OK_OPTION, UIManager.getIcon("OptionPane.informationIcon"));
-                            }
-                        }
-                    }
-                    
-                } else{
-                    JOptionPane.showMessageDialog(vistaGestionServicio, "<html><p style = \" font:12px; \">Agregue un servicio primero</p></html>", "Aviso", JOptionPane.OK_OPTION, UIManager.getIcon("OptionPane.informationIcon"));
-
+            switch (resp) {
+                case "Agregar" -> {
+                    irAgregarServicio();
                 }
-            } else if ("Listar".equals(resp)){
-                irListarServicio();
-            } else if ("Agregar".equals(resp)){
-                irAgregarServicio();
-            } 
-
+                case "Listar" -> {
+                    irListarServicio();
+                }
+                case "Actualizar" -> {
+                    if(misServicios.length == 0){
+                        JOptionPane.showMessageDialog(vistaGestionServicio, "<html><p style = \" "
+                                + "font:12px; \">Agregue un servicio primero</p></html>", "Aviso", 
+                                JOptionPane.OK_OPTION, 
+                                UIManager.getIcon("OptionPane.informationIcon"));                    
+                        return;
+                    }
+                    String resp2 = (String) JOptionPane.showInputDialog(vistaGestionServicio, 
+                            "<html><p style = \" font:12px; \">Escoja el servicio</p></html>", 
+                            "Actualizar servicio", JOptionPane.DEFAULT_OPTION, 
+                            UIManager.getIcon("OptionPane.questionIcon"), misServicios, misServicios[0]);
+                    if (resp2 != null){
+                        irActualizarServicio(resp2);
+                    }
+                }
+                case "Eliminar" -> {
+                    if(misServicios.length == 0){
+                        JOptionPane.showMessageDialog(vistaGestionServicio, "<html><p style = \" "
+                                + "font:12px; \">Agregue un servicio primero</p></html>", "Aviso", 
+                                JOptionPane.OK_OPTION, UIManager.getIcon("OptionPane.informationIcon"));                    
+                        return;
+                    }
+                    String resp2 = (String) JOptionPane.showInputDialog(vistaGestionServicio, 
+                            "<html><p style = \" font:12px; \">Escoja el servicio</p></html>", 
+                            "Eliminar servicio", JOptionPane.DEFAULT_OPTION, 
+                            UIManager.getIcon("OptionPane.questionIcon"), misServicios, misServicios[0]);
+                    if (resp2 != null){
+                        irEliminarServicio(resp2);
+                    }
+                }
+            }
         } catch(NullPointerException np){
             
         }
     }
     public void irAgregarServicio(){
-        PlantillaServicio ventanaAgregarServicio = new PlantillaServicio("Agregar servicio", "Agregar", almacenamiento, null);
+        PlantillaServicio ventanaAgregarServicio = new PlantillaServicio("Agregar servicio", 
+                "Agregar", almacenamiento, null);
         vistaGestionServicio.dispose();
     }
     public void irActualizarServicio(String servicio) {
-        PlantillaServicio ventanaActualizarServicio = new PlantillaServicio("Actualizar servicio", "Actualizar", almacenamiento, servicio);
+        PlantillaServicio ventanaActualizarServicio = new PlantillaServicio("Actualizar servicio", 
+                "Actualizar", almacenamiento, servicio);
         vistaGestionServicio.dispose();
     }
     public void irListarServicio(){
@@ -402,7 +509,8 @@ public class GestorGestionServicio {
         vistaGestionServicio.dispose();
     }
     public void irEliminarServicio(String servicio) {
-        PlantillaServicio ventanaEliminarServicio = new PlantillaServicio("Eliminar servicio", "Eliminar", almacenamiento, servicio);
+        PlantillaServicio ventanaEliminarServicio = new PlantillaServicio("Eliminar servicio", 
+                "Eliminar", almacenamiento, servicio);
         vistaGestionServicio.dispose();
     }
 }

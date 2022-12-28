@@ -183,25 +183,25 @@ public class GestorGestionDeCitas {
     public void elegirCitaAModificar(){
         HashMap<Integer, Cita> misCitas = almacenamiento.getCitas();
         
-        if(!misCitas.isEmpty()) {
-            try {
-                String refABuscar = (String) JOptionPane.showInputDialog(vistaGestionCitas, "<html><p style = \" font:12px; \">Ingrese el numero de referencia de la cita a modificar</p></html>", "Modificar cita", JOptionPane.DEFAULT_OPTION);
-                if(refABuscar.isBlank()){
-                    JOptionPane.showMessageDialog(vistaGestionCitas, "<html><p style = \" font:12px; \">Por favor ingrese una cédula</p></html>", "Error", JOptionPane.OK_OPTION, UIManager.getIcon("OptionPane.errorIcon"));
-                } else {
-                    int numRefABuscar = Integer.parseInt(refABuscar);
-                    if(misCitas.containsKey(numRefABuscar)){
-                        irModificarCita(numRefABuscar);
-                        vistaGestionCitas.dispose();
-                    } else {
-                        JOptionPane.showMessageDialog(vistaGestionCitas, "<html><p style = \" font:12px; \">No se encontró ninguna cita</p></html>", "Aviso", JOptionPane.OK_OPTION, UIManager.getIcon("OptionPane.informationIcon"));
-                    }
-                }
-            } catch(NullPointerException np){
-                
-            }
-        } else {
+        if(misCitas.isEmpty()){
             JOptionPane.showMessageDialog(vistaGestionCitas, "<html><p style = \" font:12px; \">Agregue una cita primero</p></html>", "Aviso", JOptionPane.OK_OPTION, UIManager.getIcon("OptionPane.informationIcon"));
+            return;
+        }
+        try {
+            String refABuscar = (String) JOptionPane.showInputDialog(vistaGestionCitas, "<html><p style = \" font:12px; \">Ingrese el numero de referencia de la cita a modificar</p></html>", "Modificar cita", JOptionPane.DEFAULT_OPTION);
+            if(refABuscar.isBlank()){
+                JOptionPane.showMessageDialog(vistaGestionCitas, "<html><p style = \" font:12px; \">Por favor ingrese una cédula</p></html>", "Error", JOptionPane.OK_OPTION, UIManager.getIcon("OptionPane.errorIcon"));
+                return;
+            }
+            int numRefABuscar = Integer.parseInt(refABuscar);
+            if(!misCitas.containsKey(numRefABuscar)){
+                JOptionPane.showMessageDialog(vistaGestionCitas, "<html><p style = \" font:12px; \">No se encontró ninguna cita</p></html>", "Aviso", JOptionPane.OK_OPTION, UIManager.getIcon("OptionPane.informationIcon"));
+                return;
+            }
+            irModificarCita(numRefABuscar);
+            vistaGestionCitas.dispose();
+        } catch(NullPointerException np) {
+            
         }
     }
     
@@ -215,25 +215,25 @@ public class GestorGestionDeCitas {
     public void elegirCitaAEliminar(){
         HashMap<Integer, Cita> misCitas = almacenamiento.getCitas();
         
-        if(!misCitas.isEmpty()) {
-            try {
-                String refABuscar = (String) JOptionPane.showInputDialog(vistaGestionCitas, "<html><p style = \" font:12px; \">Ingrese el numero de referencia de la cita a eliminar</p></html>", "Modificar cita", JOptionPane.DEFAULT_OPTION);
-                if(refABuscar.isBlank()){
-                    JOptionPane.showMessageDialog(vistaGestionCitas, "<html><p style = \" font:12px; \">Por favor ingrese una cédula</p></html>", "Error", JOptionPane.OK_OPTION, UIManager.getIcon("OptionPane.errorIcon"));
-                } else {
-                    int numRefABuscar = Integer.parseInt(refABuscar);
-                    if(misCitas.containsKey(numRefABuscar)){
-                        irEliminarCita(numRefABuscar);
-                        vistaGestionCitas.dispose();
-                    } else {
-                        JOptionPane.showMessageDialog(vistaGestionCitas, "<html><p style = \" font:12px; \">No se encontró ninguna cita</p></html>", "Aviso", JOptionPane.OK_OPTION, UIManager.getIcon("OptionPane.informationIcon"));
-                    }
-                }
-            } catch(NullPointerException np){
-                
-            }
-        } else {
+        if(misCitas.isEmpty()){
             JOptionPane.showMessageDialog(vistaGestionCitas, "<html><p style = \" font:12px; \">Agregue una cita primero</p></html>", "Aviso", JOptionPane.OK_OPTION, UIManager.getIcon("OptionPane.informationIcon"));
+            return;
+        }
+        try {
+            String refABuscar = (String) JOptionPane.showInputDialog(vistaGestionCitas, "<html><p style = \" font:12px; \">Ingrese el numero de referencia de la cita a eliminar</p></html>", "Eliminar cita", JOptionPane.DEFAULT_OPTION);
+            if(refABuscar.isBlank()){
+                JOptionPane.showMessageDialog(vistaGestionCitas, "<html><p style = \" font:12px; \">Por favor ingrese una cédula</p></html>", "Error", JOptionPane.OK_OPTION, UIManager.getIcon("OptionPane.errorIcon"));
+                return;
+            }
+            int numRefABuscar = Integer.parseInt(refABuscar);
+            if(!misCitas.containsKey(numRefABuscar)){
+                JOptionPane.showMessageDialog(vistaGestionCitas, "<html><p style = \" font:12px; \">No se encontró ninguna cita</p></html>", "Aviso", JOptionPane.OK_OPTION, UIManager.getIcon("OptionPane.informationIcon"));
+                return;
+            }
+            irEliminarCita(numRefABuscar);
+            vistaGestionCitas.dispose();
+        } catch(NullPointerException np) {
+            
         }
     }
     

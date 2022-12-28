@@ -14,20 +14,20 @@
 package modelos;
 
 import java.io.Serializable;
-import java.time.LocalDate;
+import java.sql.Date;
 import java.time.LocalTime;
 
 public class Cita implements Serializable {
     
     private int numeroReferencia;
-    private LocalDate fecha;
+    private Date fecha;
     private LocalTime hora;
     private Servicio servicioRequerido;
     private Afiliado afiliado;
     private Consultorio consultorio;
     private Medico medico;
 
-    public Cita(int numeroReferencia, LocalDate fecha, LocalTime hora, Servicio servicioRequerido, Afiliado afiliado, Consultorio consultorio, Medico medico) {
+    public Cita(int numeroReferencia, Date fecha, LocalTime hora, Servicio servicioRequerido, Afiliado afiliado, Consultorio consultorio, Medico medico) {
         this.numeroReferencia = numeroReferencia;
         this.fecha = fecha;
         this.hora = hora;
@@ -45,11 +45,11 @@ public class Cita implements Serializable {
         this.numeroReferencia = numeroReferencia;
     }
 
-    public LocalDate getFecha() {
+    public Date getFecha() {
         return fecha;
     }
 
-    public void setFecha(LocalDate fecha) {
+    public void setFecha(Date fecha) {
         this.fecha = fecha;
     }
 
