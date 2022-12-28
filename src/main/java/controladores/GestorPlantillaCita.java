@@ -111,7 +111,7 @@ public class GestorPlantillaCita {
         @Override
         public void mouseClicked(MouseEvent e){
             
-            if (e.getSource() == vistaPlantillaCita.getBtnAgendar()&& "Agendar".equals(opcion)){
+            if (e.getSource() == vistaPlantillaCita.getBtnAgendar()&& "Agendar".equals(opcion) && vistaPlantillaCita.getBtnAgendar().isEnabled()){
                 if (e.getButton() == 1){
                     agendarCita();
                 }
@@ -140,14 +140,18 @@ public class GestorPlantillaCita {
                 }
             }
             
-            if (e.getSource() == vistaPlantillaCita.getBtnVerificar()){
+            if (e.getSource() == vistaPlantillaCita.getBtnVerificar() && vistaPlantillaCita.getBtnVerificar().isEnabled()){
+                if (vistaPlantillaCita.getDateChooser().getDate() == null){
+                    JOptionPane.showMessageDialog(null, "<html><p style = \" font:12px; \">Por favor seleccione una fecha</p></html>", "Aviso", JOptionPane.OK_OPTION, UIManager.getIcon("OptionPane.informationIcon"));            
+                    return;
+                }
                 if (e.getButton() == 1){
                     medicosDisponibles();
                     actualizarMedicosHora();  
                 }
             }
             
-            if (e.getSource() == vistaPlantillaCita.getBtnAsignar()){
+            if (e.getSource() == vistaPlantillaCita.getBtnAsignar() && vistaPlantillaCita.getBtnAsignar().isEnabled()){
                 if (e.getButton() == 1){
                     asignarConsultorio(); 
                 }
@@ -187,15 +191,18 @@ public class GestorPlantillaCita {
             ArrayList<Servicio> servicioDelMedico = mapa.getValue().getServicios();
             
             //Convirtiendo los servicios del médico a String[]
-            String[] servicioDelMedicoStr = new String[servicioDelMedico.size()];
+            //String[] servicioDelMedicoStr = new String[servicioDelMedico.size()];
             for (int o= 0; o<servicioDelMedico.size(); o++){
                 String servicio = "";
                 servicio += servicioDelMedico.get(o);
-                servicioDelMedicoStr[o] = servicio;
+                if (servicio.equals(motivoCita)) {
+                    ArrayList<String> horarios = verificarHorarios(mapa.getValue(),vistaPlantillaCita.getDateChooser().getDate());
+                }
+                //servicioDelMedicoStr[o] = servicio;
             }
             
             //Verificando qué médico posee la especialidad del servicio requerido
-            for (String misServicios : servicioDelMedicoStr) {
+            /*for (String misServicios : servicioDelMedicoStr) {
                 if (misServicios.equals(motivoCita)) {
                     Medico medico = mapa.getValue();
                     misMedicos.add(medico.getNombre());
@@ -203,7 +210,7 @@ public class GestorPlantillaCita {
                     misMedicos.removeAll(misMedicos);
                     break; 
                 }
-            }
+            }*/
         }
     }
     
@@ -247,6 +254,19 @@ public class GestorPlantillaCita {
         if(vistaPlantillaCita.getComboMedico().getModel().getSelectedItem() == null)
             error = true;
         return error;
+    }
+    
+    public ArrayList<String> verificarHorarios(Medico medico, Date date) {
+        HashMap <Integer, Cita> citas = almacenamiento.getCitas();
+        Iterator i = citas.entrySet().iterator();
+        ArrayList<String> horarios;
+        while (i.hasNext()) {
+            HashMap.Entry <Integer, Cita> mapa = (HashMap.Entry) i.next();
+            Cita cita = mapa.getValue();
+            if (cita.getMedico() == medico) {
+                
+            }
+        }
     }
 }
 

@@ -44,8 +44,8 @@ public class PlantillaCita extends javax.swing.JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
     
-    public void anadirMedicosCombo(ArrayList<String> fila){
-        modeloCombo.addAll(fila);
+    public void anadirMedicosCombo(String fila){
+        modeloCombo.addElement(fila);
     }
     public JLabel getLblTitulo() {
         return lblTitulo;
@@ -328,7 +328,7 @@ public class PlantillaCita extends javax.swing.JFrame {
         panelDetallesCIta.setOpaque(false);
 
         lblMedico.setFont(new java.awt.Font("Agency FB", 1, 24)); // NOI18N
-        lblMedico.setText("Médico");
+        lblMedico.setText("Médico y hora");
 
         lblConsultorio.setFont(new java.awt.Font("Agency FB", 1, 24)); // NOI18N
         lblConsultorio.setText("Consultorio");
@@ -367,9 +367,9 @@ public class PlantillaCita extends javax.swing.JFrame {
                         .addComponent(txtReferencia))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelDetallesCItaLayout.createSequentialGroup()
                         .addGroup(panelDetallesCItaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblMedico, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblConsultorio))
-                        .addGap(91, 91, 91)
+                            .addComponent(lblConsultorio)
+                            .addComponent(lblMedico))
+                        .addGap(69, 69, 69)
                         .addGroup(panelDetallesCItaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(comboMedico, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelDetallesCItaLayout.createSequentialGroup()
