@@ -156,8 +156,8 @@ public class GestorGestionDeCitas {
                         if (motivoCita != null){
                             Iterator i = misMedicos.entrySet().iterator();
                             ArrayList<String> misMedicos2 = new ArrayList();
-                            int cont = 0;
-                            boolean ventanaCreada = false;
+                            int cont = 0; //Si lo quitas muestra dos veces el mensaje de la linea 184
+                            boolean ventanaCreada = false; //Si lo quitas crea dos ventanas em 178 :v
                             
                             while(i.hasNext()) {
                                 HashMap.Entry <Long, Medico> mapa = (HashMap.Entry) i.next();
