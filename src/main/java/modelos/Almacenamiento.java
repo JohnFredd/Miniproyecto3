@@ -36,6 +36,7 @@ public class Almacenamiento {
     }
     
     public boolean hacerBackUp() throws IOException{
+        
         try
         {
             OutputStream os = new FileOutputStream("Datos.bin");
@@ -55,6 +56,7 @@ public class Almacenamiento {
     }
     
     public boolean restaurarDatos() throws IOException, ClassNotFoundException {
+        
         try
         {
             InputStream is = new FileInputStream("Datos.bin");
@@ -87,6 +89,7 @@ public class Almacenamiento {
     }
     
     public boolean exportarDatosAfiliados(File ruta) throws IOException {
+        
         try
         {
             FileWriter fw = new FileWriter(ruta);
@@ -113,12 +116,17 @@ public class Almacenamiento {
         }
     }
     
-    public boolean backUpCitas(File ruta) throws IOException{
+    public boolean hacerBackUp(File ruta) throws IOException{
+        
         try
         {
             OutputStream os = new FileOutputStream(ruta);
             ObjectOutputStream oos = new ObjectOutputStream(os);
 
+            oos.writeObject(afiliados);
+            oos.writeObject(medicos);
+            oos.writeObject(servicios);
+            oos.writeObject(consultorios);
             oos.writeObject(citas);
 
             oos.close();
@@ -128,12 +136,17 @@ public class Almacenamiento {
         }
     }
     
-    public boolean restauracionCitas(File ruta) throws IOException, ClassNotFoundException {
+    public boolean restaurarDatos(File ruta) throws IOException, ClassNotFoundException {
+        
         try
         {
             InputStream is = new FileInputStream(ruta);
             ObjectInputStream ois = new ObjectInputStream(is);
 
+            afiliados = (HashMap) ois.readObject();
+            medicos = (HashMap) ois.readObject();
+            servicios = (ArrayList) ois.readObject();
+            consultorios = (HashMap) ois.readObject();
             citas = (HashMap) ois.readObject();
 
             ois.close();
