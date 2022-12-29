@@ -158,6 +158,7 @@ public class GestorPlantillaCita {
                 }
                 
                 if (e.getButton() == 1){
+                    agregarOyente();
                     medicosDisponibles();
                 }
             }
@@ -174,10 +175,11 @@ public class GestorPlantillaCita {
 
         @Override
         public void itemStateChanged(ItemEvent e) {
-            vistaPlantillaCita.getTxtConsultorio().setText("");
-            vistaPlantillaCita.getBtnAgendar().setEnabled(false);
+            if(e.getSource() == vistaPlantillaCita.getComboMedico()){
+                vistaPlantillaCita.getTxtConsultorio().setText("");
+                vistaPlantillaCita.getBtnAgendar().setEnabled(false);
+            }
         }
-        
     }
     
     public void agendarCita() {
@@ -365,6 +367,24 @@ public class GestorPlantillaCita {
         }
         fechaValida = true;
         return fechaValida;
+    }
+    
+    public void agregarOyente() {
+        vistaPlantillaCita.getDateChooser().addPropertyChangeListener(
+            new java.beans.PropertyChangeListener() {
+
+                @Override
+                public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                    if (!evt.getOldValue().equals(evt.getNewValue())) {
+                        vistaPlantillaCita.limpiarMedicosCombo();
+                        opcionesComboBox = new ArrayList();
+                        vistaPlantillaCita.getTxtConsultorio().setText("");
+                        vistaPlantillaCita.getComboMedico().setEnabled(false);
+                        vistaPlantillaCita.getBtnAsignar().setEnabled(false);
+                        vistaPlantillaCita.getBtnAgendar().setEnabled(false);
+                    }
+                }
+            });
     }
     
     public void asignarReferenciaCita() {
