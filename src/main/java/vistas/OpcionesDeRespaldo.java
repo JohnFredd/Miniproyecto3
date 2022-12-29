@@ -21,7 +21,7 @@ import modelos.Almacenamiento;
 
 public class OpcionesDeRespaldo extends javax.swing.JFrame {
 
-    ImagenFondo fondo = new ImagenFondo();
+     private ImagenFondo fondo = new ImagenFondo();
     
     public OpcionesDeRespaldo(String titulo, Almacenamiento almacenamiento) {
         this.setContentPane(fondo);

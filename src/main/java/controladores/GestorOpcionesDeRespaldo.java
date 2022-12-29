@@ -21,8 +21,8 @@ import vistas.PpalGUI;
 
 public class GestorOpcionesDeRespaldo {
     
-    OpcionesDeRespaldo vistaRespaldo;
-    Almacenamiento almacenamiento;
+    private OpcionesDeRespaldo vistaRespaldo;
+    private Almacenamiento almacenamiento;
 
     public GestorOpcionesDeRespaldo(OpcionesDeRespaldo vistaRespaldo, Almacenamiento almacenamiento) {
         this.vistaRespaldo = vistaRespaldo;
