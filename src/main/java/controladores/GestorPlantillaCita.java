@@ -18,8 +18,11 @@ import java.awt.event.ItemListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import modelos.Almacenamiento;
@@ -60,7 +63,7 @@ public class GestorPlantillaCita {
         consultorios = almacenamiento.getConsultorios();
         this.vistaPlantillaCita = vistaPlantillaCita;
         modificarPlantilla();
-        if(!"Modificar".equals(opcion) && !"Eliminar".equals(opcion)){
+        if("Agendar".equals(opcion)){
             asignarReferenciaCita();
         }
         //Añadiendo Listeners
@@ -107,13 +110,20 @@ public class GestorPlantillaCita {
         vistaPlantillaCita.getTxtServicio().setText(motivoCita);
         vistaPlantillaCita.getTxtReferencia().setText(String.valueOf(numRef));
         
-        java.sql.Date miFecha = almacenamiento.getCitas().get(referenciaCita).getFecha();
-        
-        Date date = new Date(miFecha.getTime());
-        String laFechaStr = date.toString();
-        System.out.println("FECHA: " + laFechaStr);
-        vistaPlantillaCita.getDateChooser().setDate(date);
-        vistaPlantillaCita.getTxtReferencia().setEditable(true);
+        System.out.println("HOLA");
+        System.out.println(referenciaCita);
+        //System.out.println(almacenamiento.getCitas().get(referenciaCita));
+        java.sql.Date miFecha = almacenamiento.getCitas().get(numRef).getFecha();
+        System.out.println(miFecha);
+        java.util.Date  utilDate = new java.util.Date(miFecha.getTime());
+        System.out.println("HOLA 2");  
+        vistaPlantillaCita.getDateChooser().setDate(utilDate);
+        System.out.println("HOLA 3");      
+        /*
+        Date laFecha = java.util.Date.from(miFecha.atStartOfDay().atZone(ZoneId.systemDefault()).toInstant());
+        vistaPlantillaCita.getDateChooser().setDate(laFecha);
+        System.out.println("HOLA 2");
+        vistaPlantillaCita.getTxtReferencia().setEditable(true);*/
     }
     
     public void plantillaEliminarCita(){
