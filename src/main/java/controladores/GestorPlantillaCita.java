@@ -38,6 +38,7 @@ public class GestorPlantillaCita {
     private final String motivoCita;
     private final long cedula;
     private final HashMap<Long, Medico> medicos;
+    private ArrayList<Object[]> opcionesComboBox;
     
     public GestorPlantillaCita(PlantillaCita vistaPlantillaCita, String opcion, String motivoCita, long cedula, Almacenamiento almacenamiento) {
         this.almacenamiento = almacenamiento;
@@ -166,7 +167,8 @@ public class GestorPlantillaCita {
     
     // Actualiza el comboBox con los médicos que prestan el servicio requerido
     public void medicosDisponibles(){
-        
+        vistaPlantillaCita.limpiarMedicosCombo();
+        opcionesComboBox.clear();
         Iterator i = medicos.entrySet().iterator();
         ArrayList<Medico> misMedicos = new ArrayList();
         
@@ -176,26 +178,13 @@ public class GestorPlantillaCita {
             ArrayList<Servicio> servicioDelMedico = medico.getServicios();
             
             //Convirtiendo los servicios del médico a String[]
-            //String[] servicioDelMedicoStr = new String[servicioDelMedico.size()];
             for (int o= 0; o<servicioDelMedico.size(); o++){
                 String servicio = "";
                 servicio += servicioDelMedico.get(o);
                 if (servicio.equals(motivoCita)) {
                     misMedicos.add(medico);
                 }
-                //servicioDelMedicoStr[o] = servicio;
             }
-            
-            //Verificando qué médico posee la especialidad del servicio requerido
-            /*for (String misServicios : servicioDelMedicoStr) {
-                if (misServicios.equals(motivoCita)) {
-                    Medico medico = mapa.getValue();
-                    misMedicos.add(medico.getNombre());
-                    vistaPlantillaCita.anadirMedicosCombo(misMedicos);
-                    misMedicos.removeAll(misMedicos);
-                    break; 
-                }
-            }*/
         }
         
         Iterator o = misMedicos.iterator();
@@ -207,6 +196,10 @@ public class GestorPlantillaCita {
             ArrayList<LocalTime> horas = verificarHorarios(medico, fecha);
             for (LocalTime hora : horas) {
                 vistaPlantillaCita.anadirMedicosCombo(medico.getNombre() + ", " + hora);
+                Object[] medicoYHora = new Object[2];
+                medicoYHora[0] = medico;
+                medicoYHora[1] = hora;
+                opcionesComboBox.add(medicoYHora);
             }
         }
         if (vistaPlantillaCita.getComboMedico().getModel().getSize() == 0) {

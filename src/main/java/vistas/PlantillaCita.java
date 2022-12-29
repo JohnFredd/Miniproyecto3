@@ -47,6 +47,9 @@ public class PlantillaCita extends javax.swing.JFrame {
     public void anadirMedicosCombo(String fila){
         modeloCombo.addElement(fila);
     }
+    public void limpiarMedicosCombo(){
+        modeloCombo.removeAllElements();
+    }
     public JLabel getLblTitulo() {
         return lblTitulo;
     }
