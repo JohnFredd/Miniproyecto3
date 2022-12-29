@@ -15,12 +15,15 @@ package controladores;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import modelos.Almacenamiento;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
 import javax.swing.JOptionPane;
+import javax.swing.UIManager;
+import modelos.Cita;
 import modelos.Medico;
 import modelos.Servicio;
 import vistas.CitasDeAfiliado;
@@ -141,7 +144,6 @@ public class GestorPlantillaCita {
                 }
                 if (e.getButton() == 1){
                     medicosDisponibles();
-                    actualizarMedicosHora();  
                 }
             }
             
@@ -161,28 +163,17 @@ public class GestorPlantillaCita {
        java.sql.Date fecha = new java.sql.Date(d);
     }
     
-    public void actualizarMedicosHora() {
-       
-       //Obteniendo los datos
-       Date date = vistaPlantillaCita.getDateChooser().getDate();
-       long d = date.getTime();
-       java.sql.Date fecha = new java.sql.Date(d);
-       JOptionPane.showMessageDialog(vistaPlantillaCita, "La fecha es: " +fecha);
-       vistaPlantillaCita.getComboMedico().setEnabled(true);
-       vistaPlantillaCita.getBtnAsignar().setEnabled(true);
-       
-    }
-    
     
     // Actualiza el comboBox con los médicos que prestan el servicio requerido
     public void medicosDisponibles(){
         
         Iterator i = medicos.entrySet().iterator();
-        ArrayList<String> misMedicos = new ArrayList();
+        ArrayList<Medico> misMedicos = new ArrayList();
         
         while(i.hasNext()) {
             HashMap.Entry <Long, Medico> mapa = (HashMap.Entry) i.next();
-            ArrayList<Servicio> servicioDelMedico = mapa.getValue().getServicios();
+            Medico medico = mapa.getValue();
+            ArrayList<Servicio> servicioDelMedico = medico.getServicios();
             
             //Convirtiendo los servicios del médico a String[]
             //String[] servicioDelMedicoStr = new String[servicioDelMedico.size()];
@@ -190,7 +181,7 @@ public class GestorPlantillaCita {
                 String servicio = "";
                 servicio += servicioDelMedico.get(o);
                 if (servicio.equals(motivoCita)) {
-                    ArrayList<String> horarios = verificarHorarios(mapa.getValue(),vistaPlantillaCita.getDateChooser().getDate());
+                    misMedicos.add(medico);
                 }
                 //servicioDelMedicoStr[o] = servicio;
             }
@@ -205,6 +196,26 @@ public class GestorPlantillaCita {
                     break; 
                 }
             }*/
+        }
+        
+        Iterator o = misMedicos.iterator();
+        Date date = vistaPlantillaCita.getDateChooser().getDate();
+        long d = date.getTime();
+        java.sql.Date fecha = new java.sql.Date(d);
+        while (o.hasNext()) {
+            Medico medico = (Medico) o.next();
+            ArrayList<LocalTime> horas = verificarHorarios(medico, fecha);
+            for (LocalTime hora : horas) {
+                vistaPlantillaCita.anadirMedicosCombo(medico.getNombre() + ", " + hora);
+            }
+        }
+        if (vistaPlantillaCita.getComboMedico().getModel().getSize() == 0) {
+            JOptionPane.showMessageDialog(null, "<html><p style = \" font:12px; \">No hay disponibilidad para esa fecha.</p></html>", "Aviso", JOptionPane.OK_OPTION, UIManager.getIcon("OptionPane.informationIcon"));
+            vistaPlantillaCita.getComboMedico().setEnabled(false);
+            vistaPlantillaCita.getBtnAsignar().setEnabled(false);
+        } else {
+            vistaPlantillaCita.getComboMedico().setEnabled(true);
+            vistaPlantillaCita.getBtnAsignar().setEnabled(true);
         }
     }
     
@@ -250,17 +261,31 @@ public class GestorPlantillaCita {
         return error;
     }
     
-    public ArrayList<String> verificarHorarios(Medico medico, Date date) {
+    public ArrayList<LocalTime> verificarHorarios(Medico medico, Date date) {
         HashMap <Integer, Cita> citas = almacenamiento.getCitas();
         Iterator i = citas.entrySet().iterator();
-        ArrayList<String> horarios;
+        ArrayList<LocalTime> horariosOcupados = new ArrayList();
+        ArrayList<LocalTime> horariosPosibles = new ArrayList();
+        ArrayList<LocalTime> horariosdisponibles = new ArrayList();
+        for (int h = 7; h < 17; h++) {
+            if (h != 12 && h != 13) {
+                horariosPosibles.add(LocalTime.of(h, 0));
+                horariosPosibles.add(LocalTime.of(h, 30));
+            }
+        }
         while (i.hasNext()) {
             HashMap.Entry <Integer, Cita> mapa = (HashMap.Entry) i.next();
             Cita cita = mapa.getValue();
-            if (cita.getMedico() == medico) {
-                
+            if (cita.getMedico() == medico && cita.getFecha() == date) {
+                horariosOcupados.add(cita.getHora());
             }
         }
+        for (LocalTime hora : horariosPosibles) {
+            if (!horariosOcupados.contains(hora)) {
+                horariosdisponibles.add(hora);
+            }
+        }
+        return horariosdisponibles;
     }
 }
 
