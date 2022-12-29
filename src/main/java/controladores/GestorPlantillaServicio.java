@@ -136,6 +136,10 @@ public class GestorPlantillaServicio {
     }
     public void actualizarServicio() {
         
+        if(validarCamposVacios()) {
+            JOptionPane.showMessageDialog(null, "Llene todos los campos requeridos antes de continuar.", "Datos incompletos", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
         //Obteniendo datos de la ventana
         String nombreNuevo = vistaPlantillaServicio.getTxtServicio().getText();
         
@@ -144,36 +148,26 @@ public class GestorPlantillaServicio {
         
         //Convirtiendo los servicios actuales a String[]
         ArrayList<Servicio> servicios = almacenamiento.getServicios();
-        String[] misServicios = new String[servicios.size()];
 
         for (int i= 0; i<servicios.size(); i++){
-            String servicio = "";
-            servicio += servicios.get(i).getNombre();
-            misServicios[i] = servicio;
+            String nombreServicio = "";
+            nombreServicio += servicios.get(i).getNombre();
+            if(nombreNuevo.equalsIgnoreCase(nombreServicio)) {
+                JOptionPane.showMessageDialog(null, "Ya existe un servicio con ese nombre", "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
         }
-        if(!validarCamposVacios()) {
-            
-            for (int i = 0; i<misServicios.length; i++) {
-                System.out.println("Servicio: " + misServicios[i]);
-                if(misServicios[i].equalsIgnoreCase(nombreNuevo)){
-                    System.out.println("Coincide");
-                    JOptionPane.showMessageDialog(null, "Ya existe un servicio con ese nombre", "Error", JOptionPane.ERROR_MESSAGE);
-                    break;
-                }
-                if (i < misServicios.length && !misServicios[i].equalsIgnoreCase(nombreNuevo) && misServicios[i].equalsIgnoreCase(servicio)) {
-                    try {
-                        //Actualizando el servicio
-                        System.out.println(misServicios[i] + "-->" + nombreNuevo);
-                        almacenamiento.modificarServicio(i, miServicio);
-                        JOptionPane.showMessageDialog(null, "Servicio actualizado con éxito", "Resultado de actualizar", JOptionPane.INFORMATION_MESSAGE);
-                        irGestionServicioGUI();
-                    } catch(IOException e){
-                        JOptionPane.showMessageDialog(null, "Error al actualizar: " + e, "Error", JOptionPane.ERROR_MESSAGE);
-                    }
+        for (int i= 0; i<servicios.size(); i++) {
+            if (servicios.get(i).getNombre().equalsIgnoreCase(servicio)) {
+                try {
+                    //Actualizando el servicio
+                    almacenamiento.modificarServicio(i, miServicio);
+                    JOptionPane.showMessageDialog(null, "Servicio actualizado con éxito", "Resultado de actualizar", JOptionPane.INFORMATION_MESSAGE);
+                    irGestionServicioGUI();
+                } catch(IOException e){
+                    JOptionPane.showMessageDialog(null, "Error al actualizar: " + e, "Error", JOptionPane.ERROR_MESSAGE);
                 }
             }
-        } else {
-            JOptionPane.showMessageDialog(null, "Llene todos los campos requeridos antes de continuar.", "Datos incompletos", JOptionPane.ERROR_MESSAGE);
         }
     }
     public void eliminarServicio() {
