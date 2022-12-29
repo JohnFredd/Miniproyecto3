@@ -168,7 +168,7 @@ public class GestorPlantillaCita {
     // Actualiza el comboBox con los médicos que prestan el servicio requerido
     public void medicosDisponibles(){
         vistaPlantillaCita.limpiarMedicosCombo();
-        opcionesComboBox.clear();
+        opcionesComboBox = new ArrayList();
         Iterator i = medicos.entrySet().iterator();
         ArrayList<Medico> misMedicos = new ArrayList();
         
