@@ -51,9 +51,6 @@ public class PlantillaCita extends javax.swing.JFrame {
     public void limpiarMedicosCombo(){
         modeloCombo.removeAllElements();
     }
-    public void addMedicosComboListener (ItemListener listenerCombo) {
-        comboMedico.addItemListener(listenerCombo);
-    }
     public JLabel getLblTitulo() {
         return lblTitulo;
     }
@@ -176,6 +173,12 @@ public class PlantillaCita extends javax.swing.JFrame {
     
     public void addBtnAsignarListener(MouseListener listenerBotones){
         btnAsignar.addMouseListener(listenerBotones);
+    }
+    public void addDateChooserListener (MouseListener listenerBotones) {
+        dateChooser.addMouseListener(listenerBotones);
+    }
+    public void addMedicosComboListener(ItemListener listenerBotones){
+        comboMedico.addItemListener(listenerBotones);
     }
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
