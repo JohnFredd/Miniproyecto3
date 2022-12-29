@@ -148,7 +148,7 @@ public class GestorGestionDeCitas {
                 cedula = Long.parseLong(cedulaABuscar);
             }
             catch (NumberFormatException e) {
-                JOptionPane.showMessageDialog(null, "Por favor ingrese una cédula válida", "Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, "<html><p style = \" font:12px; \">Por favor ingrese una cédula válida</p></html>", "Error", JOptionPane.ERROR_MESSAGE);
                 return;
             }
 
@@ -202,11 +202,9 @@ public class GestorGestionDeCitas {
                 return; 
             }
             if(!misCitas.containsKey(numRefABuscar)){
-                System.out.println("wtf");
                 JOptionPane.showMessageDialog(vistaGestionCitas, "<html><p style = \" font:12px; \">No se encontró ninguna cita</p></html>", "Aviso", JOptionPane.OK_OPTION, UIManager.getIcon("OptionPane.informationIcon"));
                 return;
             }
-            System.out.println("Encontrado");
             irModificarCita(numRefABuscar);
         } catch(NullPointerException np) {
             
@@ -215,11 +213,8 @@ public class GestorGestionDeCitas {
     
     public void irModificarCita(int numRef){
         String motivoCita = almacenamiento.getCitas().get(numRef).getServicioRequerido().getNombre();
-        System.out.println("Motivo: " + motivoCita);
         long cedula = almacenamiento.getCitas().get(numRef).getAfiliado().getCedula();
-        System.out.println("Antes de ventana");
         PlantillaCita ventanaModificarCita = new PlantillaCita("Modificar cita", "Modificar", motivoCita, cedula, numRef, almacenamiento);
-        System.out.println("Llendo a ventana");
         vistaGestionCitas.dispose();
     }
     
