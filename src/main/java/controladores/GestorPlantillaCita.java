@@ -17,6 +17,7 @@ import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.IOException;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
@@ -27,6 +28,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
+import modelos.Afiliado;
 import modelos.Cita;
 import modelos.Consultorio;
 import modelos.Medico;
@@ -184,10 +186,32 @@ public class GestorPlantillaCita {
     
     public void agendarCita() {
        
-       //Obteniendo los datos
-       Date date = vistaPlantillaCita.getDateChooser().getDate();
-       long d = date.getTime();
-       java.sql.Date fecha = new java.sql.Date(d);
+        //Obteniendo los datos
+        int numeroReferencia = Integer.parseInt(vistaPlantillaCita.getTxtReferencia().getText());
+        Date date = vistaPlantillaCita.getDateChooser().getDate();
+        long d = date.getTime();
+        java.sql.Date fecha = new java.sql.Date(d);
+        LocalTime hora = obtenerHoraEscogida();
+        ArrayList <Servicio> servicios = almacenamiento.getServicios();
+        Iterator i = servicios.iterator();
+        Servicio servicio = null;
+        while (i.hasNext()) {
+           servicio = (Servicio) i.next();
+           if (servicio.getNombre().equals(motivoCita)) {
+               break;
+           }
+        }
+        Afiliado afiliado = almacenamiento.getAfiliados().get(cedula);
+        Consultorio consultorio = almacenamiento.getConsultorios().get(vistaPlantillaCita.getTxtConsultorio().getText());
+        Medico medico = obtenerMedicoEscogido();
+        Cita cita = new Cita(numeroReferencia, fecha, hora, servicio, afiliado, consultorio, medico);
+        try {
+            almacenamiento.anadirCita(cita);
+            JOptionPane.showMessageDialog(null, "<html><p style = \" font:12px; \">Cita agendada con éxito</p></html>", "Aviso", JOptionPane.OK_OPTION, UIManager.getIcon("OptionPane.informationIcon"));
+            irGestionCitasGUI();
+        } catch (IOException e) {
+            JOptionPane.showMessageDialog(null, "<html><p style = \" font:12px; \">Error al agendar cita: " + e.getMessage() + "</p></html>", "Aviso", JOptionPane.OK_OPTION, UIManager.getIcon("OptionPane.errorIcon"));
+        }
     }
     
     public void modificarCita() {
@@ -318,7 +342,7 @@ public class GestorPlantillaCita {
         while (i.hasNext()) {
             HashMap.Entry <Integer, Cita> mapa = (HashMap.Entry) i.next();
             Cita cita = mapa.getValue();
-            if (cita.getMedico() == medico && cita.getFecha() == date) {
+            if (cita.getMedico().equals(medico) && cita.getFecha().toString().equals(date.toString())) {
                 horariosOcupados.add(cita.getHora());
             }
         }
@@ -337,7 +361,7 @@ public class GestorPlantillaCita {
         while (i.hasNext()) {
             HashMap.Entry <Integer, Cita> mapa = (HashMap.Entry) i.next();
             Cita cita = mapa.getValue();
-            if (cita.getConsultorio() == consultorio && cita.getFecha() == date && cita.getHora() == hora) {
+            if (cita.getConsultorio().equals(consultorio) && cita.getFecha().toString().equals(date.toString()) && cita.getHora().toString().equals(hora.toString())) {
                 return true;
             }
         }
