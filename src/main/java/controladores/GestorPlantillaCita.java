@@ -188,7 +188,19 @@ public class GestorPlantillaCita {
        java.sql.Date fecha = new java.sql.Date(d);
     }
     
-    // Actualiza el comboBox con los médicos que prestan el servicio requerido
+    public void modificarCita() {
+       
+       //Obteniendo los datos
+       
+    }
+    
+    public void eliminarCita() {
+       
+       //Obteniendo los datos
+       
+    }
+    
+    // Actualiza el comboBox con los médicos que prestan el servicio requerido y sus horas disponibles
     public void medicosDisponibles(){
         vistaPlantillaCita.limpiarMedicosCombo();
         opcionesComboBox = new ArrayList();
@@ -235,13 +247,14 @@ public class GestorPlantillaCita {
         }
     }
     
+    //Asigna el consultorio de acuerdo a la hora escogida
     public void asignarConsultorio(){
         if(validarCamposVacios()){
             JOptionPane.showMessageDialog(null, "Llene todos los campos requeridos antes de continuar.", "Datos incompletos", JOptionPane.ERROR_MESSAGE);
             return;
         }
-        //Asignando consultorios
         
+        //Asignando consultorios
         Iterator i = consultorios.entrySet().iterator();
         ArrayList<Consultorio> misConsultorios = new ArrayList();
         
@@ -275,36 +288,12 @@ public class GestorPlantillaCita {
         JOptionPane.showMessageDialog(null, "<html><p style = \" font:12px; \">No hay disponibilidad para ese momento.</p></html>", "Aviso", JOptionPane.OK_OPTION, UIManager.getIcon("OptionPane.informationIcon"));
     }
     
-    public void modificarCita() {
-       
-       //Obteniendo los datos
-       
-    }
-    
-    public void eliminarCita() {
-       
-       //Obteniendo los datos
-       
-    }
-
-    public void irGestionCitasGUI() {
-        
-        GestionDeCitas vistaGestionCitas= new GestionDeCitas("Gestión de Citas", almacenamiento);
-        vistaPlantillaCita.dispose();
-    }
-    
-    public void irCitasAfiliadoGUI() {
-        
-        CitasDeAfiliado vistaCitasAfiliado= new CitasDeAfiliado("Gestión de Citas", "Consultar", cedula, almacenamiento);
-        vistaPlantillaCita.dispose();
-    }
-    
-    public boolean validarCamposVacios(){
-        boolean error = false;
-        
-        if(vistaPlantillaCita.getComboMedico().getModel().getSelectedItem() == null)
-            error = true;
-        return error;
+    public LocalTime obtenerHoraEscogida(){
+        String opcionElegida = vistaPlantillaCita.getComboMedico().getModel().getSelectedItem().toString();
+        int posicionDeComa = opcionElegida.indexOf(',');
+        String horaElegida = opcionElegida.substring(posicionDeComa+2, opcionElegida.length());
+        LocalTime lt = LocalTime.parse(horaElegida);
+        return lt;
     }
     
     public ArrayList<LocalTime> verificarHorarios(Medico medico, Date date) {
@@ -382,12 +371,24 @@ public class GestorPlantillaCita {
         vistaPlantillaCita.getTxtReferencia().setText(String.valueOf(referenciaCita));
     }
     
-    public LocalTime obtenerHoraEscogida(){
-        String opcionElegida = vistaPlantillaCita.getComboMedico().getModel().getSelectedItem().toString();
-        int posicionDeComa = opcionElegida.indexOf(',');
-        String horaElegida = opcionElegida.substring(posicionDeComa+2, opcionElegida.length());
-        LocalTime lt = LocalTime.parse(horaElegida);
-        return lt;
+    public boolean validarCamposVacios(){
+        boolean error = false;
+        
+        if(vistaPlantillaCita.getComboMedico().getModel().getSelectedItem() == null)
+            error = true;
+        return error;
+    }
+    
+    public void irGestionCitasGUI() {
+        
+        GestionDeCitas vistaGestionCitas= new GestionDeCitas("Gestión de Citas", almacenamiento);
+        vistaPlantillaCita.dispose();
+    }
+    
+    public void irCitasAfiliadoGUI() {
+        
+        CitasDeAfiliado vistaCitasAfiliado= new CitasDeAfiliado("Gestión de Citas", "Consultar", cedula, almacenamiento);
+        vistaPlantillaCita.dispose();
     }
 }
 
