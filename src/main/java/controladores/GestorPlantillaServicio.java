@@ -112,27 +112,27 @@ public class GestorPlantillaServicio {
     }
     
     public void agregarServicio() {
-        if(!validarCamposVacios()){
-            
-            //Obteniendo los datos de la ventana
-            String nombre = vistaPlantillaServicio.getTxtServicio().getText();
-            
-            //Creando el servicio
-            Servicio servicio = new Servicio(nombre);
-            try {
-                //Agregando el servicio
-                if (almacenamiento.anadirServicio(servicio)){
-                    JOptionPane.showMessageDialog(null, "Servicio agregado con éxito", "Resultado de agregar", JOptionPane.INFORMATION_MESSAGE);
-                    irGestionServicioGUI();
-                } else {
-                    JOptionPane.showMessageDialog(null, "Este servicio ya existe", "Resultado de agregar", JOptionPane.ERROR_MESSAGE);
-                }
-            } catch(IOException e){
-                JOptionPane.showMessageDialog(null, "Error al agregar: " + e, "Error", JOptionPane.ERROR_MESSAGE);
-            }
-        } else{
+        if(validarCamposVacios()){
             JOptionPane.showMessageDialog(null, "Llene todos los campos requeridos antes de continuar.", "Datos incompletos", JOptionPane.ERROR_MESSAGE);
+            return;
         }
+        //Obteniendo los datos de la ventana
+        String nombre = vistaPlantillaServicio.getTxtServicio().getText();
+
+        //Creando el servicio
+        Servicio servicio = new Servicio(nombre);
+        try {
+            //Agregando el servicio
+            if (almacenamiento.anadirServicio(servicio)){
+                JOptionPane.showMessageDialog(null, "Servicio agregado con éxito", "Resultado de agregar", JOptionPane.INFORMATION_MESSAGE);
+                irGestionServicioGUI();
+            } else {
+                JOptionPane.showMessageDialog(null, "Este servicio ya existe", "Resultado de agregar", JOptionPane.ERROR_MESSAGE);
+            }
+        } catch(IOException e){
+            JOptionPane.showMessageDialog(null, "Error al agregar: " + e, "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        
     }
     public void actualizarServicio() {
         
@@ -154,14 +154,16 @@ public class GestorPlantillaServicio {
         if(!validarCamposVacios()) {
             
             for (int i = 0; i<misServicios.length; i++) {
-                
+                System.out.println("Servicio: " + misServicios[i]);
                 if(misServicios[i].equalsIgnoreCase(nombreNuevo)){
+                    System.out.println("Coincide");
                     JOptionPane.showMessageDialog(null, "Ya existe un servicio con ese nombre", "Error", JOptionPane.ERROR_MESSAGE);
                     break;
                 }
                 if (i < misServicios.length && !misServicios[i].equalsIgnoreCase(nombreNuevo) && misServicios[i].equalsIgnoreCase(servicio)) {
                     try {
                         //Actualizando el servicio
+                        System.out.println(misServicios[i] + "-->" + nombreNuevo);
                         almacenamiento.modificarServicio(i, miServicio);
                         JOptionPane.showMessageDialog(null, "Servicio actualizado con éxito", "Resultado de actualizar", JOptionPane.INFORMATION_MESSAGE);
                         irGestionServicioGUI();
