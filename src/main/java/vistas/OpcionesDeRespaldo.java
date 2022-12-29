@@ -124,7 +124,7 @@ public class OpcionesDeRespaldo extends javax.swing.JFrame {
         btnBackup.setBackground(Color.WHITE);
         btnRestaurar.setBackground(Color.WHITE);
         btnRegresar.setBackground(Color.WHITE);
-        btnRestaurar.setBackground(Color.WHITE);
+        btnExportar.setBackground(Color.WHITE);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

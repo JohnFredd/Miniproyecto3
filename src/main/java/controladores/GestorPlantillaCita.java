@@ -86,6 +86,9 @@ public class GestorPlantillaCita {
             case "Eliminar" -> {
                 plantillaEliminarCita();
             }
+            case "Consultar" -> {
+                plantillaConsultarCita();
+            }
         }
     }
     
@@ -137,6 +140,32 @@ public class GestorPlantillaCita {
         //Desabilitando componentes
         vistaPlantillaCita.getBtnVerificar().setEnabled(false);
         vistaPlantillaCita.getBtnAgendar().setEnabled(true);
+        vistaPlantillaCita.getDateChooser().setEnabled(false);
+        
+        
+    }
+    
+    public void plantillaConsultarCita(){
+        
+        //Modificando título y botones
+        vistaPlantillaCita.getLblTitulo().setText("Consultar Cita");
+        vistaPlantillaCita.getBtnAgendar().setVisible(false);
+        
+        //Ingresando datos de cita en la interfaz
+        vistaPlantillaCita.getTxtNombre().setText(almacenamiento.getAfiliados().get(cedula).getNombre());
+        vistaPlantillaCita.getTxtCedula().setText(String.valueOf(cedula));
+        vistaPlantillaCita.getTxtServicio().setText(almacenamiento.getCitas().get(numRef).getServicioRequerido().getNombre());
+        vistaPlantillaCita.getTxtReferencia().setText(String.valueOf(numRef));
+        vistaPlantillaCita.getTxtConsultorio().setText(almacenamiento.getCitas().get(numRef).getConsultorio().getIdentificador());
+        //Estableciendo la fecha en el JDateChooser
+        java.sql.Date miFecha = almacenamiento.getCitas().get(numRef).getFecha();
+        java.util.Date  utilDate = new java.util.Date(miFecha.getTime());
+        vistaPlantillaCita.getDateChooser().setDate(utilDate);
+        
+        String medicoYHora = almacenamiento.getCitas().get(numRef).getMedico().getNombre() + ", " + almacenamiento.getCitas().get(numRef).getHora().toString();
+        vistaPlantillaCita.getComboMedico().getModel().setSelectedItem(medicoYHora);
+        //Desabilitando componentes
+        vistaPlantillaCita.getBtnVerificar().setEnabled(false);
         vistaPlantillaCita.getDateChooser().setEnabled(false);
         
         
@@ -497,7 +526,7 @@ public class GestorPlantillaCita {
     
     public void irCitasAfiliadoGUI() {
         
-        CitasDeAfiliado vistaCitasAfiliado= new CitasDeAfiliado("Gestión de Citas", "Consultar", cedula, almacenamiento);
+        CitasDeAfiliado vistaCitasAfiliado= new CitasDeAfiliado("Gestión de Citas", cedula, almacenamiento);
         vistaPlantillaCita.dispose();
     }
 }

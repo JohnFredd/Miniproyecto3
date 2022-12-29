@@ -29,12 +29,12 @@ public class CitasDeAfiliado extends javax.swing.JFrame {
     private final DefaultTableModel modeloTabla = new DefaultTableModel();
     private JTableHeader th;
     
-    public CitasDeAfiliado(String titulo, String opcion, long cedula, Almacenamiento almacenamiento) {
+    public CitasDeAfiliado(String titulo, long cedula, Almacenamiento almacenamiento) {
         this.setContentPane(fondo);
         llenarColumnas();
         initComponents();
         diseñoTabla();
-        GestorCitasDeAfiliado gestorCitasAfiliado = new GestorCitasDeAfiliado(this, opcion, cedula, almacenamiento);
+        GestorCitasDeAfiliado gestorCitasAfiliado = new GestorCitasDeAfiliado(this, cedula, almacenamiento);
         setVisible(true);
         setTitle(titulo);
         setLocationRelativeTo(null);
@@ -42,11 +42,10 @@ public class CitasDeAfiliado extends javax.swing.JFrame {
     }
 
     public void llenarColumnas(){
-        modeloTabla.addColumn("Nombre");
-        modeloTabla.addColumn("Cédula");
         modeloTabla.addColumn("N.° referencia");
+        modeloTabla.addColumn("Nombre");
+        modeloTabla.addColumn("Médico");
         modeloTabla.addColumn("Fecha");
-        modeloTabla.addColumn("Hora");
     }
     public void diseñoTabla(){
         
@@ -73,6 +72,7 @@ public class CitasDeAfiliado extends javax.swing.JFrame {
         tablaContenido = new javax.swing.JTable();
         btnRegresar = new javax.swing.JButton();
         separador = new javax.swing.JSeparator();
+        btnConsultar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -82,9 +82,10 @@ public class CitasDeAfiliado extends javax.swing.JFrame {
         lblTitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblTitulo.setText("Lista de citas");
 
-        tablaContenido.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
         tablaContenido.setFont(new java.awt.Font("Agency FB", 1, 18)); // NOI18N
         tablaContenido.setModel(modeloTabla);
+        tablaContenido.setRowHeight(30);
+        tablaContenido.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         tablaContenido.getTableHeader().setReorderingAllowed(false);
         scroll.setViewportView(tablaContenido);
 
@@ -96,6 +97,11 @@ public class CitasDeAfiliado extends javax.swing.JFrame {
         separador.setForeground(new java.awt.Color(0, 0, 0));
         separador.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
+        btnConsultar.setFont(new java.awt.Font("Agency FB", 1, 36)); // NOI18N
+        btnConsultar.setText("Consultar");
+        btnConsultar.setFocusPainted(false);
+        btnConsultar.setRequestFocusEnabled(false);
+
         javax.swing.GroupLayout panelPpalLayout = new javax.swing.GroupLayout(panelPpal);
         panelPpal.setLayout(panelPpalLayout);
         panelPpalLayout.setHorizontalGroup(
@@ -105,13 +111,15 @@ public class CitasDeAfiliado extends javax.swing.JFrame {
                 .addComponent(scroll, javax.swing.GroupLayout.PREFERRED_SIZE, 794, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(24, 24, 24))
             .addGroup(panelPpalLayout.createSequentialGroup()
-                .addGap(348, 348, 348)
-                .addComponent(btnRegresar)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(panelPpalLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(lblTitulo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
+            .addGroup(panelPpalLayout.createSequentialGroup()
+                .addGap(73, 73, 73)
+                .addComponent(btnRegresar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnConsultar)
+                .addGap(58, 58, 58))
             .addGroup(panelPpalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(panelPpalLayout.createSequentialGroup()
                     .addGap(22, 22, 22)
@@ -123,11 +131,13 @@ public class CitasDeAfiliado extends javax.swing.JFrame {
             .addGroup(panelPpalLayout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addComponent(lblTitulo)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(scroll, javax.swing.GroupLayout.PREFERRED_SIZE, 425, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(btnRegresar)
-                .addGap(38, 38, 38))
+                .addGroup(panelPpalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnRegresar)
+                    .addComponent(btnConsultar))
+                .addGap(107, 107, 107))
             .addGroup(panelPpalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(panelPpalLayout.createSequentialGroup()
                     .addGap(624, 624, 624)
@@ -137,6 +147,7 @@ public class CitasDeAfiliado extends javax.swing.JFrame {
 
         btnRegresar.setOpaque(true);
         btnRegresar.setBackground(Color.WHITE);
+        btnConsultar.setBackground(Color.WHITE);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -156,6 +167,9 @@ public class CitasDeAfiliado extends javax.swing.JFrame {
     public JButton getBtnRegresar(){
         return btnRegresar;
     }
+    public JButton getBtnConsultar() {
+        return btnConsultar;
+    }
 
     /**
      * @param btnRegresar
@@ -167,7 +181,20 @@ public class CitasDeAfiliado extends javax.swing.JFrame {
     public void addBtnRegresarListener(MouseListener listenerBotones) {
         btnRegresar.addMouseListener(listenerBotones);
     }
+    public void addBtnConsultarListener(MouseListener listenerBotones){
+        btnConsultar.addMouseListener(listenerBotones);
+    }
+    public void anadirFilaTabla(Object[] fila) {
+        modeloTabla.addRow(fila);
+    }
+    public int filaSeleccionada() {
+        return tablaContenido.getSelectedRow();
+    }
+    public int citaSeleccionada(int fila) {
+        return (int) tablaContenido.getValueAt(fila,0);
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnConsultar;
     private javax.swing.JButton btnRegresar;
     private javax.swing.JLabel lblTitulo;
     private javax.swing.JPanel panelPpal;

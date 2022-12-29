@@ -107,7 +107,7 @@ public class GestorGestionDeCitas {
                     if(!almacenamiento.getAfiliados().containsKey(cedula)){   //Verificar también si el afiliado tiene citas
                         JOptionPane.showMessageDialog(vistaGestionCitas, "<html><p style = \" font:12px; \">No se encontró ningún afiliado registrado con esa cédula</p></html>", "Afiliado no encontrado", JOptionPane.OK_OPTION, UIManager.getIcon("OptionPane.errorIcon"));
                     } else {
-                        CitasDeAfiliado ventanaConsultarCitasAfiliado = new CitasDeAfiliado("Citas del afiliado", "Consultar", cedula, almacenamiento);
+                        CitasDeAfiliado ventanaConsultarCitasAfiliado = new CitasDeAfiliado("Citas del afiliado", cedula, almacenamiento);
                         vistaGestionCitas.dispose();
                     }
                 }
