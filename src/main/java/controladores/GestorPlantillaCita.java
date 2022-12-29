@@ -271,6 +271,7 @@ public class GestorPlantillaCita {
             for (LocalTime hora : horas) {
                 if (hora == horaSeleccionada){
                     System.out.println("Consultorio: " + consultorio.getIdentificador() + "-->" + hora);
+                    
                 }
             }
         }
