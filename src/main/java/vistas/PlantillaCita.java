@@ -18,8 +18,6 @@ import controladores.GestorPlantillaCita;
 import java.awt.Color;
 import java.awt.event.ItemListener;
 import java.awt.event.MouseListener;
-import java.beans.PropertyChangeListener;
-import java.util.ArrayList;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -37,10 +35,8 @@ public class PlantillaCita extends javax.swing.JFrame {
     public PlantillaCita(String titulo,String opcion, String motivoCita, long cedula, int numRef, Almacenamiento almacenamiento) {
         this.setContentPane(fondo);
         initComponents();
-        System.out.println("Voy a crear el gestor");
         setVisible(true);
         GestorPlantillaCita gestorCita = new GestorPlantillaCita(this, opcion, motivoCita, cedula, numRef, almacenamiento);
-        System.out.println("Ventana visible");
         setTitle(titulo);
         setLocationRelativeTo(null);
         setResizable(false);

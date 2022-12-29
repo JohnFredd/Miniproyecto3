@@ -81,7 +81,6 @@ public class GestorPlantillaCita {
                 plantillaAgendarCita();
             }
             case "Modificar" -> {
-                System.out.println("OPCION MODIFICAR");
                 plantillaModificarCita();
             }
             case "Eliminar" -> {
@@ -104,7 +103,6 @@ public class GestorPlantillaCita {
         vistaPlantillaCita.getBtnAgendar().setText("Modificar Cita");
         
         //Ingresando datos de cita en la interfaz
-        Cita miCita = almacenamiento.getCitas().get(referenciaCita);
         vistaPlantillaCita.getTxtNombre().setText(almacenamiento.getAfiliados().get(cedula).getNombre());
         vistaPlantillaCita.getTxtCedula().setText(String.valueOf(cedula));
         vistaPlantillaCita.getTxtServicio().setText(motivoCita);
@@ -124,13 +122,18 @@ public class GestorPlantillaCita {
         vistaPlantillaCita.getBtnAgendar().setText("Eliminar Cita");
         
         //Ingresando datos de cita en la interfaz
-        Cita miCita = almacenamiento.getCitas().get(referenciaCita);
         vistaPlantillaCita.getTxtNombre().setText(almacenamiento.getAfiliados().get(cedula).getNombre());
         vistaPlantillaCita.getTxtCedula().setText(String.valueOf(cedula));
         vistaPlantillaCita.getTxtServicio().setText(motivoCita);
-        vistaPlantillaCita.getDateChooser().setDate(almacenamiento.getCitas().get(referenciaCita).getFecha());
-        vistaPlantillaCita.getTxtConsultorio().setText(miCita.getConsultorio().getIdentificador());
+        vistaPlantillaCita.getTxtReferencia().setText(String.valueOf(numRef));
+        vistaPlantillaCita.getTxtConsultorio().setText(almacenamiento.getCitas().get(numRef).getConsultorio().getIdentificador());
+        //Estableciendo la fecha en el JDateChooser
+        java.sql.Date miFecha = almacenamiento.getCitas().get(numRef).getFecha();
+        java.util.Date  utilDate = new java.util.Date(miFecha.getTime());
+        vistaPlantillaCita.getDateChooser().setDate(utilDate);
         
+        String medicoYHora = almacenamiento.getCitas().get(numRef).getMedico().getNombre() + ", " + almacenamiento.getCitas().get(numRef).getHora().toString();
+        vistaPlantillaCita.getComboMedico().getModel().setSelectedItem(medicoYHora);
         //Desabilitando componentes
         vistaPlantillaCita.getBtnVerificar().setEnabled(false);
         vistaPlantillaCita.getBtnAgendar().setEnabled(true);
@@ -261,7 +264,7 @@ public class GestorPlantillaCita {
         Cita cita = new Cita(numeroReferencia, fecha, hora, servicio, afiliado, consultorio, medico);
         
         try {
-            almacenamiento.modificarCita(referenciaCita, cita);
+            almacenamiento.modificarCita(numRef, cita);
             JOptionPane.showMessageDialog(null, "Cita actualizada con éxito", "Resultado de actualizar", JOptionPane.INFORMATION_MESSAGE);
             irGestionCitasGUI();
         } catch (IOException io) {
@@ -275,8 +278,8 @@ public class GestorPlantillaCita {
        
        try {
            
-           almacenamiento.eliminarCita(referenciaCita);
-           JOptionPane.showMessageDialog(null, "Afiliado eliminado con éxito", "Resultado de eliminar", JOptionPane.INFORMATION_MESSAGE);
+           almacenamiento.eliminarCita(numRef);
+           JOptionPane.showMessageDialog(null, "Cita eliminada con éxito", "Resultado de eliminar", JOptionPane.INFORMATION_MESSAGE);
            irGestionCitasGUI();
        } catch (IOException io) {
             JOptionPane.showMessageDialog(null, "Error al actualizar: " + io, "Error", JOptionPane.ERROR_MESSAGE);
