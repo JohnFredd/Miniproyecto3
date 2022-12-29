@@ -26,6 +26,7 @@ import java.util.Iterator;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import modelos.Cita;
+import modelos.Consultorio;
 import modelos.Medico;
 import modelos.Servicio;
 import vistas.CitasDeAfiliado;
@@ -40,6 +41,7 @@ public class GestorPlantillaCita {
     private final String motivoCita;
     private final long cedula;
     private final HashMap<Long, Medico> medicos;
+    private final HashMap<String, Consultorio> consultorios;
     private ArrayList<Object[]> opcionesComboBox;
     private int referenciaCita;
     
@@ -49,6 +51,7 @@ public class GestorPlantillaCita {
         this.motivoCita = motivoCita;
         this.cedula = cedula;
         medicos = almacenamiento.getMedicos();
+        consultorios = almacenamiento.getConsultorios();
         this.vistaPlantillaCita = vistaPlantillaCita;
         modificarPlantilla();
         asignarReferenciaCita();
@@ -158,7 +161,9 @@ public class GestorPlantillaCita {
             
             if (e.getSource() == vistaPlantillaCita.getBtnAsignar() && vistaPlantillaCita.getBtnAsignar().isEnabled()){
                 if (e.getButton() == 1){
-                    asignarConsultorio(); 
+                    //obtenerHoraEscogida();
+                    consultoriosDisponibles();
+                    //asignarConsultorio(); 
                 }
             }
         }
@@ -172,7 +177,15 @@ public class GestorPlantillaCita {
        java.sql.Date fecha = new java.sql.Date(d);
     }
     
-    
+    public LocalTime obtenerHoraEscogida(){
+        String opcionElegida = vistaPlantillaCita.getComboMedico().getModel().getSelectedItem().toString();
+        int posicionDeComa = opcionElegida.indexOf(',');
+        String horaElegida = opcionElegida.substring(posicionDeComa+2, opcionElegida.length());
+        System.out.println(horaElegida);
+        LocalTime lt = LocalTime.parse(horaElegida);
+        System.out.println("Mi hora: " + lt);
+        return lt;
+    }
     // Actualiza el comboBox con los médicos que prestan el servicio requerido
     public void medicosDisponibles(){
         vistaPlantillaCita.limpiarMedicosCombo();
@@ -186,7 +199,7 @@ public class GestorPlantillaCita {
             ArrayList<Servicio> servicioDelMedico = medico.getServicios();
             
             //Convirtiendo los servicios del médico a String[]
-            for (int o= 0; o<servicioDelMedico.size(); o++){
+            for (int o = 0; o < servicioDelMedico.size(); o++){
                 String servicio = "";
                 servicio += servicioDelMedico.get(o);
                 if (servicio.equals(motivoCita)) {
@@ -230,6 +243,46 @@ public class GestorPlantillaCita {
         }
     }
     
+    // Actualiza el textfield con los médicos que prestan el servicio requerido
+    public void consultoriosDisponibles(){
+        LocalTime horaSeleccionada = obtenerHoraEscogida();
+        System.out.println("Hora: " + horaSeleccionada);
+        Iterator i = consultorios.entrySet().iterator();
+        ArrayList<Consultorio> misConsultorios = new ArrayList();
+        
+        while(i.hasNext()) {
+            HashMap.Entry <String, Consultorio> mapa = (HashMap.Entry) i.next();
+            Consultorio consultorio = mapa.getValue();
+            String servicioDelConsultorio = consultorio.getServicioAsociado().getNombre();
+            if (servicioDelConsultorio.equals(motivoCita)) {
+                misConsultorios.add(consultorio);
+            }
+            System.out.println("Primer While");
+        }
+        
+        Iterator o = misConsultorios.iterator();
+        Date date = vistaPlantillaCita.getDateChooser().getDate();
+        long d = date.getTime();
+        java.sql.Date fecha = new java.sql.Date(d);
+        
+        while (o.hasNext()) {
+            Consultorio consultorio = (Consultorio) o.next();
+            ArrayList<LocalTime> horas = verificarHorarios(consultorio, fecha);
+            for (LocalTime hora : horas) {
+                if (hora == horaSeleccionada){
+                    System.out.println("Consultorio: " + consultorio.getIdentificador() + "-->" + hora);
+                }
+            }
+        }
+        if (vistaPlantillaCita.getComboMedico().getModel().getSize() == 0) {
+            JOptionPane.showMessageDialog(null, "<html><p style = \" font:12px; \">No hay disponibilidad para esa fecha.</p></html>", "Aviso", JOptionPane.OK_OPTION, UIManager.getIcon("OptionPane.informationIcon"));
+            vistaPlantillaCita.getComboMedico().setEnabled(false);
+            vistaPlantillaCita.getBtnAsignar().setEnabled(false);
+        } else {
+            vistaPlantillaCita.getComboMedico().setEnabled(true);
+            vistaPlantillaCita.getBtnAsignar().setEnabled(true);
+        }
+    }
     public void modificarCita() {
        
        //Obteniendo los datos
@@ -278,6 +331,33 @@ public class GestorPlantillaCita {
             HashMap.Entry <Integer, Cita> mapa = (HashMap.Entry) i.next();
             Cita cita = mapa.getValue();
             if (cita.getMedico() == medico && cita.getFecha() == date) {
+                horariosOcupados.add(cita.getHora());
+            }
+        }
+        for (LocalTime hora : horariosPosibles) {
+            if (!horariosOcupados.contains(hora)) {
+                horariosdisponibles.add(hora);
+            }
+        }
+        return horariosdisponibles;
+    }
+    
+    public ArrayList<LocalTime> verificarHorarios(Consultorio consultorio, Date date) {
+        HashMap <Integer, Cita> citas = almacenamiento.getCitas();
+        Iterator i = citas.entrySet().iterator();
+        ArrayList<LocalTime> horariosOcupados = new ArrayList();
+        ArrayList<LocalTime> horariosPosibles = new ArrayList();
+        ArrayList<LocalTime> horariosdisponibles = new ArrayList();
+        for (int h = 7; h < 17; h++) {
+            if (h != 12 && h != 13) {
+                horariosPosibles.add(LocalTime.of(h, 0));
+                horariosPosibles.add(LocalTime.of(h, 30));
+            }
+        }
+        while (i.hasNext()) {
+            HashMap.Entry <Integer, Cita> mapa = (HashMap.Entry) i.next();
+            Cita cita = mapa.getValue();
+            if (cita.getConsultorio() == consultorio && cita.getFecha() == date) {
                 horariosOcupados.add(cita.getHora());
             }
         }
