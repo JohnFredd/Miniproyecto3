@@ -27,6 +27,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
+import modelos.Afiliado;
 import modelos.Cita;
 import modelos.Consultorio;
 import modelos.Medico;
@@ -182,10 +183,25 @@ public class GestorPlantillaCita {
     
     public void agendarCita() {
        
-       //Obteniendo los datos
-       Date date = vistaPlantillaCita.getDateChooser().getDate();
-       long d = date.getTime();
-       java.sql.Date fecha = new java.sql.Date(d);
+        //Obteniendo los datos
+        int numeroReferencia = Integer.parseInt(vistaPlantillaCita.getTxtReferencia().getText());
+        Date date = vistaPlantillaCita.getDateChooser().getDate();
+        long d = date.getTime();
+        java.sql.Date fecha = new java.sql.Date(d);
+        LocalTime hora = obtenerHoraEscogida();
+        ArrayList <Servicio> servicios = almacenamiento.getServicios();
+        Iterator i = servicios.iterator();
+        Servicio servicio;
+        while (i.hasNext()) {
+           servicio = (Servicio) i.next();
+           if (servicio.getNombre().equals(motivoCita)) {
+               break;
+           }
+        }
+        Afiliado afiliado = almacenamiento.getAfiliados().get(cedula);
+        Consultorio consultorio = almacenamiento.getConsultorios().get(vistaPlantillaCita.getTxtConsultorio());
+        Medico medico = obtenerMedicoEscogido();
+        Cita cita = new Cita();
     }
     
     public void modificarCita() {
