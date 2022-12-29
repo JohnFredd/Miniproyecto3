@@ -41,6 +41,7 @@ public class GestorPlantillaCita {
     private final long cedula;
     private final HashMap<Long, Medico> medicos;
     private ArrayList<Object[]> opcionesComboBox;
+    private int referenciaCita;
     
     public GestorPlantillaCita(PlantillaCita vistaPlantillaCita, String opcion, String motivoCita, long cedula, Almacenamiento almacenamiento) {
         this.almacenamiento = almacenamiento;
@@ -50,7 +51,7 @@ public class GestorPlantillaCita {
         medicos = almacenamiento.getMedicos();
         this.vistaPlantillaCita = vistaPlantillaCita;
         modificarPlantilla();
-        vistaPlantillaCita.getTxtReferencia().setText("0001");
+        asignarReferenciaCita();
         //Añadiendo Listeners
         this.vistaPlantillaCita.addBtnRegresarListener(new ManejadoraDeMouse());
         this.vistaPlantillaCita.addBtnAgendarListener(new ManejadoraDeMouse());
@@ -299,6 +300,10 @@ public class GestorPlantillaCita {
             }
         }
         return horariosdisponibles;
+    }
+    public void asignarReferenciaCita() {
+        referenciaCita = almacenamiento.getCitas().size() + 1;
+        vistaPlantillaCita.getTxtReferencia().setText(String.valueOf(referenciaCita));
     }
 }
 
