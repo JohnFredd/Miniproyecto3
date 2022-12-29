@@ -282,7 +282,11 @@ public class GestorPlantillaCita {
         return horariosdisponibles;
     }
     public void asignarReferenciaCita() {
-        referenciaCita = almacenamiento.getCitas().size() + 1;
+        int numeroDeReferencia = 1;
+        while (almacenamiento.getCitas().containsKey(numeroDeReferencia)) {
+            numeroDeReferencia += 1;
+        }
+        referenciaCita = numeroDeReferencia;
         vistaPlantillaCita.getTxtReferencia().setText(String.valueOf(referenciaCita));
     }
 }
