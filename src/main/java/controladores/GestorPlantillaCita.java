@@ -187,7 +187,6 @@ public class GestorPlantillaCita {
        java.sql.Date fecha = new java.sql.Date(d);
     }
     
-    
     // Actualiza el comboBox con los médicos que prestan el servicio requerido
     public void medicosDisponibles(){
         vistaPlantillaCita.limpiarMedicosCombo();
@@ -201,7 +200,7 @@ public class GestorPlantillaCita {
             ArrayList<Servicio> servicioDelMedico = medico.getServicios();
             
             //Convirtiendo los servicios del médico a String[]
-            for (int o= 0; o<servicioDelMedico.size(); o++){
+            for (int o = 0; o < servicioDelMedico.size(); o++){
                 String servicio = "";
                 servicio += servicioDelMedico.get(o);
                 if (servicio.equals(motivoCita)) {
@@ -333,7 +332,7 @@ public class GestorPlantillaCita {
         }
         return horariosdisponibles;
     }
-    
+
     public boolean verificarHorarios(Consultorio consultorio, Date date, LocalTime hora) {
         HashMap <Integer, Cita> citas = almacenamiento.getCitas();
         Iterator i = citas.entrySet().iterator();
