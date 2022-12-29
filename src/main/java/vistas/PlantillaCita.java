@@ -16,6 +16,7 @@ package vistas;
 import com.toedter.calendar.JDateChooser;
 import controladores.GestorPlantillaCita;
 import java.awt.Color;
+import java.awt.event.ItemListener;
 import java.awt.event.MouseListener;
 import java.beans.PropertyChangeListener;
 import java.util.ArrayList;
@@ -49,6 +50,9 @@ public class PlantillaCita extends javax.swing.JFrame {
     }
     public void limpiarMedicosCombo(){
         modeloCombo.removeAllElements();
+    }
+    public void addMedicosComboListener (ItemListener listenerCombo) {
+        comboMedico.addItemListener(listenerCombo);
     }
     public JLabel getLblTitulo() {
         return lblTitulo;

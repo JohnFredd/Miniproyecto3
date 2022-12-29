@@ -13,6 +13,8 @@
 
 package controladores;
 
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.time.LocalDate;
@@ -26,6 +28,7 @@ import java.util.Iterator;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import modelos.Cita;
+import modelos.Consultorio;
 import modelos.Medico;
 import modelos.Servicio;
 import vistas.CitasDeAfiliado;
@@ -40,6 +43,7 @@ public class GestorPlantillaCita {
     private final String motivoCita;
     private final long cedula;
     private final HashMap<Long, Medico> medicos;
+    private final HashMap<String, Consultorio> consultorios;
     private ArrayList<Object[]> opcionesComboBox;
     private int referenciaCita;
     
@@ -49,6 +53,7 @@ public class GestorPlantillaCita {
         this.motivoCita = motivoCita;
         this.cedula = cedula;
         medicos = almacenamiento.getMedicos();
+        consultorios = almacenamiento.getConsultorios();
         this.vistaPlantillaCita = vistaPlantillaCita;
         modificarPlantilla();
         asignarReferenciaCita();
@@ -57,6 +62,7 @@ public class GestorPlantillaCita {
         this.vistaPlantillaCita.addBtnAgendarListener(new ManejadoraDeMouse());
         this.vistaPlantillaCita.addBtnVerificarListener(new ManejadoraDeMouse());
         this.vistaPlantillaCita.addBtnAsignarListener(new ManejadoraDeMouse());
+        this.vistaPlantillaCita.addMedicosComboListener(new ManejadoraDeLista());
     }
     
     public void modificarPlantilla(){
@@ -164,6 +170,15 @@ public class GestorPlantillaCita {
         }
     }
     
+    class ManejadoraDeLista implements ItemListener {
+
+        @Override
+        public void itemStateChanged(ItemEvent e) {
+            vistaPlantillaCita.getTxtConsultorio().setText("");
+        }
+        
+    }
+    
     public void agendarCita() {
        
        //Obteniendo los datos
@@ -221,13 +236,43 @@ public class GestorPlantillaCita {
     }
     
     public void asignarConsultorio(){
-        if(!validarCamposVacios()){
-            //Asignando consultorios
-            vistaPlantillaCita.getTxtConsultorio().setText("C101");
-            vistaPlantillaCita.getBtnAgendar().setEnabled(true);
-        } else {
+        if(validarCamposVacios()){
             JOptionPane.showMessageDialog(null, "Llene todos los campos requeridos antes de continuar.", "Datos incompletos", JOptionPane.ERROR_MESSAGE);
+            return;
         }
+        //Asignando consultorios
+        
+        Iterator i = consultorios.entrySet().iterator();
+        ArrayList<Consultorio> misConsultorios = new ArrayList();
+        
+        while(i.hasNext()) {
+            HashMap.Entry <Long, Consultorio> mapa = (HashMap.Entry) i.next();
+            Consultorio consultorio = mapa.getValue();
+            Servicio servicioDelConsultorio = consultorio.getServicioAsociado();
+            
+            //Convirtiendo los servicios del consultorio a String[]
+            //String servicio = "";
+            String servicio = servicioDelConsultorio.getNombre();
+            if (servicio.equals(motivoCita)) {
+                misConsultorios.add(consultorio);
+            }
+        }
+        
+        Iterator o = misConsultorios.iterator();
+        Date date = vistaPlantillaCita.getDateChooser().getDate();
+        long d = date.getTime();
+        java.sql.Date fecha = new java.sql.Date(d);
+        Consultorio consultorioDisponible = null;
+        LocalTime hora = obtenerHoraEscogida();
+        while (o.hasNext()) {
+            Consultorio consultorio = (Consultorio) o.next();
+            if (!verificarHorarios(consultorio, fecha, hora)) {
+                vistaPlantillaCita.getTxtConsultorio().setText(consultorio.getIdentificador());
+                vistaPlantillaCita.getBtnAgendar().setEnabled(true);
+                return;
+            }
+        }
+        JOptionPane.showMessageDialog(null, "<html><p style = \" font:12px; \">No hay disponibilidad para ese momento.</p></html>", "Aviso", JOptionPane.OK_OPTION, UIManager.getIcon("OptionPane.informationIcon"));
     }
     
     public void modificarCita() {
@@ -289,6 +334,20 @@ public class GestorPlantillaCita {
         return horariosdisponibles;
     }
     
+    public boolean verificarHorarios(Consultorio consultorio, Date date, LocalTime hora) {
+        HashMap <Integer, Cita> citas = almacenamiento.getCitas();
+        Iterator i = citas.entrySet().iterator();
+        
+        while (i.hasNext()) {
+            HashMap.Entry <Integer, Cita> mapa = (HashMap.Entry) i.next();
+            Cita cita = mapa.getValue();
+            if (cita.getConsultorio() == consultorio && cita.getFecha() == date && cita.getHora() == hora) {
+                return true;
+            }
+        }
+        return false;
+    }
+    
     public boolean verificarFechasAntiguas() {
         boolean fechaValida = false;
         
@@ -321,6 +380,14 @@ public class GestorPlantillaCita {
         }
         referenciaCita = numeroDeReferencia;
         vistaPlantillaCita.getTxtReferencia().setText(String.valueOf(referenciaCita));
+    }
+    
+    public LocalTime obtenerHoraEscogida(){
+        String opcionElegida = vistaPlantillaCita.getComboMedico().getModel().getSelectedItem().toString();
+        int posicionDeComa = opcionElegida.indexOf(',');
+        String horaElegida = opcionElegida.substring(posicionDeComa+2, opcionElegida.length());
+        LocalTime lt = LocalTime.parse(horaElegida);
+        return lt;
     }
 }
 
