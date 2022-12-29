@@ -44,21 +44,25 @@ public class GestorPlantillaCita {
     private final String opcion;
     private final String motivoCita;
     private final long cedula;
+    private final int numRef;
     private final HashMap<Long, Medico> medicos;
     private final HashMap<String, Consultorio> consultorios;
     private ArrayList<Object[]> opcionesComboBox;
     private int referenciaCita;
     
-    public GestorPlantillaCita(PlantillaCita vistaPlantillaCita, String opcion, String motivoCita, long cedula, Almacenamiento almacenamiento) {
+    public GestorPlantillaCita(PlantillaCita vistaPlantillaCita, String opcion, String motivoCita, long cedula, int numRef, Almacenamiento almacenamiento) {
         this.almacenamiento = almacenamiento;
         this.opcion = opcion;
         this.motivoCita = motivoCita;
         this.cedula = cedula;
+        this.numRef = numRef;
         medicos = almacenamiento.getMedicos();
         consultorios = almacenamiento.getConsultorios();
         this.vistaPlantillaCita = vistaPlantillaCita;
         modificarPlantilla();
-        asignarReferenciaCita();
+        if(!"Modificar".equals(opcion) && !"Eliminar".equals(opcion)){
+            asignarReferenciaCita();
+        }
         //Añadiendo Listeners
         this.vistaPlantillaCita.addBtnRegresarListener(new ManejadoraDeMouse());
         this.vistaPlantillaCita.addBtnAgendarListener(new ManejadoraDeMouse());
@@ -74,6 +78,7 @@ public class GestorPlantillaCita {
                 plantillaAgendarCita();
             }
             case "Modificar" -> {
+                System.out.println("OPCION MODIFICAR");
                 plantillaModificarCita();
             }
             case "Eliminar" -> {
@@ -91,15 +96,24 @@ public class GestorPlantillaCita {
     }
     
     public void plantillaModificarCita(){
-        
         //Modificando título y botones
         vistaPlantillaCita.getLblTitulo().setText("Modificar Cita");
         vistaPlantillaCita.getBtnAgendar().setText("Modificar Cita");
         
-        //Ingresando nombre, cédula y motivo de cita en interfaz
+        //Ingresando datos de cita en la interfaz
+        Cita miCita = almacenamiento.getCitas().get(referenciaCita);
         vistaPlantillaCita.getTxtNombre().setText(almacenamiento.getAfiliados().get(cedula).getNombre());
         vistaPlantillaCita.getTxtCedula().setText(String.valueOf(cedula));
         vistaPlantillaCita.getTxtServicio().setText(motivoCita);
+        vistaPlantillaCita.getTxtReferencia().setText(String.valueOf(numRef));
+        
+        java.sql.Date miFecha = almacenamiento.getCitas().get(referenciaCita).getFecha();
+        
+        Date date = new Date(miFecha.getTime());
+        String laFechaStr = date.toString();
+        System.out.println("FECHA: " + laFechaStr);
+        vistaPlantillaCita.getDateChooser().setDate(date);
+        vistaPlantillaCita.getTxtReferencia().setEditable(true);
     }
     
     public void plantillaEliminarCita(){
@@ -108,10 +122,19 @@ public class GestorPlantillaCita {
         vistaPlantillaCita.getLblTitulo().setText("Eliminar Cita");
         vistaPlantillaCita.getBtnAgendar().setText("Eliminar Cita");
         
-        //Ingresando nombre, cédula y motivo de cita en interfaz
+        //Ingresando datos de cita en la interfaz
+        Cita miCita = almacenamiento.getCitas().get(referenciaCita);
         vistaPlantillaCita.getTxtNombre().setText(almacenamiento.getAfiliados().get(cedula).getNombre());
         vistaPlantillaCita.getTxtCedula().setText(String.valueOf(cedula));
         vistaPlantillaCita.getTxtServicio().setText(motivoCita);
+        vistaPlantillaCita.getDateChooser().setDate(almacenamiento.getCitas().get(referenciaCita).getFecha());
+        vistaPlantillaCita.getTxtConsultorio().setText(miCita.getConsultorio().getIdentificador());
+        
+        //Desabilitando componentes
+        vistaPlantillaCita.getBtnVerificar().setEnabled(false);
+        vistaPlantillaCita.getBtnAgendar().setEnabled(true);
+        vistaPlantillaCita.getDateChooser().setEnabled(false);
+        
         
     }
     
@@ -217,13 +240,47 @@ public class GestorPlantillaCita {
     public void modificarCita() {
        
        //Obteniendo los datos
+        int numeroReferencia = Integer.parseInt(vistaPlantillaCita.getTxtReferencia().getText());
+        Date date = vistaPlantillaCita.getDateChooser().getDate();
+        long d = date.getTime();
+        java.sql.Date fecha = new java.sql.Date(d);
+        LocalTime hora = obtenerHoraEscogida();
+        ArrayList <Servicio> servicios = almacenamiento.getServicios();
+        Iterator i = servicios.iterator();
+        Servicio servicio = null;
+        while (i.hasNext()) {
+           servicio = (Servicio) i.next();
+           if (servicio.getNombre().equals(motivoCita)) {
+               break;
+           }
+        }
+        Afiliado afiliado = almacenamiento.getAfiliados().get(cedula);
+        Consultorio consultorio = almacenamiento.getConsultorios().get(vistaPlantillaCita.getTxtConsultorio().getText());
+        Medico medico = obtenerMedicoEscogido();
+        Cita cita = new Cita(numeroReferencia, fecha, hora, servicio, afiliado, consultorio, medico);
+        
+        try {
+            almacenamiento.modificarCita(referenciaCita, cita);
+            JOptionPane.showMessageDialog(null, "Cita actualizada con éxito", "Resultado de actualizar", JOptionPane.INFORMATION_MESSAGE);
+            irGestionCitasGUI();
+        } catch (IOException io) {
+            JOptionPane.showMessageDialog(null, "Error al actualizar: " + io, "Error", JOptionPane.ERROR_MESSAGE);
+
+        } 
        
     }
     
     public void eliminarCita() {
        
-       //Obteniendo los datos
-       
+       try {
+           
+           almacenamiento.eliminarCita(referenciaCita);
+           JOptionPane.showMessageDialog(null, "Afiliado eliminado con éxito", "Resultado de eliminar", JOptionPane.INFORMATION_MESSAGE);
+           irGestionCitasGUI();
+       } catch (IOException io) {
+            JOptionPane.showMessageDialog(null, "Error al actualizar: " + io, "Error", JOptionPane.ERROR_MESSAGE);
+     
+       }
     }
     
     // Actualiza el comboBox con los médicos que prestan el servicio requerido y sus horas disponibles

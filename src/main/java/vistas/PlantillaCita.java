@@ -34,11 +34,13 @@ public class PlantillaCita extends javax.swing.JFrame {
     ImagenFondo fondo = new ImagenFondo();
     private DefaultComboBoxModel modeloCombo = new DefaultComboBoxModel();
     
-    public PlantillaCita(String titulo,String opcion, String motivoCita, long cedula, Almacenamiento almacenamiento) {
+    public PlantillaCita(String titulo,String opcion, String motivoCita, long cedula, int numRef, Almacenamiento almacenamiento) {
         this.setContentPane(fondo);
         initComponents();
-        GestorPlantillaCita gestorCita = new GestorPlantillaCita(this, opcion, motivoCita, cedula, almacenamiento);
+        System.out.println("Voy a crear el gestor");
         setVisible(true);
+        GestorPlantillaCita gestorCita = new GestorPlantillaCita(this, opcion, motivoCita, cedula, numRef, almacenamiento);
+        System.out.println("Ventana visible");
         setTitle(titulo);
         setLocationRelativeTo(null);
         setResizable(false);
