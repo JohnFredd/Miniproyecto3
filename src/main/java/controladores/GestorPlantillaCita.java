@@ -15,7 +15,9 @@ package controladores;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.time.LocalDate;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import modelos.Almacenamiento;
 import java.util.Date;
@@ -141,6 +143,24 @@ public class GestorPlantillaCita {
             if (e.getSource() == vistaPlantillaCita.getBtnVerificar() && vistaPlantillaCita.getBtnVerificar().isEnabled()){
                 if (vistaPlantillaCita.getDateChooser().getDate() == null){
                     JOptionPane.showMessageDialog(null, "<html><p style = \" font:12px; \">Por favor seleccione una fecha</p></html>", "Aviso", JOptionPane.OK_OPTION, UIManager.getIcon("OptionPane.informationIcon"));            
+                    return;
+                }
+                //Convirtiendo la fecha escogida (Date) a LocalDate
+                Date date = vistaPlantillaCita.getDateChooser().getDate();
+                long d = date.getTime();
+                String miFecha = new java.sql.Date(d).toString();
+                LocalDate fechaEscogida = LocalDate.parse(miFecha);
+                
+                //Obteniendo la fecha actual
+                LocalDate fecha = LocalDate.now();
+                if(fechaEscogida.isBefore(fecha)){
+                    vistaPlantillaCita.limpiarMedicosCombo();
+                    opcionesComboBox = new ArrayList();
+                    vistaPlantillaCita.getTxtConsultorio().setText("");
+                    vistaPlantillaCita.getComboMedico().setEnabled(false);
+                    vistaPlantillaCita.getBtnAsignar().setEnabled(false);
+                    vistaPlantillaCita.getBtnAgendar().setEnabled(false);
+                    JOptionPane.showMessageDialog(null, "<html><p style = \" font:12px; \">Seleccione sólo fechas a partir de la actual</p></html>", "Aviso", JOptionPane.OK_OPTION, UIManager.getIcon("OptionPane.informationIcon"));            
                     return;
                 }
                 if (e.getButton() == 1){
