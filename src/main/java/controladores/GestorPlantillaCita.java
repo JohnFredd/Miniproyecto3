@@ -146,24 +146,11 @@ public class GestorPlantillaCita {
                     JOptionPane.showMessageDialog(null, "<html><p style = \" font:12px; \">Por favor seleccione una fecha</p></html>", "Aviso", JOptionPane.OK_OPTION, UIManager.getIcon("OptionPane.informationIcon"));            
                     return;
                 }
-                //Convirtiendo la fecha escogida (Date) a LocalDate
-                Date date = vistaPlantillaCita.getDateChooser().getDate();
-                long d = date.getTime();
-                String miFecha = new java.sql.Date(d).toString();
-                LocalDate fechaEscogida = LocalDate.parse(miFecha);
-                
-                //Obteniendo la fecha actual
-                LocalDate fecha = LocalDate.now();
-                if(fechaEscogida.isBefore(fecha)){
-                    vistaPlantillaCita.limpiarMedicosCombo();
-                    opcionesComboBox = new ArrayList();
-                    vistaPlantillaCita.getTxtConsultorio().setText("");
-                    vistaPlantillaCita.getComboMedico().setEnabled(false);
-                    vistaPlantillaCita.getBtnAsignar().setEnabled(false);
-                    vistaPlantillaCita.getBtnAgendar().setEnabled(false);
-                    JOptionPane.showMessageDialog(null, "<html><p style = \" font:12px; \">Seleccione sólo fechas a partir de la actual</p></html>", "Aviso", JOptionPane.OK_OPTION, UIManager.getIcon("OptionPane.informationIcon"));            
+                if(!verificarFechasAntiguas()){
+                    JOptionPane.showMessageDialog(null, "<html><p style = \" font:12px; \">Seleccione sólo fechas a partir de la actual</p></html>", "Aviso", JOptionPane.OK_OPTION, UIManager.getIcon("OptionPane.informationIcon"));
                     return;
                 }
+                
                 if (e.getButton() == 1){
                     medicosDisponibles();
                 }
@@ -301,6 +288,32 @@ public class GestorPlantillaCita {
         }
         return horariosdisponibles;
     }
+    
+    public boolean verificarFechasAntiguas() {
+        boolean fechaValida = false;
+        
+        //Convirtiendo la fecha escogida (Date) a LocalDate
+        Date date = vistaPlantillaCita.getDateChooser().getDate();
+        long d = date.getTime();
+        String miFecha = new java.sql.Date(d).toString();
+        LocalDate fechaEscogida = LocalDate.parse(miFecha);
+
+        //Obteniendo la fecha actual
+        LocalDate fecha = LocalDate.now();
+        if(fechaEscogida.isBefore(fecha)){
+            vistaPlantillaCita.limpiarMedicosCombo();
+            opcionesComboBox = new ArrayList();
+            vistaPlantillaCita.getTxtConsultorio().setText("");
+            vistaPlantillaCita.getComboMedico().setEnabled(false);
+            vistaPlantillaCita.getBtnAsignar().setEnabled(false);
+            vistaPlantillaCita.getBtnAgendar().setEnabled(false);
+            fechaValida = false;
+            return fechaValida;
+        }
+        fechaValida = true;
+        return fechaValida;
+    }
+    
     public void asignarReferenciaCita() {
         referenciaCita = almacenamiento.getCitas().size() + 1;
         vistaPlantillaCita.getTxtReferencia().setText(String.valueOf(referenciaCita));
