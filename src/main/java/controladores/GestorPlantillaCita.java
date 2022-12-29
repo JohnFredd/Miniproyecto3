@@ -247,6 +247,11 @@ public class GestorPlantillaCita {
         }
     }
     
+    public Medico obtenerMedicoEscogido(){
+        int opcionElegida = vistaPlantillaCita.getComboMedico().getSelectedIndex();
+        return (Medico)opcionesComboBox.get(opcionElegida)[0];
+    }
+    
     //Asigna el consultorio de acuerdo a la hora escogida
     public void asignarConsultorio(){
         if(validarCamposVacios()){
