@@ -110,20 +110,11 @@ public class GestorPlantillaCita {
         vistaPlantillaCita.getTxtServicio().setText(motivoCita);
         vistaPlantillaCita.getTxtReferencia().setText(String.valueOf(numRef));
         
-        System.out.println("HOLA");
-        System.out.println(referenciaCita);
-        //System.out.println(almacenamiento.getCitas().get(referenciaCita));
+        //Estableciendo la fecha en el JDateChooser
         java.sql.Date miFecha = almacenamiento.getCitas().get(numRef).getFecha();
-        System.out.println(miFecha);
         java.util.Date  utilDate = new java.util.Date(miFecha.getTime());
-        System.out.println("HOLA 2");  
-        vistaPlantillaCita.getDateChooser().setDate(utilDate);
-        System.out.println("HOLA 3");      
-        /*
-        Date laFecha = java.util.Date.from(miFecha.atStartOfDay().atZone(ZoneId.systemDefault()).toInstant());
-        vistaPlantillaCita.getDateChooser().setDate(laFecha);
-        System.out.println("HOLA 2");
-        vistaPlantillaCita.getTxtReferencia().setEditable(true);*/
+        vistaPlantillaCita.getDateChooser().setDate(utilDate);   
+        vistaPlantillaCita.getTxtReferencia().setEditable(true);
     }
     
     public void plantillaEliminarCita(){
