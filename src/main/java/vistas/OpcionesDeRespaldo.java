@@ -21,7 +21,7 @@ import modelos.Almacenamiento;
 
 public class OpcionesDeRespaldo extends javax.swing.JFrame {
 
-     private ImagenFondo fondo = new ImagenFondo();
+    private ImagenFondo fondo = new ImagenFondo();
     
     public OpcionesDeRespaldo(String titulo, Almacenamiento almacenamiento) {
         this.setContentPane(fondo);
@@ -42,7 +42,7 @@ public class OpcionesDeRespaldo extends javax.swing.JFrame {
         btnRestaurar = new javax.swing.JButton();
         btnRegresar = new javax.swing.JButton();
         separador1 = new javax.swing.JSeparator();
-        btnRestaurar1 = new javax.swing.JButton();
+        btnExportar = new javax.swing.JButton();
 
         separador.setForeground(new java.awt.Color(0, 0, 0));
 
@@ -69,10 +69,10 @@ public class OpcionesDeRespaldo extends javax.swing.JFrame {
         separador1.setForeground(new java.awt.Color(0, 0, 0));
         separador1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        btnRestaurar1.setFont(new java.awt.Font("Agency FB", 1, 28)); // NOI18N
-        btnRestaurar1.setText("Exportar datos de afiliados");
-        btnRestaurar1.setFocusPainted(false);
-        btnRestaurar1.setRequestFocusEnabled(false);
+        btnExportar.setFont(new java.awt.Font("Agency FB", 1, 28)); // NOI18N
+        btnExportar.setText("Exportar datos de afiliados");
+        btnExportar.setFocusPainted(false);
+        btnExportar.setRequestFocusEnabled(false);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -100,7 +100,7 @@ public class OpcionesDeRespaldo extends javax.swing.JFrame {
                         .addGap(88, 88, 88))))
             .addGroup(layout.createSequentialGroup()
                 .addGap(162, 162, 162)
-                .addComponent(btnRestaurar1)
+                .addComponent(btnExportar)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -113,7 +113,7 @@ public class OpcionesDeRespaldo extends javax.swing.JFrame {
                     .addComponent(btnBackup, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnRestaurar, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(btnRestaurar1, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnExportar, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
                 .addComponent(btnRegresar, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(26, 26, 26)
@@ -139,6 +139,14 @@ public class OpcionesDeRespaldo extends javax.swing.JFrame {
 
     public void setBtnBackup(JButton btnBackup) {
         this.btnBackup = btnBackup;
+    }
+    
+    public JButton getBtnExportar() {
+        return btnExportar;
+    }
+
+    public void setBtnExportar(JButton btnBackup) {
+        this.btnExportar = btnBackup;
     }
 
     public JButton getBtnRegresar() {
@@ -170,11 +178,14 @@ public class OpcionesDeRespaldo extends javax.swing.JFrame {
     public void addBtnRestaurarListener(MouseListener listenerBotones){
         btnRestaurar.addMouseListener(listenerBotones);
     }
+    public void addBtnExportarListener(MouseListener listenerBotones){
+        btnExportar.addMouseListener(listenerBotones);
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBackup;
+    private javax.swing.JButton btnExportar;
     private javax.swing.JButton btnRegresar;
     private javax.swing.JButton btnRestaurar;
-    private javax.swing.JButton btnRestaurar1;
     private javax.swing.JLabel lblTitulo;
     private javax.swing.JSeparator separador;
     private javax.swing.JSeparator separador1;
