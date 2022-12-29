@@ -175,6 +175,7 @@ public class GestorPlantillaCita {
         @Override
         public void itemStateChanged(ItemEvent e) {
             vistaPlantillaCita.getTxtConsultorio().setText("");
+            vistaPlantillaCita.getBtnAgendar().setEnabled(false);
         }
         
     }
