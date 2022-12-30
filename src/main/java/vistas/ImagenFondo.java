@@ -15,9 +15,8 @@ package vistas;
 
 import java.awt.Graphics;
 import java.awt.Image;
-import java.io.FileNotFoundException;
-import java.io.IOException;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 public class ImagenFondo extends JPanel{
@@ -25,9 +24,14 @@ public class ImagenFondo extends JPanel{
     private Image imagen;
         
     public void paint (Graphics g){
-    imagen = new ImageIcon(getClass().getResource("/Imagenes/fondoCeleste.jpg")).getImage();
-    g.drawImage(imagen, 0, 0, getWidth(),getHeight(),this);
-    setOpaque(false);
-    super.paint(g);
+        try {
+            imagen = new ImageIcon(getClass().getResource("/Imagenes/fondoCeles8te.jpg")).getImage();
+            g.drawImage(imagen, 0, 0, getWidth(),getHeight(),this);
+            setOpaque(false);
+            super.paint(g);
+        } catch(NullPointerException e) {
+            JOptionPane.showMessageDialog(null, "Error: No se pudo encontrar el directorio de la imagen de fondo", "Error", JOptionPane.ERROR_MESSAGE);
+            System.exit(0);
+        }
     }
 }
