@@ -25,7 +25,7 @@ public class ImagenFondo extends JPanel{
         
     public void paint (Graphics g){
         try {
-            imagen = new ImageIcon(getClass().getResource("/Imagenes/fondoCeles8te.jpg")).getImage();
+            imagen = new ImageIcon(getClass().getResource("/Imagenes/fondoCeleste.jpg")).getImage();
             g.drawImage(imagen, 0, 0, getWidth(),getHeight(),this);
             setOpaque(false);
             super.paint(g);
