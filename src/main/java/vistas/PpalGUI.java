@@ -16,7 +16,6 @@ package vistas;
 import controladores.GestorPpalGUI;
 import java.awt.Color;
 import java.awt.event.MouseListener;
-import java.io.FileNotFoundException;
 import javax.swing.JButton;
 import modelos.Almacenamiento;
 
@@ -166,6 +165,5 @@ public class PpalGUI extends javax.swing.JFrame {
     private javax.swing.JLabel lblTitulo2;
     private javax.swing.JSeparator separador;
     // End of variables declaration//GEN-END:variables
-
 
 }

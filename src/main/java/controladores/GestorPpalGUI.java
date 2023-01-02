@@ -18,10 +18,6 @@ import modelos.Almacenamiento;
 import vistas.GestionDeCitas;
 import vistas.GestionServicioGUI;
 import vistas.OpcionesDeRespaldo;
-import vistas.PlantillaAfiliado;
-import vistas.PlantillaConsultorio;
-import vistas.PlantillaMedico;
-import vistas.PlantillaServicio;
 import vistas.PpalGUI;
 
 public class GestorPpalGUI {

@@ -20,10 +20,6 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import modelos.Almacenamiento;
 
-/**
- *
- * @author santy
- */
 public class GestionDeCitas extends javax.swing.JFrame {
 
     ImagenFondo fondo = new ImagenFondo();

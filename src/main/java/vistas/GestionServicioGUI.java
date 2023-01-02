@@ -18,6 +18,7 @@ import java.awt.Color;
 import java.awt.event.MouseListener;
 import javax.swing.JButton;
 import modelos.Almacenamiento;
+
 public class GestionServicioGUI extends javax.swing.JFrame {
 
     ImagenFondo fondo = new ImagenFondo();

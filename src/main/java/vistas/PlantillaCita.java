@@ -26,7 +26,6 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 import modelos.Almacenamiento;
 
-
 public class PlantillaCita extends javax.swing.JFrame {
 
     ImagenFondo fondo = new ImagenFondo();

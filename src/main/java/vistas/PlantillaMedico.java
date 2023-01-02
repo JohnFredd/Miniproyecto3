@@ -25,7 +25,6 @@ import javax.swing.JList;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import modelos.Almacenamiento;
-import modelos.Servicio;
 
 public class PlantillaMedico extends javax.swing.JFrame {
 
